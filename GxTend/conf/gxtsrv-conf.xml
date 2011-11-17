@@ -7,13 +7,14 @@
 	<!-- Environment Variables -->
 	<var name='envvars'>
 		<struct>
-		<var name='COMPUTERNAME'><string>__COMPUTERNAME__</string></var>
+		<var name='COMPUTERNAME'><string>__NEED_SETTING__</string></var>
 		<var name='PROGRAMFILES'><string>__NEED_SETTING__</string></var>
         <var name='PROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
         <var name='COMMONPROGRAMFILES'><string>__NEED_SETTING__</string></var>
         <var name='COMMONPROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
-		<var name='ACCENDO_BE_HOME'><string>__ACCENDO_BE_HOME__</string></var>
+		<var name='ACCENDO_BE_HOME'><string>__NEED_SETTING__</string></var>
 		<var name='MSBUILD'><string>__NEED_SETTING__</string></var>
+		<var name='UPDATE_CHANNEL'><string>master</string></var>
         <var name='SERVER_VERSION'><string></string></var>
         <var name='SERVER_STATUS'><string></string></var>
 		<var name='BATCH_REPO'><string>__REPO_ID__</string></var>

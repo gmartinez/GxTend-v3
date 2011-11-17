@@ -12,19 +12,17 @@ function getVersionStatus() {
     
     $("#chknewver").html('{$smarty.const._MSG_WAIT_SM_}');
     
-    $.get(
+    $.getJSON(
         "/Help/chknewver",
         function (data, textStatus, jqXHR) {
-            var retrDOM = jQuery(data);
-            var last_version = retrDOM.find("#last_3_ver").text();
-            var last_url = retrDOM.find("#last_3_url").text();
-
+            if (data.sts) {
+            var last_version = data.__BUILD_VERSION__ + " ( @ " + data.channel + " update channel )";
+            } else {
+            var last_version = data.msg + " ( from " + data.channel + " update channel )";
+            }
             $("#chknewver").text(last_version);
             if ($("#currentver").text() != last_version) {
                 $("#chknewver").attr("style", "color:red;");
-                if (last_url) {
-                    $("#chknewver").append("&nbsp;<a href='"+last_url+"' title='Click to Download'>&darr;</a>");
-                }
             } else {
                 $("#chknewver").attr("style", "color:green;");
             }
@@ -66,7 +64,7 @@ function getServicesStatus() {
                 <span style="color:green;">{$Accendo_Smarty->getSessVar("MetaData.checksts.msg")}</span>
             {/if}
         </li>
-        <li><strong>Latest Available Build to Download :</strong> <span id="chknewver"></span></li>
+        <li><strong>Latest Available Build :</strong> <span id="chknewver"></span></li>
         <li><strong>Status of Related Services :</strong> <span id="servicessts"></span></li>
         {/if}
     </ul>    
