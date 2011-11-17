@@ -16,7 +16,7 @@ function getVersionStatus() {
         "/Help/chknewver",
         function (data, textStatus, jqXHR) {
             if (data.sts) {
-            var last_version = data.__BUILD_VERSION__ + " ( @ " + data.channel + " update channel )";
+            var last_version = data.__BUILD_VERSION__ + " ( from " + data.channel + " update channel )";
             } else {
             var last_version = data.msg + " ( from " + data.channel + " update channel )";
             }
