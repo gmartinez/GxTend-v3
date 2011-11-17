@@ -12,12 +12,11 @@ function getVersionStatus() {
     
     $("#chknewver").html('{$smarty.const._MSG_WAIT_SM_}');
     
-    $.get(
+    $.getJSON(
         "/Help/chknewver",
         function (data, textStatus, jqXHR) {
-            var retrDOM = jQuery(data);
-            var last_version = retrDOM.find("#last_3_ver").text();
-            var last_url = retrDOM.find("#last_3_url").text();
+            var last_version = data.__BUILD_VERSION__;
+            var last_url = null;
 
             $("#chknewver").text(last_version);
             if ($("#currentver").text() != last_version) {
