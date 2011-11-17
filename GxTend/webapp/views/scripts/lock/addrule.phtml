@@ -1,0 +1,64 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#form_lock").ajaxForm({
+		dataType:  'json',
+        async: true,
+		beforeSubmit: function() {
+            $("#div_regexp #bottom_left").html("");
+			$("#div_regexp").block({ message: '{$smarty.const._BAR_WAIT_}' });
+		},
+		success: function (r) {
+            if (r.flag.sts == "ok") {
+                $("#div_regexp #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Matching rule successfully added to list");
+                $("#GenericDialog").dialog("close");
+                $('#gobtn_{$smarty.request.kbguid}').click();
+            } else {
+                $("#div_regexp #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Could not add matching rule successfully to list");
+                $("#div_regexp").unblock();
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    initializeButtons();
+
+});
+</script>
+<div id="div_regexp">
+    <form id="form_lock" action="/Lock/flag" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="projguid" value="{$smarty.request.projguid}">
+    <input type="hidden" name="kbguid" value="{$smarty.request.kbguid}">
+    <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
+    <input type="hidden" name="flagtype" value="ignore">
+        <p>
+        &nbsp;<strong>Matching Class {$classType}</strong>
+        &nbsp;<span style="font-size:0.8em;">{$Accendo_Smarty->msg("ui-icon-info","Object class the 'Matching Expression' will be used on")}</span>
+        </p>
+        <p>
+        &nbsp;<strong>Matching Expression</strong>
+        <br><textarea id="regExpCode" name="regExpCode" cols="80" rows="3"></textarea>
+        </p>
+        <p>
+        &nbsp;<strong>Matching Expression Examples;</strong>
+            <ul>
+            <li style="padding:.5em;">Normal regular expression (RegExp) : eg. <strong><a href="javascript:;" onclick="$('#regExpCode').val('/gx/i');">/gx/i</a></strong> will match all objects whose name start with "gx", while "i" will makes the matching case insensitive.</li>
+            <li style="padding:.5em;">Special case for GeneXus X Kbs : <strong><a href="javascript:;" onclick="$('#regExpCode').val('/Generated/');">/Generated/</a></strong> will match all objects that GxTend detects as being automatically generated. It matches both "generated and not modified" and also "generated but modified".</li>
+            <li style="padding:.5em;">Special case for GeneXus X Kbs : <strong><a href="javascript:;" onclick="$('#regExpCode').val('/Generated_and_not_Modified/');">/Generated_and_not_Modified/</a></strong> will match all objects that GxTend detects as being automatically generated. It only matches "generated and not modified".</li>
+            </ul>
+        </p>
+
+        <div class="myhr"></div>
+
+        <div id="bottom_left" class="left">
+            &nbsp;
+        </div>
+        <div  id="bottom_right" class="buttons right">
+            <button class="button-circle" type="submit" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>
+        </div>
+    </form>
+    <br clear="all">
+
+</div>

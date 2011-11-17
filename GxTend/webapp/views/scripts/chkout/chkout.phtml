@@ -1,0 +1,38 @@
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$("#form_checkout").ajaxForm({
+		dataType:  'json',
+		beforeSubmit: function(formData, jqForm, options) {
+            $("#grid_tabber").block({ message: '{$smarty.const._MSG_WAIT_}' });
+		},
+		success: function (j) {
+            $("#grid_tabber").block({ message: j.msg });
+            $("#grid_tabber").tabs("load", 1);
+            setTimeout('$("#grid_tabber").unblock();', 5000);
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+});
+
+</script>
+
+    <b>Remote repository</b> {$cons_visualid}<br>
+	<form id="form_checkout" action="chkout/chkout" method="POST" enctype="multipart/form-data">
+    {foreach from=$smarty.get key=k item=rec}
+    <input type="hidden" name="{$k}" value="{$rec}">
+    {/foreach}
+        <b>Create PWS in</b> <input type="text" size="100" name="pws_target" value="{$pws_target}">
+        <p align="right">
+        {if $commit_status.sts}
+        <input type=submit id="submit_btn" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">&nbsp;
+        {else}
+        <span class="red">Check-Out not available at this time [{$commit_status.msg}]</span>&nbsp;
+        {/if}
+        </p>
+	</form>

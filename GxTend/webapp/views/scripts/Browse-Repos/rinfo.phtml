@@ -1,0 +1,237 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#tabber_repnfo").tabs();
+
+	$("#rinfo form").ajaxForm({
+		dataType:  'json',
+		beforeSubmit: function() {
+            if (confirm("Please confirm you want to continue with the submission of the selected operation ?")) {
+                $("#rinfo").block({ message: '{$smarty.const._BAR_WAIT_}' });
+            } else {
+                return false;
+            }
+		},
+		success: function (r) {
+            showlogmsg();
+            if (!r.err) {
+                mDialog('/Browse-Repos/rinfo?repopath={$smarty.request.repopath}&projguid={$smarty.request.projguid}', 'Repository Detailed Stats', 480, 640);
+            } else {
+                $("#rinfo").unblock();
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+});
+
+function goChgPrm(mode,k,v) {
+    
+    $("#rinfo form").hide();
+    $("#form_chgprm").show();
+    if (mode=="edt") {
+        $("#form_chgprm #prmkey").prop("readonly","readonly").val(k);
+        $("#form_chgprm #prmval").val(v);
+        $("#form_chgprm #prmval").focus();
+    } else {
+        $("#form_chgprm #prmkey").prop("readonly","").val("");
+        $("#form_chgprm #prmval").val("");
+        $("#form_chgprm #prmkey").focus();
+    }    
+    $("#GenericDialog").animate({ scrollTop: $("#GenericDialog").height() }, 1000);
+
+}
+</script>
+
+<div id="rinfo">
+    <div id="tabber_repnfo">
+        <ul>
+            <li><a href="#tab-1">Repository</a></li>
+            <li><a href="#tab-2">Codelines</a></li>
+            <li><a href="/Fsys-Brw/?data2browse={$meta2browse}"><span>Meta Files</span></a></li>
+        </ul>
+
+        <div id="tab-1">
+            <table align="center" width="100%" class="list-horizontal">
+            <tr>
+                <td align="left" class="header first" scope="row">
+                    Path
+                </td>
+                <td align="left" class="first">
+                    {$Accendo_Smarty->cutstr($repo_stats.path,0,50)}
+                </td>
+            </tr>
+            <tr>
+                <td align="left" class="header" scope="row">
+                    Size
+                </td>
+                <td align="left">
+                    {$Accendo_Smarty->bytes2str($repo_stats.fsysSize)}
+                    {if $repo_stats.fsysSize}                    
+                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_cleanup").show();' class='pointer'><img src="{$smarty.const._IMG_CLEANUP_SM_}" title="Cleanup repository."></span>
+                    {if $smarty.const.__LAYER_ROLE__ == "Server"}
+                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_updsrvnfo").show();' class='pointer'><img src="{$smarty.const._IMG_UPDSRVNFO_SM_}" title="Update server's repository metadata info."></span>
+                    {/if}
+                    {if $smarty.const.__LAYER_ROLE__ == "Client"}
+                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_mergerpcl").show();' class='pointer'><img src="{$smarty.const._IMG_JOIN_SM_}" title="Merge remote and local Personal Code Lines."></span>
+                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_setbaseline").show();' class='pointer'><img src="{$smarty.const._IMG_MERGE_SM_}" title="Rebase your Personal Code Line."></span>
+                    {/if}
+                    {/if}
+                </td>
+            </tr>
+            {if $smarty.const.__LAYER_ROLE__ == "Client"}
+            <tr>
+                <td align="left" class="header" scope="row">
+                    Working Tree Size
+                </td>
+                <td align="left">
+                    {$Accendo_Smarty->bytes2str($repo_stats.fsysSizeOfWrkTree)}
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <td align="left" class="header" scope="row">
+                    Number of Codelines
+                </td>
+                <td align="left">
+                    {$repo_stats.branchInfo|@count}
+                </td>
+            </tr>
+            <tr>
+                <td align="left" class="header" scope="row">
+                    Current Codeline
+                </td>
+                <td align="left">
+                    {$repo_stats.head}
+                </td>
+            </tr>
+            <tr>
+                <td align="left" class="header" scope="row" colspan="2">
+                    <span style="cursor:pointer;float:right;font-size:.8em;" onclick="$('#rinfo form').hide();$('.config_entries').toggle();">Click to View/Edit repository config entries</span>
+                </td>
+            </tr>
+            {foreach $repo_stats.config as $k => $v}
+            <tr class="config_entries" style="display:none;" onmouseover="$('#{$k|sha1}').show();" onmouseout="$('#{$k|sha1}').hide();">
+                <td align="left">
+                    <strong>{$k}</strong>
+                </td>
+                <td align="left">
+                    {$Accendo_Smarty->cutstr($v,0,50)}
+                    <span id="{$k|sha1}" style="display:none;" onclick='goChgPrm("edt","{$k}","{$v}");' class='pointer right'><img src="{$smarty.const._IMG_EDIT_SM_}" title="Edit entry."></span>
+                </td>
+            </tr>
+            {/foreach}
+            <tr class="config_entries" style="display:none;">
+                <td align="left" class="header" scope="row" colspan="2">
+                    <span style="cursor:pointer;float:right;font-size:.8em;" onclick='goChgPrm("add","","");'>Add Entry</span>
+                </td>
+            </tr>
+            </table>
+            <div>
+                <form id="form_cleanup" action="/Browse-Repos/ropts" method="POST" enctype="multipart/form-data" style="display:none;">
+                <input type="hidden" name="projguid" value="{$projguid}">
+                <input type="hidden" name="opt" value="cleanup">
+                    <p>
+                        {$Accendo_Smarty->msg("ui-icon-info","Aggessive cleanup of the repository might take several minutes to complete.")}
+                    </p>                
+                    <div id="bottom_right" class="buttons right">
+                        {$smarty.const._FORM_BTN_SUBMIT_}
+                        &nbsp;or&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                    </div>
+                </form>
+                {if $smarty.const.__LAYER_ROLE__ == "Server"}
+                <form id="form_updsrvnfo" action="/Browse-Repos/ropts" method="POST" enctype="multipart/form-data" style="display:none;">
+                <input type="hidden" name="projguid" value="{$projguid}">
+                <input type="hidden" name="opt" value="updsrvnfo">
+                    <p>
+                        {$Accendo_Smarty->msg("ui-icon-info","Update server's repository metadata info might take a few minutes to complete.")}
+                    </p>                
+                    <div id="bottom_right" class="buttons right">
+                        {$smarty.const._FORM_BTN_SUBMIT_}
+                        &nbsp;or&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                    </div>
+                </form>
+                {else}
+                <form id="form_mergerpcl" action="/Browse-Repos/ropts" method="POST" enctype="multipart/form-data" style="display:none;">
+                <input type="hidden" name="projguid" value="{$projguid}">
+                <input type="hidden" name="opt" value="mergerpcl">
+                    <p>
+                        {$Accendo_Smarty->msg("ui-icon-info","Merge remote PCL into local PCL will align both.")}
+                    </p>                
+                    <div id="bottom_right" class="buttons right">
+                        {$smarty.const._FORM_BTN_SUBMIT_}
+                        &nbsp;or&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                    </div>
+                </form>
+                <form id="form_setbaseline" action="/Browse-Repos/setbaseline" method="POST" enctype="multipart/form-data" style="display:none;">
+                <input type="hidden" name="projguid" value="{$projguid}">
+                    {if $repo_stats.personalBranch == "not found"}
+                        {$Accendo_Smarty->msg("ui-icon-alert","Personal Baseline Code Not Found")}
+                        <p>
+                        Set it using {$start_point} as starting point.
+                        </p>
+                    {else}
+                        {$Accendo_Smarty->msg("ui-icon-info","By Re-Basing your PCL you will loose any local uncommited changes you might have.")}
+                        <p>
+                         Re-base using {$start_point} as starting point.
+                        </p>
+                    {/if}
+                    <div id="bottom_right" class="buttons right">
+                        {$smarty.const._FORM_BTN_SUBMIT_}
+                        &nbsp;or&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                    </div>
+                </form>
+                {/if}
+                <form id="form_chgprm" action="/Browse-Repos/ropts" method="POST" enctype="multipart/form-data" style="display:none;">
+                <input type="hidden" name="projguid" value="{$projguid}">
+                <input type="hidden" name="opt" value="chgprm">
+                    <p>
+                        {$Accendo_Smarty->msg("ui-icon-info","Add/Change repository config entry.")}
+                    </p>
+                    <p>
+                        <strong>Key :</strong> <input type="input" id="prmkey" name="prmkey" size="30" value="">
+                    </p>
+                    <p>
+                        <strong>Value :</strong> <input type="input" id="prmval" name="prmval" size="75" value="">
+                    </p>
+                    <div id="bottom_right" class="buttons right">
+                        {$smarty.const._FORM_BTN_SUBMIT_}
+                        &nbsp;or&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                    </div>
+                </form>                
+            </div>
+            <br style="clear:both;">
+        </div>
+
+        <div id="tab-2">
+            <fieldset><legend>Locals</legend>
+            {foreach from=$repo_stats.branchInfo key=k item=rec}
+                {if $rec.type == "local"}
+                    <p>
+                    Named '<b>{$rec.name}</b>' has <b>{$rec.commits}</b> commits.
+                    <br>Last performed by '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' on '<b>{$Accendo_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> entries.
+                    </p>
+                {/if}
+            {/foreach}
+            </fieldset>
+            <br style="clear:both;">
+            <fieldset><legend>Remotes</legend>
+            {foreach from=$repo_stats.branchInfo key=k item=rec}
+                {if $rec.type == "remote"}
+                    <p>
+                    Named '<b>{$rec.name}</b>' has <b>{$rec.commits}</b> commits.
+                    <br>Last performed by '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' on '<b>{$Accendo_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> entries.
+                    </p>
+                {/if}
+            {/foreach}
+            </fieldset>
+        </div>
+    </div>
+</div>

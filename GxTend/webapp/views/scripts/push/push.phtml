@@ -1,0 +1,142 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#form_push").ajaxForm({
+		dataType:  'json',
+		beforeSubmit: function() {
+			$("#synch").block({ message: '{$smarty.const._BAR_WAIT_}' });
+            $("#div_push #bottom_left").html("");
+		},
+		success: function (r) {
+            for ( var i in r.push ) {
+                if (r.push[i] == "ok") {
+                    $("#"+i).html("<img src='../img/icons/32/tick.png' alt='ok' title='"+r.push[i]+"'>");
+                } else {
+                    $("#"+i).html("<img src='../img/icons/32/error.png' alt='err' title='"+r.push[i]+"'>");
+                }
+            }
+
+            if (r.sts == "ok") {
+                $("#div_push #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Successful Push "+r.msg);
+                $("#form_push button").attr("disabled", "disabled");
+                $("#synch").unblock();
+            } else if (r.sts == "wrn") {
+                $("#div_push #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='err'> Pushing Data Warning "+r.msg);
+                $("#synch").unblock();
+            } else {
+                $("#div_push #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Pushing Data Error "+r.msg);
+                $("#synch").unblock();
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    $("#east_panel #project #div_push img.tip").cluetip({ splitTitle: "|" });
+});
+</script>
+<div id="div_push">
+
+<fieldset>
+    <legend>
+        <img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title=''>&nbsp;Push to Server.
+        [&nbsp;
+        <span class='file' title='{$smarty.const._TITLE_HIDE_}' onclick='$("#synch").hide("slow");'>&laquo;</span>
+        &nbsp;]
+    </legend>
+    {if !is_array($local_changes)}
+        <br clear="all">
+        {$Accendo_Smarty->msg("ui-icon-info","None Found")}
+        <div class="myhr"></div>
+        <div id="bottom_left" class="left">
+            {include file='../index/ttp.phtml'}
+        </div>
+        <div  id="bottom_right" class="right">
+            &nbsp;
+        </div>
+    {else}
+	<form id="form_push" action="Push/push" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="projguid" value="{$smarty.request.projguid}">
+        {foreach from=$local_changes key=commit_id item=commit_data}
+        {if $commit_data.commiter != $Accendo_Smarty->getSessVar("MyProfile.userdata.username")}
+            {assign var=othersCommits value=$othersCommits+1}
+            <div class="othersCommits" style="display:none;">
+        {else}
+            {assign var=myCommits value=$myCommits+1}
+            <div class="myCommits" style="display:block;">
+        {/if}
+        <br clear="all">
+        <div class="column left">
+            <b>Id :</b> {$Accendo_Smarty->cutstr($commit_id,0,7)}<br>
+            <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$Accendo_Smarty->cutstr($commit_data.subject,0,80)}
+        </div>
+        <div class="column right" id="{$commit_id}">
+            <b>Commited on :</b> {$Accendo_Smarty->ts2str($commit_data.commiterTs)}<br>
+            <b>Commited by :</b> {$commit_data.commiter}
+            <input type="hidden" name="commits[]" value="{$commit_id}">
+        </div>
+        <br clear="all">
+        <table width="100%" align="center" class="list">
+        <thead>
+            <tr><th>Kb<br>&nbsp;# Env.</th><th>Object</th><th>STS</th></tr>
+        </thead>
+        <tbody>
+            {foreach from=$commit_data.changes key=kbguid item=kb_commit_data}
+                <tr>
+                    <td colspan="5">{$kb_commit_data.kbinfo.visualid}</td>
+                </tr>
+                {foreach from=$kb_commit_data.objects key=k item=rec}
+                {if $k<3}
+                <tr class='{cycle values="odd,even"}'>
+                    <td>&nbsp;{$rec.gxinfo.mdlid}</td>
+                    <td>&nbsp;
+                        {if $rec.gxinfo.objcls!=111}
+                        <img src="../img/gx/objclass/{$gx_objcls[$rec.gxinfo.objcls].small}.png" title="{$gx_objcls[$rec.gxinfo.objcls].long}">
+                        {else}
+                        <img src="../img/icons/16/file.png" title="File">
+                        {/if}
+                        &nbsp;{$rec.gxinfo.objnam}
+                    </td>
+                    <td align="center">
+                        {if $rec.gitnfo.status=="A"}
+                            <img class="tip" alt="new" src="../img/icons/16/new.png" title="Change Description [{$rec.gitnfo.status}]|Object created in this commit.">
+                        {elseif $rec.gitnfo.status=="M"}
+                            <img class="tip" alt="new" src="../img/icons/16/edit.png" title="Change Description [{$rec.gitnfo.status}]|Object was modified in this commit.">
+                        {elseif $rec.gitnfo.status=="D"}
+                            <img class="tip" alt="new" src="../img/icons/16/cleanup.png" title="Change Description [{$rec.gitnfo.status}]|Object was deleted in this commit.">
+                        {/if}
+                    </td>
+                </tr>
+                {/if}
+                {/foreach}
+            {/foreach}
+                {assign var=totrecs value=$k+1}
+                <tr class='{cycle values="odd,even"}'>
+                {if $k>3}
+                    <td colspan="3" style="text-align:right;font-size:.90em;">3 out of {$totrecs} objects in this commit.&nbsp;</td>
+                {else}
+                    <td colspan="3" style="text-align:right;font-size:.90em;">{$totrecs} object(s) in this commit.&nbsp;</td>
+                {/if}
+                </tr>
+        </tbody>
+        </table>
+        </div>
+        {/foreach}
+        <div class="myhr"></div>
+        <div id="bottom_left" class="left">
+            {include file='../index/ttp.phtml'}
+        </div>
+        <div  id="bottom_right" class="right buttons">
+            <span class="file" onclick="$('.othersCommits').hide('slow');$('.myCommits').show('slow');"><strong>My Own :</strong> {$myCommits|default:0}</span>
+            <br clear="all">
+            <span class="file" onclick="$('.myCommits').hide('slow');$('.othersCommits').show('slow');"><strong>Others :</strong> {$othersCommits|default:0}</span>
+            <br clear="all">
+            <br clear="all">
+            {$smarty.const._FORM_BTN_PUSH_}
+        </div>
+	</form>
+    {/if}
+</fieldset>
+
+</div>

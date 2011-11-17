@@ -1,0 +1,57 @@
+<div id="log_promote">
+    <div class="column left">
+        <strong>Target : </strong> {$Accendo_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
+        <br>
+        <strong>Unlock After Import : </strong> {($logData.unlockAimport) ? "Yes" : "No"}
+    </div>
+    <div class="column right">
+        <strong>Queued for Batch Processing : </strong> {($logData.queue4exec) ? "Yes" : "No"}
+        <br>
+        <strong>Process Result Audit Entry : </strong> {$logData.output}
+    </div>
+    <br clear="all">
+    <div class="myhr"></div>
+    
+    <div class="column left">
+        Objects are listed in the order they were submitted.
+    </div>
+    <div class="column right">
+        {count($logData.checked_objs)} row(s)
+    </div>
+    <br clear="all">
+    <table width="100%" align="center" class="list">
+    <thead>
+        <tr><th>Object</th><th>Modified &darr;</th></tr>
+    </thead>
+    <tbody>
+        {foreach from=$logData.checked_objs key=k item=rec}
+        <tr class='{cycle values="odd,even"}'>
+        <td>&nbsp;
+            {if $rec.gxinfo.objcls!=111}
+            <img src="../img/gx/objclass/{$gx_objcls[$rec.gxinfo.objcls].small}.png" title="{$gx_objcls[$rec.gxinfo.objcls].long}">
+            &nbsp;{$rec.gxinfo.objnam}
+            {else}
+            <img src="../img/icons/16/file.png" title="File">
+            &nbsp;{$rec.gxinfo.objnam|basename}
+            {/if}
+        </td>
+        <td align="center">
+            &nbsp;{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+            {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
+            &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+            {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
+            &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
+            {elseif $rec.gxinfo.COMP=="OLDER"}
+            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$Accendo_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+            {/if}
+            {if $rec.gxinfo.generated==1}
+            &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
+            {else if $rec.gxinfo.generated==2}
+            &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="Automatically generated BUT modified.">
+            {/if}
+        </td>
+        </tr>
+        {/foreach}
+    </tbody>
+    </table>
+</div>

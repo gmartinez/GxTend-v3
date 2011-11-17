@@ -1,0 +1,93 @@
+{include file='form.ready.js.inc'}
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $("#fcliid").addClass("string required");
+
+});
+</script>
+
+	<br>
+	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+	<input type="hidden" name="parms" value="{$smarty.get.parms}">
+        <h3>
+            Client this User {if $form_mode != $smarty.const._LBL_ADD_}is{else}will be{/if} related to {$cliid}
+            &nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_clients' }, null, '$(\'#addNew\').click();');">[+]</span>
+        </h3>        
+        <div class="myhr"></div>
+		<table align="center" width="100%">
+		<tr><td align="left">
+			<b>Username</b>
+            </td>
+			<td align="left">
+            {if $form_mode == $smarty.const._LBL_ADD_}
+			<input type="text" size="15" name="f|username|unique" value="{$username}" class="string required">
+            {else}
+			<input type="text" size="15" name="f|username|unique" value="{$username}" readonly="readonly">
+            <img class="pointer" src="../img/icons/16/password.png" title="Change Password" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=users', 'Change User\'s Password', 250, 500);">
+            {/if}
+            </td>
+        </tr>        
+		<tr><td align="left">
+			<b>Full Name</b>
+            </td>
+			<td align="left">
+			<input type="text" size="50" name="f|name" value="{$name}" class="string required">
+            </td>
+        </tr>
+		<tr><td align="left">
+			<b>Email</b>
+            </td>
+			<td align="left">
+			<input type="text" size="50" name="f|email" value="{$email}" class="string required email">
+            </td>
+        </tr>
+		<tr><td align="left">
+			<b>Primary Group</b>
+            </td>
+			<td align="left">
+			{$groupguid|default:"A group named after 'Username' will be created and set as user's primary"}
+            </td>
+        </tr>
+		<tr><td align="left">
+			<b>Other Groups</b>
+            </td>
+			<td align="left">
+			{$othergroups}&nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">[+]</span>
+			<br>(Use Ctrl key for multiple selection)
+            </td>
+        </tr>
+        <tr><td align="left">
+            <b>Users's Sector</b>
+            </td>
+            <td align="left">
+            {$sectorid}&nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_sectors' }, null, '$(\'#addNew\').click();');">[+]</span>
+            </td>
+        </tr>
+		<tr><td align="left">
+			<b>Active</b>
+			<td align="left">
+			{$active}
+            </td>
+        </tr>
+		</table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
+            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('{$smarty.const._TITLE_DELETE_} ?'));">{$smarty.const._LBL_DELETE_}</button>
+        {else}
+            <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
+        {/if}
+        <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
+        </div>
+        <br clear="all">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+        <div>
+        <label style="width:10em;"><strong>User Security Token : </strong></label>
+        {$userToken}
+        </div>
+        {/if}
+
+	</form>

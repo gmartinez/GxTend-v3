@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    {include file='../index/common_head.phtml'}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        //
+        initializeButtons();
+
+        // Form submit...
+        $("form").ajaxForm({
+            dataType: 'json',
+            async: false,
+            beforeSubmit: function() {
+                $("form").block({ message: '{$smarty.const._MSG_WAIT_}' });
+            },
+            success: function (r) {
+                $("form").block({ message: r.msg });
+                if (r.sts) {
+                    setTimeout('window.close();', 2500);
+                } else {
+                    setTimeout('$("form").unblock();', 2500);
+                }
+            },
+            error: function (jqXHR) {
+                handleXHRerror(jqXHR);
+            }
+        });
+
+        initRichTextEditor('body','MyBasicOptions');
+
+        // Upload files initialization...
+        $('#fileInput').uploadify({
+            'uploader': '/jquery/addons/upload/uploadify.swf',
+            'script': '/Upload/upload',
+            'cancelImg': '/jquery/addons/upload/cancel.png',
+            'scriptData': { 'options':'{$options}' },
+            'checkScript': '/Upload/check?options={$options}',
+            'multi': true,
+            'auto': true,
+            'sizeLimit': {$Accendo_Smarty->get_prm("upload_maxsize")},
+            'simUploadLimit': {$Accendo_Smarty->get_prm("upload_maxsimu")},
+            'fileDesc': 'All Files',
+            'fileExt': '*.*',
+            'buttonText': 'Attach File(s)',
+            'displayData': 'speed',
+            'onComplete': onFileComplete
+        });
+
+    });
+
+    function onFileComplete(event,queueID,fileObj,response,data) {
+        if (response=="ok") {
+            $('#attchsRow').show();
+            $("#attchsRow #attchsHolder").append("<input type='checkbox' name='atchs[]' value='" + fileObj.name + "' checked> " + fileObj.name + " [" + bytes2str(fileObj.size) + "]<br>");
+        }
+    }    
+    </script>
+</head>
+
+<body class="popup">
+    <form id="write_email_form" action="/Email-Mgmt/send" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="options" value="{$options}">
+    <table align="center" width="100%" class="list-horizontal">
+    <tr id="toRow">
+		<td align="left" width="15%" class="header first" scope="row">
+			To
+		</td>
+		<td align="left" class="first">
+            {if $smarty.request.op=='Re'}
+            <input type="text" style="width:55%;" name="to" value="{$email.emheader.to.mail}">
+            {else}
+            <input type="text" style="width:55%;" name="to" value="">
+            {/if}
+            <span id="add_cc_lnk" class="file hint" onclick="javascript:$('#ccRow').show();$('#add_cc_lnk,#add_sepa').hide();">Add Cc</span>
+            <span id="add_sepa">|</span>
+            <span id="add_bcc_lnk" class="file hint" onclick="javascript:$('#bccRow').show();$('#add_bcc_lnk,#add_sepa').hide();">Add Bcc</span>
+            <span style="float:right;">
+            <label for="priority"><strong>Priority</strong></label>
+            {$priority}
+            </span>
+		</td>
+	</tr>
+    <tr id="ccRow" style="display:none;">
+		<td align="left" class="header" scope="row">
+			Cc
+		</td>
+		<td align="left">
+            <input type="text" style="width:55%;" name="cc" value="{$cc}">
+		</td>
+    </tr>
+    <tr id="bccRow" style="display:none;">
+		<td align="left" class="header" scope="row">
+			Bcc
+		</td>
+		<td align="left">
+            <input type="text" style="width:55%;" name="bcc" value="{$bcc}">
+		</td>
+    </tr>
+    <tr id="subjectRow" >
+		<td align="left" class="header" scope="row">
+			Subject
+		</td>
+		<td align="left">
+            {if $smarty.request.op=='Re'}
+            <input type="text" style="width:99%;" name="subject" value="Re: {$email.emheader.subject}">
+            {elseif $smarty.request.op=='Fwd'}
+            <input type="text" style="width:99%;" name="subject" value="[Fwd: {$email.emheader.subject}]">
+            {else}
+            <input type="text" style="width:99%;" name="subject" value="{$subject}">
+            {/if}
+		</td>
+	</tr>
+    <tr id="attchsRow" style="display:none;">
+		<td align="left" class="header" scope="row">
+			Attachments
+		</td>
+		<td align="left">
+            <span id="attchsHolder"></span>
+		</td>
+    </tr>
+    </table>
+    <div>
+        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:.8em;float:right;cursor:pointer;">Toggle to Full Toolbar</span>
+        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:.8em;float:right;cursor:pointer;">Toggle to Basic Toolbar</span>
+    </div>
+    <br clear="all">
+    <div>
+        <textarea id="body" name="body" rows="15" cols="70">{$body}</textarea>
+    </div>
+    <br clear="all">
+    <div class="buttons right">
+        {$smarty.const._FORM_BTN_SUBMIT_}
+    </div>
+    <div class="buttons left">
+        <input type="file" name="fileInput" id="fileInput">
+        <!--br clear="all">
+        <span class="file" onclick="javascript:$('#fileInput').fileUploadStart();">Upload Files</span>
+        &nbsp;|&nbsp;
+        <span class="file" onclick="javascript:$('#fileInput').fileUploadClearQueue();">Clear Queue</span-->
+    </div>
+    <br clear="all">
+    </form>
+</body>
+</html>

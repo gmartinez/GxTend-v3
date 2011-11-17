@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#projguid").change(function() {
+            $("#filter-holder, #objs_panel").html("");
+            if ($("#projguid").val()) {
+                $("#filter-holder").html('{$smarty.const._MSG_WAIT_SM_}');
+                $("#filter-holder").load("Browse-History/getprompt?projguid="+$("#projguid").val()+"&codeline="+$("#codeline").val());
+            }
+        });
+
+        $("#from, #to").change(function (o) {
+            $("#filter-holder, #objs_panel").html("");
+        });
+
+		$("#pmtDialog").dialog({
+			bgiframe: true,
+            autoOpen: false,
+			height: 408,
+			width: 640,
+			modal: true,
+            close: function(event, ui) { $("#nfoDialog").html('{$smarty.const._MSG_WAIT_SM_}'); }
+		});
+
+    });
+
+    function loadhistory() {
+
+        loadappdiv("/Browse-History/loadhistory", { projguid:$("#projguid").val(), codeline:$("#codeline").val(), from:$("#from").val(), to:$("#to").val() }, "#objs_panel");
+
+    }
+
+</script>
+
+<div id="browsearea">
+    <div style="float:right;"><h2>Browse History</h2></div>
+    Projects {$projects}&nbsp;&nbsp;<span id="filter-holder"></span>
+    <hr>
+	<div id="objs_panel"></div>
+</div>
+
+<div id="pmtDialog" title="Select Commit">{$smarty.const._MSG_WAIT_SM_}</div>

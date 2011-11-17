@@ -1,0 +1,15 @@
+Dear {$user_data.name},
+<p>
+You have just been assigned the following to-do item by {$Accendo_Smarty->guid2name("gxt_users",$Accendo_Smarty->getSessVar("MyProfile.userdata.userguid"))}.
+<p>
+    <h3>{$todo_data.todoabv}</h3>
+    <ul style="line-height: 2em;">
+        <li>
+        &nbsp;{$item_data.ttsabv}
+        &nbsp;<span style="background:green;color:white">&nbsp;{$all_status[$item_data.ttssts]}&nbsp;</span>
+        </li>
+    </ul>
+<p>
+--<br>
+Regards<br>
+GxTend<br>

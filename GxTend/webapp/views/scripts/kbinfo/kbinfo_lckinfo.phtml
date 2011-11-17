@@ -1,0 +1,60 @@
+{if $smarty.request.type!="history"}
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $('#all_history .file').click(function() {
+        $('#all_history').html('{$smarty.const._MSG_WAIT_SM_}');
+        $('#all_history').load('locks?kbguid={$smarty.request.kbguid}&type=history');
+    });
+
+});
+</script>
+{/if}
+
+<div class="column left">
+    &nbsp;<img src="{$smarty.const._IMG_LOCK_SM_}" alt="{$smarty.const._LBL_LOCK_}" title="{$smarty.const._LBL_LOCK_}">
+    {if $smarty.request.type!="history"}
+    List of active locks.
+    {else}
+    Object's locking history.
+    {/if}
+</div>
+<div class="column right">
+    &nbsp;{$resultset|@count} row(s)
+</div>
+
+<br clear="all">
+
+<table width="100%" align="center" class="list">
+<thead>
+    {if $smarty.request.type!="history"}
+    <tr><th>Object</th><th>Username</th><th>Locked Since &darr;</th></tr>
+    {else}
+    <tr><th>Object</th><th>Locked On &darr;<br>by User</th><th>Released On<br>by User</th></tr>
+    {/if}
+</thead>
+<tbody>
+    {foreach from=$resultset key=k item=rec}
+    <tr class='{cycle values="odd,even"}'>
+        {if $smarty.request.type!="history"}
+            <td>&nbsp;<img src="../img/gx/objclass/{$gx_objcls[$rec.objcls].small}.png" title="{$gx_objcls[$rec.objcls].long}">&nbsp;{$rec.objnam}</td>
+            <td>&nbsp;{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
+            <td align="center">{$Accendo_Smarty->ts2str($rec.setts)}</td>
+        {else}
+            <td>&nbsp;<img src="../img/gx/objclass/{$gx_objcls[$rec.objcls].small}.png" title="{$gx_objcls[$rec.objcls].long}">&nbsp;{$rec.objnam}</td>
+            <td align="center">{$Accendo_Smarty->ts2str($rec.setts)}<br>{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
+            <td align="center">{$Accendo_Smarty->ts2str($rec.unsetts)}<br>{$Accendo_Smarty->guid2name('gxt_users', $rec.unsetuserguid)}</td>
+        {/if}
+    </tr>
+    {/foreach}
+</tbody>
+</table>
+
+{if $smarty.request.type!="history"}
+<span id="all_history">
+    <span class="file">
+    {$Accendo_Smarty->msg("ui-icon-zoomin","Click to see all locking history.")}
+    </span>
+</span>
+<br clear="all">
+{/if}

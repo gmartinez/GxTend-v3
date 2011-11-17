@@ -1,0 +1,10 @@
+<div style="float:left;">
+<div id="ttpnfo" style="font-size:.8em;">
+    TTP : {($smarty.now - $smarty.server.REQUEST_TIME) ? {$Accendo_Smarty->sec2str($smarty.now - $smarty.server.REQUEST_TIME)} : "< 1 second"}
+</div>
+{if $bck2top!='no'}
+<div id="bck2top" style="font-size:.8em;">
+    <a href="javascript:;" onclick="$('#east_panel').animate({ scrollTop: 0 }, 1000);"><span class="ui-icon ui-icon-arrow-1-n" style="float:left;"></span> Top</a>
+</div>
+{/if}
+</div>

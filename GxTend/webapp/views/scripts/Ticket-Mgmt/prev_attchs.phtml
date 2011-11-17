@@ -1,0 +1,16 @@
+{foreach from=$atchs key=k item=file}
+    <div id="{$file.file_guid}" class="attch_holder" style="margin:5px;float:right;">
+    {if $smarty.request.preview == "on" && $file.prev}
+        <a href="/Download/download?file_guid={$file.file_guid}" title="Click to Download">
+        <img src="/Download/download?file_guid={$file.file_guid}" title="{$file.file_name} [{$Accendo_Smarty->bytes2str($file.file_size)}]" height="100" width="100">
+        </a>
+    {else}
+        <img src="../img/icons/32/mail-attachment.png" alt="Attachment" title="Attachment">
+        <div style="float:right;margin-left:5px;">
+            <a href="/Download/download?file_guid={$file.file_guid}" title="Click to Download">{$file.file_name}</a><br>
+            {$Accendo_Smarty->bytes2str($file.file_size)}
+        </div>
+    {/if}
+    </div>
+{/foreach}
+<br clear="both">

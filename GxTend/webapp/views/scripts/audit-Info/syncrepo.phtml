@@ -1,0 +1,17 @@
+<div id="log_push">
+    <div class="column left">
+        <strong>Project : </strong> {$Accendo_Smarty->guid2name('gxt_projects', $logData.projguid)}
+    </div>
+    <div class="column right">
+        <strong>TTP : </strong> {$Accendo_Smarty->sec2str($logData.end - $logData.start)}
+    </div>
+    <br clear="all">
+    <div class="myhr"></div>
+
+    <div class="column left">
+        <p><strong>Command : </strong> {$logData.stdout.env.command}</p>
+        <p><strong>Outsts : </strong> {$logData.stdout.sts}</p>
+        <p><strong>Output : </strong> {$logData.stdout.out}</p>
+    </div>
+    <br clear="all">    
+</div>

@@ -1,0 +1,204 @@
+
+{include file='form.ready.js.inc'}
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $("#fprojguid").addClass("string required");
+
+    $("#fkbclass").change(function() {
+            $(".options").hide();
+            $(".kbver_"+$("#fkbclass").val()).show("slow");
+    });
+    $(".kbver_"+$("#fkbclass").val()).show();
+
+    $("#conn_type").change(function() {
+        chgConnType();
+    });
+    chgConnType();
+
+    if (!$("#fprojguid")[0].length) {
+        $("#form_{$form_ctrlid} button").attr("disabled", "disabled");
+    }
+
+});
+
+function chgConnType() {
+
+    $(".sqlviamem, .sqlviatcp").hide();
+    $("."+$("#conn_type").val()).show("slow");
+    if ($("#conn_type").val()=="sqlviamem") {
+        $("#dbms_host").prop("size",32);
+    } else {
+        $("#dbms_host").prop("size",20);
+    }
+
+}
+</script>
+
+	<br>
+	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+	<input type="hidden" name="parms" value="{$smarty.get.parms}">
+        <h3>Project this Kb {if $form_mode != $smarty.const._LBL_ADD_}is{else}will be{/if} under {$projguid}</h3>
+        <div class="myhr"></div>
+		<table align="center" width="100%">
+		<tr><td align="left">
+			<b>Description</b>
+            </td>
+			<td align="left">
+			<input type="text" size="60" name="f|kbdsc" value="{$kbdsc}" class="string required">
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Host @ Path</b>
+            </td>
+			<td align="left">
+            {$hostname} @ <input type="text" size="60" name="f|kbdir|unique" value="{$kbdir}" class="string required">
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Kb Class</b>
+            </td>
+			<td align="left">
+			{$kbclass}
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Owner/Responsible</b>
+            </td>
+			<td align="left">
+			{$userguid}
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Parent Kb</b>
+            </td>
+			<td align="left">
+			{$pkbguid}
+            </td>
+		</tr>
+        {if $smarty.const.__LAYER_ROLE__ == "Server"}
+		<tr><td align="left" colspan="2">
+                <br>
+                <fieldset><legend>KB Specific Options/Properties</legend>
+
+                <div class="myhr">Versioning Properties</div>
+                <table width="100%">
+                    <tr style="display:none;" class="options kbver_1111 kbver_2222 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200">
+                        <td style="font-weight:bold;width:30%;">Monitoring Status</td>
+                        <td>{$kbmirror}&nbsp;&nbsp;{$qevent}</td>
+                    </tr>
+                    <tr style="display:none;" class="options kbver_1111 kbver_2222">
+                        <td style="font-weight:bold;">Inclusions</td>
+                        <td><input type="text" size="40" name="inclusions" id="inclusions" value="{$options.inclusions}"></td>
+                    </tr>
+                    <tr style="display:none;" class="options kbver_1111 kbver_2222">
+                        <td style="font-weight:bold;">Exclusions</td>
+                        <td><input type="text" size="40" name="exclusions" id="inclusions" value="{$options.exclusions}" disabled="disabled"></td>
+                    </tr>
+                    <tr style="display:none;" class="options kbver_7500 kbver_8000 kbver_9000">
+                        <td style="font-weight:bold;">Model(s) to Version</td>
+                        <td><input type="text" size="20" name="mdls2vers" id="mdls2vers" value="{$options.mdls2vers}">&nbsp;<span style="font-size:.8em;">(Comma separated values)</span></td>
+                    </tr>
+                    <tr style="display:none;" class="options kbver_10000 kbver_10100 kbver_10200">
+                        <td style="font-weight:bold;">Env(s) to Version</td>
+                        <td><input type="text" size="20" name="mdls2vers" id="mdls2vers" value="{$options.mdls2vers}">&nbsp;<span style="font-size:.8em;">(Comma separated values)</span></td>
+                    </tr>
+                    {if $form_mode != $smarty.const._LBL_ADD_}
+                    <tr style="display:none;" class="options kbver_1111 kbver_2222 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200">
+                        <td style="font-weight:bold;width:30%;">Current Progress / State</td>
+                        {if $versyncsts.status == "connection_failed"}
+                            <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;Error connecting to KB [ {$Accendo_Smarty->getSessVar("GxKbCnx.ecod")} : {$Accendo_Smarty->getSessVar("GxKbCnx.emsg")} ]
+                        {elseif $versyncsts.status == "not_finished"}
+                            <td><img src="{$smarty.const._IMG_CLOCK_SM_}" alt="progress">&nbsp;&nbsp;Last run {$versyncsts.datetime}, {$versyncsts.vers} % is versioned, and {$versyncsts.sync} % was synchronized.
+                        {elseif $versyncsts.status == "sync_pending"}
+                            <td><img src="{$smarty.const._IMG_CLOCK_SM_}" alt="pending">&nbsp;&nbsp;Synchronization pending.
+                        {elseif $versyncsts.status == "finished"}
+                            <td class="green"><img src="{$smarty.const._IMG_SAVE_SM_}" alt="fully">&nbsp;&nbsp;Fully Synchronized.
+                        {else}
+                            <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;{$versyncsts|print_r} [ {$Accendo_Smarty->getSessVar("GxKbCnx.ecod")} : {$Accendo_Smarty->getSessVar("GxKbCnx.emsg")} ]
+                        {/if}
+                        </td>
+                    </tr>
+                    {/if}
+                </table>
+
+                <div class="myhr options kbver_10000 kbver_10100 kbver_10200" style="display:none;">GeneXus Connection Properties</div>
+                <table width="100%" class="options kbver_10000 kbver_10100 kbver_10200" style="display:none;">
+                    <tr>
+                        <td style="font-weight:bold;width:30%;">GeneXus Base Directory</td>
+                        <td>
+                            <input type="text" size="60" name="gx_basedir" id="gx_basedir" value="{$options.gx_basedir}" class="string required">&nbsp
+                            &nbsp;&laquo;&nbsp;
+                            <a href="javascript:;" style="font-size:.8em;" onclick="$('#gx_basedir').val($('#gx_basedir_'+$('#fkbclass').val()).text());">From system</a>&nbsp;|&nbsp;
+                            <a href="javascript:;" style="font-size:.8em;" onclick="$('#gx_basedir').val('');">Unset</a>
+                            <span id="gx_basedir_10000" style="display:none;">{$gx_basedir_10000}</span>
+                            <span id="gx_basedir_10100" style="display:none;">{$gx_basedir_10100}</span>
+                            <span id="gx_basedir_10200" style="display:none;">{$gx_basedir_10200}</span>
+                        </td>
+                    </tr>
+                    <tr style="display:none;">
+                        <td style="font-weight:bold;">Connection Driver</td>
+                        <td>
+                            <select name="dbms_driver" id="dbms_driver">
+                                <option value="Sqlsrv">MS Sql Server</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Connection Type</td>
+                        <td>
+                            <select name="conn_type" id="conn_type">
+                                <option value="sqlviamem" {if $conn_type=="sqlviamem"}selected{/if}>Shared Memory</option>
+                                <option value="sqlviatcp" {if $conn_type=="sqlviatcp"}selected{/if}>TCP/IP</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">
+                            <span class="sqlviamem" style="display:none;">Server Name</span>
+                            <span class="sqlviatcp" style="display:none;">Host : Port</span>
+                        </td>
+                        <td>
+                            <input type="text" size="20" name="dbms_host" id="dbms_host" value="{$options.dbms_host}" class="string required">
+                            <span class="sqlviamem" style="display:none;font-size:.8em;">
+                            &nbsp;Eg; <a href="javascript:;" onclick="$('#dbms_host').val('localhost\\SQLEXPRESS');">localhost\SQLEXPRESS</a>
+                            </span>
+                            <span class="sqlviatcp" style="display:none;">
+                            &nbsp;:&nbsp;
+                            <input type="text" size="5" name="dbms_port" id="dbms_port" value="{$options.dbms_port}" class="string required">
+                            <span style="font-size:.8em;">&nbsp;Eg; <a href="javascript:;" onclick="$('#dbms_host').val('localhost');$('#dbms_port').val('1433');">localhost : 1433</a></span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Username / Password</td>
+                        <td>
+                            <input type="text" size="20" name="dbms_user" id="dbms_user" value="{$options.dbms_user}">
+                            &nbsp;/&nbsp;
+                            <input type="password" size="20" name="dbms_pass" id="dbms_pass" value="{$options.dbms_pass}">
+                            <span style="font-size:.8em;">&nbsp;For "Windows Authentication" <a href="javascript:;" onclick="$('#dbms_user,#dbms_pass').val('');">set both empty</a></span>
+                        </td>
+                    </tr>
+                    <!--tr>
+                        <td style="font-weight:bold;">Schema Name</td>
+                        <td><input type="text" size="20" name="dbms_schema" id="dbms_schema" value="{$options.dbms_schema}"></td>
+                    </tr-->
+                </table>
+                </fieldset>
+            </td>
+        {/if}
+		</tr>
+		</table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
+            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('{$smarty.const._TITLE_DELETE_} ?'));">{$smarty.const._LBL_DELETE_}</button>
+        {else}
+            <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
+        {/if}
+        <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
+        </div>
+        <br clear="all">
+	</form>

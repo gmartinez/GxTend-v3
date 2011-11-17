@@ -1,0 +1,133 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#form_itm_comm").ajaxForm({
+        dataType: 'json',
+        async: true,
+        beforeSubmit: function() {
+             $("#tabber").block({ message: '{$smarty.const._BAR_WAIT_}' });
+        },
+        success: function (r) {
+            if (r.sts) {
+                $("#tabber").tabs("load", 0);
+            }
+            notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 5000));
+            $("#tabber").unblock();
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+    });
+
+    // Upload files initialization...
+    $('#fileInput').uploadify({
+        'uploader': '/jquery/addons/upload/uploadify.swf',
+        'script': '/Upload/upload',
+        'cancelImg': '/jquery/addons/upload/cancel.png',
+        'scriptData': { 'options':'{$options}' },
+        'checkScript': '/Upload/check?options={$options}',
+        'multi': true,
+        'auto': true,
+        'sizeLimit': {$Accendo_Smarty->get_prm("upload_maxsize")},
+        'simUploadLimit': {$Accendo_Smarty->get_prm("upload_maxsimu")},
+        'fileDesc': 'All Files',
+        'fileExt': '*.*',
+        'buttonText': 'Attach File(s)',
+        'displayData': 'speed',
+        'onComplete': onFileComplete
+    });
+
+    {foreach from=$ticket_items key=ti item=item}
+        {foreach from=$item.atchs key=k item=v}
+            $("#{$v.itmguid} .atchs").load("/Ticket-Mgmt/atchs?itmguid={$v.itmguid}&preview=off");
+        {/foreach}
+    {/foreach}
+
+});
+</script>
+
+{foreach $ticket_items as $ti => $item}
+<div id="{$item.data.itmguid}" class="comment_detail" style="padding:10px 0; border-bottom:1px solid #DDDDDD; display: none;">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$item.data.added_by}" alt="User Image">
+    <div style="margin-left:60px;">
+    <div style="margin:0 0 5px;">
+        <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;
+        <strong>{$Accendo_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$Accendo_Smarty->ts2str($item.data.added_on)}
+    </div>
+    <div class="text" style="margin:0 0 5px; font-size:1.1em;">
+        <p>{$item.data.itmtxt}</p>
+    </div>
+    <div class="atchs" style="margin:0 0 5px; text-align:right;">
+        {if count($item.atchs)}
+        {$smarty.const._MSG_WAIT_SM_}
+        {/if}
+    </div>
+    {if count($item.atchs)}
+    <div style="font-size:0.8em;float:right;cursor:pointer;">
+    <span class="togglePreview" onclick="$('#{$item.data.itmguid} .atchs').load('/Ticket-Mgmt/atchs?itmguid={$item.data.itmguid}&preview=on');$('#{$item.data.itmguid} .togglePreview').toggle();" style="display:inline;">Enable Preview</span>
+    <span class="togglePreview" onclick="$('#{$item.data.itmguid} .atchs').load('/Ticket-Mgmt/atchs?itmguid={$item.data.itmguid}&preview=off');$('#{$item.data.itmguid} .togglePreview').toggle();" style="display:none;">Disable Preview</span>
+    </div>
+    <br clear="both">
+    {/if}
+    </div>
+</div>
+{/foreach}
+
+{if $data.grants.rw}
+<div id="addcomm" style="padding:10px 0;">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+    <div style="font-size:0.8em;float:right;">
+        {if count($ticket_items)}
+        <a href="javascript:;" class="toggleBlogDet" onclick="$('.comment_detail').toggle();$('.toggleBlogDet').toggle();" style="display:inline;">Toggle to Full Details</a>
+        <a href="javascript:;" class="toggleBlogDet" onclick="$('.comment_detail').toggle();$('.toggleBlogDet').toggle();" style="display:none;">Toggle to Summary View</a>
+        {/if}
+    </div>
+    <div style="margin-left:60px;">
+        <form id="form_itm_comm" action="Ticket-Mgmt/additm" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
+        <input type="hidden" name="itmtyp" value="comment">
+        <input type="hidden" name="options" value="{$options}">
+            <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Add a comment & files...")}
+            <p>
+            <textarea rows="10" cols="100" id="itmtxt" name="itmtxt"></textarea>
+            </p>
+            <div>
+            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:0.8em;float:right;cursor:pointer;">Toggle to Full Toolbar</span>
+            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:0.8em;float:right;cursor:pointer;">Toggle to Basic Toolbar</span>
+            </div>
+            <p style="text-align:left;">
+            <input type="file" name="fileInput" id="fileInput">
+            <div id="attchsRow" style="display:none;" style="float:right;"></div>
+            </p>
+            <br>
+            <p>
+            <img src="{$smarty.const._IMG_MAIL_NEW_SM_}" alt="Subscribe" title="Subscribe">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Subscribe people to receive email notifications")}
+            &nbsp;{$Accendo_Smarty->msg("HandT","TTS_Ticket_Blog.phtml|subscribe")}
+            </p>
+            {foreach from=$data.grpusr key=groupguid item=notify}
+                <div style="cursor:pointer;font-weight:bold;" onclick="setcheck('#group_{$groupguid} .usrlst');">{$Accendo_Smarty->guid2name("gxt_groups",$groupguid)}</div>
+                <div id="group_{$groupguid}" style="width:640px;">
+                {foreach from=$notify key=p item=suscinfo}
+                    <div style="float:left;width:145px;margin:5px;text-align:left;">
+                    <input type="checkbox" name="notify[]" value="{$suscinfo.userguid}" id="user_{$suscinfo.userguid}" class="usrlst" {if $suscinfo.notify && $suscinfo.userguid!=$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}checked="checked"{/if}>
+                    {$Accendo_Smarty->guid2name("gxt_users",$suscinfo.userguid)}
+                    </div>
+                {/foreach}
+                </div>
+                <br clear="all">
+                <br clear="all">
+            {/foreach}
+            <br clear="all">
+            <p>
+            <div class="myhr"></div>
+            <div class="left">
+                &nbsp;
+            </div>
+            <div class="buttons right">
+                {$smarty.const._FORM_BTN_INSERT_}
+            </div>
+        </form>
+    </div>
+</div>
+{/if}
+<p>

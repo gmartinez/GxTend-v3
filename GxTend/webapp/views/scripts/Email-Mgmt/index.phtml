@@ -1,0 +1,32 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $("#emailqueues #tabber").tabs({
+        load: function(event, ui) {
+            initializeButtons();
+        }
+    });
+});
+
+</script>
+
+<div class="heading-block" style="margin-bottom:25px;">
+    <span class="left" style="font-size:1.5em;font-weight:bold;">
+    Email {ucfirst($smarty.request.id)}bound messages
+    </span>
+
+    <span class="right">
+    {$Accendo_Smarty->get_popup_link("email_write","/Email-Mgmt/write",null,"","640x480","Write new Message")}
+    {if $smarty.request.id=="out"}
+        <br><a href="javascript:;" onclick="loadappdiv('/Email-Mgmt/?id=in');">Click for InBound Messages</a>
+    {else}
+        <br><a href="javascript:;" onclick="loadappdiv('/Email-Mgmt/?id=out');">Click for OutBound Messages</a>
+    {/if}
+    </span>
+</div>
+
+<br clear="all">
+
+<div id="emailqueues">
+    {$grid}
+</div>

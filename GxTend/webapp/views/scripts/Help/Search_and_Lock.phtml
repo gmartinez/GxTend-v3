@@ -1,0 +1,47 @@
+<div id="en" style="display:none;" title="'Search & Lock' form and related links">
+    <p>
+    <h3>Context</h3>
+        <ul>
+            <li><strong>Layer :</strong> Client</li>
+            <li><strong>Location :</strong> "My Workspace &gt; Project/Kb &gt; Upper Right"</li>
+        </ul>
+    </p>
+    <p>
+    <h3>Search Functionality</h3>
+    <p>&nbsp;In order to search for objects you can set the input box with a comma separated list of strings that will be used to match against list of existent object names.</p>
+    <p>&nbsp;Searches are not case-sensitive, so you do not need to worry about the casing used to name objects at its creation time.</p>
+    <p>&nbsp;Matching is performed on both the name and the description of the objects.</p>
+    <p>&nbsp;In case you want to narrow the scope of some of the members of the list to a certain type of objects you can prefix the string with the string class type of such object.</p>
+    <p>&nbsp;You can also specify a range of date-times to apply to the search, this range will be applied on objects modified date-time. This date-time range can be used on its own or combined with a string search.</p>
+    <br>
+    <h4>Examples;</h4>
+    <ul>
+        <li><span style="font-style: italic; font-weight: bold;">country,city</span> : will retrieve all objects that contains the string 'country' or 'city'.</li>
+        <li><span style="font-style: italic; font-weight: bold;">PRC:country,city</span> : will retrieve all objects that are procedures and contains the string 'country' plus also all objects that contains the string 'city'.</li>
+        <li><span style="font-style: italic; font-weight: bold;">{ldelim}03/10/2011{rdelim}</span> : will retrieve all objects that were modified from 'March 10, 2011'. See how the absence of time means 00:00:00.</li>
+        <li><span style="font-style: italic; font-weight: bold;">{ldelim}03/10/2011 - 03/31/2011 23:59{rdelim}</span> : will retrieve all objects that were modified between 'March 10, 2011' and 'March 31, 2011'.</li>
+    </ul>
+    <br>
+    <h4>List of available string class objects types you can use to prefix your searches;</h4>
+    <ul>
+        {foreach from=$classTypeDescs key=k item=i}
+        <li>{$k} : {$i}</li>
+        {/foreach}
+    </ul>
+    </p>
+    <p>
+    <h3>Links Functionality</h3>
+    <p>&nbsp;<span style="font-style: italic; font-weight: bold;">'my'</span> link will list all objects that the current user has an active lock on. Each user is entitled to release any of its own locks.</p>
+    <p>&nbsp;<span style="font-style: italic; font-weight: bold;">'all'</span> link will list all objects that any user has an active lock on. An 'administrator' is entitled to release any of the listed locks whether they belong to himself or any other user.</p>
+    <p>&nbsp;<span style="font-style: italic; font-weight: bold;">'Add new object(s)'</span> link allows the user to logically define and get a lock on new objects.</p>
+    <p>&nbsp;<span style="font-style: italic; font-weight: bold;">'Ignore List'</span> link list all objects that are set to be ignored in 'Search & Lock', 'Commit', 'Catchup' and 'Integrate' operations.</p>
+    </p>
+</div>
+
+<div id="sp" style="display:none;" title="'Search & Lock' form and related links">
+    {include file='transNotAvailable.phtml'}
+</div>
+
+<div id="pt" style="display:none;" title="'Search & Lock' form and related links">
+    {include file='transNotAvailable.phtml'}
+</div>

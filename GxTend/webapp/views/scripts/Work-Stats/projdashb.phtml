@@ -1,0 +1,86 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    {foreach $bar as $chartId => $chartData}
+    {$chartId}_gObj = new Highcharts.Chart({
+        credits: {
+            enabled: false
+        },
+        chart: {
+            renderTo: "{$chartId}",
+            defaultSeriesType: "column"
+        },
+        title: {
+            text: "{$chartData.title}"
+        },
+        xAxis: {
+            categories: [{foreach $chartData.data as $k => $v name=lst}"{$k}"{if !$smarty.foreach.lst.last}, {/if}{/foreach}]
+        },
+        yAxis: {
+            title: {
+                text: "{$chartData.ytitle}"
+            },
+            min: 0,
+            allowDecimals: false
+        },
+        tooltip: {
+            formatter: function() {                
+                return '' + this.x + ': ' + this.y;
+            }
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [
+            {foreach $chartData.series as $sercode => $sername name=serlst}
+            { name: "{$sername}",
+              data: [{foreach $chartData.data as $k => $v name=lst}{$chartData.data.$k["{$sername}"]}{if !$smarty.foreach.lst.last}, {/if}{/foreach}]
+            }{if !$smarty.foreach.serlst.last},{/if}
+            {/foreach}
+        ]
+    });
+    {/foreach}
+
+});
+</script>
+
+<table width="100%">
+<tr>
+<td align="left" valign="top">
+    <p style="font-weight:bold;font-size:1.5em;">Last Team Actions</p>
+    {foreach $commits_list as $commitId => $commiterTs name=foo}
+    <div id="{$commitId}" class="{if $smarty.foreach.foo.iteration>3}older_commits{/if}" style="padding:10px 0; border-bottom:1px solid #DDDDDD; {if $smarty.foreach.foo.iteration>3}display:none;{/if}">
+        <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$commits_info.$commitId.userguid}" alt="User Image">
+        <div style="margin-left:60px;">
+        <div style="margin:0 0 5px;">
+            <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;
+            <strong>{$Accendo_Smarty->guid2name("gxt_users",$commits_info.$commitId.userguid)}</strong>, {$Accendo_Smarty->ts2str($commiterTs)}
+        </div>
+        <div style="margin:0 0 5px; font-size:1.1em;">
+            <p>
+            <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">
+            {$Accendo_Smarty->cutstr($commitId,0,7)}
+            </a>
+            &nbsp;{$commits_info.$commitId.subject}
+            </p>
+        </div>
+        </div>
+    </div>
+    {/foreach}
+    <div class="left" style="margin-top:5px;font-size:.8em">Info gathered at {$gather.layer} layer on {$Accendo_Smarty->ts2str($gather.start)}</div>
+    {if count($commits_list)>3}
+    <div class="right" style="margin-top:5px;font-size:.8em">
+    <a href="javascript:;" class="older_commits" style="float:right;display:none;" onclick="$('.older_commits').toggle();">See only last 3 commits</a>
+    <a href="javascript:;" class="older_commits" style="float:right;" onclick="$('.older_commits').toggle();">See all {count($commits_list)} commits</a>
+    </div>
+    {/if}
+</td>
+<td align="right" valign="top">
+    <p style="font-weight:bold;font-size:1.5em;">Graphic Stats</p>
+    <div id="Commits_vs_Time" style="height:300px;width:500px;margin-top:.75em;"></div>
+</td>
+</tr>
+</table>

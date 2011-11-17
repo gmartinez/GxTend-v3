@@ -1,0 +1,92 @@
+{include file='../grid/grid.ready.js.inc'}
+{if $ul_caption || $ur_caption}
+<div class="heading-block" style="margin-bottom:25px;">
+    {if $ul_caption}
+    <span class="left" style="font-size:1.5em;font-weight:bold;">
+    {$ul_caption}
+    </span>
+    {/if}
+    {if $ur_caption}
+    <span class="right">
+    {$ur_caption}
+    </span>
+    {/if}
+</div>
+<br clear="all">
+{/if}
+<div id="tabber_{$grid_ctrlid}">
+	{if $searchVisible != "false"}
+    <ul>
+        <li class="right">
+            <a href="#tabber_{$grid_ctrlid}_tab-1">
+            <!-- Filters Input -->
+            {if count($filtconf)}
+            <span id="finput_holder" style="display:none;">
+                <input id="finput_{$grid_ctrlid}" class="qinput" type="text" name="sfilter" size="70" value="{$filtconf._startup}" readonly="readonly">
+            </span>
+            <span id="ficonOn_{$grid_ctrlid}" class="pointer" style="display:{($filtconf._startup)?"block":"none"};float:left;">
+                  <img src="/img/filteron.png" alt="Filter On" title="There is active filter(s) on grid's result" onclick="var currFilter = $('#tabber_{$grid_ctrlid} #finput_{$grid_ctrlid}').val();mDialog('text:'+currFilter,'Currently Set Filters on Grid', 250, 500, false, false);">
+            </span>
+            <span id="ficonOff_{$grid_ctrlid}" class="pointer" style="display:{($filtconf._startup)?"none":"block"};float:left;">
+                  <img src="/img/filteroff.png" alt="Filter Off" title="There is NOT active filter(s) on grid's result">
+            </span>
+            {/if}
+            <!-- Filters Input -->
+            <!-- Search Input -->            
+            <span id="qinput_holder" style="display:block;float:left;">
+                Search <input id="qinput_{$grid_ctrlid}" class="qinput" type="text" name="squery" size="20" {if !$searcheable}disabled="disabled" value="Grid Not Searcheable"{/if}>
+                {if $srchONflds}<span class="pointer hint" onclick="$('#tabber_{$grid_ctrlid} #{$grid_ctrlid} #tabber_{$grid_ctrlid}_tab-1 #help').toggle();">?</span>{/if}
+                <span class="pointer hint" style="font-size:.8em;vertical-align:top;" onclick="$('#tabber_{$grid_ctrlid} #{$grid_ctrlid} #tabber_{$grid_ctrlid}_tab-1 #help').hide();$('#tabber_{$grid_ctrlid} #qinput_{$grid_ctrlid}:enabled').val('');$('#tabber_{$grid_ctrlid} .filter').val('%');setFilter('{$grid_ctrlid}');">Reset</span>
+            </span>
+            <!-- Search Input -->
+            </a>
+            </li>
+	    </ul>
+    {/if}
+    <div id="{$grid_ctrlid}">
+    <div id="tabber_{$grid_ctrlid}_tab-1">
+        <!-- In-Line Help -->
+        <span id="help" class="hint" style="display:none;float:right;">
+            By prefixing your search text you can search on specific columns.<br>
+            Available columns are {$srchONflds}
+        </span>
+        <!-- In-Line Help -->
+
+        <!-- Dropdown Filters -->
+        {foreach from=$filtconf item=fe key=fk}
+            {if $fk!="_startup" && $fk!="_extra"}
+            <span>&nbsp;{$fk}</span>
+            <select id="filter_{$fk|sha1}" name="filter" class="filter" onchange="setFilter('{$grid_ctrlid}');">
+            <option value="%">---</option>
+                {foreach from=$fe item=e key=k}
+                    {if stripos($filtconf._startup,"[$fk:$k]")!==false}
+                        <option value="[{$fk}:{$k}]" selected>{$k}</option>
+                    {else}
+                        <option value="[{$fk}:{$k}]">{$k}</option>
+                    {/if}
+                {/foreach}
+            </select>
+            {elseif $fk=="_extra"}
+                &nbsp;{$fe}
+            {/if}
+        {/foreach}
+        <!-- Dropdown Filters -->
+
+        <!-- Data Export -->
+        {if $expoconf}
+        &nbsp;<span class="pointer" onclick="mDialog('/Export/grid?deffile={$deffile}','Export Grid Data', 350, 500, false, false);">Data Export</span>
+        {/if}
+        <!-- Data Export -->
+
+        <!-- Grid Control -->
+        <table id="grid_{$grid_ctrlid}" class="scroll" cellpadding="0" cellspacing="0"></table>
+        {if $pagerVisible != "false"}
+        <div id="pager_{$grid_ctrlid}" class="scroll pager"></div>
+        {/if}
+        {if $Accendo_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
+        <div id="dbug_{$grid_ctrlid}" class="grid-debug" onclick="dbugGrid('{$grid_ctrlid}');">Click for debugging info.&nbsp;</div>
+        {/if}
+        <!-- Grid Control -->
+    </div>
+    </div>
+</div>

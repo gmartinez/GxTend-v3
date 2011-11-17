@@ -1,0 +1,132 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#form_itm_code").ajaxForm({
+        dataType: 'json',
+        async: true,        
+        beforeSubmit: function() {
+            $("#form_itm_code").validate({
+               ignore: ":hidden"
+            });
+            if ( $("#form_itm_code").valid() ) {
+                 $("#tabber").block({ message: '{$smarty.const._BAR_WAIT_}' });
+                return true;
+            }
+            return false;            
+        },
+        success: function (r) {
+            if (r.sts) {
+                $("#tabber").tabs("load", 1);
+            }
+            notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 5000));
+            $("#tabber").unblock();
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+    });
+
+    {foreach from=$ticket_items key=ti item=item}
+        {foreach from=$item.atchs key=k item=v}
+            $("#{$v.itmguid} .atchs").load("/Ticket-Mgmt/atchs?itmguid={$v.itmguid}&preview=off");
+        {/foreach}
+    {/foreach}    
+
+});
+</script>
+
+{foreach $ticket_items as $ti => $item}
+<div id="{$item.data.itmguid}" class="codechgs_detail" style="padding:10px 0; border-bottom:1px solid #DDDDDD; display: none;">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$item.data.added_by}" alt="User Image">
+    <div style="margin-left:60px;">
+    <div style="margin:0 0 5px;">
+        {if $item.data.itmtyp=="commit"}
+            <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;
+        {elseif $item.data.itmtyp=="promote"}
+            <img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="Promote" title="Promote">&nbsp;
+        {/if}
+        <strong>{$Accendo_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$Accendo_Smarty->ts2str($item.data.added_on)}
+    </div>
+    <div style="margin:0 0 5px;">
+        {if $item.data.itmtyp=="commit"}
+            <p>
+                <a class="pointer" title="Click to view/promote commit(s) content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$item.commit.projguid}&commits={$item.commit.to|trim}', 'Commits Data & Promotion Status', 550, 900);">
+                {$Accendo_Smarty->cutstr($item.commit.to,0,7)}
+                </a>
+                &nbsp;{$item.commit.comment}
+            </p>
+        {elseif $item.data.itmtyp=="promote"}
+            <p>
+                &nbsp;{$item.promote.comment}
+                <div style="display:none;" id="promote_result_{$item.data.itmguid}">{$item.promote.report|trim}</div>
+                <div class="logs" style="text-align:left;">
+                    <img src="../img/icons/16/search-file.png" alt="Report" title="Report">
+                    <a href="javascript:;" style="margin-left:5px;" onclick="mDialog('text:'+$('#promote_result_{$item.data.itmguid}').html(), 'Promote Execution Report', 480, 640);">Promote Execution Report</a>
+                </div>
+                <div class="atchs" style="margin-bottom:5px; text-align:right;">        
+                    {if count($item.atchs)}
+                    {$smarty.const._MSG_WAIT_SM_}
+                    {/if}
+                </div>
+            </p>
+        {else}
+            <p>{$item.data.itmtxt}</p>
+        {/if}
+    </div>
+    </div>
+</div>
+{/foreach}
+
+<div id="addcode" style="padding:10px 0;">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+    <div style="font-size:0.8em;float:right;">
+        {if count($ticket_items)}
+        <a href="javascript:;" class="toggleCodeDet" onclick="$('.codechgs_detail').toggle();$('.toggleCodeDet').toggle();" style="display:inline;">Toggle to Full Details</a>
+        <a href="javascript:;" class="toggleCodeDet" onclick="$('.codechgs_detail').toggle();$('.toggleCodeDet').toggle();" style="display:none;">Toggle to Summary View</a>
+        {/if}
+    </div>
+    <div style="margin-left:60px;">
+        <div style="float:left;">
+            <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Relate Commit/Promotion to this ticket...")}
+        </div>
+
+        <div style="clear:both;float:left;width:70%;">
+        {if $data.grants.rw}
+            <form id="form_itm_code" action="Ticket-Mgmt/additm" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
+            <input type="hidden" name="itmtyp" value="commit">
+            <input type="hidden" name="options" value="{$options}">
+                &nbsp;Commit <input type="text" size="50" id="codechange_commit" name="codechange_commit" value="" class="string required">
+
+                <div class="myhr"></div>
+                <div class="left">
+                    &nbsp;
+                </div>
+                <div class="buttons right">
+                    {$smarty.const._FORM_BTN_INSERT_}
+                </div>
+            </form>
+        {else}
+            &nbsp;{$Accendo_Smarty->msg("ui-icon-info", "Read only access.")}
+        {/if}
+        </div>
+        
+        {if count($commits_data.Ticket) || count($commits_data.To-Do) || count($commits_data.Milestone)}
+        <div style="float:right;">
+            {foreach $commits_data as $commitsin => $commitslst}
+            <p>&nbsp;<strong># Commits on {$commitsin} : </strong>{count($commitslst)}
+            {if $commitsin=="Ticket"}
+            {$ticket_csvlst_of_commits = implode(",",$commitslst)}
+            &nbsp;<span class="ui-icon ui-icon-extlink pointer right" title="Click to view/promote ticket commits" onclick="mDialog('/Promote/?projguid={$item.commit.projguid}&commits={$ticket_csvlst_of_commits}', 'Commits Data & Promotion Status', 550, 900);"></span>
+            {/if}            
+            </p>
+            {$sum_of_commits = $sum_of_commits + count($commitslst)}
+            {/foreach}
+            {if $sum_of_commits}
+            <p style="font-size:1.25em;">&nbsp;<strong style="color:green;">&sum; : </strong> {$Accendo_Smarty->msg("green:white", $sum_of_commits)}</p>
+            {/if}            
+        </div>
+        {/if}
+    </div>
+</div>
+<br clear="all">

@@ -1,0 +1,74 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+	$("#expdata form").ajaxForm({
+		dataType: 'json',
+        async: true,
+		beforeSubmit: function() {
+            $("#GenericDialog").block({ message: '{$smarty.const._BAR_WAIT_}' });
+		},
+		success: function (r) {
+            $("#GenericDialog").block({ message: r.msg });
+            if (r.sts) {
+                setTimeout('$("#GenericDialog").dialog("close");location.href="'+r.url+'";', 1500);
+            } else {
+                setTimeout('$("#GenericDialog").unblock();', 3000);
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    $("#expdata input:text:visible:first").focus();
+
+});
+</script>
+<div id="expdata">
+    <h3>Select export options and then submit</h3>
+    <div class="myhr"></div>
+    <form action="/Export/grid2excel" method="POST" enctype="multipart/form-data">
+    <input type="hidden" id="deffile" name="deffile" value="{$smarty.request.deffile}">
+        <table>
+		<tr>
+            <td align="left">
+                <strong>Range</strong>
+            </td>
+			<td align="left">
+                <input type="radio" id="range_all" class="radio" name="range" value="ALL" checked="checked">&nbsp;All
+                <input type="radio" id="range_cur" class="radio" name="range" value="Current" disabled="disabled">&nbsp;Grid's Current Set
+            </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><td colspan="2"><strong>Available Export Sets</strong></td></tr>
+		<tr>
+            <td align="left">
+                &nbsp;
+            </td>
+			<td align="left">
+                {foreach from=$expoconf key=desc item=qry}
+                <input type="radio" id="eset_{$desc|sha1}" class="radio" name="eset" value="{$qry|base64_encode}" checked="checked" onclick="$('#fname').val('Grid_Export_{$smarty.now}.xls');">&nbsp;{$desc}
+                {/foreach}
+            </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+		<tr>
+            <td align="left">
+                <strong>File Name</strong>
+            </td>
+			<td align="left">
+                <input type="text" id="fname" name="fname" value="Grid_Export_{$smarty.now}.xls" title="Name for the resulting dumped file" style="width:30em;">
+            </td>
+        </tr>
+        </table>
+        <hr style="margin:1em 0;">
+        <div class="left">
+            <small>Exporting data might take a few minutes, once you submit please <strong>be patient</strong>.</small>
+        </div>
+        <div class="right">
+            <div class="buttons">
+                <button type="submit" name="submit_btn" class="button-circle" value="Export" title="Export">Export</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,76 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $("#east_panel #proj_tabber #tabber #tab-1-loadmsg").hide();
+    $("#tabber").tabs("option","disabled",[]);
+
+    {if $project.repo_stats.ava != "!exist"}
+    $("#synch").show("slow", show_synch("stats","{$project.projguid}"));
+    {/if}
+
+});
+
+function buildLR(projguid) {
+
+    $("#east_panel #proj_tabber #tabber #prjnfo").html('{$smarty.const._MSG_WAIT_SM_}');
+    $("#east_panel").block({ message: '{$smarty.const._BAR_WAIT_}' });
+
+    jQuery.getJSON(
+            "/Cvs/clone",
+            { projguid:projguid },
+            function (data, textStatus) {
+                showlogmsg();       // Display user message...
+                $("#east_panel #proj_tabber #tabber").tabs("load",0);
+                $("#east_panel").unblock();
+            }
+    );    
+
+}
+
+</script>
+
+<div id="prjnfo">
+
+    <div style="float:left;">
+    <strong>&nbsp;Local Repo.:&nbsp;</strong>
+    {if $project.repo_stats.ava == "!exist"}
+        {$Accendo_Smarty->msg("ui-icon-alert","Not Found")}
+        {if $project.remo_repo_stats.ava == "open" || $project.remo_repo_stats.ava == "read"}
+        &nbsp;<span onclick='if(confirm("Confirm repository creation ?")) { buildLR("{$project.projguid}"); }' class='pointer'><img src="{$smarty.const._IMG_DOWNLOAD_SM_}" title="Click to build project repository local instance"></span>
+        {/if}
+    {else}
+        <span style="text-decoration:underline;color:blue;cursor:pointer;" onclick="mDialog('/Browse-Repos/rinfo?repopath={$project.repo_stats.path|base64_encode}&projguid={$project.projguid}', 'Repository Detailed Stats', 480, 640);">Available</span>
+    {/if}
+    </div>
+
+    <div style="float:right;">
+    <strong style="float:left;">&nbsp;Remote Repo.:&nbsp;</strong>
+    {if !$project.remo_repo_stats}
+        &nbsp;Unavailable
+    {else}
+        {if $project.remo_repo_stats.ava == "!exist"}
+            &nbsp;Not Found
+        {else}
+            {if $project.remo_repo_stats.ava == "open"}
+            &nbsp;Available for Reading and Writing
+                {if $project.repo_stats.ava == "open"}
+                &nbsp;<span id="pushlnk" onclick='$("#synch").show("slow", show_synch("push","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title='Click to See/Push local history into server repo'></span>
+                &nbsp;<span id="fetchlnk" onclick='$("#synch").show("slow", show_synch("fetch","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_FETCH_SM_}' alt='Fetch' title='Click to See/Fetch remote history into local repo'></span>
+                {/if}
+            {elseif $project.remo_repo_stats.ava == "read"}
+            &nbsp;Available for Reading (not Writing)
+                {if $project.repo_stats.ava == "open"}
+                &nbsp;<span id="fetchlnk" onclick='$("#synch").show("slow", show_synch("fetch","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_FETCH_SM_}' alt='Fetch' title='Click to See/Fetch remote history into local repo'></span>
+                {/if}
+            {elseif $project.remo_repo_stats.ava == "close"}
+                &nbsp;Not Available for Reading or Writing
+            {/if}
+        {/if}
+    {/if}
+    </div>
+
+</div>
+<br clear="both">
+<br clear="both">
+<div id="synch" style="display: none;"></div>

@@ -1,0 +1,112 @@
+<div id="Server">
+<ul id="appmenu">
+    <li id="my_options"><span class="folder">My Options</span>
+        <ul>
+        <li><span class="file" onclick="loadappdiv('/My-Profile/')">My Profile</span></li>
+        </ul>
+    </li>
+    <li id="monitoring"><span class="folder">Monitoring</span>
+        <ul>
+        <li id="monitoring_batch_status"><span class="folder">Batch Status</span>
+            <ul>
+                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtqueue')">Events Queue</span></li>
+                <li><span class="file" onclick="loadappdiv('/Email-Mgmt/?id=out')">E-Mail Queue</span></li>
+            </ul>
+        </li>
+        <li id="monitoring_sessions"><span class="folder">Sessions</span>
+            <ul>
+                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_sessions')">Sessions History</span></li>
+                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_audit')">Auditing Logs</span></li>
+            </ul>
+        </li>
+        </ul>
+    <li id="people"><span class="folder">People</span>
+        <ul>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_users')">Users</span></li>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_groups')">Users' Groups</span></li>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_hosts')">Hosts</span></li>
+            <li id="people_organizations"><span class="folder">Organizations</span>
+                <ul>
+                    <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_companies')">Companies</span></li>
+                    <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_clients')">Clients</span></li>
+                    <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_sectors')">Sectors</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li id="knowledge"><span class="folder">Knowledge</span>
+        <ul>
+            <li id="knowledge_task_definition"><span class="folder">Tasks Definition</span>
+                <ul>
+                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_projects')">Projects</span></li>
+                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_milestones')">Milestones</span></li>
+                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_todos')">To-Do Lists</span></li>
+                <li><span class="file" onclick="loadappdiv('/Ticket-Mgmt/listall')">Tickets</span></li>
+                </ul>
+            </li>
+            <li id="knowledge_code"><span class="folder">Code</span>
+                <ul>
+                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_kbs')">KBs Mgmt.</span></li>
+                <li><span class="file" onclick="loadappdiv('/Browse-Repos/')">Browse KBs</span></li>
+                <li><span class="file" onclick="loadappdiv('/Browse-History/')">Browse History</span></li>
+                <li><span class="file" onclick="loadappdiv('/Comp-Kbs/')">Compare &amp; Promote</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li id="settings"><span class="folder">Settings</span>
+        <ul>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_prmdef')">Parameters</span></li>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtdef')">Events (Scheduler)</span></li>
+        </ul>
+    </li>
+    <li id="help"><span class="folder">Help</span>
+        <ul>
+            <li><span class="file" onclick="loadappdiv('/Help/about')">About</span></li>
+            <li id="help_debugging_tools" class="dbgtoolsmnu" style="display:none;"><span class="folder red">Debugging Tools</span>
+                <ul>
+                    <li><span class="file" onclick="loadappdiv('/tools/dbquery')">Query Metadata</span></li>
+                    <li><span class="file" onclick="loadappdiv('/tools/kbquery')">Query GxKb</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><span class="file logout" onclick="mDialog('/index/logout', 'Exiting...', 150, 300);">&nbsp;Logout</span></li>
+</ul>
+</div>
+
+<div id="Client">
+<ul id="appmenu">
+    <li id="my_options"><span class="folder">My Options</span>
+        <ul>
+        <li><span class="file" onclick="loadappdiv('/My-Profile/')">My Profile</span></li>
+        </ul>
+    </li>
+    <li id="tasks_definition"><span class="folder">Tasks Definition</span>
+        <ul>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_milestones')">Milestones</span></li>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_todos')">To-Do Lists</span></li>
+            <li><span class="file" onclick="loadappdiv('/Ticket-Mgmt/listall')">Tickets</span></li>
+        </ul>
+    </li>
+    <li id="logging"><span class="folder">Logging</span>
+        <ul>
+        <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtqueue')">Queued Events</span></li>
+        <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_audit')">Auditing Logs</span></li>
+        <li><span class="file" onclick="loadappdiv('/Sync-Mgmt/')">Sync Status</span></li>
+        </ul>
+    </li>
+    <li id="help"><span class="folder">Help</span>
+        <ul>
+            <li><span class="file" onclick="loadappdiv('/Help/about')">About</span></li>
+            <li id="help_debugging_tools" class="dbgtoolsmnu" style="display:none;"><span class="folder red">Debugging Tools</span>
+                <ul>
+                    <li><span class="file" onclick="loadappdiv('/tools/dbquery')">Query Metadata</span></li>
+                    <li><span class="file" onclick="loadappdiv('/tools/kbquery')">Query GxKb</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><span class="file logout" onclick="mDialog('/index/logout', 'Exiting...', 150, 300);">&nbsp;Logout</span></li>
+</ul>
+</div>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<wddxPacket version='1.0'>
+<header/>
+<data>
+
+	<struct>
+    <var name='Pdo_Mysql'>
+        <struct>
+
+            <var name='update'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                    $sql_sep = ';';
+                    $engine = 'MyISAM';
+                    $charset = 'latin1';
+                    $programfiles = '__PROGRAMFILES__';
+                    $hostname = '__COMPUTERNAME__';
+                    $hostprot = 'http';
+                    $hostport = __WEB_PORT__;
+                    $repoport = __REPO_PORT__;
+                    $username = 'gxtend';
+                    $userguid = sha1(strtolower($username.'@'.$hostname));
+                    $userpass = sha1($username);
+                    $admin_groupname = 'Administrators';
+                    $admin_groupguid = sha1(strtolower($admin_groupname.'@'.$hostname));
+                    $other_groups = serialize(array("$admin_groupguid"));
+                    $watchdog_periodicity = serialize(array(
+                                                            'daysofweek' => array(0,1,2,3,4,5,6),
+                                                            'start_hh' => 00,
+                                                            'start_mm' => 00,
+                                                            'end_hh' => 23,
+                                                            'end_mm' => 59,
+                                                            'every' => 3,
+                                                            'spec_date' => '',
+                                                            'spec_hh' => 00,
+                                                            'spec_mm' => 00
+                                                            )
+                                            );
+                    $housekeeping_periodicity = serialize(array(
+                                                            'daysofweek' => array(0,1,2,3,4,5,6),
+                                                            'start_hh' => 01,
+                                                            'start_mm' => 00,
+                                                            'end_hh' => 01,
+                                                            'end_mm' => 3,
+                                                            'every' => 1,
+                                                            'spec_date' => '',
+                                                            'spec_hh' => 00,
+                                                            'spec_mm' => 00
+                                                            )
+                                            );                                            
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    INSERT IGNORE INTO `gxt_clients` VALUES (1,'__CUSTOMER_NAME__',1,1);
+                    INSERT IGNORE INTO `gxt_companies` VALUES (1,'__CUSTOMER_NAME__');
+                    INSERT IGNORE INTO `gxt_hosts` VALUES ('$hostname','GxTend Server','$userguid',0);
+                    INSERT IGNORE INTO `gxt_sectors` VALUES (1,'SCM');
+                    INSERT IGNORE INTO `gxt_sectors` VALUES (2,'Development');
+                    INSERT IGNORE INTO `gxt_sectors` VALUES (3,'Testing');
+                    INSERT IGNORE INTO `gxt_groups` VALUES ('$admin_groupguid','$admin_groupname',1);
+                    INSERT IGNORE INTO `gxt_groups` VALUES ('$userguid','$username',1);
+                    INSERT IGNORE INTO `gxt_users` VALUES ('$userguid','$userguid','$other_groups',1,1,'$username','$userpass','GxTend Default User',1,'__CUSTOMER_EMAIL__');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('userprof|image','$userguid',-1,'Runtime defined user parameter.','',null,'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');
+
+                    INSERT IGNORE INTO `gxt_evtdef` VALUES ('watchdog', 'System monitoring and maintenance event', '__INSTDIR__/GxTend/shellapp/shell.php', 'Accendo_Watchdog::MainTasks()$sql_sep', 'periodic', 5, '$watchdog_periodicity', 1);
+                    INSERT IGNORE INTO `gxt_evtdef` VALUES ('gxmirror', 'Versioning of GeneXus Kbs', '__INSTDIR__/GxTend/shellapp/shell.php', '', 'triggered', 5, '', 1);
+                    INSERT IGNORE INTO `gxt_evtdef` VALUES ('flmirror', 'Versioning of Non-GeneXus Kbs', '__INSTDIR__/GxTend/shellapp/shell.php', '', 'triggered', 5, '', 1);
+                    INSERT IGNORE INTO `gxt_evtdef` VALUES ('indexer', 'Indexing of projects content', '__INSTDIR__/GxTend/shellapp/shell.php', 'Accendo_Indexer::IndexGitRepo()$sql_sep', 'triggered', 5, '', 3);
+                    INSERT IGNORE INTO `gxt_evtdef` VALUES ('promote', 'Promotion of Code Changes between Kbs', '__INSTDIR__/GxTend/shellapp/shell.php', '', 'triggered', 4, '', 1);
+                    INSERT IGNORE INTO `gxt_evtdef` VALUES ('housekeeping', 'Nightly housekeeping tasks', '__INSTDIR__/GxTend/shellapp/shell.php', 'Accendo_Housekeeping::MainTasks()$sql_sep', 'periodic', 6, '$housekeeping_periodicity', 1);
+
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('time_format_date','',1,'GxTend Date Format','','MM/dd/yyyy','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('time_format_time','',1,'GxTend Time Format','','H:mm:ss','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('time_format_datetime','',1,'GxTend Datetime Format','','MM/dd/yyyy H:mm:ss','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('working_days','',0,'Working Days','0 (for Sunday) through 6 (for Saturday)','1 2 3 4 5','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('working_hours','',0,'Working Hours','Use military time format (MM:HH)','08:00 19:00','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('logs_maxsize','',0,'Maximum file size for a log','','2097152','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('logs_files2keep','',0,'Maximum number of log files to keep','','5','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('autodisc_bdirs','',1,'Comma separated list of base directories used for GeneXus Kbs autodiscovery','','__GXKBS_BASEDIR__','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('evtmgr_maxdtchs','',0,'Maximum number of distpatchers','','1','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('basedir_temp','',1,'Base directory for user temporary content','','__INSTDIR__/GxTend_Repository/temp','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('basedir_stag','',1,'Base directory for knowledge staging content','','__INSTDIR__/GxTend_Repository/stag','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('basedir_repo','',0,'Base directory for knowledge repository content','','__INSTDIR__/GxTend_Repository/repo','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('baseurl_srvrep','',0,'Base URL for centralized knowledge repositories','','$hostprot://$hostname:$repoport','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('gxkb_regexp_meta','',0,'Regular expresion to match all files of a GeneXus metadata','','/.(dat|idx|ari|ini|gxw|fcs|lok|mdf|ldf|xml|css|connection)/i','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('gxkb_vldobjs_chkin','',0,'Valid Objects for Commit and Integrate operations','','ATT DOM TRN STRN PMT PRC SPRC RPT SRPT MNU WBP SWBP MBR SMBR WKP SWKP DV THM SDT LNG GRP PTT CAT TBL PTTS MASP WCO IMG DPV IGXD IGXF WWITH BPD DSL QRY XOB DGM WFRO','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('gxkb_expopt_chkin','',0,'Export Options to apply on Commit (GeneXus >= X)','Format, is a comma sepparated list of \'{class}:{Dependency Type}|{References Type}\', eg.: TRN:ReferencesTo|Minimal will add to TRNs export associated tables, indexes, atts, doms.','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('comparer_Default','',1,'Default local code comparer','','comparer_GxComparer','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('comparer_WinMerge','',1,'WinMerge text comparer','','$programfiles/WinMerge/WinMergeU.exe','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('comparer_GxComparer','',1,'Artech code comparer','','$programfiles/ARTech/GeneXus/GeneXus90/Comparer/XmlModelComparer.exe','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailserver_host','',0,'Mail Server Host','','yourcompany.smtpserver.com','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailserver_port','',0,'Mail Server Port','','25','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailmailer_method','',0,'Method to send mail','Options are mail, sendmail or smtp','smtp','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailsendmail_path','',0,'Sets the path of the sendmail program','','/usr/sbin/sendmail','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailsmtp_auth','',0,'Sets SMTP authentication.','','1','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailsmtp_secure','',0,'Sets SMTP security','Options are void, ssl or tls','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailstring_mbox','',0,'Mail Account Connection String','Blank _ No inbound mail processing (default)\nEg. IMAP _ {yourcompany.smtpserver.com:143/notls}INBOX\nEg. POP3 _ {yourcompany.smtpserver.com:110/pop3}INBOX','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailaccount_user','',0,'Mail Account User','','some.account@yourcompany.com','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailaccount_pass','',0,'Mail Account Password','','some.pass','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailfrom_name','',0,'Mail Sender Name','','GxTend At __CUSTOMER_NAME__','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailfrom_mail','',0,'Mail Sender eMail','','some.account@yourcompany.com','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailsink_mail','',0,'Mail Sink eMail','','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('gxmirror_maxproc','',0,'Max time for GeneXus Kb process to consume','','900','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('flmirror_maxproc','',0,'Max time for Non-GeneXus Kb process to consume','','900','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('upload_maxsize','',0,'Max size of files to be uploaded','','1048576','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('upload_maxsimu','',0,'Max of simultaneous files uploads','','2','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('meta_struct_version','',-1,'GxTend server metadata structure version','','7','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_force','',0,'Force use of Tickets during Check Out/In','','0','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_close_sts','',0,'Key names for statuses that reflect closed tickets.','','resolved,abandoned','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_status','',0,'Status for TTS System (value:description)','','parked:Parked|working:Working|resolved:Resolved|abandoned:Abandoned','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_topics','',0,'Topics for TTS System (value:description)','','bug:Generic Bug,imp:Improvement Request','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_tmpl_abv','',0,'Template for summary','','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_tmpl_txt','',0,'Template for detailed descriptions','','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_status_flow','',0,'Flow of status for Tickets','','void:parked,working|parked:working,abandoned|working:resolved,abandoned|resolved:void|abandoned:parked','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_priorities','',0,'Available priorities for Tickets','','1:Stopper,3:Hi,5:Normal,7:Low','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_emailifc_status','',0,'Default status for tickets entered through the email interface','','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_emailifc_userid','',0,'Default userid for tickets entered through the email interface','','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_emailifc_subject','',0,'String email subject must start with for it to be incorporated as a ticket','String will be processed case insensitive manner, if parameter empty any (non empty) subject will apply','[TICKET]','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_hours_type','',0,'Data for time tracking hours categorization','','uncat:---,programming:Programming,design:Design,testing:Testing,warranty:Warranty,prjtmgmt:Project Management','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_atchs_preview','',0,'Valid extensions for preview functionality','','jpg,gif,png','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('data_sync_auto','',1,'Set level of automatic client layer data sync','0 _ Disabled\n1 _ Metadata only\n2 _ Metadata and Repositories','1','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mantis_ifc_conn','',0,'Mantis - GxTend Interface','Mantis connection data as : $driver,$host,$port,$user,$passwd,$schema\nLeave blank to disable interface (driver eg: Pdo_Mysql)','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mantis_ifc_query','',0,'Mantis - GxTend Interface','Query to be used when retrieving data from Mantis metadata','SELECT B.id,B.handler_id,B.priority,B.severity,U.username,B.summary,B.date_submitted,B.status,B.due_date,B.category_id FROM mantis_bug_table B, mantis_user_table U WHERE B.handler_id=U.id AND B.last_updated>=?','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mantis_ifc_todoguid','',0,'Mantis - GxTend Interface','Default target ToDo for tickets from mantis','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mantis_ifc_usrs2usrs','',0,'Mantis - GxTend Interface','Mantis - GxTend usernames correspondance as CSVs of username_in_mantis:username_in_gxtend\nLeave blank to use Mantis usernames','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('commit_PandI','',1,'Set state of \'Push after commit\' and \'Integrate after push\' options at commit dialog.','0 _ None checked\n1 _ \'Commit after push\' checked\n2 _ Both checked','2','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('promote_async_status','',0,'Set state of \'Queue for asynchronous execution\' control promotion dialog.','eg. checked="checked"','checked="checked"','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('integrate_async_status','',1,'Set state of \'Queue for asynchronous execution\' control on client commit\'s integrate dialog.','eg. checked="checked"','checked="checked"','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('evtqueue_email_receipt','',0,'Email receipt policy on event queueing','CSV list of events you want to queue an email receipt upon queueing','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('evtproc_email_receipt','',0,'Email receipt policy after event execution','Options are never, err_wrn or always','err_wrn','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('import_gx_order','',0,'Import order for GeneXus objects','','11,5,26,34,*','');
+                    UPDATE `gxt_prmdef` SET prmval=prmdef WHERE prmval='';
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+        </struct>
+    </var>
+
+    <var name='Pdo_Sqlite'>
+        <struct>
+
+            <var name='update'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+        </struct>
+    </var>
+    </struct>
+
+</data>
+</wddxPacket>

@@ -1,0 +1,46 @@
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$("#qryfrm").ajaxForm({
+		dataType:  'text',
+		beforeSubmit: function(formData, jqForm, options) {
+            $("#qryres").html('{$smarty.const._MSG_WAIT_SM_}');
+		},
+		success: function (r) {
+            $("#qryres").html(r);
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    initializeButtons();
+
+});
+
+</script>
+
+    {if $smarty.server.REQUEST_URI=='/tools/kbquery'}
+    <h1>Query GxKb</h1><br>
+	<form id="qryfrm" action="tools/gokbqry" method="POST" enctype="multipart/form-data">
+        <h3>GeneXus Kb {$gxkbs}</h3>
+        <h3><b>GxKb Query</h3>
+        <textarea name="gkbsentence" rows="2" cols="80"></textarea>
+        <h3><b>SQL Query</h3>
+        <textarea name="sqlsentence" rows="2" cols="80"></textarea>
+        <br><br>
+        <button type="submit" class="button-circle" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>
+	</form>
+    {elseif $smarty.server.REQUEST_URI=='/tools/dbquery'}
+    <h1>Query Metadata</h1><br>
+	<form id="qryfrm" action="tools/godbqry" method="POST" enctype="multipart/form-data">
+        <h3>SQL Query</h3>
+        <textarea name="sqlsentence" rows="4" cols="80"></textarea><br><br>
+        <button type="submit" class="button-circle" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>
+	</form>
+    {/if}
+    <p>
+    <div id="qryres">
+    </div>

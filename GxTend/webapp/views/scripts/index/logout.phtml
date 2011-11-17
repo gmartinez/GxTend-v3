@@ -1,0 +1,56 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#logout button").button({
+            icons: {
+                primary: 'ui-icon-check'
+            }
+        }).next().button({
+            icons: {
+                primary: 'ui-icon-closethick'
+            }
+        });
+        $('#logout #yes').click(function() {
+            $("#GenericDialog").dialog("close");
+            $.blockUI({ message: '{$smarty.const._BAR_WAIT_}' });
+
+            $.ajax({
+            url: 'index/gologout',
+            data: 'syncupBlogout='+(($("#syncupBlogout").prop("checked")) ? "1" : "0"),
+            cache: false,
+            complete: function() {
+                // clean screen
+                $('#container').html("");
+                // unblock when remote call returns
+                $.unblockUI();
+                window.location = "/";
+            }
+            });
+        });
+
+        $('#logout #no').click(function() {
+            $("#GenericDialog").dialog("close");
+        });
+    });
+</script>
+
+<div id="logout">
+    <h2>Confirm GxTend Logout ?</h2>
+    <div class="myhr"></div>
+    <div class="left">
+        {if $smarty.const.__LAYER_ROLE__=="Client"}
+        {if $Accendo_Smarty->getSessVar("LoginStatus.server.status") && $upqueue}
+            &uarr;&nbsp;Sync Up&nbsp;<input type="checkbox" id="syncupBlogout" name="syncupBlogout" value="1" checked>
+        {/if}
+        {/if}
+    </div>
+    <div class="right">
+        <div class="buttons">
+            <button type="submit" value="Yes" id="yes">
+               Yes
+            </button>
+            <button type="submit" value="No" id="no">
+               No
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$("#unsetperms, #setperms").ajaxForm({
+		dataType:  'json',
+        async: true,
+		beforeSubmit: function() {
+            $("#tabber_{$smarty.get.grid_ctrlid}").block({ message: '{$smarty.const._BAR_WAIT_}' });
+		},
+		success: function (j) {
+            $("#setPermissions").html('{$smarty.const._MSG_WAIT_SM_}');
+            var $tabs = $("#tabber_{$smarty.get.grid_ctrlid}").tabs();
+            var $currindex = $tabs.tabs("option", "selected");
+            var $urlparms = $.param({ grid_ctrlid:"{$smarty.get.grid_ctrlid}", kbguid:"{$smarty.get.kbguid}", projguid:"{$smarty.get.projguid}", groupguid:$("#groupguid").val(), access:$("#access").val() });
+            $tabs.tabs("url",$currindex,"/Set-Secur/?"+$urlparms);
+            $("#tabber_{$smarty.get.grid_ctrlid}").tabs("load",$currindex);
+            $("#tabber_{$smarty.get.grid_ctrlid}").unblock();
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    setsubmitsts("#unsetperms .objlst", "#unsetperms button");
+
+});
+
+</script>
+
+<strong>Current Grants on : </strong> {$visualId}
+
+<form id="unsetperms" action="Set-Secur/unset" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="guid" value="{$guid}">
+    <table width="100%" align="center" class="list">
+    <thead>
+        <tr><th>User's Group</th><th>Grant Type</th><th width="5%"><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#unsetperms .objlst");setsubmitsts("#unsetperms .objlst", "#unsetperms button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th>
+    </thead>
+    <tbody id="setPermissions">
+        {foreach from=$active_permissions key=k item=rec}
+            <tr>
+            <td>
+                {if $rec.isuser}
+                <img src="../img/icons/16/user.png" title="Individual User">
+                {else}
+                <img src="../img/icons/16/users.png" title="Users Group">
+                {/if}
+                &nbsp;{$rec.groupabv}
+            </td>
+            <td>&nbsp;{$access2desc[$rec.access]}</td>
+            <td align="center"><input class="objlst" type=checkbox name='checked_perms[]' value='{$rec.type},{$rec.guid},{$rec.groupguid},{$rec.access}' onclick='setsubmitsts("#unsetperms .objlst", "#unsetperms button");'></td>
+            <tr>
+        {/foreach}
+    </tbody>
+    </table>
+    <div id="bottom_left" class="left">
+        &nbsp;
+    </div>
+    <div  id="bottom_right" class="buttons right">
+        {$smarty.const._FORM_BTN_DELETE_}
+    </div>
+</form>
+
+<br clear="all">
+
+<form id="setperms" action="Set-Secur/set" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="guid" value="{$guid}">
+    <fieldset><legend>Define user's group grants on...</legend>
+    <br clear="all">
+    <div id="bottom_left" class="left">
+        For User's Group {$groupguid} grant {$access} on current {$type}
+    </div>
+    <div  id="bottom_right" class="buttons right">
+        {$smarty.const._FORM_BTN_ADD_}
+    </div>
+    </fieldset>
+</form>

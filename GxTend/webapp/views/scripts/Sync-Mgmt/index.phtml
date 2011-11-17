@@ -1,0 +1,85 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    {foreach $bar as $chartId => $chartData}
+    {$chartId}_gObj = new Highcharts.Chart({
+        credits: {
+            enabled: false
+        },
+        chart: {
+            renderTo: "{$chartId}",
+            defaultSeriesType: "column"
+        },
+        title: {
+            text: "{$chartData.title}"
+        },
+        xAxis: {
+            categories: [{foreach $chartData.data as $k => $v name=lst}"{$k}"{if !$smarty.foreach.lst.last}, {/if}{/foreach}]
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: "{$chartData.ytitle}"
+            }
+        },
+        tooltip: {
+            formatter: function() {                
+                return '' + this.x + ': ' + this.y + ' changes';
+            }
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [
+            {foreach $chartData.series as $sercode => $sername name=serlst}
+            { name: "{$sername}",
+              data: [{foreach $chartData.data as $k => $v name=lst}{$chartData.data.$k["{$sername}"]}{if !$smarty.foreach.lst.last}, {/if}{/foreach}]
+            }{if !$smarty.foreach.serlst.last},{/if}
+            {/foreach}
+        ]
+    });
+    {/foreach}
+
+    $("#upnfo").load("/Sync-Mgmt/upnfo");
+    $("#dnnfo").load("/Sync-Mgmt/dnnfo");
+
+});
+
+function oponEntry(type,sqlid) {
+
+    if (confirm('Confirm Data Deletion ?')) {
+        jQuery.getJSON(
+                "/Sync-Mgmt/opon?type="+type+"&sqlid="+sqlid,
+                null,
+                function (data, textStatus) {
+                    if (data.affrows) {
+                        $("#upnfo #upqueue #row_"+data.sqlid+", "+"#nfo_"+data.sqlid).hide();
+                    } else {
+                        alert("Could not delete record.");
+                    }
+
+                }
+        );
+    }
+}
+</script>
+
+<div id="UpDnData_vs_Time" style="float:left;height:50%;width:50%;padding;1em;">
+    {$smarty.const._MSG_WAIT_SM_}
+</div>
+<div id="UpDnCode_vs_Time" style="float:right;height:50%;width:50%;padding;1em;">
+    {$smarty.const._MSG_WAIT_SM_}
+</div>
+
+<table width="100%" style="text-align:center;vertical-align:top;border:1px;">
+    <thead></thead>
+    <tbody>
+        <tr align="center" valign="top">
+            <td id="upnfo" width="50%"></td>
+            <td id="dnnfo" width="50%"></td>
+        </tr>
+    </tbody>
+</table>

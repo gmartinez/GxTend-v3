@@ -1,0 +1,27 @@
+{if is_array($project)}
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#tabber").tabs({
+        select: function(event, ui) {
+                                    $(document).trigger('hideCluetip');
+                                    $("#east_panel").block({ message: '{$smarty.const._MSG_WAIT_}' });
+                                    },
+        show: function(event, ui) { $("#east_panel").unblock(); },
+        disabled: [0,{$allTabsIndex}]
+    });
+
+});
+</script>
+<div id="tabber">
+    <ul>
+        <li><a href="/cvs/proj?projguid={$project.projguid}">Project Data/Stats</a></li>
+        {foreach from=$projkbs key=kbguid item=kbrec}
+        <li><a href="/cvs/kb?projguid={$project.projguid}&kbguid={$kbguid}">{$kbrec.visualid}</a></li>
+        {/foreach}
+    </ul>
+    <div id="tab-1-loadmsg">
+        {$smarty.const._MSG_WAIT_SM_}
+    </div>
+</div>
+{/if}

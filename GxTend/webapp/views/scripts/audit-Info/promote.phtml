@@ -1,0 +1,94 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $("#log_integrate img.tip").cluetip({ splitTitle: "|" });
+
+    filter_by_objsts();
+
+});
+
+function filter_by_objsts() {
+
+    $("#log_integrate > table > tbody > tr").show();
+    if (!$("#log_integrate #okists").prop("checked")) { $("#log_integrate > table > tbody > tr.impok").hide(); }
+    if (!$("#log_integrate #errsts").prop("checked")) { $("#log_integrate > table > tbody > tr.imperr").hide(); }
+
+    var $visibleRows = $('#log_integrate > table > tbody > tr:visible').length;
+
+    $("#log_integrate #resultrows").text($visibleRows);
+
+}
+</script>
+<div id="log_integrate">
+    <div class="column left">
+        <strong>Target : </strong> {$Accendo_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
+        <br>
+        <strong>Path : </strong> {$logData.kbpath}
+    </div>
+    <div class="column right">
+        <strong>TTP : </strong> {$Accendo_Smarty->sec2str($logData.end - $logData.start)}
+        <br>
+        <strong>Average : </strong> {if $logData.ttpavg}{$Accendo_Smarty->sec2str($logData.ttpavg)}{else}---{/if}
+    </div>
+    <br clear="all">
+    <div class="myhr"></div>
+
+    <div class="column left">
+        Objects are listed in the order they were processed.
+        &nbsp;|&nbsp;
+        <input type="checkbox" id="okists" name="okists" onchange="filter_by_objsts();" checked> <img class="tip" alt="ok" src="../img/icons/16/tick.png" title="Import Status|Objects tagged with this icon were successfully imported into target KB.">&nbsp;
+        <input type="checkbox" id="errsts" name="errsts" onchange="filter_by_objsts();" checked> <img class="tip" alt="err" src="../img/icons/16/error.png" title="Import Status|Objects tagged with this icon reported errors when imported into target KB.">&nbsp;
+    </div>
+    <div class="column right">
+        <span id="resultrows"></span> row(s)
+    </div>
+    <br clear="all">
+    <table width="100%" align="center" class="list">
+    <thead>
+        <tr><th>Object</th><th>Overwritten Version</th><th>Imported Version</th><th>TTP</th><th>Sts</th></tr>
+    </thead>
+    <tbody>
+        {foreach $logData.checked_objs as $k => $rec}
+        <tr class='{cycle values="odd,even"} imp{$rec.sts}'>
+        <td>&nbsp;
+            {if $rec.gxinfo.objcls!=111}
+            <img src="../img/gx/objclass/{$gx_objcls[$rec.gxinfo.objcls].small}.png" title="{$gx_objcls[$rec.gxinfo.objcls].long}">
+            &nbsp;{$rec.gxinfo.objnam}
+            {else}
+            <img src="../img/icons/16/file.png" title="File">
+            &nbsp;{$rec.gxinfo.objnam|basename}
+            {/if}
+        </td>
+        <td align="center">
+            &nbsp;{$Accendo_Smarty->ts2str($rec.gxinfo.COMPREF)}
+        </td>
+        <td align="center">
+            &nbsp;{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+            {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
+            &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+            {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
+            &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
+            {elseif $rec.gxinfo.COMP=="OLDER"}
+            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$Accendo_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+            {/if}
+            {if $rec.gxinfo.generated==1}
+            &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
+            {else if $rec.gxinfo.generated==2}
+            &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="Automatically generated BUT modified.">
+            {/if}
+        </td>
+        <td align="center">            
+            {if $logData.ttpavg}{$Accendo_Smarty->sec2str($rec.end - $rec.start)}{else}---{/if}
+        </td>
+        <td align="center">            
+            {if $rec.sts=="ok"}
+            {$Accendo_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/tick.png' alt='{$rec.sts}' title='{$rec.sts}'>")}            
+            {else}
+            {$Accendo_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/error.png' alt='{$rec.sts}' title='{$rec.sts}'>")}
+            {/if}
+        </td>
+        </tr>
+        {/foreach}
+    </tbody>
+    </table>
+</div>

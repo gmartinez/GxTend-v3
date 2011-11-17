@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    {include file='../index/common_head.phtml'}
+
+    <!--External Includes-->
+	<script type="text/javascript" src="../syntax/shCore.js"></script>
+	<script type="text/javascript" src="../syntax/shAutoloader.js"></script>
+    <link href="../syntax/css/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="../syntax/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        SyntaxHighlighter.autoloader(
+          'sql  ../syntax/shBrushSql.js',
+          'php  ../syntax/shBrushPhp.js',
+          'xml  ../syntax/shBrushXml.js'
+        );
+        SyntaxHighlighter.all();
+    });
+    </script>
+</head>
+<body>
+    <table align="center" width="100%" class="list-horizontal">
+    {if $smarty.request.projguid}
+    <tr>
+		<td align="left" class="header first" scope="row">
+			Project
+		</td>
+		<td align="left" class="first">
+			{$project.projabv}
+		</td>
+	</tr>
+    {/if}
+    <tr>
+		<td align="left" class="header" scope="row" width="20%">
+        {if $smarty.request.filename || $smarty.request.filename}
+            File Name
+        {else}
+            Content Description
+        {/if}
+		</td>
+		<td align="left">
+        {if $smarty.request.filehash}
+            {$smarty.request.filename}
+            <a class="pointer" style="float:right;" title="Click to Download File" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$smarty.request.filehash}&filename={$smarty.request.filename}"><span class="ui-icon ui-icon-arrowstop-1-s"></span></a>
+        {/if}
+        {if $smarty.request.send_as}
+            {$smarty.request.send_as}
+            <a class="pointer" style="float:right;" title="Click to Download File" href="/Http/getfile?filename={$smarty.request.filename}&send_as{$smarty.request.send_as}"><span class="ui-icon ui-icon-arrowstop-1-s"></span></a>
+        {/if}
+		</td>
+	</tr>
+    </table>
+    <pre type="syntaxhighlighter" class="brush: {$brush}">{$content}</pre>
+</body>
+</html>

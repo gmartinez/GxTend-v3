@@ -1,0 +1,34 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#addprmbtn").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/ajax/addprm",
+                data: { prmid:$("#prmid").val() },
+                dataType: "json",
+                beforeSend: function() {
+                    $("#my_params").block({ message: '{$smarty.const._MSG_WAIT_}' });
+                },
+                success: function(r){
+                    $("#prmid option:selected").remove();
+                    $("#my_params").unblock();
+                    $("#grid_{$grid_ctrlid}").trigger("reloadGrid");
+                }
+            });
+	});
+
+});
+</script>
+
+<div id="my_parms">
+    <div class="column left">
+        Parameters user can customize
+        &nbsp;{$userparams}
+        &nbsp;<span id="addprmbtn" title="Click to add parameter to your customized list" class="file" style="font-size:.8em;">[+]</span>
+    </div>
+    <br clear="all">
+    <div id="my_params_grid">
+        {$grid}
+    </div>
+</div>

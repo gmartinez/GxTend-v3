@@ -1,0 +1,49 @@
+<script type="text/javascript">
+function applyAction(action) {
+    
+    $('#service_action div.left').html('{$smarty.const._MSG_WAIT_SM_}');
+    
+    jQuery.getJSON(
+            "/Services/apply",
+            { action:action, srvname:'{$smarty.request.match}' },
+            function (r, textStatus) {
+                if (r.sts == "ok") {
+                    $("#service_action div.left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> "+r.msg);
+                    setTimeout("getServicesStatus();",2500);
+                } else {
+                    $("#service_action div.left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> "+r.msg);
+                }
+
+            }
+    );
+    
+}
+</script>
+<div id="service_action">
+    <ul style="padding-left:1em;list-style-type:square;font-size:1.15em;">
+        <li style="margin:5px;"><strong>Name :</strong> {$service.Caption}</li>
+        <li style="margin:5px;"><strong>Description :</strong> {$service.Description}</li>
+        <li style="margin:5px;"><strong>Status :</strong>
+        {if $service.State != "Running"}
+            <span class="red">{$service.State}</span>
+        {else}
+            <span class="green">{$service.State}</span>
+        {/if}
+        </li>
+        <li style="margin:5px;"><strong>Process Id :</strong> {$service.ProcessId}</li>
+        <li style="margin:5px;"><strong>Startup Type :</strong> {$service.StartMode}</li>
+        <li style="margin:5px;"><strong>Log On As :</strong> {$service.StartName}</li>
+    </ul>
+    <div class="left">
+    </div>
+    <div class="right">
+        {if $service.State != "Running"}
+        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Start Service" onclick="applyAction('start');"><span class="ui-icon ui-icon-play"></span></div>
+        {else}
+        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Stop Service" onclick="if (confirm('Are you sure you want to STOP this Service ?')) { applyAction('stop'); }"><span class="ui-icon ui-icon-stop"></span></div>
+        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Restart Service" onclick="if (confirm('Are you sure you want to RESTART this Service ?')) { applyAction('restart'); }"><span class="ui-icon ui-icon-arrowrefresh-1-n"></span></div>
+        {/if}
+        <!--div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Pause Service" onclick="if (confirm('Are you sure you want to PAUSE this Service ?')) { applyAction('pause'); }"><span class="ui-icon ui-icon-pause"></span></div>
+        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Continue Service" onclick="if (confirm('Are you sure you want to CONTINUE this Service ?')) { applyAction('continue'); }"><span class="ui-icon ui-icon-play"></span></div-->
+    </div>
+</div>

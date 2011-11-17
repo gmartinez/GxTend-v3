@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<rss version='2.0'>
+<channel>
+    <title>GxTend's Ticket : {$ticketData.ttsabv}</title>
+    <description>Related Milestone : {$mistData.mistabv} due to {$Accendo_Smarty->ts2str($mistData.mistduets, "date")}</description>
+    <link>http://gxtend.accendo-it.com</link>
+    <lastBuildDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</lastBuildDate>
+    <pubDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</pubDate>
+    <copyright>&copy; 2005-{$smarty.now|date_format:'%Y'} Accendo</copyright>
+    <image>
+        <title>GxTend - Rss Feed</title>
+        <url>../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png</url>
+        <link>http://gxtend.accendo-it.com</link>
+    </image>
+
+    {foreach from=$ticketItems key=ik item=titem}
+    <item>
+        <author><![CDATA[{$titem.ttsauthor}]]></author>
+        <pubDate>{$titem.ttspubts|date_format:$smarty.const.DATE_RSS}</pubDate>
+        <title><![CDATA[{$titem.itmtyp}]]></title>
+        <description>
+            <![CDATA[
+            {if $titem.itmtyp=="attch"}
+                <img src="{$smarty.const._IMG_MAIL_ATTCH_SM_}" alt="Attachment" title="Attachment">&nbsp;
+            {elseif $titem.itmtyp=="comment"}
+                <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;
+            {/if}
+
+            {$titem.itmtxt}
+
+            <p align="right">
+            {foreach from=$titem.atchs key=fi item=file}
+            <br><img src="../img/icons/16/mail-attachment.png">&nbsp;<a href="javascript:;" title="Download not available from RSS feed">{$file.file_name} [{$Accendo_Smarty->bytes2str($file.file_size)}]</a>
+            {/foreach}
+            </p>
+            ]]>
+        </description>
+    </item>
+    {/foreach}
+</channel>
+</rss>

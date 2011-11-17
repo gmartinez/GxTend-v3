@@ -1,0 +1,334 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#form_checkin").ajaxForm({
+		dataType:  'json',
+        async: true,
+		beforeSubmit: function() {
+			$("#diffs").block({ message: '{$smarty.const._BAR_WAIT_}' });
+            $("#div_checkin #bottom_left").html("");
+		},
+		success: function (r) {
+            for ( var i in r.stage ) {
+                if (r.stage[i] == "ok") {
+                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='"+r.stage[i]+"'>");
+                } else {
+                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='"+r.stage[i]+"'>");
+                }
+            }
+
+            if (r.commit.sts == "ok") {
+                $("#div_checkin #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Successful Commit "+r.commit.msg);
+                if ($("#pushAcommit:checked").val()) {
+                    pushAcommit(r.iframe_url)
+                } else {
+                    $("#diffs").unblock();
+                }
+            } else {
+                $("#div_checkin #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Error in Commit "+r.commit.msg);
+                $("#diffs").unblock();
+            }
+
+            setsubmitsts("#form_checkin .objlst", "#form_checkin button");
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    $("#pushAcommit").change(function() {
+        if ($("#pushAcommit:checked").val()) {
+            $("#impApush_holder").show("slow");
+        } else {
+            $("#impApush").prop("checked", false);
+            $("#impApush_holder").hide("slow");
+        }
+    });
+
+    setsubmitsts("#form_checkin .objlst", "#form_checkin button");
+
+    $("#east_panel #project #div_checkin img.tip").cluetip({ splitTitle: "|" });
+
+    filter_by_objsts();
+
+    loadTickets();
+
+});
+
+function loadTickets() {
+    $("#assoc_tickets").html('{$smarty.const._MSG_WAIT_SM_}');
+    $("#assoc_tickets").load("/Chkin/tickets", { projguid:"{$smarty.request.projguid}" });
+}
+
+function pushAcommit(iframe_url) {
+    jQuery.getJSON(
+            "/Push/push",
+            { projguid:"{$smarty.request.projguid}" },
+            function (r, textStatus) {
+                if (r.sts == "ok") {
+                    $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/tick.png' alt='ok' title='ok'> Successful Push "+r.msg);
+                } else {
+                    $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/error.png' alt='err' title='err'> Pushing Data Error "+r.msg);
+                }
+                $("#diffs").unblock();
+                if (r.sts == "ok" && $("#impApush:checked").val()) {
+                    mDialog(iframe_url, 'Commits Data & Promotion Status', 550, 900);
+                }
+            }
+    );
+}
+
+function hardReset() {
+
+    if (confirm("Uncommitted changes will be Lost.\n\nAre you Sure ?")) {
+
+        $("#diffs").block({ message: '{$smarty.const._BAR_WAIT_}' });
+        $("#div_checkin #bottom_left").html("");
+
+        jQuery.getJSON(
+                "/Chkin/reset",
+                { projguid:'{$smarty.request.projguid}',kbguid:'{$smarty.request.kbguid}' },
+                function (r, textStatus) {
+                    if (r.sts == 0) {
+                        $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/tick.png' alt='ok' title='ok'> Repository Reset Successful");
+                        setTimeout("$('#checkinlnk').click()",2500);
+                    } else {
+                        $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/error.png' alt='err' title='err'> Repository Reset Error "+r.msg);
+                        $("#diffs").unblock();
+                    }
+
+                }
+        );
+    }
+
+}
+
+function filter_by_objsts() {
+
+    $("#form_checkin > table > tbody > tr").show();
+    if (!$("#div_checkin #gen1chk").prop("checked")) { $("#form_checkin > table > tbody > tr.gen1").hide(); }
+    if (!$("#div_checkin #gen2chk").prop("checked")) { $("#form_checkin > table > tbody > tr.gen2").hide(); }
+    if (!$("#div_checkin #olderchk").prop("checked")) { $("#form_checkin > table > tbody > tr.OLDER").hide(); }
+    if ($("#periods_filter").val()) {
+        $("#form_checkin > table > tbody > tr").not("."+$("#periods_filter").val()).hide();
+    }
+
+    var $visibleRows = $('#form_checkin > table > tbody > tr:visible').length;
+    var $hiddenRows = $('#form_checkin > table > tbody > tr:hidden').length;
+    var $newRows = $("#form_checkin > table > tbody > tr:visible .lst2add").length;
+    var $diffRows = $("#form_checkin > table > tbody > tr:visible .lst2lck").length;
+
+    if ($newRows) { $("#div_checkin #click2add").show(); }
+    if ($diffRows) { $("#div_checkin #click2lck").show(); }
+    if ($hiddenRows) { $("#div_checkin #filterctrls").show(); }
+    $("#div_checkin #resultrows").text($visibleRows);
+
+}
+
+function go_for_lock(type) {
+
+    var $str4srch = "";
+
+    $("#form_checkin > table > tbody > tr:visible ."+type).each(function () {
+        $str4srch = $str4srch + $(this).text() + ",";
+    });
+
+    if ($str4srch!="") {
+        if (type=="lst2add") {
+            $str4srch = $str4srch + " [Add_New]";
+        } else {
+            $str4srch = $str4srch + " [Lock]";
+        }
+        $("#qrystr").val($str4srch);
+        $("#gobtn").click();
+    } else {
+        alert("Could not get objects list.");
+    }
+
+}
+</script>
+<div id="div_checkin">
+
+    {if $smarty.request.mergebefore}
+    <div class="ui-corner-all ui-state-active" style="padding:1em;">
+        <img src="{$smarty.const._IMG_CATCHUP_SM_}" alt="{$smarty.const._LBL_CATCHUP_}" title="{$smarty.const._LBL_CATCHUP_}"> Merge from main codeline performed
+        <p>Status : {if $merge_FromGxTendCL.sts==0}<img src="../img/icons/16/tick.png" alt="ok" title="ok"> Success {else} <img src="../img/icons/16/error.png" alt="err" title="err"> Error{/if}</p>
+        <p>{$merge_FromGxTendCL.out}</p>
+    </div>
+    {/if}
+
+    <div class="myhr"></div>
+    <div class="column left" style="width:50%;">
+        {if $have_locks && !$smarty.request.forcecompare}
+        List below is <strong>restricted</strong> to your current locked set, <a href="javascript:;" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 1));'>click here</a> for full list of differences.&nbsp;
+        {elseif $have_locks && $smarty.request.forcecompare}
+        List below contains <strong>full set</strong> of differences, <a href="javascript:;" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 0));'>click here</a> to restrict it to your current locked set.&nbsp;
+        {else}
+        List below contains <strong>full set</strong> of differences, you have no active locks.&nbsp;
+        {/if}
+    </div>
+    <div class="column right">
+        <span id="click2lck" class="file" style="display:none;" onclick='go_for_lock("lst2lck");'><img alt="info" src="../img/icons/16/info.png" title="Search &amp; Lock"> Click to search &amp; lock ALL modified objects</span>
+        <br>
+        <span id="click2add" class="file" style="display:none;" onclick='go_for_lock("lst2add");'><img alt="new" src="../img/icons/16/new.png" title="Search &amp; Lock"> Click to add &amp; lock ALL new objects</span>
+    </div>
+    <br clear="all">
+    <div class="myhr"></div>
+
+    {if !is_array($local_changes)}
+        {$Accendo_Smarty->msg("ui-icon-alert", $local_changes)}
+    {else}
+
+        <div class="column left">
+            <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="{$smarty.const._LBL_COMMIT_}" title="{$smarty.const._LBL_COMMIT_}"> Commit changes into "Local History Repo"
+            &nbsp;|&nbsp;{$periods_filter}
+            <span id="filterctrls" style="display:none;">
+            &nbsp;|&nbsp;
+            <input type="checkbox" id="gen1chk" name="gen1chk" onchange="filter_by_objsts();"> <img class="tip" alt="gen1" src="../img/icons/16/lightning_green.png" title="Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance).">&nbsp;
+            <input type="checkbox" id="gen2chk" name="gen2chk" onchange="filter_by_objsts();" checked> <img class="tip" alt="gen2" src="../img/icons/16/lightning_red.png" title="Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance) BUT some of it has been modified by a user.">&nbsp;
+            <input type="checkbox" id="olderchk" name="olderchk" onchange="filter_by_objsts();"> <img class="tip" alt="older" src="../img/icons/16/warning.png" title="Visual Tag Information|Objects tagged with this icon were detected as being OLDER than its target">
+            </span>
+        </div>
+        <div class="column right">
+            <span id="resultrows"></span> row(s)
+        </div>
+        <br clear="all">
+
+        <form id="form_checkin" action="chkin/chkin" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="projguid" value="{$smarty.request.projguid}">
+        <input type="hidden" name="kbguid" value="{$smarty.request.kbguid}">
+        <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
+            <table width="100%" align="center" class="list">
+            <thead>
+                <tr><th>Object</th><th>Description</th><th>Modified @ Local &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_checkin .objlst");setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+            </thead>
+            <tbody>
+                {foreach $local_changes as $k => $rec}
+                <tr class='{cycle values="odd,even"} gen{$rec.gxinfo.generated} {$rec.gxinfo.COMP} {$rec.gxinfo.updperiod}' style="{if $rec.gxinfo.generated==1 || $rec.gxinfo.COMP=='OLDER'}display:none;{/if}">
+                <td>&nbsp;
+                    {if $rec.gxinfo.objcls!=111}
+                    <img src="../img/gx/objclass/{$gx_objcls[$rec.gxinfo.objcls].small}.png" title="{$gx_objcls[$rec.gxinfo.objcls].long}">
+                    &nbsp;{$rec.gxinfo.objnam}
+                    {else}
+                    <img src="../img/icons/16/file.png" title="File">
+                    &nbsp;{$rec.gxinfo.objnam|basename}
+                    {/if}
+                </td>
+                <td>
+                    &nbsp;{$rec.gxinfo.objdsc|utf8_encode}
+                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid == $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
+                    &nbsp;<img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="Object's Lock Status|You have an active lock on this object since '{$Accendo_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    {/if}
+                </td>
+                <td align="center">
+                    &nbsp;{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+                    {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
+                    &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+                    {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
+                    &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
+                    {elseif $rec.gxinfo.COMP=="OLDER"}
+                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$Accendo_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+                    {/if}
+                    {if $rec.gxinfo.generated==1}
+                    &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
+                    {else if $rec.gxinfo.generated==2}
+                    &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="Automatically generated BUT modified.">
+                    {/if}
+                </td>
+                <td align="center">
+                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid != $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
+                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$Accendo_Smarty->guid2name('gxt_users', $rec.gxinfo.lock.setuserguid)}' has an active lock on this object since '{$Accendo_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    {else}
+                        {if $rec.b64}
+                        <span id="{$rec.b64|sha1}">
+                            {if !$rec.gxinfo.lock}
+                                {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
+                                    <img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+                                    {if $rec.gxinfo.objcls!=111}
+                                    <span class="lst2add" style="display:none;">{$gx_objcls[$rec.gxinfo.objcls].small}:{$rec.gxinfo.objnam}</span>
+                                    {else}
+                                    <span class="lst2add" style="display:none;">{str_ireplace($smarty.request.kbguid|cat:'/','',$gx_objcls[$rec.gxinfo.objcls].small|cat:':'|cat:$rec.gxinfo.objnam)}</span>
+                                    {/if}
+                                {else}
+                                    <img alt="info" src="../img/icons/16/info.png" title="No active lock on this object.">
+                                    {if $rec.gxinfo.objcls!=111}
+                                    <span class="lst2lck" style="display:none;">{$gx_objcls[$rec.gxinfo.objcls].small}:{$rec.gxinfo.objnam}</span>
+                                    {else}
+                                    <span class="lst2lck" style="display:none;">{str_ireplace($smarty.request.kbguid|cat:'/','',$gx_objcls[$rec.gxinfo.objcls].small|cat:':'|cat:$rec.gxinfo.objnam)}</span>
+                                    {/if}
+                                {/if}
+                            {else}
+                                {if $rec.gxinfo.chkin}
+                                <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Pending" title="Consolidation Pending">
+                                {else}
+                                <input class="objlst" type=checkbox name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>
+                                {/if}
+                            {/if}
+                        </span>
+                        {/if}
+                    {/if}
+                </td>
+                </tr>
+                {/foreach}
+            </tbody>
+            </table>
+
+            <div class="myhr"></div>
+
+            <div id="addcomm" class="newitm" style="padding:10px 0;">
+                <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+                <div style="margin-left:60px;">
+                    <div style="float:left;">
+                        <strong>Commenting on your commits is usually a good idea...</strong>
+                        <p><textarea rows="10" cols="90" id="comment" name="comment"></textarea></p>
+                    </div>
+                    <div style="float:right;">
+                        <strong>Tickets you can associate this commit to...</strong>
+                        <div id="assoc_tickets">
+                        </div>
+                    <div class="myhr"></div>
+                    {if $Accendo_Smarty->getSessVar("LoginStatus.server.status")}
+                        {if $project.remo_repo_stats.ava == "open"}
+                            {if $project.repo_stats.ava == "open"}
+                                <img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title='Select to Push after commit.'>
+                                &nbsp;Push after commit
+                                &nbsp;<input type="checkbox" id="pushAcommit" value="1" {if $commit_PandI}checked{/if}>
+
+                                <div id="impApush_holder" style="{if !$commit_PandI}display:none;{/if}">
+                                {if $iframe_url}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&raquo;&nbsp;<img src='{$smarty.const._IMG_PROMOTE_SM_}' alt='Push' title='Select to open promotion dialog after successful push.'>
+                                &nbsp;Promote after push
+                                &nbsp;<input type="checkbox" id="impApush" value="1" {if $commit_PandI==2}checked{/if}>
+                                {/if}
+                                </div>
+
+                            {/if}
+                        {else}
+                            &nbsp;{$Accendo_Smarty->msg("ui-icon-info","Push after commit not available as remote repository is not open")}
+                        {/if}
+                    {else}
+                        &nbsp;{$Accendo_Smarty->msg("ui-icon-info","Push after commit not available as server is not online")}
+                    {/if}
+                    </div>
+                </div>
+            </div>
+
+            <br clear="all">
+            <div class="myhr"></div>
+
+            <div id="bottom_left" class="left">
+                {include file='../index/ttp.phtml'}
+            </div>
+            <div  id="bottom_right" class="buttons right">
+                {if $kbdata.kbclass<7500}
+                    <button type='button' id='reset_btn' name='reset_btn' value='{$smarty.const._LBL_RESET_}"' title='Click to reset all non-commited changes"' onclick="hardReset();">
+                    <img src='{$smarty.const._IMG_RESET_SM_}'> {$smarty.const._LBL_RESET_}
+                    </button>
+                {/if}
+                {$smarty.const._FORM_BTN_COMMIT_}
+            </div>
+
+        </form>
+        <br clear="all">
+    {/if}
+</div>

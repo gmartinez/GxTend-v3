@@ -1,0 +1,179 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#form_catchup").ajaxForm({
+		dataType:  'json',
+        async: true,
+		beforeSubmit: function() {
+			$("#diffs").block({ message: '{$smarty.const._BAR_WAIT_}' });
+            $("#div_catchup #bottom_left").html("");
+		},
+		success: function (r) {
+            for ( var i in r.gxcons ) {
+                if (r.gxcons[i] == "ok") {
+                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='Object successfully imported'>");
+                } else if (r.gxcons[i] == "wrn") {
+                    $("#"+i).html("<img src='../img/icons/16/warning.png' alt='wrn' title='Object imported with warning(s)'>");
+                } else if (r.gxcons[i] == "err") {
+                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='Object not imported'>");
+                }
+            }
+
+            for ( var i in r.gxdele ) {
+                if (r.gxdele[i] == "ok") {
+                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='Object successfully deleted'>");
+                } else if (r.gxdele[i] == "err") {
+                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='Object not deleted'>");
+                }
+            }
+
+            if (r.overall.xpzmsg) {
+                if (r.overall.xpzsts) {
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> All objects were successfully packaged. [ <a href='/Download/download?file_guid="+r.overall.xpzmsg+"'>Click to Download</a> ]");
+                } else {
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Error building .xpz file. ["+r.overall.xpzmsg+"]");
+                }
+            } else {
+                if (r.overall.okis > 0 && r.overall.wrns == 0 && r.overall.errs == 0) {
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> All objects were successfully imported. [ {$Accendo_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'Log Entry Details','800x600','Click to View Log')} ]");
+                } else if (r.overall.wrns > 0 && r.overall.errs == 0) {
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='wrn'> Warnings in objects import. [ {$Accendo_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'Log Entry Details','800x600','Click to View Log')} ]");
+                } else if (r.overall.wrns > 0 || r.overall.errs > 0) {
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Errors/Warnings in objects import. [ {$Accendo_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'Log Entry Details','800x600','Click to View Log')} ]");
+                } else if (r.overall.okis == 0 && r.overall.wrns == 0 && r.overall.errs == 0) {
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Could not obtain lock on KB.");
+                }
+            }
+
+            $("#diffs").unblock();
+            setsubmitsts("#form_catchup .objlst", "#form_catchup button");
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    initializeButtons();
+
+    setsubmitsts("#form_catchup .objlst", "#form_catchup button");
+
+    $("#east_panel #project #div_catchup img.tip").cluetip({ splitTitle: "|" });
+
+    filter_by_objsts();
+
+});
+
+function filter_by_objsts() {
+
+    $("#form_catchup > table > tbody > tr").show();
+    if (!$("#div_catchup #gen1chk").prop("checked")) { $("#form_catchup > table > tbody > tr.gen1").hide(); }
+    if (!$("#div_catchup #gen2chk").prop("checked")) { $("#form_catchup > table > tbody > tr.gen2").hide(); }
+    if (!$("#div_catchup #olderchk").prop("checked")) { $("#form_catchup > table > tbody > tr.OLDER").hide(); }
+    if ($("#periods_filter").val()) {
+        $("#form_catchup > table > tbody > tr").not("."+$("#periods_filter").val()).hide();
+    }
+
+    var $visibleRows = $('#form_catchup > table > tbody > tr:visible').length;
+    var $hiddenRows = $('#form_catchup > table > tbody > tr:hidden').length;
+
+    if ($hiddenRows) { $("#div_catchup #filterctrls").show(); }
+    $("#div_catchup #resultrows").text($visibleRows);
+
+}
+</script>
+<div id="div_catchup">
+
+    {if !is_array($local_changes)}
+        {$Accendo_Smarty->msg("ui-icon-alert", $local_changes)}
+    {else}
+        <div class="myhr"></div>
+        <div class="left">
+            <img src="{$smarty.const._IMG_CATCHUP_SM_}" alt="{$smarty.const._LBL_CATCHUP_}" title="{$smarty.const._LBL_CATCHUP_}"> Catchup changes from "Local History Repo"
+            &nbsp;|&nbsp;{$periods_filter}
+            <span id="filterctrls" style="display:none;">
+            &nbsp;|&nbsp;
+            <input type="checkbox" id="gen1chk" name="gen1chk" onchange="filter_by_objsts();"> <img class="tip" alt="gen1" src="../img/icons/16/lightning_green.png" title="Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance).">&nbsp;
+            <input type="checkbox" id="gen2chk" name="gen2chk" onchange="filter_by_objsts();" checked> <img class="tip" alt="gen2" src="../img/icons/16/lightning_red.png" title="Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance) BUT some of it has been modified by a user.">&nbsp;
+            <input type="checkbox" id="olderchk" name="olderchk" onchange="filter_by_objsts();"> <img class="tip" alt="older" src="../img/icons/16/warning.png" title="Visual Tag Information|Objects tagged with this icon were detected as being OLDER than its target">
+            </span>
+        </div>
+        <div class="column right">
+            <span id="resultrows"></span> row(s)
+        </div>
+        <br clear="all">
+
+        <form id="form_catchup" action="catchup/catchup" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="projguid" value="{$smarty.request.projguid}">
+        <input type="hidden" name="kbguid" value="{$smarty.request.kbguid}">
+        <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
+            <table width="100%" align="center" class="list">
+            <thead>
+                <tr><th>Object</th><th>Description</th><th>Modified @ Server &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_catchup .objlst");setsubmitsts("#form_catchup .objlst", "#form_catchup button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+            </thead>
+            <tbody>
+                {foreach from=$local_changes key=k item=rec}
+                <tr class='{cycle values="odd,even"} gen{$rec.gxinfo.generated} {$rec.gxinfo.COMP} {$rec.gxinfo.updperiod}' style="{if $rec.gxinfo.generated==1 || $rec.gxinfo.COMP=='OLDER'}display:none;{/if}">
+                <td>&nbsp;
+                    {if $rec.gxinfo.objcls!=111}
+                    <img src="../img/gx/objclass/{$gx_objcls[$rec.gxinfo.objcls].small}.png" title="{$gx_objcls[$rec.gxinfo.objcls].long}">
+                    &nbsp;{$rec.gxinfo.objnam}
+                    {else}
+                    <img src="../img/icons/16/file.png" title="File">
+                    &nbsp;{$rec.gxinfo.objnam|basename}
+                    {/if}
+                </td>
+                <td>
+                    &nbsp;{$rec.gxinfo.objdsc}
+                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid != $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
+                    &nbsp;<img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$Accendo_Smarty->guid2name('gxt_users', $rec.gxinfo.lock.setuserguid)}' has an active lock on this object since '{$Accendo_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    {/if}
+                </td>
+                <td align="center">
+                    &nbsp;{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+                    {if $rec.gxinfo.COMP=="NEW"}
+                    &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+                    {elseif $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
+                    &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
+                    {elseif $rec.gxinfo.COMP=="OLDER"}
+                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$Accendo_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+                    {/if}
+                    {if $rec.gxinfo.generated==1}
+                    &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
+                    {else if $rec.gxinfo.generated==2}
+                    &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="Automatically generated BUT modified.">
+                    {/if}
+                </td>
+                <td align="center">
+                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid == $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
+                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="Object's Lock Status|You have an active lock on this object since '{$Accendo_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    {else}
+                        {if $rec.b64}
+                        <span id="{$rec.b64|sha1}">
+                            <input class="objlst" type=checkbox name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_catchup .objlst", "#form_catchup button");'>
+                        </span>
+                        {/if}
+                    {/if}
+                </td>
+                </tr>
+                {/foreach}
+            </tbody>
+            </table>
+
+        <div class="myhr"></div>
+
+        <div id="bottom_left" class="left">
+            {include file='../index/ttp.phtml'}
+        </div>
+        <div  id="bottom_right" class="buttons right">
+            <input type="radio" name='catchuptype' value='import' checked>&nbsp;<img src='{$smarty.const._IMG_CATCHUP_SM_}'> {$smarty.const._LBL_CATCHUP_}&nbsp;&nbsp;
+            <input type="radio" name='catchuptype' value='getxpz'>&nbsp;<img src='{$smarty.const._IMG_PACKAGE_SM_}'> {$smarty.const._LBL_PACKAGE_}&nbsp;&nbsp;
+            <p>
+            <div style="float:right;">
+                <button class="button-circle" type="submit" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>
+            </div>
+        </div>
+
+        </form>
+        <br clear="all">
+    {/if}
+</div>

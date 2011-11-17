@@ -1,0 +1,57 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#pselector").click();
+});
+
+function show_synch(type, projguid) {
+
+    if (type=="push") {
+        var url = "/Push/index";
+    } else if (type=="fetch") {
+        var url = "/Fetch/index";
+    } else if (type=="stats") {
+        var url = "/Work-Stats/index";
+    }
+
+    $("#synch").html('{$smarty.const._MSG_WAIT_SM_}');
+    $("#synch").load(url, { projguid:projguid });
+
+}
+
+function show_diffs(type, projguid, kbguid, forcecompare) {
+
+    var codeline = $("#codeline").val();
+
+    $("#diffs").html('{$smarty.const._MSG_WAIT_SM_}');
+
+    if (type=="checkin") {
+        $("#diffs").load("/Chkin/index",{ projguid:projguid,kbguid:kbguid,mdlid:1,mergebefore:0,forcecompare:forcecompare });
+    } else if (type=="catchup") {
+        $("#diffs").load("/Catchup/index",{ projguid:projguid,kbguid:kbguid,mdlid:1,mergebefore:0 });
+    } else if (type=="merge") {
+        $("#diffs").load("/Chkin/index",{ projguid:projguid,kbguid:kbguid,mdlid:1,mergebefore:1 });
+    }
+
+}
+
+function show_srchres(projguid, kbguid, mdlid) {
+
+    var qrystr = $("#qrystr").val();
+
+    loadappdiv("/Lock/search",{ projguid:projguid,kbguid:kbguid,mdlid:mdlid,qrystr:qrystr },"#diffs");
+
+}
+
+</script>
+
+<div id="project">
+    <h1>
+        <span id="pselector" onclick='var offset=$("#pselector_xypos").offset();mDialog("/cvs/pselector", "Switch to Project...", null, null, [offset.left,offset.top]);' class='file'>Switch to Project...</span>&nbsp;<span id="pselector_xypos"></span>
+    </h1>
+    <span style="float:right;">
+        <p>&nbsp;</p>   
+    </span>
+    <br>
+    <div id="proj_tabber">
+    </div>
+</div>

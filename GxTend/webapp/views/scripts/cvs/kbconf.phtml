@@ -1,0 +1,113 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#form_{$smarty.get.kbguid}").ajaxForm({
+        dataType: 'json',
+        async: false,
+        beforeSubmit: function() {
+            $("#form_{$smarty.get.kbguid} button").attr("disabled", "disabled");
+        },
+        success: function (r) {
+            $("#form_{$smarty.get.kbguid} button").removeAttr("disabled");
+            if (r.sts) {
+                $("#GenericDialog").dialog('close');
+                $("#east_panel #proj_tabber #tabber #kbnfo_{$smarty.get.kbguid}").html('{$smarty.const._MSG_WAIT_SM_}');
+                $("#east_panel #proj_tabber #tabber").tabs("load",$("#east_panel #proj_tabber #tabber").tabs("option", "selected"));
+            } else {
+                alert(r.msg);
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+    });
+    
+    $("#conn_type").change(function() {
+        chgConnType();
+    });
+    chgConnType();    
+});
+    
+function chgConnType() {
+
+    $(".sqlviamem, .sqlviatcp").hide();
+    $("."+$("#conn_type").val()).show("slow");
+    if ($("#conn_type").val()=="sqlviamem") {
+        $("#dbms_host").prop("size",32);
+    } else {
+        $("#dbms_host").prop("size",20);
+    }
+
+}    
+</script>
+
+<form id="form_{$smarty.get.kbguid}" action="Cvs/setprops" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="kbguid" value="{$smarty.get.kbguid}">
+    <table align="center" width="100%" cellpadding="2px">
+    <tr>
+        <td style="font-weight:bold;width:30%;"><b>Local KB Path</b></td>
+        <td><input type="text" size="60" id="local_kbdir" name="local_kbdir" value="{$kbdata.local_kbdir}"></td>
+    </tr>
+    {if $kbdata.kbclass >= 10000}
+    <tr>
+        <td colspan="2"><div class="myhr"></div></td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;"><b>GeneXus Base Directory</b></td>
+        <td>
+            <input type="text" size="60" id="gx_basedir" name="gx_basedir" value="{$kbdata.local_options.gx_basedir}">
+            <br>
+            <a href="javascript:;" style="font-size:.8em;" onclick="$('#gx_basedir').val('{$kbdata.winreg_gxdir}');">From system</a>&nbsp;|&nbsp;
+            <a href="javascript:;" style="font-size:.8em;" onclick="$('#gx_basedir').val('');">Unset</a>
+        </td>
+    </tr>
+    <tr style="display:none;">
+        <td style="font-weight:bold;">Connection Driver</td>
+        <td>
+            <select name="dbms_driver" id="dbms_driver">
+                <option value="Sqlsrv">MS Sql Server</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;">Connection Type</td>
+        <td>
+            <select name="conn_type" id="conn_type">
+                <option value="sqlviamem" {if $kbdata.local_options.conn_type=="sqlviamem"}selected{/if}>Shared Memory</option>
+                <option value="sqlviatcp" {if $kbdata.local_options.conn_type=="sqlviatcp"}selected{/if}>TCP/IP</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;">
+            <span class="sqlviamem" style="display:none;">Server Name</span>
+            <span class="sqlviatcp" style="display:none;">Host : Port</span>
+        </td>
+        <td>
+            <input type="text" size="20" name="dbms_host" id="dbms_host" value="{$kbdata.local_options.dbms_host}" class="string required">
+            <span class="sqlviamem" style="display:none;font-size:.8em;">
+            &nbsp;Eg; <a href="javascript:;" onclick="$('#dbms_host').val('localhost\\SQLEXPRESS');">localhost\SQLEXPRESS</a>
+            </span>
+            <span class="sqlviatcp" style="display:none;">
+            &nbsp;:&nbsp;
+            <input type="text" size="5" name="dbms_port" id="dbms_port" value="{$kbdata.local_options.dbms_port}" class="string required">
+            <span style="font-size:.8em;">&nbsp;Eg; <a href="javascript:;" onclick="$('#dbms_host').val('localhost');$('#dbms_port').val('1433');">localhost : 1433</a></span>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;">Username / Password</td>
+        <td>
+            <input type="text" size="20" name="dbms_user" id="dbms_user" value="{$local_voptions.dbms_user}">
+            &nbsp;/&nbsp;
+            <input type="password" size="20" name="dbms_pass" id="dbms_pass" value="{$kbdata.local_options.dbms_pass}">
+            <br>
+            <span style="font-size:.8em;">For "Windows Authentication" <a href="javascript:;" onclick="$('#dbms_user,#dbms_pass').val('');">set both empty</a></span>
+        </td>
+    </tr>
+    {/if}
+    </table>
+    <div class="myhr"></div>
+    <div class="buttons right">
+        {$smarty.const._FORM_BTN_UPDATE_}
+    </div>
+</form>

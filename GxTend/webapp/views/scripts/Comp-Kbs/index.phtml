@@ -1,0 +1,77 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#browsearea select").change(function() {
+            $("#browsearea #comp_options").hide();
+            if ($("#left_kbguid").val() && $("#right_kbguid").val()) {
+                compare();
+            } else {                
+                $("#browsearea #panels").html("");
+            }
+        });
+
+    });
+
+    function compare() {
+
+        $.ajax({
+            url: "/Comp-Kbs/compare",
+            data: { left_kbguid: $("#left_kbguid").val(),
+                    left_mdlid: $("#left_mdlid").val(),
+                    right_kbguid: $("#right_kbguid").val(),
+                    right_mdlid: $("#right_mdlid").val(),
+                    apply_filters: (($("#apply_filters").is(":checked")) ? 1 : 0)
+                   },
+            beforeSend: function() {
+                $("#browsearea #panels").html('{$smarty.const._MSG_WAIT_SM_}');
+            },
+            success: function(data, textStatus, jqXHR) {
+                $("#browsearea #panels").html(data);                
+            }
+        });
+
+    }
+
+    function srcswitch() {
+
+        var lval = $('#left_kbguid').val(); 
+        var rval = $('#right_kbguid').val();
+        
+        $('#left_kbguid').val(rval);
+        $('#right_kbguid').val(lval);
+        compare();
+
+    }
+    
+    function filter_by_objsts() {
+
+        $("#form_promote > table > tbody > tr").show();
+        if (!$("#div_promote #gen1chk").prop("checked")) { $("#form_promote > table > tbody > tr.gen1").hide(); }
+        if (!$("#div_promote #gen2chk").prop("checked")) { $("#form_promote > table > tbody > tr.gen2").hide(); }
+        if (!$("#div_promote #olderchk").prop("checked")) { $("#form_promote > table > tbody > tr.OLDER").hide(); }
+        if ($("#periods_filter").val()) {
+            $("#form_promote > table > tbody > tr").not("."+$("#periods_filter").val()).hide();
+        }
+
+        var $visibleRows = $('#form_promote > table > tbody > tr:visible').length;
+        var $hiddenRows = $('#form_promote > table > tbody > tr:hidden').length;
+
+        if ($hiddenRows) { $("#div_promote #filterctrls").show(); }
+        $("#div_promote #resultrows").text($visibleRows);
+
+    }
+</script>
+
+<div id="browsearea">
+    <div style="float:right;"><h2>Compare &amp; Promote</h2></div>
+    <div id="comp_sources" style="float:left;">Compare data in {$leftKb} <span style="cursor:pointer;font-size:2em;line-height:1em;" title="Click to Switch KBs" onclick="srcswitch();">&nbsp;»&nbsp;</span> {$rightKb}</div>        
+    <div id="comp_options" style="font-size:0.8em;float:left;vertical-align:middle;display:none;">
+        &nbsp;<input type="checkbox" id="apply_filters" onchange="compare();" checked> Apply filters set on target KB
+        <br>
+        &nbsp;<a href="javascript:;" onclick="compare();"><span class='ui-icon ui-icon-refresh' style="float:left;margin-left:4px;"></span> Refresh</a>
+    </div>
+    <br clear="both"><hr>
+    <div id="panels">
+        &nbsp;
+    </div>
+</div>

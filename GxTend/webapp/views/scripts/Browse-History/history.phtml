@@ -1,0 +1,48 @@
+<div id="div_history">
+
+    {foreach from=$timeperiods key=k item=tperiod}
+    {if $local_changes[$tperiod]|@count}
+    <br clear="all">
+    <fieldset>
+        <legend>
+            {$tperiod}
+            [&nbsp;
+            <span class='file' title='{$smarty.const._TITLE_HIDE_SHOW_}' onclick='$("#{$tperiod|sha1}").toggle("slow");'>&minus;/+</span>
+            &nbsp;]
+        </legend>
+		<div class="left">
+            &nbsp;
+		</div>
+		<div class="column right">
+            {$local_changes[$tperiod]|@count} commit(s)
+		</div>
+    <div id="{$tperiod|sha1}">
+        <br clear="all">
+        <table width="100%" align="center" class="list">
+        {foreach from=$local_changes[$tperiod] key=commitId item=commitData}
+        <tr id="{$commitId}" class='{cycle values="odd,even"}'>
+            <td>
+            <h3>{$commitData.changes|count} change(s) commited from {$commitData.VisualId}</h3>
+            <div class="column left" style="padding:1em;">
+                <b>Id :</b> <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$Accendo_Smarty->cutstr($commitId,0,7)}</a><br>
+                <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$Accendo_Smarty->cutstr($commitData.subject,0,80)}
+            </div>
+            <div class="column right" style="padding:1em;">
+                <b>Commited on :</b> {$Accendo_Smarty->ts2str($commitData.commiterTs)}<br>
+                <b>Commited by :</b>
+                                    {if $commitData.commiter==$Accendo_Smarty->getSessVar('MyProfile.userdata.username')}
+                                        <span class="green">{$commitData.commiter}</span> / {$Accendo_Smarty->guid2name("gxt_users",$commitData.commiter_guid)}
+                                    {else}
+                                        <span class="blue">{$commitData.commiter}</span> / {$Accendo_Smarty->guid2name("gxt_users",$commitData.commiter_guid)}
+                                    {/if}
+            </div>
+            </td>
+        </tr>
+        {/foreach}
+        </table>
+    </div>
+    </fieldset>
+    {/if}
+    {/foreach}
+
+</div>

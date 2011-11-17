@@ -1,0 +1,69 @@
+
+{include file='form.ready.js.inc'}
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#mistduets').datepicker({ minDate: '-0' });
+
+        if (!$("#fprojguid")[0].length) {
+            $("#form_{$form_ctrlid} button").attr("disabled", "disabled");
+        }
+
+    });
+    </script>
+
+	<br>
+	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+	<input type="hidden" name="parms" value="{$smarty.get.parms}">
+        <h3>
+            Project this Milestone {if $form_mode != $smarty.const._LBL_ADD_}is{else}will be{/if} related to {$projguid}
+            {if $smarty.const.__LAYER_ROLE__=="Server"}
+            &nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_projects' }, null, '$(\'#addNew\').click();');">[+]</span>
+            {/if}
+        </h3>        
+        <div class="myhr"></div>
+		<table align="center" width="100%">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+		<tr><td align="left">
+			<b>Milestone Id</b>
+            </td>
+			<td align="left">
+            {$Accendo_Smarty->cutstr($mistguid,0,7)}<p>
+            </td>
+		</tr>
+        {/if}
+		<tr><td align="left">
+			<b>Description</b>
+            </td>
+			<td align="left">
+            <textarea rows="3" cols="80" name="f|mistabv">{$mistabv}</textarea>
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Responsible</b>
+            </td>
+			<td align="left">
+            {$groupguid}
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Due date</b>
+            </td>
+			<td align="left">
+			<input type="text" size="12" id="mistduets" name="mistduets" value="{$mistduets}">
+            </td>
+		</tr>
+		</table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
+            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('{$smarty.const._TITLE_DELETE_} ?'));">{$smarty.const._LBL_DELETE_}</button>
+        {else}
+            <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
+        {/if}
+        <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
+        </div>
+        <br clear="all">
+	</form>

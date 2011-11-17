@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    {include file='../index/common_head.phtml'}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#tabs").tabs();
+    });
+    </script>
+</head>
+<body class="popup">
+
+    <table align="center" width="100%" class="list-horizontal">
+    <tr>
+		<td align="left" width="15%" class="header first" scope="row">
+			Id / Type
+		</td>
+		<td align="left" class="first">
+			{$Accendo_Smarty->cutstr($email.emguid,0,7)} / {if $email.emsentts>-1}Outbound{else}Inbound{/if}
+            <span style="float:right;">{$reply}  Reply | {$forward} Forward</span>
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			{if $email.emsentts>-1}
+                Date / Status
+            {else}
+                Date
+            {/if}			
+		</td>
+		<td align="left">
+			{if $email.emsentts>-1}
+    			{if $email.emsentts==0}
+                    {if $email.emsentlog<>''}
+                    {$smarty.const.__DELIVERY_ERROR__}
+                    {else}
+                    {$smarty.const.__DELIVERY_PENDING__}
+                    {/if}
+                {else}
+                    {$Accendo_Smarty->ts2str($email.emsentts)}
+                {/if}
+            {else}
+                {$Accendo_Smarty->ts2str($email.emqueuets)}
+            {/if}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			From
+		</td>
+		<td align="left">
+			{$email.emheader.from.name} &lt;{$email.emheader.from.mail}&gt;
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			To
+		</td>
+		<td align="left">
+			{$email.emheader.to.name} &lt;{$email.emheader.to.mail}&gt;
+		</td>
+	</tr>
+    {if $email.emheader.cc.mail}
+    <tr>
+        <td align="left" class="header" scope="row">
+            Cc
+        </td>
+        <td align="left">
+            {$email.emheader.cc.name} &lt;{$email.emheader.cc.mail}&gt;
+        </td>
+    </tr>
+    {/if}
+    {if $email.emheader.bcc.mail}
+    <tr>
+        <td align="left" class="header" scope="row">
+            Bcc
+        </td>
+        <td align="left">
+            {$email.emheader.bcc.name} &lt;{$email.emheader.bcc.mail}&gt;
+        </td>
+    </tr>
+    {/if}
+    <tr>
+		<td align="left" class="header" scope="row">
+			Subject
+		</td>
+		<td align="left">
+			{$email.emheader.subject}
+		</td>
+	</tr>
+    </table>
+    <p>
+    <div id="tabs">
+        <ul>
+            <li><a href="#emailTab1"><span>Body</span></a></li>
+            {if !empty($email.emheader.raw)}<li><a href="#emailTab2"><span>Headers</span></a></li>{/if}
+            {if !empty($atchs)}<li><a href="#emailTab3"><span>Attachments</span></a></li>{/if}
+            {if !empty($email.emsentlog)}<li><a href="#emailTab4"><span>Log</span></a></li>{/if}
+        </ul>
+        <div id="emailTab1">
+            {$email.embody}
+        </div>
+        {if !empty($email.emheader.raw)}
+        <div id="emailTab2">
+            <pre>{$email.emheader.raw}</pre>
+        </div>
+        {/if}
+        {if !empty($atchs)}
+        <div id="emailTab3">
+            {foreach from=$atchs key=k item=rec}
+                <p>
+                <a href="/Download/download?file_guid={$rec.file_guid}" title="Click to Download File">{$rec.file_name} [{$Accendo_Smarty->bytes2str($rec.file_size)}]</a>
+                </p>
+            {/foreach}
+            <div id="downtarget" style="display:none;"></div>
+        </div>
+        {/if}
+        {if !empty($email.emsentlog)}
+        <div id="emailTab4">
+            <pre>{$email.emsentlog}</pre>
+        </div>
+        {/if}
+    </div>
+
+</body>
+</html>

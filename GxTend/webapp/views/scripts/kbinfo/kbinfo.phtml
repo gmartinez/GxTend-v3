@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    {include file='../index/common_head.phtml'}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#tabs").tabs();
+
+        $("#GenericDialog").dialog({
+            bgiframe: true,
+            autoOpen: false,
+            modal: true,
+            position: 'center',
+            open: function(event, ui) { $("#GenericDialog").html('{$smarty.const._MSG_WAIT_SM_}'); }
+        });
+    });
+    </script>
+</head>
+<body class="popup">
+
+    <table align="center" width="100%" class="list-horizontal">
+    <tr>
+		<td align="left" class="header first" scope="row">
+			Internal Id
+		</td>
+		<td align="left" class="first">
+			{$record.kbguid}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Visual Id
+		</td>
+		<td align="left">
+			{$visualid}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Description
+		</td>
+		<td align="left">
+			{$record.kbdsc}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Source
+		</td>
+		<td align="left">
+			{$record.kbdir}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Vers./Sync. Status
+		</td>
+        <td align="left">
+        {if $versyncsts.status == "not_finished"}
+            Last run {$versyncsts.datetime}, {$versyncsts.vers} % is versioned, and {$versyncsts.sync} % was synchronized.
+        {elseif $versyncsts.status == "sync_pending"}
+            Synchronization pending.
+        {elseif $versyncsts.status == "finished"}
+            No sync. pending, {$versyncsts.vers} % versioned, and {$versyncsts.sync} % synchronized.
+        {/if}
+        </td>
+    </tr>
+    </table>
+    <p>
+    <div id="tabs">
+    <ul>
+        <li><a href="position?kbguid={$record.kbguid}"><span>Kb Position</span></a></li>
+        {if $record.kbclass >= 7500}<li><a href="envs?kbguid={$record.kbguid}"><span>Environments</span></a></li>{/if}
+        <li><a href="/Fsys-Brw/?data2browse={$kbfiles2browse}"><span>Kb Files</span></a></li>
+        <li><a href="/Fsys-Brw/?data2browse={$staged2browse}"><span>Stag Files</span></a></li>
+        <li><a href="locks?kbguid={$record.kbguid}"><span>Locking</span></a></li>
+    </ul>
+    </div>
+
+    <div id="GenericDialog" title="Generic Dialog"></div>
+    
+</body>
+</html>

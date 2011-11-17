@@ -1,0 +1,271 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+    {if $data.form_mode == $smarty.const._LBL_ADD_}
+        initRichTextEditor('ttstxt','MyBasicOptions');
+    {else}
+        $("#read_todoguid").text($("#todoguid option:selected").text());
+        $("#read_ttspri").text($("#ttspri option:selected").text());
+        $("#read_assigned_to").text($("#assigned_to option:selected").text());
+        $("#read_ttssts").text($("#ttssts option:selected").text());
+        $("#read_ttspercent").text($("#ttspercent option:selected").text()+" %");
+
+        $("#ticket #tabber").tabs({
+            select: function(event, ui) {
+                $("#ticket #subsnfo").html('{$smarty.const._MSG_WAIT_SM_}');
+            },
+            load: function(event, ui) {
+                initializeButtons();                
+                if (ui.index==0) {
+                    initRichTextEditor('itmtxt','MyBasicOptions');
+                    $("#ticket #subsnfo").load("/Ticket-Mgmt/sidebar?ttsguid={$smarty.request.ttsguid}&sbid=blog");
+                }
+                if (ui.index==1) {
+                    $("#ticket #subsnfo").load("/Ticket-Mgmt/sidebar?ttsguid={$smarty.request.ttsguid}&sbid=code");
+                }
+                if (ui.index==2) {
+                    $("#ticket #subsnfo").load("/Ticket-Mgmt/sidebar?ttsguid={$smarty.request.ttsguid}&sbid=time");
+                }
+            }
+        });
+        $("#ticket #subsnfo").load("/Ticket-Mgmt/sidebar?ttsguid={$smarty.request.ttsguid}&sbid=blog");
+    {/if}
+
+    $('#ticket #ttsduets').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true
+    });
+
+    // Forms submit ajax handler...
+    $("#ticket #form_tts").ajaxForm({
+        dataType: 'json',
+        async: true,
+        beforeSubmit: function() {
+            $("#form_tts").validate({
+               ignore: ":hidden"
+            });
+            if ( $("#form_tts").valid() ) {
+                 $("#ticket").block({ message: '{$smarty.const._BAR_WAIT_}' });
+                return true;
+            }
+            return false;            
+        },
+        success: function (r) {
+            if (r.sts) {
+                {if $smarty.request.origfrom=="commit"}
+                    $("#GenericDialog").dialog("close");
+                    loadTickets();
+                {else}
+                    loadappdiv("/Ticket-Mgmt/edit?ttsguid="+r.ttsguid);
+                {/if}
+                notify("Notification",r.msg,"info",2500);
+            } else {
+                $("#ticket").unblock();
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+    });
+
+    // Upload files initialization...
+    $('#ticket #fileInput').uploadify({
+        'uploader': '/jquery/addons/upload/uploadify.swf',
+        'script': '/Upload/upload',
+        'cancelImg': '/jquery/addons/upload/cancel.png',
+        'scriptData': { 'options':'{$options}' },
+        'checkScript': '/Upload/check?options={$options}',
+        'multi': true,
+        'auto': true,
+        'sizeLimit': {$Accendo_Smarty->get_prm("upload_maxsize")},
+        'simUploadLimit': {$Accendo_Smarty->get_prm("upload_maxsimu")},
+        'fileDesc': 'All Files',
+        'fileExt': '*.*',
+        'buttonText': 'Attach File(s)',
+        'displayData': 'speed',
+        'onComplete': onFileComplete
+    });
+
+    {if !$data.grants.rw || $data.source != "gxtend"}
+        $("#ticket #form_tts .right button").attr("disabled", "disabled");
+    {/if}
+
+    var sliderObj = $("#ttspercent_slider").slider({
+        min: 0,
+        max: 100,
+        step: 5,
+        range: "min",
+        value: $("#ttspercent").val(),
+        slide: function( event, ui ) {
+            $("#ttspercent").val(ui.value);
+        }
+    });
+    $("#ttspercent").change(function() {
+        sliderObj.slider("value", $("#ttspercent").val());
+    });
+
+});
+
+    function onFileComplete(event,queueID,fileObj,response,data) {
+        if (response=="ok") {
+            $('#attchsRow').show();
+            $("#attchsRow").append("<input type='checkbox' name='atchs[]' value='" + fileObj.name + "' checked> " + fileObj.name + " [" + bytes2str(fileObj.size) + "]<br>");
+        } else {
+            alert(response);
+        }
+    }
+
+    function chgReponsible() {
+
+        if ($("#assigned_to").val() != "{$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}") {
+            $("#notify_resp_area").show();
+            $("#notify_responsible").prop("checked", true);
+        } else {
+            $("#notify_responsible").removeAttr("checked")
+            $("#notify_resp_area").hide();
+        }
+
+    }
+
+    function unsubsc(ttsguid, userguid) {
+
+        if (confirm('Confirm Unsubscribe ?')) {
+        jQuery.getJSON(
+            "/Ticket-Mgmt/unsubsc?ttsguid="+ttsguid+"&userguid="+userguid,
+            null,
+            function (data, textStatus) {
+                if (data.sts) {
+                    loadappdiv("/Ticket-Mgmt/edit?ttsguid="+ttsguid);
+                } else {
+                    alert("Unable to unsubscribe user.");
+                }
+            }
+        );
+        }
+
+    }
+</script>
+<div id="ticket">
+    {if $data.form_mode != $smarty.const._LBL_ADD_}
+    <div class="header_data" style="border:1px solid #D4CCB0;border-radius:5px;padding:.5em;overflow:hidden;">
+        <div style="float:left;width:65%;">
+            <span class="projmisttodo" onclick="$('.projmisttodo').toggle();" style="display:none;cursor:pointer;" title="Click to Toggle Hierarchy">
+            <b>Project</b> : {$data.projData.projabv}<br>
+            &nbsp;&rdsh; <b>Milestone</b> : {$data.mistData.mistabv}<br>
+            &nbsp;&nbsp;&nbsp;&rdsh; 
+            </span>
+            <a  class="projmisttodo" href="javascript:;" title="Click to Toggle Hierarchy" onclick="$('.projmisttodo').toggle();">
+            ...&rdsh; 
+            </a>            
+            <b>To-Do</b> : <span id="read_todoguid"></span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&rdsh; <b>Summary</b> : <span>{$data.ttsabv}</span><br>
+            &nbsp;<button class="button-history" type="button" onclick="mDialog('/Ticket-Mgmt/chglog?ttsguid={$smarty.request.ttsguid}', 'Ticket Changelog', 480, 850);" style="font-size:.7em;">&nbsp;&nbsp;Changelog</button>
+        </div>
+        <div style="float:right;">
+            <b>Severity</b> : <span id="read_ttspri"></span>
+            <b>Due date</b> : {$Accendo_Smarty->ts2str($data.ttsduets,'date')}&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="button-rss" type="button" onclick="window.open('/Rss/?ttsguid={$smarty.request.ttsguid}&token={$Accendo_Smarty->userToken()}', '_blank');" style="float:right;font-size:.7em;">&nbsp;&nbsp;RSS</button>
+            <br>
+            <b>Responsible</b> : <span id="read_assigned_to"></span><br>
+            <b>Status</b> : <span id="read_ttssts"></span>&nbsp;|&nbsp;<span id="read_ttspercent"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="button-edit" type="button" onclick="$('.header_data').toggle();" style="float:right;font-size:.7em;">&nbsp;&nbsp;Edit</button>
+        </div>
+    </div>
+    <br clear="all">
+    {/if}
+
+    <div class="header_data" {if $data.form_mode != $smarty.const._LBL_ADD_}style="display:none;"{/if}>
+	<form id="form_tts" action="Ticket-Mgmt/addedt" method="POST" enctype="multipart/form-data">
+	<input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
+    <input type="hidden" name="itmtyp" value="comment">
+    <input type="hidden" name="options" value="{$options}">
+    <table align="center" width="100%" border="0">
+		<tr>
+            <td style="text-align:left;vertical-align:top;width:60%;">
+                <b>To-Do</b>&nbsp;{$data.todoguid}
+                <p>
+                <b>Summary</b><br>
+                <textarea rows="3" cols="80" id="ttsabv" name="ttsabv" class="string required">{$data.ttsabv}</textarea>
+                </p>
+                <p>
+                <b>Topic</b>&nbsp;{$data.ttstopic}
+                <p>
+			</td>
+            <td style="text-align:left;vertical-align:top;">
+                <b>Severity</b>&nbsp;{$data.ttspri}
+                </p>
+                <p>
+                <b>Due date</b>&nbsp;<input type="text" size="12" id="ttsduets" name="ttsduets" value="{$Accendo_Smarty->ts2str($data.ttsduets,'date')}" readonly="readonly">
+                </p>
+                <p>
+                <b>Responsible</b>&nbsp;{$data.assigned_to}
+                <span id="notify_resp_area" style="display:none;">
+                    <p>
+                    <input type="checkbox" name="notify_responsible" id="notify_responsible" value="1">
+                    Notify new responsible user via email ?
+                    </p>
+                </span>
+                </p>
+                <p>
+                <b>Status</b>&nbsp;{$data.ttssts}&nbsp;
+                <b>Progress</b>&nbsp;{$data.ttspercent} %
+                <div id="ttspercent_slider"></div>
+                </p>
+			</td>
+        </tr>
+        {if $data.form_mode == $smarty.const._LBL_ADD_}
+		<tr>
+            <td style="text-align:left;vertical-align:top;width:60%;">
+                <b>Detailed Description</b><br>
+                <textarea rows="8" cols="80" id="ttstxt" name="ttstxt">{$data.ttstxt}</textarea>
+			</td>
+            <td style="text-align:left;vertical-align:top;">
+                <br>
+                <input type="file" name="fileInput" id="fileInput">
+                <div id="attchsRow" style="display:none;" style="float:right;"></div>
+			</td>
+        </tr>
+        {/if}
+		<tr>
+            <td align="left">
+                &nbsp;
+            </td>
+			<td align="right">
+                <div class="buttons right">
+                {if $data.form_mode != $smarty.const._LBL_ADD_}
+                    {$smarty.const._FORM_BTN_UPDATE_}&nbsp;or&nbsp;<a href="javascript:;" onclick="$('.header_data').toggle();" style="">cancel</a>
+                {else}
+                    {$smarty.const._FORM_BTN_INSERT_}
+                {/if}
+                </div>
+            </td>
+    </table>
+	</form>
+    <div class="myhr"></div>
+    </div>
+
+    {if $data.form_mode != $smarty.const._LBL_ADD_ && $smarty.request.origfrom != "commit"}
+    <table width="100%">
+    <tbody>
+        <tr>
+        <td width="75%" valign="top">
+            <div id="tabber">
+            <ul>
+            <li><a href="/Ticket-Mgmt/blog?ttsguid={$smarty.request.ttsguid}">Comments Blog</a></li>
+            <li><a href="/Ticket-Mgmt/code?ttsguid={$smarty.request.ttsguid}">Code Changes</a></li>
+            <li><a href="/Ticket-Mgmt/time?ttsguid={$smarty.request.ttsguid}">Time Tracking</a></li>
+            </ul>
+            </div>
+        </td>
+        <td width="25%" valign="top">
+            <div id="subsnfo" style="margin-left:10px;text-align:left;">
+                {$smarty.const._MSG_WAIT_SM_}
+            </div>
+        </td>
+        </tr>
+    </tbody>
+    </table>
+    {/if}
+</div>

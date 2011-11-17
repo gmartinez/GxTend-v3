@@ -1,0 +1,57 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+});
+
+function execreorg(set2exec) {
+    if (confirm("Confirm execution of change set ?")) {
+        $("#reorg .buttons").html('{$smarty.const._BAR_WAIT_}');
+        $.get(
+            "/Help/execreorg?set2exec="+set2exec,
+            function (data, textStatus, jqXHR) {
+                $("#reorg .buttons").html('');
+                $("#sqlResult").show().html(data);
+            }
+        );    
+    }
+}
+</script>
+
+<div id="reorg">
+<span style="font-size:1.5em;"><strong>Status :</strong> {$Accendo_Smarty->getSessVar("MetaData.checksts.msg")}</span>
+<div class="myhr"></div>
+
+{if !$chgcode}
+ Current database structure version reports to be the same this build is set to (Version # {$Accendo_Smarty->get_prm("meta_struct_version")})
+{/if}
+{foreach $chgcode as $dsc => $code name=changeSets}
+<div class="infoset">
+    <span class="ui-state-active ui-corner-all" style="padding:5px;">Changes to get from {$dsc}</span>
+    <div style="margin-top:5px;">
+    {if $code.eval}
+        [PHP]
+        {$code.eval}
+    {/if}
+    {if $code.sql}
+        [SQL]
+        {$code.sql}
+        {if $smarty.foreach.changeSets.first}
+        <div id="sqlResult" class="ui-state-active ui-corner-all" style="padding:5px;display:none;"></div>
+        <div class="buttons right">
+            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}" onclick="execreorg('{$dsc}');">{$smarty.const._LBL_SUBMIT_}</button>
+        </div>
+        {/if}
+        <br clear="all">
+    {/if}
+    </div>
+</div>
+{/foreach}
+
+<div class="myhr"></div>
+<ul>
+    <li>The execution of a set of changes might take <span style="color:red;font-weight:bold;">several minutes</span>.</li>
+    <li>You can <span style="color:red;font-weight:bold;">monitor progress</span> by checking running processes using 'show processlist' MySql sentence.</li>
+    <li>In some cases it might be a better choice to perform the above changes manually by using always present MySql shell interface or some visual stateful application (eg; MySql Workbench).</li>
+</ul>
+<p>Having an issue ? Please report to <a href="mailto:support@accendo-it.com">support@accendo-it.com</a> enclosing yours and your company name.</p>
+</div>

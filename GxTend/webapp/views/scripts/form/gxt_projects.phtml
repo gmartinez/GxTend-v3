@@ -1,0 +1,82 @@
+{include file='form.ready.js.inc'}
+
+    <script type="text/javascript">
+    function buildSR(projguid,opt) {
+
+        $("#repo_NE").hide();
+        $("#nfoDialog").html('{$smarty.const._MSG_WAIT_SM_}');
+
+        jQuery.getJSON(
+                "/Browse-Repos/ropts?projguid="+projguid+"&opt="+opt,
+                null,
+                function (data, textStatus) {
+                    showlogmsg();       // Display user message...
+                    $("#nfoDialog").html("");
+                    if (data.err==false) {
+                        $("#repo_NE").hide();
+                        $("#repo_E").show();
+                    } else {
+                        $("#repo_NE").show();
+                        $("#repo_E").hide();
+                    }
+                }
+        );
+
+    }
+    </script>
+
+	<br>
+	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+	<input type="hidden" name="parms" value="{$smarty.get.parms}">
+		<table align="center" width="100%">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+		<tr><td align="left">
+			<b>Project Id</b>
+            </td>
+			<td align="left">
+            {$Accendo_Smarty->cutstr($projguid,0,7)}
+            <p>
+            </td>
+		</tr>
+        {/if}
+		<tr><td align="left">
+			<b>Description</b>
+            </td>
+			<td align="left">
+			<input type="text" size="60" name="f|projabv|unique" value="{$projabv}" class="string required"><p>
+            </td>
+		</tr>
+		<tr><td align="left">
+            {if $form_mode != $smarty.const._LBL_ADD_}
+                <b>Project Repository</b>
+                <td align="left">
+                <span id="nfoDialog"></span>
+                <span id="repo_E" style="display:{if $repo_stats.ava == '!exist'}none{else}block{/if};">
+                    <span style="text-decoration:underline;color:blue;cursor:pointer;" onclick="mDialog('/Browse-Repos/rinfo?repopath={$repo_stats.path|base64_encode}&projguid={$projguid}', 'Repository Detailed Stats', 480, 640);">Available</span>
+                    , with status {$repostatus}
+                </span>
+                <span id="repo_NE" style="display:{if $repo_stats.ava == '!exist'}block{else}none{/if};">
+                    {$Accendo_Smarty->msg("ui-icon-alert","Not Available")}
+                    &nbsp;<span onclick='if(confirm("Confirm repository creation ?")) { buildSR("{$projguid}","newbare"); }' class="pointer"><img src="{$smarty.const._IMG_WAND_SM_}" title="Click to create repository"></span>
+                </span>
+                </td>
+            {else}
+                <b>Create Project Repository</b>
+                <td align="left">
+                <input type="checkbox" name="create_repo" value="1" checked><p>
+                </td>
+            {/if}
+		</tr>
+		</table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
+            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('This action will CASCADE delete ALL information under the project (Tickets, To-Dos, Kbs, etc.)\n\n Are you sure ?'));">{$smarty.const._LBL_DELETE_}</button>
+        {else}
+            <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
+        {/if}
+        <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
+        </div>
+        <br clear="all">
+	</form>

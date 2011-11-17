@@ -1,0 +1,103 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        // Check boxes...
+        setsubmitsts("#files_form .objlst", "#submit_delete_btn");
+
+        // Form submit...
+        $("form").ajaxForm({
+            dataType: 'json',
+            async: false,
+            beforeSubmit: function() {
+                $("#fsetopts").html('{$smarty.const._MSG_WAIT_SM_}');
+            },
+            success: function (r) {
+                showlogmsg();       // Display user message
+                loadfldtree("{$span_dirid}");      // Refresh folder tree & current folder content
+            },
+            error: function (jqXHR) {
+                handleXHRerror(jqXHR);
+            }
+        });
+
+        // Upload files initialization...
+        $('#fileInput').uploadify({
+            'uploader': '/jquery/addons/upload/uploadify.swf',
+            'script': '/Upload/upload',
+            'cancelImg': '/jquery/addons/upload/cancel.png',
+            'scriptData': { 'options':'{$options}' },
+            'checkScript': '/Upload/check?options={$options}',
+            'multi': true,
+            'auto': true,
+            'sizeLimit': {$Accendo_Smarty->get_prm("upload_maxsize")},
+            'simUploadLimit': {$Accendo_Smarty->get_prm("upload_maxsimu")},
+            'fileDesc': 'All Files',
+            'fileExt': '*.*',
+            'buttonText': 'Upload File(s)',
+            'displayData': 'speed',
+            'onAllComplete': onAllFilesComplete
+        });
+
+    });
+
+    function onAllFilesComplete(filesUploaded,filesUploaded,allbytesLoaded,speed) {
+        loadfldtree("{$span_dirid}");      // Refresh folder tree & current folder content        
+    }
+
+</script>
+
+<img src="{$smarty.const._IMG_FOLDER_OPEN_SM_}" alt="">
+<span style="color:green;">
+    {foreach from=$folder_pieces key=k item=rec}
+    <span class="file" onclick="onfldclick('{$rec}');">{$k}</span> /
+    {/foreach}
+</span>
+
+<form id="files_form" action="/BrowseRepos/fldoper" method="POST" enctype="multipart/form-data">
+<input type="hidden" id="options" name="options" value="{$options}">
+<table width="100%" align="center" class="list">
+<thead>
+    <tr><th>Name</th><th>Date Modified</th><th>Size</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#files_form .objlst");setsubmitsts("#files_form .objlst", "#submit_delete_btn");'>Ops</span></th></tr>
+</thead>
+<tbody>
+    {foreach from=$fld_cont key=k item=rec}
+        <tr>
+        <td>
+            <img src="../img/icons/16/mimetypes/{$rec.mimetype}.png">&nbsp;
+            {if $rec.mimetype=='folder'}
+            <span class="file" onclick="onfldclick('{$rec.b64filename}');">{$rec.basename}</span>
+            {else}
+            <a href="/Download/download?file_guid={$rec.b64filename}">{$rec.basename}</a>
+            {/if}
+        </td>
+        <td align="center">{$rec.updated}</td>
+        <td align="center">{$rec.filesize}</td>
+        <td align="center"><input type="checkbox" value="{$rec.b64info}" name="checked_files[]" class="objlst" onclick='setsubmitsts("#files_form .objlst", "#submit_delete_btn");'></td>
+        </tr>
+    {/foreach}
+</tbody>
+</table>
+<fieldset id="fsetopts">
+    <legend>
+        Available operations
+        <img src="../img/icons/16/edit.png" onclick="$('.avops').hide();$('#op_newfld').show()">&nbsp;&nbsp;
+        <img src="../img/icons/16/remove.png" onclick="$('.avops').hide();$('#op_delfil').show()">&nbsp;&nbsp;
+        <img src="../img/icons/16/add.png" onclick="$('.avops').hide();$('#op_uplfil').show()">&nbsp;&nbsp;
+    </legend>
+    <br clear="both">
+    <div id="op_newfld" class="avops" style="display:show;">
+        Create folder with name <input type="text" id="new_fld_name" name="new_fld_name" size="50">
+        <div class="buttons right">
+            {$smarty.const._FORM_BTN_ADD_}
+        </div>
+    </div>
+    <div id="op_delfil" class="avops" style="display:none;">
+        <div class="buttons right">
+            {$smarty.const._FORM_BTN_DELETE_}
+        </div>
+    </div>
+    <div id="op_uplfil" class="avops" style="display:none;">
+        <input type="file" name="fileInput" id="fileInput">
+    </div>
+</fieldset>
+</form>

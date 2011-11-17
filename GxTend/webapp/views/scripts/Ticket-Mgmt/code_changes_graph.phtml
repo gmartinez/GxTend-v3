@@ -1,0 +1,87 @@
+pieChart = new Highcharts.Chart({
+    credits: {
+     enabled: false
+    },
+    chart: {
+     renderTo: 'pie-chart',
+     plotBackgroundColor: null,
+     plotBorderWidth: null,
+     plotShadow: false
+    },
+    title: {
+     text: 'Commits Share within To-Do List'
+    },
+    tooltip: {
+     formatter: function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+     }
+    },
+    plotOptions: {
+     pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+           enabled: false
+        },
+        showInLegend: true
+     }
+    },
+    series: [{
+    type: 'pie',
+    name: 'Commits share',
+    data: [
+        ['This Ticket Share', {$pie_data.ticket_share}],
+        ['Other Tickets Share', {$pie_data.oticket_share}]
+    ]
+    }]
+});
+
+
+linearChart = new Highcharts.Chart({
+    credits: {
+     enabled: false
+    },
+    chart: {
+     renderTo: 'linear-chart',
+     zoomType: 'x',
+     type: 'spline'
+    },
+    title: {
+     text: 'Number of Commits vs Time'
+    },
+    xAxis: {
+     type: 'datetime',
+     dateTimeLabelFormats: { // don't display the dummy year
+        month: '%e. %b',
+        year: '%b'
+     }
+    },
+    yAxis: {
+     title: {
+        text: 'Commits (n)'
+     },
+     min: 0,
+     allowDecimals: false
+    },
+    tooltip: {
+     formatter: function() {
+               return '<b>'+ this.series.name +'</b><br/>'+
+           Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y +' commit(s)';
+     }
+    },
+    series: [{
+     name: 'This Ticket',
+     data: [
+        {foreach $linear_data.this_ticket as $key => $val name=data}
+        [Date.UTC({$val.0},{$val.1}-1,{$val.2}), {$val.3}]{if !$smarty.foreach.data.last},{/if}
+        {/foreach}
+     ]
+     },{
+     name: 'Current To-Do List',
+     data: [
+        {foreach $linear_data.this_list as $key => $val name=data}
+        [Date.UTC({$val.0},{$val.1}-1,{$val.2}), {$val.3}]{if !$smarty.foreach.data.last},{/if}
+        {/foreach}
+     ]
+    }]
+});

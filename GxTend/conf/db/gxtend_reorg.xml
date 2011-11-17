@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<wddxPacket version='1.0'>
+<header/>
+<data>
+
+	<struct>
+    <var name='Pdo_Mysql'>
+        <struct>
+
+            <var name='1_to_2'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    ALTER TABLE `gxt_groups` DROP COLUMN `xmlmenu`;
+                    ALTER TABLE `gxt_companies` DROP COLUMN `complogo`;
+                    ALTER TABLE `gxt_groups` DROP COLUMN `grouplogo`;
+                    ALTER TABLE `gxt_sectors` DROP COLUMN `sectorlogo`;
+                    ALTER TABLE `gxt_hosts` ADD COLUMN `lsyncts` INTEGER(11) DEFAULT 0 AFTER `userguid`;
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_subscriptions` (
+                      `ttsguid` varchar(40) default '',
+                      `userguid` varchar(40) default '',
+                      `subscts` int(11) NOT NULL default '0',
+                      `subscby` varchar(40) default '',
+                      `unsubscts` int(11) NOT NULL default '0',
+                      `unsubscby` varchar(40) default '',
+                      PRIMARY KEY (`ttsguid`,`userguid`,`subscts`,`subscby`)
+                    ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='';
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+            <var name='2_to_3'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    CREATE TABLE IF NOT EXISTS `gxt_cvsindex` (
+                      `projguid` varchar(40) default '',
+                      `kbguid` varchar(40) default '',
+                      `mdlid` int(11) NOT NULL default '0',
+                      `objcls` int(11) NOT NULL default '0',
+                      `objid` varchar(40) default '',
+                      `objnam` varchar(255) default '',
+                      `objdsc` varchar(255) default '',
+                      `objupdts` int(11) NOT NULL default '0',
+                      `objowner` varchar(40) default '',
+                      `objtypguid` varchar(40) default '',
+                      `hash` varchar(40) default '',
+                      `gmtoffset` int(11) NOT NULL default '0',
+                      PRIMARY KEY (`projguid`,`kbguid`,`mdlid`,`objcls`,`objnam`)
+                    ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='';
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+            <var name='3_to_4'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    ALTER TABLE `gxt_cvsindex` DROP COLUMN `objtypguid`;
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+            <var name='4_to_5'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    ALTER TABLE `gxt_todos` DROP COLUMN `timetrack`;
+                    ALTER TABLE `gxt_cvsindex` ADD COLUMN `ownertype` VARCHAR(255) NOT NULL DEFAULT ''  AFTER `objowner` , ADD COLUMN `generated` TINYINT(1) NOT NULL DEFAULT '0'  AFTER `ownertype`;
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+            <var name='5_to_6'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    ALTER TABLE `gxt_kbsflags` ADD COLUMN `objupdts` INT(11) NOT NULL DEFAULT '0'  AFTER `objnam`, DROP PRIMARY KEY, ADD PRIMARY KEY (`kbguid`, `flag`, `mdlid`, `objcls`, `objnam`, `objupdts`, `setts`, `unsetts`);
+                    UPDATE `gxt_kbsflags` SET objupdts=setts WHERE flag='checkin';
+                    ALTER TABLE `gxt_evtqueue` DROP COLUMN `logid`;
+                    ALTER TABLE `gxt_evtqueue` CHANGE COLUMN `proc_time` `proc_at` INT(11) NULL DEFAULT '0';
+                    ALTER TABLE `gxt_evtqueue` ADD COLUMN `inoutlog` TEXT NOT NULL  AFTER `end_time`;
+                    ALTER TABLE `gxt_evtqueue` ADD INDEX `status` (`status` ASC);
+                    ALTER TABLE `gxt_sessions` ADD INDEX `startts` (`startts` ASC), ADD INDEX `lastots` (`lastots` ASC);
+                    ALTER TABLE `gxt_audit` ADD INDEX `userguid` (`userguid` ASC);
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+            <var name='6_to_7'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    ALTER TABLE `gxt_evtqueue` CHANGE COLUMN `inoutlog` `inoutlog` MEDIUMTEXT NOT NULL;
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+        </struct>
+    </var>
+
+    <var name='Pdo_Sqlite'>
+        <struct>
+
+            <var name='N_to_M'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+        </struct>
+    </var>
+	</struct>
+
+</data>
+</wddxPacket>

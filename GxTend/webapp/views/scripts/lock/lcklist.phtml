@@ -1,0 +1,103 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#form_unlock").ajaxForm({
+		dataType:  'json',
+        async: true,
+		beforeSubmit: function() {
+			$("#diffs").block({ message: '{$smarty.const._BAR_WAIT_}' });
+		},
+		success: function (r) {
+            for ( var i in r.unflaglist ) {
+                if (r.unflaglist[i] == "ok") {
+                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='"+r.unflaglist[i]+"'>");
+                } else {
+                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='"+r.unflaglist[i]+"'>");
+                }
+            }
+
+            if (r.unflaglist.sts == "ok") {
+                $("#div_lcklst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Objects were Successfully UnLocked");
+                $("#diffs").unblock();
+            } else {
+                $("#div_lcklst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Some Objects could not be UnLocked");
+                $("#diffs").unblock();
+            }
+
+            setsubmitsts("#form_unlock .objlst", "#form_unlock button");
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    setsubmitsts("#form_unlock .objlst", "#form_unlock button");
+
+    $("#east_panel #project #div_lcklst img.tip").cluetip({ splitTitle: "|" });
+
+});
+</script>
+<div id="div_lcklst">
+
+    <div class="myhr"></div>
+
+    <div class="column left">
+    &nbsp;<img src="{$smarty.const._IMG_LOCK_SM_}" alt="{$smarty.const._LBL_LOCK_}" title="{$smarty.const._LBL_LOCK_}"> List active locks on objects.
+    </div>
+    <div class="column right">
+    {$resultset|@count} row(s)&nbsp;
+    </div>
+    <br clear="all">
+
+    <form id="form_unlock" action="/Lock/relflag" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="projguid" value="{$smarty.request.projguid}">
+    <input type="hidden" name="kbguid" value="{$smarty.request.kbguid}">
+    <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
+    <input type="hidden" name="flagtype" value="lock">
+
+        <table width="100%" align="center" class="list">
+        <thead>
+            <tr><th>Object</th><th>Username</th><th>Locked Since &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#form_unlock .objlst");setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+        </thead>
+        <tbody>
+            {foreach from=$resultset key=k item=rec}
+            <tr class='{cycle values="odd,even"}'>
+            <td>&nbsp;
+                {if $rec.objcls!=111}
+                <img src="../img/gx/objclass/{$gx_objcls[$rec.objcls].small}.png" title="{$gx_objcls[$rec.objcls].long}">
+                &nbsp;{$rec.objnam}
+                {else}
+                <img src="../img/icons/16/file.png" title="File">
+                &nbsp;{$rec.objnam}
+                {/if}
+            </td>
+            <td>&nbsp;{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
+            <td align="center">&nbsp;{$Accendo_Smarty->ts2str($rec.setts)}</td>
+            <td align="center">
+                {if $rec.setuserguid==$Accendo_Smarty->getSessVar("MyProfile.userdata.userguid") || $unsetlocks}
+                {if $rec.b64}
+                <span id="{$rec.b64|sha1}">
+                <input class="objlst" type="checkbox" name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>
+                </span>
+                {/if}
+                {else}
+                <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}' has an active lock on this object since '{$Accendo_Smarty->ts2str($rec.setts)}'">
+                {/if}
+            </td>
+            </tr>
+            {/foreach}
+        </tbody>
+        </table>
+
+        <div class="myhr"></div>
+
+        <div id="bottom_left" class="left">
+            {include file='../index/ttp.phtml'}
+        </div>
+        <div  id="bottom_right" class="buttons right">
+            {$smarty.const._FORM_BTN_UNLOCK_}
+        </div>
+    </form>    
+    <br clear="all">
+
+</div>

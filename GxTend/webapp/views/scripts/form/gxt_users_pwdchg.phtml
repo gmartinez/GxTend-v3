@@ -1,0 +1,75 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$("#password_change_form").ajaxForm({
+		dataType: 'json',
+        async: true,
+		beforeSubmit: function() {
+            $("#password_change_form button").attr("disabled", "disabled").addClass("ui-state-disabled");
+		},
+		success: function (r) {
+            notify("Notification",r.msg,(r.sts ? "info":"error"),2500);
+            if (r.sts) {
+                $("#GenericDialog").dialog("close");
+            } else {
+                $("#password_change_form button").removeAttr("disabled").removeClass("ui-state-disabled");
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    initializeButtons();
+
+    $("#password_change_form input:visible:first").focus();
+
+});
+
+</script>
+
+	<form id="password_change_form" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+    <input type="hidden" name="chgtype" value="{$smarty.get.chgtype}">
+    <input type="hidden" name="parms" value="{$smarty.get.parms}">
+        <table align="center" width="100%">
+        {if $smarty.get.chgtype=="mine"}
+		<tr><td align="left">
+			<b>Enter Current Password</b>
+            </td>
+			<td align="left">
+			<input type="password" size="30" id="cur_password" name="cur_password" value="" class="string required">
+            </td>
+        </tr>
+        {/if}
+		<tr><td align="left">
+			<b>Select New Password</b>
+            </td>
+			<td align="left">
+			<input type="password" size="30" id="new_password" name="new_password" value="" class="string required">
+            </td>
+        </tr>
+		<tr><td align="left">
+			<b>Repeat New Password</b>
+            </td>
+			<td align="left">
+			<input type="password" size="30" id="repeat_password" name="repeat_password" value="" class="string required">
+            </td>
+        </tr>
+        {if $smarty.get.chgtype=="users"}
+		<tr><td align="left">
+            &nbsp;
+            </td>
+			<td align="left">
+			<b>Issue User E-Mail Notification</b>
+			<input type="checkbox" id="notify_user" name="notify_user" value="1" checked>
+            </td>
+        </tr>
+        {/if}
+        </table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+            <button class="button-circle" type="submit" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>
+        </div>
+        <br clear="all">
+	</form>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    {include file='../index/common_head.phtml'}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#tabs").tabs();
+    });
+    </script>
+</head>
+<body class="popup">
+    <h2 style="float:right;">Event Entry Details&nbsp;</h2>
+    <br clear="all">
+    <table align="center" width="100%" class="list-horizontal">
+    <tr>
+		<td align="left" class="header first" scope="row">
+			Id #
+		</td>
+		<td align="left" class="first">
+			{$record.evtid}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Code / Desc.
+		</td>
+		<td align="left">
+			{$record.evtname} / {$record.evtdsc}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			User
+		</td>
+		<td align="left">
+			{$Accendo_Smarty->guid2name("gxt_users",$record.userguid)}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Event Type
+		</td>
+		<td align="left">
+			{ucfirst($record.evttype)}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Queue -> Start -> Finish
+		</td>
+		<td align="left">
+			{$Accendo_Smarty->ts2str($record.queue_time)} -> {$Accendo_Smarty->ts2str($record.ini_time)} -> {$Accendo_Smarty->ts2str($record.end_time)}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Current Status / TTP
+		</td>
+		<td align="left">
+			{$record.status} / {$Accendo_Smarty->sec2str($record.end_time - $record.ini_time)}
+		</td>
+	</tr>
+    </table>
+    <p>
+    <div class="inoutlog" id="tabs">
+    <ul>
+        {if $record.masklog}
+        <li><a href="#tab-1"><span>Log</span></a></li>
+        {/if}
+        <li><a href="#tab-2"><span>Raw Input</span></a></li>
+        <li><a href="#tab-3"><span>Raw Output</span></a></li>
+    </ul>
+        {if $record.masklog}
+        <div id="tab-1">
+            {$record.masklog}
+        </div>
+        {/if}
+        <div id="tab-2">
+            {$Accendo_Smarty->dBug($record.inoutlog.in)}
+        </div>
+        <div id="tab-3">
+            {$Accendo_Smarty->dBug($record.inoutlog.out)}
+        </div>
+    </div>
+</body>
+</html>

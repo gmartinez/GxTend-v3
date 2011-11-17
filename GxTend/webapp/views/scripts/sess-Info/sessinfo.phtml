@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    {include file='../index/common_head.phtml'}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#tabs").tabs();
+    });
+    </script>
+</head>
+<body class="popup">
+    <h2 style="float:right;">Session Entry Details&nbsp;</h2>
+    <br clear="all">
+    <table align="center" width="100%" class="list-horizontal">
+    <tr>
+		<td align="left" class="header first" scope="row">
+			Id #
+		</td>
+		<td align="left" class="first">
+			{$record.sessid}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			User
+		</td>
+		<td align="left">
+			{$Accendo_Smarty->guid2name("gxt_users",$record.userguid)}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Start Datetime
+		</td>
+		<td align="left">
+			{$Accendo_Smarty->ts2str($record.startts)}
+		</td>
+	</tr>
+    <tr>
+		<td align="left" class="header" scope="row">
+			Last Request
+		</td>
+		<td align="left">
+			{$Accendo_Smarty->ts2str($record.lastots)}
+		</td>
+	</tr>
+    </table>
+    <p>
+    <div id="tabs">
+    <ul>
+        {if $record.masklog}
+        <li><a href="#tab-1"><span>Log</span></a></li>
+        {/if}
+        <li><a href="#tab-2"><span>Raw Log</span></a></li>
+        <li><a href="#tab-3"><span>Process</span></a></li>
+    </ul>
+        {if $record.masklog}
+        <div id="tab-1">
+            {$record.masklog}
+        </div>
+        {/if}
+        <div id="tab-2">
+            {$Accendo_Smarty->dBug($record.cliinfo)}
+        </div>
+        <div id="tab-3">
+            {$Accendo_Smarty->dBug($record.pidinfo)}
+        </div>
+    </div>
+
+</body>
+</html>

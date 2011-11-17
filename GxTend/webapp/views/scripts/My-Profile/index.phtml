@@ -1,0 +1,26 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $("#my_profile #tabber").tabs({
+        load: function(event, ui) {
+            initializeButtons();
+        }
+    });
+
+});
+</script>
+
+<div class="heading-block">
+    <h1>My Profile</h1>
+</div>
+
+<div id="my_profile" class="profile">
+
+    <div id="tabber">
+        <ul>
+        <li><a href="/form/render?parms=YTozOntzOjM6InRibCI7czo5OiJneHRfdXNlcnMiO3M6MzoiZnJtIjtzOjEwOiJteV9wcm9maWxlIjtzOjQ6InBrZXkiO047fQ==">Personal Data</a></li>
+        <li><a href="/My-Profile/appconfig">Personal Settings</a></li>
+        </ul>
+    </div>
+
+</div>

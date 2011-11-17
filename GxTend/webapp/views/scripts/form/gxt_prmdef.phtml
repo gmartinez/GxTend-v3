@@ -1,0 +1,98 @@
+{include file='form.ready.js.inc'}
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#form_{$form_ctrlid} .tabs").tabs();
+        {if $editlvl==-1}
+            $("#form_{$form_ctrlid} .button-update").prop("disabled",true);
+        {/if}
+    });
+    </script>
+
+	<br>
+	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+	<input type="hidden" name="parms" value="{$smarty.get.parms}">
+		<table align="center" width="100%">
+		<tr><td align="left">
+			<b>Parameter Unique Identifier</b>
+            </td>
+			<td align="left">
+            <input type="text" size="30" name="f|prmid" value="{$prmid}" class="string required">
+            &nbsp;
+            {if !$userParam}
+            <span class="green" style="font-size:1.25em;">System Level</span>
+            {else}
+            <span class="red" style="font-size:1.25em;">User Level ({$userParam})</span>
+            {/if}
+            </td>
+		</tr>
+        {if !$userParam}
+		<tr><td align="left">
+			<b>Customization Level</b>
+            </td>
+			<td align="left">
+			{$editlvl}
+            </td>
+		</tr>
+        {/if}
+		<tr><td align="left">
+			<b>Description</b>
+            </td>
+			<td align="left">
+			<input type="text" size="80" name="f|prmdsc" value="{$prmdsc}">
+            &nbsp;{$Accendo_Smarty->msg("HandT","prm:$prmid|")}
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Current Parameter Value <span class="file" title="Click to View {if !$userParam}Default{else}System{/if} Value" onclick="mDialog('text:'+$('#form_{$form_ctrlid} #prmdefvalue').html(), 'Current {if !$userParam}Default{else}System{/if} Value', 360, 480);">(*)</span></b>
+            </td>
+			<td align="left" class="nb">
+            <textarea name="f|prmval" rows="5" cols="80">{$prmval}</textarea>
+            <div id="prmdefvalue" style="display:none;">                
+                {$prmdef}
+            </div>
+            </td>
+		</tr>
+        {if !$userParam}
+		<tr><td align="left" colspan="2">
+            <div class="tabs">
+            <ul>
+                <li><a href="#{$form_ctrlid}_tab-2"><span>Customizations</span></a></li>
+            </ul>
+                <div id="{$form_ctrlid}_tab-2">
+                    <table align="center" width="100%" class="list">
+                    <thead>
+                    <tr>
+                        <th width="20%">User</th>
+                        <th width="70%">Value</th>
+                        <th width="10%">Ops</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$uservers key=k item=rec}
+                        <tr>
+                            <td>{$Accendo_Smarty->guid2name("gxt_users",$rec.userguid)}</td>
+                            <td>{$Accendo_Smarty->cutstr($rec.prmval)}</td>
+                            <td>{$rec.edtlnk}</td>
+                        </tr>
+                        {/foreach}
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+            </td>
+		</tr>
+        {/if}
+		</table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
+            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('{$smarty.const._TITLE_DELETE_} ?'));">{$smarty.const._LBL_DELETE_}</button>
+        {else}
+            <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
+        {/if}
+        <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
+        </div>
+        <br clear="all">
+	</form>

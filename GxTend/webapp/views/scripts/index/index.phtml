@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    {include file='common_head.phtml'}
+    {if $Accendo_Smarty->getSessVar("LoginStatus.islogged")}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('body > #container').layout({
+		defaults: {
+			//size:					"auto"		
+			togglerTip_open:		"Close This Pane"
+		,	togglerTip_closed:		"Open This Pane"
+		,	resizerTip:				"Resize This Pane"
+		//	effect defaults - overridden on some panes
+		,	fxName:					"slide"		// none, slide, drop, scale
+		,	fxSpeed_open:			750
+		,	fxSpeed_close:			1500
+		,	fxSettings_open:		{ easing: "easeInQuint" }
+		,	fxSettings_close:		{ easing: "easeOutQuint" }			
+		}
+
+	,	north: {
+			size:					45
+		,	spacing_open:			1			// cosmetic spacing
+		,	togglerLength_open:		0			// HIDE the toggler button
+		,	togglerLength_closed:	-1			// "100%" OR -1 = full width of pane
+		,	resizable: 				false
+		,	slidable:				false			
+		}
+	,	south: {
+			size:					30
+		,	spacing_open:			1			// cosmetic spacing
+		,	togglerLength_open:		0			// HIDE the toggler button
+		,	togglerLength_closed:	-1			// "100%" OR -1 = full width of pane
+		,	resizable: 				false
+		,	slidable:				false
+		//	override default effect
+		,	fxName:					"none"
+		}
+	,	west: {
+            spacing_closed:			8
+        ,   spacing_open:			8
+		,	togglerLength_open:     60
+		,   togglerLength_closed:   60
+        ,   initClosed:             {if $smarty.const.__LAYER_ROLE__=="Server"}false{else}true{/if}
+	 	,	onopen_end: function () {
+                $(".ui-jqgrid-btable").setGridWidth($("#east_panel").width()-45, true);
+			}
+	 	,	onclose_end: function () {
+                $(".ui-jqgrid-btable").setGridWidth($("#east_panel").width()-45, true);
+			}
+	 	,	onresize_end: function () {
+                $(".ui-jqgrid-btable").setGridWidth($("#east_panel").width()-45, true);
+			}			
+		}
+		});
+
+        {if $smarty.const.__LAYER_ROLE__=="Client"}
+		$("#header-right #top_menu").load(
+                            "/menu/?id=top",
+                            null,
+                            function (responseText, textStatus, XMLHttpRequest) {
+                                if (!responseText) {
+                                    alert("Error retrieving top-menu options.");
+                                } else {
+                                    $("#container #footer #footer-inner #footerlog #srvstatus").load("/index/srvstatus");
+                                }
+                            }
+        );
+        setTimeout("bkgSync();", 30000);
+        {/if}
+
+		$("#west_panel").load(
+                            "/menu/?id=west #{$Accendo_Smarty->getSessVar('MyProfile.westpanel.menuid')}",
+                            null,
+                            function (responseText, textStatus, XMLHttpRequest) {
+                                if (responseText) {
+                                    $("#{$Accendo_Smarty->getSessVar('MyProfile.westpanel.menuid')}").jstree({
+                                        "plugins" : [ "html_data", "ui", "cookies", "themeroller" ],
+                                        "themeroller" : {
+                                            "opened" : "ui-icon-folder-open",
+                                            "closed" : "ui-icon-folder-collapsed"
+                                        }
+                                    }).bind("loaded.jstree", function (event, data) { 
+                                    {if $Accendo_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
+                                        $("#{$Accendo_Smarty->getSessVar('MyProfile.westpanel.menuid')} .dbgtoolsmnu").show();
+                                    {/if}
+                                    });
+                                } else {
+                                    alert("Error retrieving west-menu options.");
+                                }
+                            }
+        );
+
+        $("#GenericDialog").dialog({
+            bgiframe: true,
+            autoOpen: false,
+            modal: true,
+            position: 'center'
+        });
+
+        {if $smarty.const.__LAYER_ROLE__=="Server"}
+        $("#qryidx_form").ajaxForm({
+            dataType: 'json',
+            async: false,
+            beforeSubmit: function() {
+                $("#east_panel").block({ message: '{$smarty.const._BAR_WAIT_}' });
+                $("#east_panel").html('');
+            },
+            success: function (responseText, statusText) {
+                $("#east_panel").html(responseText);
+                $("#east_panel").unblock();
+            },
+            error: function (jqXHR) {
+                handleXHRerror(jqXHR);
+            }
+        });
+        {/if}
+
+        initializeButtons();
+        
+        {if $onstartup}
+            loadappdiv("{$onstartup}");
+        {/if}
+		
+    });
+
+    /*
+    * 
+     */
+    function bkgSync() {
+
+        bkgSync.exeTS = Math.round(+new Date()/1000);
+        if (typeof bkgSync.upQueueTS == "undefined") { bkgSync.upQueueTS = bkgSync.exeTS; }
+        if (typeof bkgSync.dnQueueTS == "undefined") { bkgSync.dnQueueTS = bkgSync.exeTS; }
+        if (typeof bkgSync.autoSyncTS == "undefined") { bkgSync.autoSyncTS = bkgSync.exeTS; }
+
+        if (bkgSync.exeTS - bkgSync.upQueueTS > 60) {
+            $("#container #header #header-right #top_menu #nav-links #upqueue").load("/index/sync?type=upqueue");
+            bkgSync.upQueueTS = bkgSync.exeTS;
+        }
+        
+        if (bkgSync.exeTS - bkgSync.dnQueueTS > 90) {
+            $("#container #header #header-right #top_menu #nav-links #dnqueue").load("/index/sync?type=dnqueue");
+            bkgSync.dnQueueTS = bkgSync.exeTS;
+        }
+
+        if (bkgSync.exeTS - bkgSync.autoSyncTS > 300) {
+            $("#container #footer #footer-inner #footerlog #autosync").show("slow");
+            $.get("/index/autosync", function() { 
+                $("#container #footer #footer-inner #footerlog #autosync").hide(); 
+                $("#container #footer #footer-inner #footerlog #srvstatus").load("/index/srvstatus");
+            });
+            bkgSync.autoSyncTS = bkgSync.exeTS;
+        }
+
+        setTimeout("bkgSync();", 30000);
+    }    
+    </script>
+    {/if}
+</head>
+<body>
+<div id="container" style="background:url('../img/main_bkg_{$smarty.const.__LAYER_ROLE__}.png') no-repeat right bottom;">
+    {if $Accendo_Smarty->getSessVar("LoginStatus.islogged")}
+	<div id="header" class="ui-layout-north">
+            <div id="header-left">
+                <a href="/"><img src="../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png" alt="GxTend" title="GxTend Home"></a>
+			</div>
+            <div id="header-middle">
+                <div id="logmsgwall" style="display:none;"></div>
+            </div>
+			<div id="header-right">
+                {if $smarty.const.__LAYER_ROLE__=="Server"}
+                <form id="qryidx_form" action="/QryIdx/search" method="POST" enctype="multipart/form-data">
+                <input type="text" title="{$smarty.const._LBL_SEARCH_}" name="qrystr" value="{$smarty.request.qrystr}" maxlength="2048" size="30">
+                <button type=submit class="button-search" name="submit_search" value="Search" title="{$smarty.const._TITLE_SUBMIT_}" disabled="disabled">Search</button>
+                </form>
+                {else}
+                <div id="top_menu">&nbsp;</div>
+                {/if}
+			</div>
+	</div>
+	<div id="west_panel" class="ui-layout-west">{$smarty.const._MSG_WAIT_SM_}</div>
+	<div id="east_panel" class="ui-layout-center">
+        <div class='welcome'><img src='../img/welcome_{$smarty.const.__LAYER_ROLE__}.png' alt='Welcome to GxTend' title='Welcome to GxTend'></div>
+	</div>
+	<div id="footer" class="ui-layout-south">
+			<div id="footer-inner">
+				<div id="footerlog">
+                    <div id="srvidname" style="float:left;">
+                    <img src="../img/icons/16/server.png" alt="GxTend Server" title="GxTend server you are working with"> {$Accendo_Smarty->getSessVar("LoginStatus.repository.desc")}
+                    </div>
+                    {if $smarty.const.__LAYER_ROLE__=="Client"}
+                    <div id="srvstatus" style="float:left;"></div>
+                    <div id="autosync" style="float:left;display:none;">
+                    &nbsp;|&nbsp; <img src="../img/loading_16-Client.gif" alt="GxTend Server" title="GxTend server you are working with"> Auto Syncing...
+                    </div>
+                    {/if}
+				</div>
+				<div id="copyright">
+					&copy; 2005-{$smarty.now|date_format:'%Y'} Accendo
+				</div>
+			</div>
+	</div>
+	{else}
+		{include file='pass.phtml'}
+	{/if}
+</div>
+
+<div id="GenericDialog" title="Generic Dialog"></div>
+
+</body>
+</html>

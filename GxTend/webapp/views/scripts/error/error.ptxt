@@ -1,0 +1,10 @@
+====================
+ Exception Occurred
+====================
+Layer Role : {$smarty.const.__LAYER_ROLE__}
+Error GUID : {$errguid}
+Error Code : {$errcode}
+Error Msg. : {$errmsg}
+================================================================================
+    Check your error log(s) for further details...
+================================================================================

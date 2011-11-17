@@ -1,0 +1,112 @@
+{include file='form.ready.js.inc'}
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    // Upload image initialization...
+    $('#image').uploadify({
+        'uploader': '/jquery/addons/upload/uploadify.swf',
+        'script': '/Upload/upload',
+        'cancelImg': '/jquery/addons/upload/cancel.png',
+        'scriptData': { 'options':'{$options}' },
+        'checkScript': '/Upload/check?options={$options}',
+        'multi': false,
+        'auto': true,
+        'sizeLimit': 131072,
+        'simUploadLimit': 1,
+        'fileDesc': '*.gif;*.jpg;*.png',
+        'fileExt': '*.gif;*.jpg;*.png;',
+        'buttonText': 'Change Image',
+        'displayData': 'speed',
+        'onComplete':  function(event,queueID,fileObj,response,data) {
+                            if (response=="ok") {
+                                changeImg(fileObj.name);
+                            }
+                       }
+    });
+
+});
+
+    function changeImg(name) {
+        jQuery.getJSON(
+                "/Ajax/setusrimg?options={$options}&image="+name,
+                null,
+                function (data, textStatus) {
+                    var d=new Date();
+                    $("#my_image").attr("src", $("#my_image").attr("src")+"&avoidcache="+d.getTime());
+                }
+        );
+    }
+
+    function genToken() {
+
+        var currTs = new Date().getTime();
+        $("#userproftoken").val(hex_sha1($("#fusername").val()+"@"+currTs));
+
+    }
+</script>
+
+<div id="my_data">
+    <div style="vertical-align:middle;text-align:right;float:right;">
+        <div style="text-align:center;">
+        <img id="my_image" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+        <p style="clear:both;">
+        <input type="file" name="image" id="image">&nbsp;<span style="color:#92162a;font-size:0.75em;cursor:pointer;" onclick="if(confirm('Are you sure you want to reset your image ?')) { changeImg('reset_image'); }">Reset Image</span>
+        </div>
+    </div>
+    <form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+    <input type="hidden" name="form" value="my_data">
+	<input type="hidden" name="parms" value="{$b64parms}">
+    <input type="hidden" name="options" value="{$options}">
+			<div>
+			<label for="f|username"><strong>Username</strong></label>
+			<input type="text" id="fusername" name="f|username" value="{$username}" readonly="readonly" style="background-color:#F2F2F2;">
+            <img class="file" src="../img/icons/16/password.png" title="Change Password" alt="Change Password" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=mine', 'Change My Password', 250, 500);">
+			</div>
+			<div>
+			<label for="f|name"><strong>Full Name</strong></label>		
+			<input type="text" name="f|name" value="{$name}" class="string required">
+			</div>
+			<div>
+			<label for="f|email"><strong>Email</strong></label>		
+			<input type="text" name="f|email" value="{$email}" class="string required email">
+			</div>
+            <div class="myhr"></div>
+			<div>
+			<label for="userprof|title"><strong>Title</strong></label>
+			<input type="text" id="userproftitle" name="userprof|title" value="{$userprof_title}">
+			</div>
+			<div>
+			<label for="userprof|office"><strong>Office #</strong></label>
+			<input type="text" id="userprofoffice" name="userprof|office" value="{$userprof_office}"> ext <input type="text" style="width: 50px;" name="userprof|offext" value="{$userprof_offext}">
+			</div>
+			<div>
+			<label for="userprof|mobile"><strong>Mobile #</strong></label>
+			<input type="text" id="userprofmobile" name="userprof|mobile" value="{$userprof_mobile}">
+			</div>
+			<div>
+			<label for="userprof|fax"><strong>Fax #</strong></label>
+			<input type="text" id="userproffax" name="userprof|fax" value="{$userprof_fax}">
+			</div>
+			<div>
+			<label for="userprof|home"><strong>Home #</strong></label>
+			<input type="text" id="userprofhome" name="userprof|home" value="{$userprof_home}">
+			</div>
+			<div>
+			<label for="userprof|imname"><strong>IM Name</strong></label>
+			<input type="text" id="userprofimname" name="userprof|imname" value="{$userprof_imname}"> on {$imtype}
+			</div>
+			<!--div>
+			<label for="userprof|token"><strong>Token</strong></label>
+			<input type="text" id="userproftoken" name="userprof|token" value="{$userprof_token}" readonly="readonly" style="width:250px;background-color:#F2F2F2;">
+            <span class="file" onclick="genToken();">(Re)Generate</span> |
+            <span class="file" onclick="$('#userproftoken').val('');">Delete</span>
+			</div>
+            <div class="myhr"></div-->
+            <div class="myhr"></div>
+			<div class="buttons right">
+                <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
+			</div>
+			<br clear="all">
+	</form>
+</div>

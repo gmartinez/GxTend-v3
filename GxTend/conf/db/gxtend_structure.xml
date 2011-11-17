@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<wddxPacket version='1.0'>
+<header/>
+<data>
+
+	<struct>
+    <var name='Pdo_Mysql'>
+        <struct>
+
+            <var name='create'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                    $sql_sep = ';';
+                    $engine = 'MyISAM';
+                    $charset = 'latin1';
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    CREATE TABLE IF NOT EXISTS `gxt_audit` (
+                      `audguid` varchar(40) default '',
+                      `hostname` varchar(255) default '',
+                      `code` varchar(255) default '',
+                      `sessid` varchar(255) default '',
+                      `userguid` varchar(40) default '',
+                      `timestamp` int(11) NOT NULL default '0',
+                      `gxtver` varchar(20) default '',
+                      `logtxt` mediumtext NOT NULL,
+                      `prcdmp` text NOT NULL,
+                      PRIMARY KEY (`audguid`,`hostname`),
+                      KEY `userguid` (`userguid`),
+                      KEY `timestamp` (`timestamp`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_clients` (
+                      `cliid` int(11) NOT NULL auto_increment,
+                      `cliabv` varchar(255) default '',
+                      `compid` int(11) NOT NULL default '0',
+                      `countryid` int(11) NOT NULL default '0',
+                      PRIMARY KEY (`cliid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_companies` (
+                      `compid` int(11) NOT NULL auto_increment,
+                      `compabv` varchar(255) default '',
+                      PRIMARY KEY (`compid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_cvsindex` (
+                      `projguid` varchar(40) default '',
+                      `kbguid` varchar(40) default '',
+                      `mdlid` int(11) NOT NULL default '0',
+                      `objcls` int(11) NOT NULL default '0',
+                      `objid` varchar(40) default '',
+                      `objnam` varchar(255) default '',
+                      `objdsc` varchar(255) default '',
+                      `objupdts` int(11) NOT NULL default '0',
+                      `objowner` varchar(40) default '',
+                      `ownertype` varchar(255) default '',
+                      `generated` tinyint(1) NOT NULL default '0',
+                      `hash` varchar(40) default '',
+                      `gmtoffset` int(11) NOT NULL default '0',
+                      PRIMARY KEY (`projguid`,`kbguid`,`mdlid`,`objcls`,`objnam`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_evtdef` (
+                      `evtname` varchar(255) default '',
+                      `evtdsc` varchar(255) default '',
+                      `evtproc` varchar(255) default '',
+                      `evtparm` varchar(255) default '',
+                      `evttype` varchar(255) default '',
+                      `evtpri` int(11) NOT NULL default '0',
+                      `evtopts` text NOT NULL,
+                      `status` int(11) NOT NULL default '0',
+                      PRIMARY KEY (`evtname`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_evtqueue` (
+                      `evtid` int(11) NOT NULL auto_increment,
+                      `evtdtch` varchar(255) default '',
+                      `evtname` varchar(255) default '',
+                      `evtdsc` varchar(255) default '',
+                      `evtproc` varchar(255) default '',
+                      `evtparm` varchar(255) default '',
+                      `evttype` varchar(255) default '',
+                      `evtpri` int(11) NOT NULL default '0',
+                      `userguid` varchar(40) default '',
+                      `sessid` varchar(255) default '',
+                      `queue_time` int(11) NOT NULL default '0',
+                      `proc_at` int(11) NOT NULL default '0',
+                      `ini_time` int(11) NOT NULL default '0',
+                      `end_time` int(11) NOT NULL default '0',
+                      `inoutlog` mediumtext NOT NULL,
+                      `status` int(11) NOT NULL default '0',
+                      PRIMARY KEY (`evtid`),
+                      KEY `status` (`status`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE `gxt_files` (
+                      `file_guid` varchar(40) default '',
+                      `file_name` varchar(512) default '',
+                      `file_date` int(11) NOT NULL default '0',
+                      `file_mime` varchar(255) default '',
+                      `file` longblob NOT NULL,
+                      `file_size` int(11) NOT NULL default '0',
+                      `file_hash` varchar(40) NOT NULL default '',
+                      `file_stat` text NOT NULL,
+                      PRIMARY KEY (`file_guid`),
+                      KEY `namedate` (`file_name`,`file_date`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_groups` (
+                      `groupguid` varchar(40) default '',
+                      `groupabv` varchar(255) default '',
+                      `isadmin` int(11) NOT NULL default '0',
+                      PRIMARY KEY (`groupguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_hosts` (
+                      `hostname` varchar(255) default '',
+                      `hostabv` varchar(255) default '',
+                      `userguid` varchar(40) default '',
+                      `lsyncts` int(11) NOT NULL default '0',
+                      PRIMARY KEY (`hostname`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_kbs` (
+                      `kbguid` varchar(40) default '',
+                      `kbdsc` varchar(255) default '',
+                      `kbdir` varchar(255) default '',
+                      `kbclass` int(11) NOT NULL default '0',
+                      `kbmirror` int(11) NOT NULL default '0',
+                      `kbhash` varchar(255) default '',
+                      `projguid` varchar(40) default '',
+                      `userguid` varchar(40) default '',
+                      `pkbguid` varchar(40) default '',
+                      `hostname` varchar(255) default '',
+                      `options` text NOT NULL,
+                      PRIMARY KEY (`kbguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_kbsflags` (
+                      `kbguid` varchar(40) default '',
+                      `flag` varchar(40) default '',
+                      `mdlid` int(11) NOT NULL default '0',
+                      `objcls` int(11) NOT NULL default '0',
+                      `objnam` varchar(255) default '',
+                      `objupdts` int(11) NOT NULL default '0',
+                      `setts` int(11) NOT NULL default '0',
+                      `setuserguid` varchar(40) default '',
+                      `unsetts` int(11) NOT NULL default '0',
+                      `unsetuserguid` varchar(40) default '',
+                      PRIMARY KEY (`kbguid`,`flag`,`mdlid`,`objcls`,`objnam`,`setts`,`unsetts`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE `gxt_mailq` (
+                      `emguid` varchar(40) default '',
+                      `msgid` varchar(255) NOT NULL default '',
+                      `inreto` varchar(255) NOT NULL default '',
+                      `emheader` text NOT NULL,
+                      `embody` text NOT NULL,
+                      `emqueuets` int(11) NOT NULL default '0',
+                      `emsentts` int(11) NOT NULL default '0',
+                      `emsentlog` varchar(255) NOT NULL default '',
+                      PRIMARY KEY (`emguid`,`msgid`,`inreto`),
+                      KEY `emqueuets` (`emqueuets`),
+                      KEY `emsentts` (`emsentts`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE `gxt_mailq_atchs` (
+                      `emguid` varchar(40) default '',
+                      `file_guid` varchar(40) default '',
+                      PRIMARY KEY (`emguid`,`file_guid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_milestones` (
+                      `mistguid` varchar(40) default '',
+                      `mistabv` varchar(255) default '',
+                      `mistduets` int(11) NOT NULL default '0',
+                      `groupguid` varchar(40) default '',
+                      `projguid` varchar(40) default '',
+                      PRIMARY KEY (`mistguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_prmdef` (
+                      `prmid` varchar(255) default '',
+                      `userguid` varchar(40) default '',
+                      `editlvl` int(11) NOT NULL default '0',
+                      `prmdsc` varchar(255) default '',
+                      `prmhlp` varchar(255) default '',
+                      `prmdef` TEXT,
+                      `prmval` TEXT,
+                      PRIMARY KEY (`prmid`,`userguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_projects` (
+                      `projguid` varchar(40) default '',
+                      `projabv` varchar(255) default '',
+                      PRIMARY KEY (`projguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_sectors` (
+                      `sectorid` int(11) NOT NULL auto_increment,
+                      `sectorabv` varchar(255) default '',
+                      PRIMARY KEY (`sectorid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_security` (
+                      `type` varchar(10) NOT NULL default '',
+                      `guid` varchar(40) NOT NULL default '',
+                      `groupguid` varchar(40) default '',
+                      `access` varchar(10) NOT NULL default '',
+                      PRIMARY KEY (`type`,`guid`,`groupguid`,`access`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_sessions` (
+                      `sessid` varchar(255) default '',
+                      `userguid` varchar(40) default '',
+                      `startts` int(11) NOT NULL default '0',
+                      `lastots` int(11) NOT NULL default '0',
+                      `pidinfo` varchar(255) default '',
+                      `cliinfo` varchar(255) default '',
+                      PRIMARY KEY (`sessid`,`userguid`,`startts`),
+                      KEY `startts` (`startts`),
+                      KEY `lastots` (`lastots`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets` (
+                      `ttsguid` varchar(40) default '',
+                      `todoguid` varchar(40) default '',
+                      `ttstopic` varchar(10) default '',
+                      `ttsabv` varchar(255) default '',
+                      `ttstxt` text NOT NULL,
+                      `ttspri` tinyint(1) NOT NULL default '0',
+                      `ttssts` varchar(10) default '',
+                      `assigned_to` varchar(40) default '',
+                      `ttsduets` int(11) NOT NULL default '0',
+                      `ttspercent` int(3) NOT NULL default '0',
+                      PRIMARY KEY (`ttsguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_history` (
+                      `ttsguid` varchar(40) default '',
+                      `changed_by` varchar(40) default '',
+                      `changed_on` int(11) NOT NULL default '0',
+                      `change_dsc` varchar(255) default '',
+                      `change_old` text NOT NULL,
+                      `change_new` text NOT NULL,
+                      PRIMARY KEY (`ttsguid`,`changed_by`,`changed_on`,`change_dsc`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_items` (
+                      `itmguid` varchar(40) default '',
+                      `ttsguid` varchar(40) default '',
+                      `itmtyp` varchar(10) default '',
+                      `itmtxt` text NOT NULL,
+                      `added_by` varchar(40) default '',
+                      `added_on` int(11) NOT NULL default '0',
+                      PRIMARY KEY (`itmguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_items_files` (
+                      `itmguid` varchar(40) default '',
+                      `file_guid` varchar(40) default '',
+                      PRIMARY KEY (`itmguid`,`file_guid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_subscriptions` (
+                      `ttsguid` varchar(40) default '',
+                      `userguid` varchar(40) default '',
+                      `subscts` int(11) NOT NULL default '0',
+                      `subscby` varchar(40) default '',
+                      `unsubscts` int(11) NOT NULL default '0',
+                      `unsubscby` varchar(40) default '',
+                      PRIMARY KEY (`ttsguid`,`userguid`,`subscts`,`subscby`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_todos` (
+                      `todoguid` varchar(40) default '',
+                      `mistguid` varchar(40) default '',
+                      `todoabv` varchar(255) default '',
+                      PRIMARY KEY (`todoguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+
+                    CREATE TABLE IF NOT EXISTS `gxt_users` (
+                      `userguid` varchar(40) default '',
+                      `groupguid` varchar(40) default '',
+                      `othergroups` varchar(255) default '',
+                      `sectorid` int(11) NOT NULL default '0',
+                      `cliid` int(11) NOT NULL default '0',
+                      `username` varchar(255) default '',
+                      `pass` varchar(255) default '',
+                      `name` varchar(255) default '',
+                      `active` int(11) NOT NULL default '0',
+                      `email` varchar(255) default '',
+                      PRIMARY KEY (`userguid`)
+                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+        </struct>
+    </var>
+
+    <var name='Pdo_Sqlite'>
+        <struct>
+
+            <var name='create'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                    $sql_sep = ';';
+                    $engine = 'Sqlite';
+                    $charset = 'latin1';
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    CREATE TABLE IF NOT EXISTS `gxt_audit` (
+                      `audguid` STRING,
+                      `hostname` STRING,
+                      `code` STRING,
+                      `sessid` STRING,
+                      `userguid` STRING,
+                      `timestamp` INTEGER,
+                      `gxtver` STRING,
+                      `logtxt` TEXT,
+                      `prcdmp` TEXT,
+                      PRIMARY KEY (`audguid`,`hostname`)
+                    );
+
+                    CREATE TABLE `gxt_evtqueue` (
+                      `evtid` INTEGER,
+                      `evtdtch` STRING,
+                      `evtname` STRING,
+                      `evtdsc` STRING,
+                      `evtproc` STRING,
+                      `evtparm` STRING,
+                      `evttype` STRING,
+                      `evtpri` INTEGER,
+                      `userguid` STRING,
+                      `sessid` STRING,
+                      `queue_time` INTEGER,
+                      `proc_at` INTEGER,
+                      `ini_time` INTEGER,
+                      `end_time` INTEGER,
+                      `inoutlog` TEXT,
+                      `status` INTEGER,
+                      PRIMARY KEY (`evtid`)
+                    );
+
+                    CREATE TABLE `gxt_files` (
+                      `file_guid` STRING,
+                      `file_name` STRING,
+                      `file_date` INTEGER,
+                      `file_mime` STRING,
+                      `file` BLOB,
+                      `file_size` INTEGER,
+                      `file_hash` STRING,
+                      `file_stat` TEXT,
+                      PRIMARY KEY (`file_guid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_groups` (
+                      `groupguid` STRING,
+                      `groupabv` STRING,
+                      `isadmin` INTEGER,
+                      PRIMARY KEY (`groupguid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_hosts` (
+                      `hostname` STRING,
+                      `hostabv` STRING,
+                      `userguid` STRING,
+                      `lsyncts` INTEGER,
+                      PRIMARY KEY (`hostname`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_kbs` (
+                      `kbguid` STRING,
+                      `kbdsc` STRING,
+                      `kbdir` STRING,
+                      `kbclass` STRING,
+                      `kbmirror` STRING,
+                      `kbhash` STRING,
+                      `projguid` STRING,
+                      `userguid` STRING,
+                      `pkbguid` STRING,
+                      `hostname` STRING,
+                      `options` STRING,
+                      PRIMARY KEY (`kbguid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_kbsflags` (
+                      `kbguid` STRING,
+                      `flag` STRING,
+                      `mdlid` INTEGER,
+                      `objcls` INTEGER,
+                      `objnam` STRING,
+                      `objupdts` INTEGER,
+                      `setts` INTEGER,
+                      `setuserguid` STRING,
+                      `unsetts` INTEGER,
+                      `unsetuserguid` STRING,
+                      PRIMARY KEY (`kbguid`,`flag`,`mdlid`,`objcls`,`objnam`,`objupdts`,`setts`,`unsetts`)
+                    );
+
+                    CREATE TABLE `gxt_mailq` (
+                      `emguid` STRING,
+                      `msgid` STRING,
+                      `inreto` STRING,
+                      `emheader` TEXT,
+                      `embody` TEXT,
+                      `emqueuets` INTEGER,
+                      `emsentts` INTEGER,
+                      `emsentlog` STRING,
+                      PRIMARY KEY (`emguid`,`msgid`,`inreto`)
+                    );
+
+                    CREATE TABLE `gxt_mailq_atchs` (
+                      `emguid` STRING,
+                      `file_guid` STRING,
+                      PRIMARY KEY (`emguid`,`file_guid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_milestones` (
+                      `mistguid` STRING,
+                      `mistabv` STRING,
+                      `mistduets` INTEGER,
+                      `groupguid` STRING,
+                      `projguid` STRING,
+                      PRIMARY KEY (`mistguid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_prmdef` (
+                      `prmid` STRING,
+                      `userguid` STRING,
+                      `editlvl` INTEGER,
+                      `prmdsc` STRING,
+                      `prmhlp` STRING,
+                      `prmdef` TEXT,
+                      `prmval` TEXT,
+                      PRIMARY KEY (`prmid`,`userguid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_projects` (
+                      `projguid` STRING,
+                      `projabv` STRING,
+                      PRIMARY KEY (`projguid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_security` (
+                      `type` STRING,
+                      `guid` STRING,
+                      `groupguid` STRING,
+                      `access` STRING,
+                      PRIMARY KEY (`type`,`guid`,`groupguid`,`access`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_sessions` (
+                      `sessid` STRING,
+                      `userguid` STRING,
+                      `startts` INTEGER,
+                      `lastots` INTEGER,
+                      `pidinfo` STRING,
+                      `cliinfo` STRING,
+                      PRIMARY KEY (`sessid`,`userguid`,`startts`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_syncwsrv` (
+                      `sqlid` INTEGER PRIMARY KEY AUTOINCREMENT,
+                      `userguid` STRING,
+                      `sessid` STRING,
+                      `setts` INTEGER,
+                      `sqlcomp` BLOB,
+                      `sqldesc` STRING
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets` (
+                      `ttsguid` STRING,
+                      `todoguid` STRING,
+                      `ttstopic` STRING,
+                      `ttsabv` STRING,
+                      `ttstxt` TEXT,
+                      `ttspri` INTEGER,
+                      `ttssts` STRING,
+                      `assigned_to` STRING,
+                      `ttsduets` INTEGER,
+                      `ttspercent` INTEGER,
+                      PRIMARY KEY (`ttsguid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_history` (
+                      `ttsguid` STRING,
+                      `changed_by` STRING,
+                      `changed_on` INTEGER,
+                      `change_dsc` STRING,
+                      `change_old` TEXT,
+                      `change_new` TEXT,
+                      PRIMARY KEY (`ttsguid`,`changed_by`,`changed_on`,`change_dsc`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_items` (
+                      `itmguid` STRING,
+                      `ttsguid` STRING,
+                      `itmtyp` STRING,
+                      `itmtxt` TEXT,
+                      `added_by` STRING,
+                      `added_on` INTEGER,
+                      PRIMARY KEY (`itmguid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_items_files` (
+                      `itmguid` STRING,
+                      `file_guid` STRING,
+                      PRIMARY KEY (`itmguid`,`file_guid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_tickets_subscriptions` (
+                      `ttsguid` STRING,
+                      `userguid` STRING,
+                      `subscts` INTEGER,
+                      `subscby` STRING,
+                      `unsubscts` INTEGER,
+                      `unsubscby` STRING,
+                      PRIMARY KEY (`ttsguid`,`userguid`,`subscts`,`subscby`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_todos` (
+                      `todoguid` STRING,
+                      `mistguid` STRING,
+                      `todoabv` STRING,
+                      PRIMARY KEY (`todoguid`)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS `gxt_users` (
+                      `userguid` STRING,
+                      `groupguid` STRING,
+                      `othergroups` STRING,
+                      `sectorid` INTEGER,
+                      `cliid` INTEGER,
+                      `username` STRING,
+                      `pass` STRING,
+                      `name` STRING,
+                      `active` INTEGER,
+                      `email` STRING,
+                      PRIMARY KEY (`userguid`)
+                    );
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
+        </struct>
+    </var>
+	</struct>
+
+</data>
+</wddxPacket>

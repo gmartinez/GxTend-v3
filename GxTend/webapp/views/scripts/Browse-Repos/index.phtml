@@ -1,0 +1,73 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#kbguid").change(function() {
+            if ($("#kbguid").val()) {
+                onkbmdlchange();
+            } else {
+                $('#mdlsdbox, #browsearea #flds_panel, #browsearea #objs_panel').html("");
+            }
+        });
+
+    });
+
+    function onkbmdlchange() {
+
+        loadfldtree();
+        $("#browsearea #objs_panel").html("");        
+
+    }
+
+    function loadfldtree(currdirid) {
+
+        $("#browsearea #flds_panel").html('{$smarty.const._MSG_WAIT_SM_}');
+
+        $.getJSON(
+            "BrowseRepos/fldstree?kbguid="+$("#kbguid").val()+"&mdlid="+$("#mdlid").val(),
+            null,
+            function (data, textStatus) {
+                if (textStatus=="success") {
+                    $("#mdlsdbox").html(data.mdlsdbox);
+                    $("#browsearea #flds_panel").html(data.htmltree);
+                    $("#browsearea #flds_panel").jstree({
+                        "initially_open" : [ "litree" ],
+                        "plugins" : [ "html_data", "ui", "cookies", "themeroller" ],
+                        "themeroller" : {
+                            "opened" : "ui-icon-folder-open",
+                            "closed" : "ui-icon-folder-collapsed",
+                            "item_icon" : "ui-icon-folder-collapsed"
+                        }
+                    }).removeClass("ui-widget-content");
+                    $('#browsearea #flds_panel #'+currdirid).click();   // Will refresh folder content
+                } else {
+                    alert("Error retrieving folders tree.");
+                }
+            }
+        );
+
+    }
+
+    function onfldclick(parms) {
+
+        $("#browsearea #objs_panel").html('{$smarty.const._MSG_WAIT_SM_}');
+        $("#browsearea #objs_panel").load(
+                            "Browse-Repos/fldcont?&parms="+parms,
+                            null,
+                            function (responseText, textStatus, XMLHttpRequest) {
+                                if (responseText) {
+                                } else {
+                                    alert("Error retrieving folder content.");
+                                }
+                            }
+        );
+
+    }
+</script>
+
+<div id="browsearea">
+    <div style="float:right;"><h2>Browse KBs</h2></div>
+    Kb(s) {$repositories} <span id="mdlsdbox"></span>
+    <hr>
+	<div id="flds_panel" style="float: left; width: 30%;"></div>
+	<div id="objs_panel" style="float: left; width: 70%;"></div>
+</div>

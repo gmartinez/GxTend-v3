@@ -1,0 +1,57 @@
+    <title>GxTend - The Missing Gear</title>
+
+    <!--GxTend Includes-->
+	<link rel="shortcut icon" href="../img/gear_{$smarty.const.__LAYER_ROLE__}.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../jquery/addons/jqGrid42/css/ui.jqgrid.css">
+    {if $smarty.const.__LAYER_ROLE__=="Server"}
+    <link rel="stylesheet" type="text/css" href="../css/theme/southstreet/jquery-ui-1.8.14.custom.css">
+    {elseif $smarty.const.__LAYER_ROLE__=="Client"}
+    <link rel="stylesheet" type="text/css" href="../css/theme/northstreet/jquery-ui-1.8.14.custom.css">
+    {/if}
+
+	<!--External Includes-->
+	<script type="text/javascript" src="../jquery/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="../jquery/jquery-ui-1.8.16.custom.min.js"></script>
+
+    <!--External Includes-->
+    <script type="text/javascript" src="../jquery/addons/charts/highcharts.js"></script>
+
+    <!--External Includes-->
+	<script type="text/javascript" src="../jquery/addons/jqGrid42/i18n/grid.locale-en.js"></script>
+	<script type="text/javascript" src="../jquery/addons/jqGrid42/jquery.jqGrid.min.js"></script>
+
+    <!--External Includes-->
+	<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="../ckeditor/adapters/jquery.js"></script>
+
+    <!--External Includes-->
+	<script type="text/javascript" src="../jquery/addons/upload/swfobject.js"></script>
+	<script type="text/javascript" src="../jquery/addons/upload/jquery.uploadify.js"></script>
+    <link rel="stylesheet" type="text/css" href="../jquery/addons/upload/uploadify.css">
+
+    <!-- External Includes Validate-->
+    <script type="text/javascript" src="../jquery/addons/validate/jquery.validate.min.js"></script>
+
+    <!-- External Includes Pnotify -->
+    <script type="text/javascript" src="../jquery/addons/pnotify/jquery.pnotify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../jquery/addons/pnotify/jquery.pnotify.default.css">
+
+	<!--Jquery Layout -->
+	<script type="text/javascript" src="../jquery/addons/singlef/jquery.layout.js"></script>
+
+ 	<!--Jquery ClueTip -->
+	<script type="text/javascript" src="../jquery/addons/cluetip/jquery.cluetip.js"></script>
+    <link rel="stylesheet" type="text/css" href="../jquery/addons/cluetip/jquery.cluetip.css">
+
+    <script type="text/javascript" src="../jquery/addons/singlef/jquery.form.js"></script>
+    <script type="text/javascript" src="../jquery/addons/singlef/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="../jquery/addons/singlef/jquery.jstree.js"></script>
+    <script type="text/javascript" src="../jquery/addons/singlef/jquery.cookie.js"></script>
+
+    <!--Own .js & .css -->
+    <link rel="stylesheet" type="text/css" href="../css/gxtend-{$smarty.const.__LAYER_ROLE__}.css">
+    <script type="text/javascript" src="../js/ready.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="../js/libs/sha1.js"></script>
+    <script type="text/javascript" src="../js/libs/utf8_decode.js"></script>
+    <script type="text/javascript" src="../js/libs/base64_decode.js"></script>
+    

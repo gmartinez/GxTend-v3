@@ -1,0 +1,113 @@
+
+{include file='form.ready.js.inc'}
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#fevttype").change(function() {
+                var $sboxval = $("#fevttype").val();
+                $(".when2exec").hide();
+                $("#"+$sboxval).show();
+            });
+
+        $("#"+$("#fevttype").val()).show();
+
+        $("#spec_date").datepicker({ minDate: '-0' });
+    });
+    </script>
+
+	<br>
+	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+	<input type="hidden" name="parms" value="{$smarty.get.parms}">
+		<table align="center" width="100%">
+		<tr><td align="left">
+			<b>Event Name</b>
+            </td>
+			<td align="left">
+            <input type="text" size="10" name="f|evtname|unique" value="{$evtname}" class="string required">
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Description</b>
+            </td>
+			<td align="left">
+            <textarea name="f|evtdsc" rows="3" cols="60">{$evtdsc}</textarea>
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Processor</b>
+            </td>
+			<td align="left">
+			<input type="text" size="80" name="f|evtproc" value="{$evtproc}">
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Parameters</b>
+            </td>
+			<td align="left">
+			<input type="text" size="80" name="f|evtparm" value="{$evtparm}">
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Event Type</b>
+            </td>
+			<td align="left" class="nb">
+			{$evttype}
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>When to execute</b>
+            </td>
+			<td align="left" class="nb">
+            &nbsp;
+                <div class="when2exec" style="display:none" id="periodic">
+                Days of Week
+                <input type="checkbox" name="daysofweek[0]" value="0" {if isset($daysofweek.0)}checked{/if}> Sun&nbsp;
+                <input type="checkbox" name="daysofweek[1]" value="1" {if isset($daysofweek.1)}checked{/if}> Mon&nbsp;
+                <input type="checkbox" name="daysofweek[2]" value="2" {if isset($daysofweek.2)}checked{/if}> Tue&nbsp;
+                <input type="checkbox" name="daysofweek[3]" value="3" {if isset($daysofweek.3)}checked{/if}> Wed&nbsp;
+                <input type="checkbox" name="daysofweek[4]" value="4" {if isset($daysofweek.4)}checked{/if}> Thu&nbsp;
+                <input type="checkbox" name="daysofweek[5]" value="5" {if isset($daysofweek.5)}checked{/if}> Fri&nbsp;
+                <input type="checkbox" name="daysofweek[6]" value="6" {if isset($daysofweek.6)}checked{/if}> Sat&nbsp;
+                <br>
+                Start {$start_hh} {$start_mm}
+                &nbsp;&nbsp;
+                End {$end_hh} {$end_mm}
+                &nbsp;&nbsp;
+                Every <input type="text" size="5" name="every" value="{$every}"> (Minutes)
+                </div>
+                <div class="when2exec" style="display:none" id="at">
+                Date <input id="spec_date" name="spec_date" value="{$spec_date}" type="text" size=12 maxlength=10 readonly="readonly"> Time {$spec_hh} {$spec_mm}
+                </div>
+                <div class="when2exec" style="display:none" id="triggered">
+                <span class="red">Will not be automatically launched...</span>
+                </div>
+            &nbsp;
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Queue Status</b>
+            </td>
+			<td align="left" class="nb">
+			{$status}
+            </td>
+		</tr>
+		<tr><td align="left">
+			<b>Priority</b>
+            </td>
+			<td align="left">
+			<input type="text" size="5" name="f|evtpri" value="{$evtpri}">
+            </td>
+		</tr>
+		</table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
+            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('{$smarty.const._TITLE_DELETE_} ?'));">{$smarty.const._LBL_DELETE_}</button>
+        {else}
+            <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
+        {/if}
+        <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
+        </div>
+        <br clear="all">
+	</form>

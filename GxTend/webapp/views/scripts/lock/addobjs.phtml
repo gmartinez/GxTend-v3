@@ -1,0 +1,92 @@
+<script type="text/javascript">
+
+	$("#form_newobjs").ajaxForm({
+		dataType:  'json',
+        async: true,
+		beforeSubmit: function() {
+			$("#selector").block({ message: '{$smarty.const._BAR_WAIT_}' });
+            $("#diffs").block({ message: '{$smarty.const._BAR_WAIT_}' });
+		},
+		success: function (r) {
+            for ( var i in r.flaglist ) {
+                if (r.flaglist[i] == "ok") {
+                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='"+r.flaglist[i]+"'>");
+                } else {
+                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='"+r.flaglist[i]+"'>");
+                }
+            }
+
+            if (r.flag.sts == "ok") {
+                $("#div_newobjs #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Objects were Successfully Created & Locked");
+                $("#diffs").unblock();
+            } else {
+                $("#div_newobjs #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Some Objects could not be Created & Locked");
+                $("#diffs").unblock();
+            }
+
+            setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    $("#addrow").click(function() {
+        var nxtr = $("#form_newobjs > table > tbody > tr:visible").length;
+        var nxtr_guid = hex_sha1(nxtr.toString());
+        $("#form_newobjs > table > tbody").append("<tr><td>&nbsp;{$new_objcls}</td><td>&nbsp;<input type='text' name='new_objnam["+nxtr+"]' size=40></td><td>&nbsp;<input type='text' name='new_objdsc["+nxtr+"]' size=60 disabled='disabled'></td><td align='center'><span id='"+nxtr_guid+"'><input class='objlst' type=checkbox name='checked_objs["+nxtr+"]' value='new' onclick='setsubmitsts(\"#form_newobjs .objlst\", \"#form_newobjs button\");'></span></td></tr>");
+    });
+
+    setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");
+
+</script>
+<div id="div_newobjs">
+
+    <div class="myhr"></div>
+
+    <div class="column left">
+    &nbsp;<img src="{$smarty.const._IMG_WAND_SM_}" alt="{$smarty.const._LBL_WAND_}" title="{$smarty.const._LBL_WAND_}"> Logically create and set locks on objects.
+    </div>
+    <div class="column right">
+    &nbsp;
+    </div>
+    <br clear="all">
+
+    <form id="form_newobjs" action="/Lock/flag" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="projguid" value="{$smarty.request.projguid}">
+    <input type="hidden" name="kbguid" value="{$smarty.request.kbguid}">
+    <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
+        <table width="100%" align="center" class="list">
+        <thead>
+            <tr><th>Class</th><th>Name</th><th>Description</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_newobjs .objlst");setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+        </thead>
+        <tbody>
+            {foreach from=$resultset key=k item=rec}
+                <tr>
+                <td>&nbsp;{$row_objcls.$k}</td>
+                <td>&nbsp;<input type="text" name="new_objnam[{$k}]" value="{$row_objnam.$k}" size=40></td>
+                <td>&nbsp;<input type="text" name="new_objdsc[{$k}]" value="{$row_objdsc.$k}" size=60 disabled="disabled"></td>
+                <td align="center">
+                    <span id="{$k|sha1}">
+                    <input class="objlst" type=checkbox name='checked_objs[{$k}]' value='new' onclick='setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");'>
+                    </span>
+                </td>
+                </tr>
+            {/foreach}
+        </tbody>
+        <tfoot>
+            <tr><td colspan="4"><span id="addrow" style="cursor:pointer;">&nbsp; <img id="show_hide_img" src="{$smarty.const._IMG_ADD_SM_}" title="{$smarty.const._TITLE_ADD_}"> Add Row</span></td></tr>
+        </tfoot>
+        </table>
+        <br clear="all">
+        <div id="bottom_left" class="left">
+            {include file='../index/ttp.phtml'}
+        </div>
+        <div  id="bottom_right" class="buttons right">
+            <input type="hidden" name='flagtype' value='lock'>
+            {$smarty.const._FORM_BTN_LOCK_}
+        </div>
+    </form>
+    <br clear="all">
+
+</div>

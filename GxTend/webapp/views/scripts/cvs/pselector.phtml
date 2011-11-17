@@ -1,0 +1,5 @@
+<ul style="font-size:18px;">
+    {foreach from=$allprjs key=k item=prjrec}
+    <li id="{$prjrec.projabv|md5}" class="file" onclick="$('#GenericDialog').dialog('close');$('#pselector').html('{$prjrec.projabv}');$('#east_panel #project #proj_tabber').load('/cvs/tabber',{ projguid:'{$prjrec.projguid}' });">&nbsp;{$prjrec.projabv}</li>
+    {/foreach}
+</ul>

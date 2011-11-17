@@ -1,0 +1,31 @@
+<div id="upqueue">
+    <h2>Queued (<a href="javascript:;" onclick="dataSync('up');">↑ Sync</a>)</h2>
+    <table width="100%" align="center" class="list">
+    <thead>
+        <tr><th>Id</th><th>Description</th><th>Performed &darr;</th><th>Ops</th></tr>
+    </thead>
+    <tbody>
+        {foreach from=$upqueue.entries key=k item=rec}
+        <tr id="row_{$rec.sqlid}" class='{cycle values="odd,even"}'>
+            <td><span class="pointer" onclick="$('#nfo_{$rec.sqlid}').toggle();">{$rec.sqlid}</span></td>
+            <td align="center">{$rec.sqldesc}</td>
+            <td align="center">{$Accendo_Smarty->ts2str($rec.setts)}</td>
+            <td align="center">
+            <span style="cursor:pointer;" onclick="oponEntry('del',{$rec.sqlid});"><img src="{$smarty.const._IMG_REMOVE_SM_}" title="Delete"></span>
+            </td>
+        </tr>
+        <tr id="nfo_{$rec.sqlid}" style="display:none;">
+            <td colspan="4">
+                &nbsp;{$rec.sqlcomp.sql}<br>
+                {foreach from=$rec.sqlcomp.place_holders_values key=i item=p}
+                &nbsp;? = {if is_null($p)}<span class="red">null</span>{else}{$p}{/if}<br>
+                {/foreach}
+            </td>
+        </tr>
+        {/foreach}
+    </tbody>
+    <tfoot>
+        <tr><td colspan="4" style="font-size:.75em;">Last Up Sync Datetime {$Accendo_Smarty->ts2str($upqueue.last_upsync_ts)}&nbsp;</td></tr>
+    </tfoot>
+    </table>
+</div>

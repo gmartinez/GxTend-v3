@@ -1,0 +1,253 @@
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#form_promote").ajaxForm({
+		dataType:  'json',
+		beforeSubmit: function() {
+			$("#div_promote").block({ message: '{$smarty.const._BAR_WAIT_}' });
+		},
+		success: function (r) {
+            if ($("#div_promote #queue4exec").is(":checked")) {
+                if (r.queue.sts == "ok") {
+                    $("#form_promote .objlst:checked").each(function() { 
+                        $(this).parent().html("<img src='{$smarty.const._IMG_CLOCK_SM_}' alt='queued' title='Object to be imported on event processing.'>")
+                    });                    
+                    $("#div_promote #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> "+r.queue.msg);                    
+                } else if (r.queue.sts == "err") {
+                    $("#div_promote #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> "+r.queue.msg);
+                }                
+            } else {
+                for ( var i in r.gxcons ) {
+                    if (r.gxcons[i] == "ok") {
+                        $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='Object successfully promoted'>");
+                    } else if (r.gxcons[i] == "wrn") {
+                        $("#"+i).html("<img src='../img/icons/16/warning.png' alt='wrn' title='Object promoted with warning(s)'>");
+                    } else if (r.gxcons[i] == "err") {
+                        $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='Object not promoted'>");
+                    }
+                }
+
+                for ( var i in r.gxdele ) {
+                    if (r.gxdele[i] == "ok") {
+                        $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='Object successfully deleted'>");
+                    } else if (r.gxdele[i] == "err") {
+                        $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='Object not deleted'>");
+                    }
+                }
+
+                if (r.overall.okis > 0 && r.overall.wrns == 0 && r.overall.errs == 0) {
+                    $("#div_promote #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> All objects were successfully promoted.");
+                } else if (r.overall.wrns > 0 && r.overall.errs == 0) {
+                    $("#div_promote #bottom_left").html("<img src='../img/icons/32/warning.png' alt='err' title='err'> Warning(s) during object(s) promoted.");
+                } else if (r.overall.wrns > 0 || r.overall.errs > 0) {
+                    $("#div_promote #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Error(s)/Warning(s) during object(s) promoted.");
+                }
+            }
+            $("#div_promote").unblock();
+            setsubmitsts("#form_promote .objlst", "#form_promote button");
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+    
+    $("#div_promote #nbrOfObjects").html($("#div_promote #form_promote .list >tbody >tr").length);
+    $("#div_promote #nbrOfNewestObjects").html($("#div_promote #form_promote .list >tbody >tr.newest").length);
+    $("#div_promote #nbrOfRepeatedObjects").html($("#div_promote #form_promote .list >tbody >tr.repeated").length);    
+
+    $('img.tip').cluetip({ splitTitle: '|' });
+
+    refreshChkCell();
+
+});
+
+function toggleViewObjects(id) {
+
+    $("#div_promote #form_promote .commit_holder").show();
+    $("#div_promote #form_promote .commit_holder .list >tbody >tr").show();
+    if (id == "nbrOfNewestObjects") {
+        $("#div_promote #form_promote .commit_holder .list >tbody >tr.repeated").hide();
+    } else if (id == "nbrOfRepeatedObjects") {
+        $("#div_promote #form_promote .commit_holder .list >tbody >tr.newest").hide();
+    }
+    
+    $("#div_promote #form_promote .commit_holder").each(function(index) {
+        if (!$(".list >tbody >tr:visible", this).length) {
+            $(this).hide("slow");
+        } else {
+            $(this).show();
+        }
+    });
+        
+    $(".nbrOfs").attr("style","cursor:pointer;");
+    $("#"+id).attr("style","cursor:pointer;font-weight:bold;");
+    
+}
+
+function refreshChkCell() {
+
+    {foreach $setofcommits as $commit}
+    {foreach $commit as $commitData}
+        {foreach $commitData.changes as $object}
+            {foreach $targetKbs as $kbrec}
+                setChkCell("{$kbrec.kbguid}_{$object.b64|sha1}","{$kbrec.kbguid}","{$object.b64}",{if $commit@last && $object@last && $kbrec@last}true{else}false{/if});
+            {/foreach}
+        {/foreach}
+    {/foreach}
+    {/foreach}
+
+}
+
+function setChkCell(cellid,kb,obj,islast) {
+
+    $("#"+cellid).html("<img src='../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif'>");
+    $("#"+cellid).load(
+                        "/Promote/getcell",
+                        { kbguid:kb,objnfo:obj,cellid:cellid },
+                        function (responseText, textStatus, XMLHttpRequest) {
+                            {if $smarty.request.viewport == "winforcli" && count($setofcommits) == 1}
+                            $("#"+cellid+" input.objlst").prop("checked",true);
+                            if (islast) {
+                                setsubmitsts("#form_promote .objlst", "#form_promote button");
+                            }
+                            {/if}
+                        }
+                    );
+
+}
+</script>
+
+<div id="div_promote">
+    <div style="float:left;">
+        {if $smarty.request.src_path}
+        &nbsp;<span style="font-size:1.5em;">Object's Change History</span>
+        {else}
+        &nbsp;<span style="font-size:1.5em;">Commits' Content</span>
+        {/if}
+    </div>
+    <div style="text-align:right;">        
+        Total # of {if !$smarty.request.src_path}objects{else}versions{/if} : <a href="javascript:;" id="nbrOfObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfObjects');" style="font-weight:bold;"><img src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></a>&nbsp;
+        <span class='ui-icon ui-icon-refresh file' title="Refresh Promotion Status Cells" style="float:right;margin-left:4px;" onclick="refreshChkCell();"></span>
+        {if count($setofcommits)>1}
+            {if !$smarty.request.src_path && $smarty.request.viewport != "winforcli"}
+            [ newest <a href="javascript:;" id="nbrOfNewestObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfNewestObjects');"><img src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></a>&nbsp;
+            |&nbsp;repeated <a href="javascript:;" id="nbrOfRepeatedObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfRepeatedObjects');"><img src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></a> ]
+            {/if}
+            <br>Spread across {count($setofcommits)} commits
+        {/if}
+    </div>
+
+    <div class="myhr"></div>
+    
+	<form id="form_promote" action="/Promote/promote" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="projguid" value="{$smarty.request.projguid}">
+    <input type="hidden" name="mdlid" value="1">
+    {foreach from=$setofcommits key=k item=commit}
+            {foreach from=$commit key=commitId item=commitData}
+            <div class="commit_holder">
+            <br clear="all">
+            <div class="column left">
+                <b>Id :</b> {if $smarty.request.viewport == "winforcli"}{$Accendo_Smarty->cutstr($commitId,0,7)}{else}<a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$Accendo_Smarty->cutstr($commitId,0,7)}</a>{/if}<br>
+                <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$Accendo_Smarty->cutstr($commitData.subject,0,80)}
+            </div>
+            <div class="column right">
+                <b>Commited on :</b> {$Accendo_Smarty->ts2str($commitData.commiterTs)}<br>
+                <b>Commited by :</b> {$commitData.commiter}
+            </div>
+            <br clear="all">
+            <table id="{$commitId}" width="100%" align="center" class="list">
+            <thead>
+                <tr>
+                    <th>Object</th>
+                    <th>Modified</th>
+                    {foreach $targetKbs as $kbrec}
+                    <th width="25%">{$Accendo_Smarty->guid2name("gxt_kbs",$kbrec.kbguid)}</th>
+                    {/foreach}
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$commitData.changes key=k item=rec}
+                <tr class='{cycle values="odd,even"} {if $rec.newest}newest{else}repeated{/if}'>
+                <td>&nbsp;
+                    {if $rec.gxinfo.objcls!=111}
+                    <img src="../img/gx/objclass/{$gx_objcls[$rec.gxinfo.objcls].small}.png" title="{$gx_objcls[$rec.gxinfo.objcls].long}">
+                    {if $smarty.request.viewport == "winforcli"}
+                    &nbsp;{$rec.gxinfo.objnam}
+                    {else}
+                    <a class="pointer" title="Click to see object change history" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}', 'Object Change History & Promotion Status', 550, 900);">
+                    &nbsp;{$rec.gxinfo.objnam}
+                    </a>
+                    {/if}
+                    {else}
+                    <img src="../img/icons/16/file.png" title="File">
+                    {if $smarty.request.viewport == "winforcli"}
+                    &nbsp;{$rec.gxinfo.objnam|basename}
+                    {else}
+                    <a class="pointer" title="Click to see object change history" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}', 'Object Change History & Promotion Status', 550, 900);">
+                    &nbsp;{$rec.gxinfo.objnam|basename}
+                    </a>
+                    {/if}
+                    {/if}
+                </td>
+                <td align="center">
+                    {if $rec.status!="D"}
+                    {if $rec.gxinfo.objcls!=111}
+                    <a class="pointer" style="float:left;" title="Click to download this object's version" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam}.xml">{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}</a>
+                    {$Accendo_Smarty->get_popup_link("view_source","/View-Source/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam}.xml",null,"Click to View Source","800x600","<span class='ui-icon ui-icon-search' style='float:left;margin-left:5px;'></span>")}
+                    {else}
+                    <a class="pointer" style="float:left;" title="Click to download this object's version" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam|basename}">{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}</a>
+                    {$Accendo_Smarty->get_popup_link("view_source","/View-Source/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam|basename}",null,"Click to View Source","800x600","<span class='ui-icon ui-icon-search' style='float:left;margin-left:5px;'></span>")}
+                    {/if}
+                    {else}
+                    {$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+                    {/if}
+                    {if $rec.status=="D"}
+                    &nbsp;<img class="tip" alt="del" src="../img/icons/16/cleanup.png" title="Object's Status|Object was deleted during commit.<br>If marked it will be deleted from target Kb.">
+                    {elseif $rec.status=="A"}
+                    &nbsp;<img class="tip" alt="new" src="../img/icons/16/new.png" title="Object's Status|Object was added during commit.<br>If marked it will be promoted into target Kb.">
+                    {/if}
+                </td>
+                {foreach $targetKbs as $kbrec}
+                <td align="center">
+                    <span id="{$kbrec.kbguid}_{$rec.b64|sha1}"></span>
+                </td>
+                {/foreach}
+                </tr>
+                {/foreach}
+            </tbody>
+            </table>
+            <div class="myhr"></div>
+            </div>
+            {/foreach}
+    {/foreach}
+
+    <div id="bottom_left" class="left">
+        {include file='../index/ttp.phtml' bck2top='no'}
+    </div>
+    <div class="right">
+        {if $smarty.const.__LAYER_ROLE__=="Server"}
+            <img alt="queue" src="{$smarty.const._IMG_CLOCK_SM_}" title="Queue for asynchronous execution">
+            &nbsp;Queue for asynchronous execution
+            &nbsp;<input type="checkbox" id="queue4exec" name="queue4exec" value="1" {$Accendo_Smarty->get_prm("promote_async_status")}>&nbsp;
+            {if $smarty.request.viewport == "winforcli"}
+            <br>
+            <img alt="merge" src="{$smarty.const._IMG_UNLOCK_SM_}" title="Release locks after successful import">
+            &nbsp;Release locks after successful import
+            &nbsp;<input type="checkbox" id="unlockAimport" name="unlockAimport" value="1" checked>&nbsp;
+            {/if}
+        {/if}
+    </div>
+    <br clear="all">
+    <br clear="all">    
+    <div  id="bottom_right" class="buttons right">
+        {if $smarty.const.__LAYER_ROLE__=="Server"}
+            {$smarty.const._FORM_BTN_PROMOTE_}
+        {else}
+            {$Accendo_Smarty->msg("ui-icon-info", "Promotion of objects is only available in Server layer.")}
+        {/if}
+    </div>
+	</form>
+    <br clear="all">
+    <br clear="all">
+</div>

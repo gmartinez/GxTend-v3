@@ -1,0 +1,19 @@
+{$recs} record(s) retrieved in {$end-$start} seg(s)
+<table width="100%" align="center" class="list">
+<thead>
+    <tr>
+    {foreach key=key item=item from=$rset.0}
+        <th align="center">{$key|escape:'htmlall'}</th>
+    {/foreach}
+    </tr>
+</thead>
+<tbody>
+    {foreach from=$rset item=row name=rs}
+    <tr class='{cycle values="odd,even"}'>
+    {foreach key=key item=item from=$row}
+        <td>&nbsp;{$item|escape:'htmlall'}</td>
+    {/foreach}
+    </tr>
+    {/foreach}
+</tbody>
+</table>
