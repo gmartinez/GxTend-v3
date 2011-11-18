@@ -29,6 +29,30 @@ img {
 	border:0;
 }
 
+span.msg_wait {
+    display:inline-block;
+	vertical-align:middle;
+	border:0;
+    margin:0;
+}
+
+span.msg_wait.small {
+    width:auto;
+    min-height:16px;
+    background: transparent url('../img/loading_16-Server.gif') left center no-repeat;
+    font-size:1em;
+    padding-left:1.5em;
+}
+
+
+span.msg_wait.medium {
+    width:auto;
+    min-height:32px;
+    background: transparent url('../img/loading_32-Server.gif') left center no-repeat;
+    font-size:1.5em;
+    padding-left:2em;
+}
+
 fieldset {
 	border:1px dotted #BFBFBF;
 	/*background-color:#D7FFAF;*/

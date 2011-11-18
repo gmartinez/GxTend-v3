@@ -3,8 +3,7 @@
  * @copyright Accendo-IT
  */
 
-var __LAYER_ROLE__ = "Server";
-var _MSG_WAIT_SM_ = "<img style=\"vertical-align:middle; padding:5px;\" src=\"../img/loading_16-"+__LAYER_ROLE__+".gif\"> Just a moment...";
+var _MSG_WAIT_SM_ = "<span class='msg_wait small'> Just a moment...</span>";
 
 /**
  * Inject url response into application action div...
