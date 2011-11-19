@@ -9,12 +9,12 @@
 		<struct>
 		<var name='COMPUTERNAME'><string>__NEED_SETTING__</string></var>
 		<var name='PROGRAMFILES'><string>__NEED_SETTING__</string></var>
-        <var name='PROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
-        <var name='COMMONPROGRAMFILES'><string>__NEED_SETTING__</string></var>
-        <var name='COMMONPROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
+		<var name='PROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
+		<var name='COMMONPROGRAMFILES'><string>__NEED_SETTING__</string></var>
+		<var name='COMMONPROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
 		<var name='ACCENDO_BE_HOME'><string>__NEED_SETTING__</string></var>
 		<var name='MSBUILD'><string>__NEED_SETTING__</string></var>
-		<var name='UPDATE_CHANNEL'><string>master</string></var>
+		<var name='UPDATE_CHANNEL'><string>__NEED_SETTING__</string></var>
 		</struct>
 	</var>
 	<!-- Environment Variables -->
@@ -23,11 +23,11 @@
 	<var name='gxtend_servers'>
 	<struct>
 		<!-- Server # 1 -->
-		<var name='__REPO_ID__'>
+		<var name='repo#1'>
 			<struct>
-			<var name='desc'><string>__REPO_NAME__</string></var>
+			<var name='desc'><string>__NEED_SETTING__</string></var>
 			<var name='driver'><string>Pdo_Sqlite</string></var>
-			<var name='schema'><string>__REPO_SCHEMA__</string></var>
+			<var name='schema'><string>__NEED_SETTING__</string></var>
 			<var name='url'><string>__REPO_URL__</string></var>
 			</struct>
 		</var>
