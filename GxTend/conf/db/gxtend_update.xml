@@ -153,6 +153,7 @@
                 <struct>
                 <var name='eval_before'>
                 <string>
+                    $sql_sep = ';';
                 </string>
                 </var>
 
