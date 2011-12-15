@@ -27,6 +27,12 @@ $(document).ready(function(){
         }
     });
 
+    {if $smarty.request.secti}
+    togglebwsections({$smarty.request.secti});
+    {else}
+    $("#secsel > span:first").click();
+    {/if}
+
     $("#form_setup input:text").blur(function() { checkValues(); });
     
     checkValues();
@@ -79,12 +85,18 @@ function togglebwsections(id) {
             $(".section").hide();
         }
         $("#section_"+id).show();
+        $("#footer").show();
     }
 }
 </script>
 
 <div id="secsel" class="right" style="font-size:.8em;">
-    <span onclick="togglebwsections(1);" class="file">Metadata</span>
+    {foreach $sectionLst as $i => $label name=sects}
+        {if $label}
+        <span onclick="togglebwsections({$i});" class="file">{$label}</span>
+        {if !$smarty.foreach.sects.last}&nbsp;|&nbsp;{/if}
+        {/if}
+    {/foreach}
 </div>
 
 <form id="form_setup" action="/Setup/post" method="POST" enctype="multipart/form-data">
@@ -119,7 +131,8 @@ function togglebwsections(id) {
     </tr>        
     </table>
 </div>
-    
+
+<div id="footer" class="section" style="display:none;">
     <div class="myhr"></div>
     <div id="ttpnfo" class="left">
         {include file='../index/ttp.phtml' bck2top='no'}
@@ -129,4 +142,5 @@ function togglebwsections(id) {
         &nbsp;or&nbsp;
         <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
     </div>
+</div>
 </form>

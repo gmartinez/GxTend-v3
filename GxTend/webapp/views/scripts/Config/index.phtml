@@ -27,6 +27,12 @@ $(document).ready(function(){
         }
     });
 
+    {if $smarty.request.secti}
+    togglebwsections({$smarty.request.secti});
+    {else}
+    $("#secsel > span:first").click();
+    {/if}
+
     $("#form_config input:text").blur(function() { checkValues(); });
     
     checkValues();
@@ -101,19 +107,22 @@ function togglebwsections(id) {
             $(".section").hide();
         }
         $("#section_"+id).show();
+        $("#footer").show();
     }
 }
 </script>
 
 <div id="secsel" class="right" style="font-size:.8em;">
-    <span onclick="togglebwsections(1);" class="file">Environment</span>&nbsp;|&nbsp;
-    {if $smarty.const.__LAYER_ROLE__ == "Server"}<span onclick="togglebwsections(2);" class="file">Server</span>&nbsp;|&nbsp;{/if}
-    <span onclick="togglebwsections(3);" class="file">Metadata</span>&nbsp;|&nbsp;
-    <span onclick="togglebwsections(4);" class="file">Programs</span>
+    {foreach $sectionLst as $i => $label name=sects}
+        {if $label}
+        <span onclick="togglebwsections({$i});" class="file">{$label}</span>
+        {if !$smarty.foreach.sects.last}&nbsp;|&nbsp;{/if}
+        {/if}
+    {/foreach}
 </div>
 
 <form id="form_config" action="/Config/post" method="POST" enctype="multipart/form-data">
-<div id="section_1" class="section">
+<div id="section_1" class="section" style="display:none;">
     <div class="myhr">Environment Properties</div>
     <table id="envproptbl" align="center" width="95%">
     {foreach $entriesLst.envvars as $prop_name => $prop_value}
@@ -206,6 +215,7 @@ function togglebwsections(id) {
     {/foreach}
 </div>
 
+<div id="footer" class="section" style="display:none;">
     <div class="myhr"></div>
     <div id="ttpnfo" class="left">
         {include file='../index/ttp.phtml' bck2top='no'}
@@ -215,6 +225,7 @@ function togglebwsections(id) {
         &nbsp;or&nbsp;
         <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
     </div>
+</div>
 </form>
 
 <div id="section_4" class="section" style="display:none;">
