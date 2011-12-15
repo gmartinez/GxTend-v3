@@ -107,7 +107,7 @@ function togglebwsections(id) {
             $(".section").hide();
         }
         $("#section_"+id).show();
-        $("#footer").show();
+
     }
 }
 </script>
@@ -215,7 +215,6 @@ function togglebwsections(id) {
     {/foreach}
 </div>
 
-<div id="footer" class="section" style="display:none;">
     <div class="myhr"></div>
     <div id="ttpnfo" class="left">
         {include file='../index/ttp.phtml' bck2top='no'}
@@ -225,7 +224,6 @@ function togglebwsections(id) {
         &nbsp;or&nbsp;
         <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
     </div>
-</div>
 </form>
 
 <div id="section_4" class="section" style="display:none;">
