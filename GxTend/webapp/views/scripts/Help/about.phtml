@@ -20,7 +20,7 @@ function getVersionStatus() {
             } else {
             var last_version = data.msg;
             }
-            $("#chknewver").text(last_version + " ( @ <strong>" + data.channel + "</strong> update channel )");
+            $("#chknewver").text(last_version + " ( @ " + data.channel + " update channel )");
             if ($("#currentver").text() != last_version) {
                 $("#chknewver").attr("style", "color:red;");
             } else {
