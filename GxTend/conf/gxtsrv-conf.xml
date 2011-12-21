@@ -9,34 +9,41 @@
 		<struct>
 		<var name='COMPUTERNAME'><string>__NEED_SETTING__</string></var>
 		<var name='PROGRAMFILES'><string>__NEED_SETTING__</string></var>
-        <var name='PROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
-        <var name='COMMONPROGRAMFILES'><string>__NEED_SETTING__</string></var>
-        <var name='COMMONPROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
+		<var name='PROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
+		<var name='COMMONPROGRAMFILES'><string>__NEED_SETTING__</string></var>
+		<var name='COMMONPROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
 		<var name='ACCENDO_BE_HOME'><string>__NEED_SETTING__</string></var>
 		<var name='MSBUILD'><string>__NEED_SETTING__</string></var>
-		<var name='UPDATE_CHANNEL'><string>master</string></var>
-        <var name='SERVER_VERSION'><string></string></var>
-        <var name='SERVER_STATUS'><string></string></var>
-		<var name='BATCH_REPO'><string>__REPO_ID__</string></var>
-		<var name='BATCH_LANG'><string>en</string></var>
-		<var name='BATCH_TOKEN'><string>e4750f707a8c9219a94e970a0c54cf03dec5d2ef</string></var>
+		<var name='UPDATE_CHANNEL'><string>__NEED_SETTING__</string></var>
 		</struct>
 	</var>
 	<!-- Environment Variables -->
+
+	<!-- Server Status -->
+	<var name='srvstat'>
+		<struct>
+        <var name='SERVER_VERSION'><string></string></var>
+        <var name='SERVER_STATUS'><string></string></var>
+        <var name='BATCH_REPO'><string>conn#1</string></var>
+        <var name='BATCH_LANG'><string>en</string></var>
+        <var name='BATCH_TOKEN'><string>e4750f707a8c9219a94e970a0c54cf03dec5d2ef</string></var>
+		</struct>
+	</var>
+	<!-- Server Status -->
 
 	<!-- GxTend Servers -->
 	<var name='gxtend_servers'>
 	<struct>
 		<!-- Server # 1 -->
-		<var name='__REPO_ID__'>
+		<var name='conn#1'>
 			<struct>
-			<var name='desc'><string>__REPO_NAME__</string></var>
+			<var name='desc'><string>__NEED_SETTING__</string></var>
 			<var name='driver'><string>Pdo_Mysql</string></var>
-			<var name='host'><string>__REPO_HOST__</string></var>
-			<var name='port'><number>__REPO_PORT__</number></var>
-			<var name='schema'><string>__REPO_SCHEMA__</string></var>
-			<var name='user'><string>__SCHEMA_USER__</string></var>
-			<var name='passwd'><string>__SCHEMA_PASS__</string></var>
+			<var name='host'><string>__NEED_SETTING__</string></var>
+			<var name='port'><number>__NEED_SETTING__</number></var>
+			<var name='schema'><string>__NEED_SETTING__</string></var>
+			<var name='user'><string>__NEED_SETTING__</string></var>
+			<var name='passwd'><string></string></var>
 			</struct>
 		</var>
 		<!-- Server # 1 -->

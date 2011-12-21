@@ -16,11 +16,11 @@ function getVersionStatus() {
         "/Help/chknewver",
         function (data, textStatus, jqXHR) {
             if (data.sts) {
-            var last_version = data.__BUILD_VERSION__ + " ( from " + data.channel + " update channel )";
+            var last_version = data.__BUILD_VERSION__;
             } else {
-            var last_version = data.msg + " ( from " + data.channel + " update channel )";
+            var last_version = data.msg;
             }
-            $("#chknewver").text(last_version);
+            $("#chknewver").text(last_version + " ( @ " + data.channel + " update channel )");
             if ($("#currentver").text() != last_version) {
                 $("#chknewver").attr("style", "color:red;");
             } else {
@@ -59,7 +59,7 @@ function getServicesStatus() {
         <li><strong>Metadata Status :</strong> 
             {if $Accendo_Smarty->getSessVar("MetaData.checksts.sts")!="ok"}            
                 <span style="color:red;">{$Accendo_Smarty->getSessVar("MetaData.checksts.msg")}</span>
-                &nbsp;<span class="pointer" onclick="mDialog('/Help/reorg', 'View/Perform Pending Metadata Changes', 480, 640);">Click here to perform changes</span>
+                &nbsp;<span class="pointer" onclick="mDialog('/Setup/reorg', 'View/Perform Pending Metadata Changes', 600, 900);">Click here to review/perform changes</span>
             {else}
                 <span style="color:green;">{$Accendo_Smarty->getSessVar("MetaData.checksts.msg")}</span>
             {/if}
@@ -103,7 +103,7 @@ function getServicesStatus() {
 </div>
 
 <div class="infoset">
-<span class="ui-state-active ui-corner-all left" style="padding:0 5px 0 5px;">Environment Information</span><span class="ui-icon ui-icon-gear pointer left" title="Click to view/set conf.xml entries" onclick="mDialog('/Conf-Xml/', 'Configuration Settings', 600, 900);"></span><br clear="all">
+<span class="ui-state-active ui-corner-all left" style="padding:0 5px 0 5px;">Environment Information</span><span class="ui-icon ui-icon-gear pointer left" title="Click to view/set configuration entries" onclick="mDialog('/Config/?secti=4', 'Configuration Settings', 600, 900);"></span><br clear="all">
     <ul>
         <li><strong>Computer Name :</strong> {$osinfo.host}</li>
         <li><strong>OS Name :</strong> {$osinfo.name}</li>
