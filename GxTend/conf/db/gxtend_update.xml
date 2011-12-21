@@ -127,8 +127,8 @@
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mantis_ifc_todoguid','',0,'Mantis - GxTend Interface','Default target ToDo for tickets from mantis','','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mantis_ifc_usrs2usrs','',0,'Mantis - GxTend Interface','Mantis - GxTend usernames correspondance as CSVs of username_in_mantis:username_in_gxtend\nLeave blank to use Mantis usernames','','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('commit_PandI','',1,'Set state of \'Push after commit\' and \'Integrate after push\' options at commit dialog.','0 _ None checked\n1 _ \'Commit after push\' checked\n2 _ Both checked','2','');
-                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('promote_async_status','',0,'Set state of \'Queue for asynchronous execution\' control promotion dialog.','eg. checked="checked"','checked="checked"','');
-                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('integrate_async_status','',1,'Set state of \'Queue for asynchronous execution\' control on client commit\'s integrate dialog.','eg. checked="checked"','checked="checked"','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('promote_async_status','',0,'Set state of \'Queue for asynchronous execution\' control promotion dialog.','eg. checked=\'checked\'','checked=\'checked\'','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('integrate_async_status','',1,'Set state of \'Queue for asynchronous execution\' control on client commit\'s integrate dialog.','eg. checked=\'checked\'','checked=\'checked\'','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('evtqueue_email_receipt','',0,'Email receipt policy on event queueing','CSV list of events you want to queue an email receipt upon queueing','','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('evtproc_email_receipt','',0,'Email receipt policy after event execution','Options are never, err_wrn or always','err_wrn','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('import_gx_order','',0,'Import order for GeneXus objects','','11,5,26,34,*','');
@@ -153,6 +153,7 @@
                 <struct>
                 <var name='eval_before'>
                 <string>
+                    $sql_sep = ';';
                 </string>
                 </var>
 

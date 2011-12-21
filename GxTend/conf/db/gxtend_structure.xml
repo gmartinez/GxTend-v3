@@ -318,8 +318,6 @@
                 <var name='eval_before'>
                 <string>
                     $sql_sep = ';';
-                    $engine = 'Sqlite';
-                    $charset = 'latin1';
                 </string>
                 </var>
 
