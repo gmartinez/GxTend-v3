@@ -51,7 +51,7 @@
                     $("#submitopts").html(data.submitopts);
                     $("#repository").removeAttr("disabled");
                     initializeButtons();
-                    if (data.submitopts == "{$smarty.const._FORM_BTN_SUBMIT_}") {
+                    if (data.showconflnk) {
                         $("#configGear").show("slow");
                     }
                 }
