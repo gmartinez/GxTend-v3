@@ -40,7 +40,7 @@
             </td>
 			<td align="left">
 			<input type="text" size="80" name="f|prmdsc" value="{$prmdsc}">
-            &nbsp;{$Accendo_Smarty->msg("HandT","prm:$prmid|")}
+            &nbsp;{$InProve_Smarty->msg("HandT","prm:$prmid|")}
             </td>
 		</tr>
 		<tr><td align="left">
@@ -71,8 +71,8 @@
                     <tbody>
                         {foreach from=$uservers key=k item=rec}
                         <tr>
-                            <td>{$Accendo_Smarty->guid2name("gxt_users",$rec.userguid)}</td>
-                            <td>{$Accendo_Smarty->cutstr($rec.prmval)}</td>
+                            <td>{$InProve_Smarty->guid2name("gxt_users",$rec.userguid)}</td>
+                            <td>{$InProve_Smarty->cutstr($rec.prmval)}</td>
                             <td>{$rec.edtlnk}</td>
                         </tr>
                         {/foreach}

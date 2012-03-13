@@ -148,11 +148,11 @@ function setChkCell(cellid,kb,obj,islast) {
             <div class="commit_holder">
             <br clear="all">
             <div class="column left">
-                <b>Id :</b> {if $smarty.request.viewport == "winforcli"}{$Accendo_Smarty->cutstr($commitId,0,7)}{else}<a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$Accendo_Smarty->cutstr($commitId,0,7)}</a>{/if}<br>
-                <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$Accendo_Smarty->cutstr($commitData.subject,0,80)}
+                <b>Id :</b> {if $smarty.request.viewport == "winforcli"}{$InProve_Smarty->cutstr($commitId,0,7)}{else}<a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$InProve_Smarty->cutstr($commitId,0,7)}</a>{/if}<br>
+                <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commitData.subject,0,80)}
             </div>
             <div class="column right">
-                <b>Commited on :</b> {$Accendo_Smarty->ts2str($commitData.commiterTs)}<br>
+                <b>Commited on :</b> {$InProve_Smarty->ts2str($commitData.commiterTs)}<br>
                 <b>Commited by :</b> {$commitData.commiter}
             </div>
             <br clear="all">
@@ -162,7 +162,7 @@ function setChkCell(cellid,kb,obj,islast) {
                     <th>Object</th>
                     <th>Modified</th>
                     {foreach $targetKbs as $kbrec}
-                    <th width="25%">{$Accendo_Smarty->guid2name("gxt_kbs",$kbrec.kbguid)}</th>
+                    <th width="25%">{$InProve_Smarty->guid2name("gxt_kbs",$kbrec.kbguid)}</th>
                     {/foreach}
                 </tr>
             </thead>
@@ -193,14 +193,14 @@ function setChkCell(cellid,kb,obj,islast) {
                 <td align="center">
                     {if $rec.status!="D"}
                     {if $rec.gxinfo.objcls!=111}
-                    <a class="pointer" style="float:left;" title="Click to download this object's version" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam}.xml">{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}</a>
-                    {$Accendo_Smarty->get_popup_link("view_source","/View-Source/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam}.xml",null,"Click to View Source","800x600","<span class='ui-icon ui-icon-search' style='float:left;margin-left:5px;'></span>")}
+                    <a class="pointer" style="float:left;" title="Click to download this object's version" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam}.xml">{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}</a>
+                    {$InProve_Smarty->get_popup_link("view_source","/View-Source/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam}.xml",null,"Click to View Source","800x600","<span class='ui-icon ui-icon-search' style='float:left;margin-left:5px;'></span>")}
                     {else}
-                    <a class="pointer" style="float:left;" title="Click to download this object's version" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam|basename}">{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}</a>
-                    {$Accendo_Smarty->get_popup_link("view_source","/View-Source/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam|basename}",null,"Click to View Source","800x600","<span class='ui-icon ui-icon-search' style='float:left;margin-left:5px;'></span>")}
+                    <a class="pointer" style="float:left;" title="Click to download this object's version" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam|basename}">{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}</a>
+                    {$InProve_Smarty->get_popup_link("view_source","/View-Source/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}&filehash={$rec.dst_hash}&filename={$rec.gxinfo.objnam|basename}",null,"Click to View Source","800x600","<span class='ui-icon ui-icon-search' style='float:left;margin-left:5px;'></span>")}
                     {/if}
                     {else}
-                    {$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+                    {$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
                     {/if}
                     {if $rec.status=="D"}
                     &nbsp;<img class="tip" alt="del" src="../img/icons/16/cleanup.png" title="Object's Status|Object was deleted during commit.<br>If marked it will be deleted from target Kb.">
@@ -229,7 +229,7 @@ function setChkCell(cellid,kb,obj,islast) {
         {if $smarty.const.__LAYER_ROLE__=="Server"}
             <img alt="queue" src="{$smarty.const._IMG_CLOCK_SM_}" title="Queue for asynchronous execution">
             &nbsp;Queue for asynchronous execution
-            &nbsp;<input type="checkbox" id="queue4exec" name="queue4exec" value="1" {$Accendo_Smarty->get_prm("promote_async_status")}>&nbsp;
+            &nbsp;<input type="checkbox" id="queue4exec" name="queue4exec" value="1" {$InProve_Smarty->get_prm("promote_async_status")}>&nbsp;
             {if $smarty.request.viewport == "winforcli"}
             <br>
             <img alt="merge" src="{$smarty.const._IMG_UNLOCK_SM_}" title="Release locks after successful import">
@@ -244,7 +244,7 @@ function setChkCell(cellid,kb,obj,islast) {
         {if $smarty.const.__LAYER_ROLE__=="Server"}
             {$smarty.const._FORM_BTN_PROMOTE_}
         {else}
-            {$Accendo_Smarty->msg("ui-icon-info", "Promotion of objects is only available in Server layer.")}
+            {$InProve_Smarty->msg("ui-icon-info", "Promotion of objects is only available in Server layer.")}
         {/if}
     </div>
 	</form>

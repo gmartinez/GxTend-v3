@@ -38,12 +38,12 @@ $(document).ready(function(){
     <tr class='{cycle values="odd,even"}'>
         {if $smarty.request.type!="history"}
             <td>&nbsp;<img src="../img/gx/objclass/{$gx_objcls[$rec.objcls].small}.png" title="{$gx_objcls[$rec.objcls].long}">&nbsp;{$rec.objnam}</td>
-            <td>&nbsp;{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
-            <td align="center">{$Accendo_Smarty->ts2str($rec.setts)}</td>
+            <td>&nbsp;{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
+            <td align="center">{$InProve_Smarty->ts2str($rec.setts)}</td>
         {else}
             <td>&nbsp;<img src="../img/gx/objclass/{$gx_objcls[$rec.objcls].small}.png" title="{$gx_objcls[$rec.objcls].long}">&nbsp;{$rec.objnam}</td>
-            <td align="center">{$Accendo_Smarty->ts2str($rec.setts)}<br>{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
-            <td align="center">{$Accendo_Smarty->ts2str($rec.unsetts)}<br>{$Accendo_Smarty->guid2name('gxt_users', $rec.unsetuserguid)}</td>
+            <td align="center">{$InProve_Smarty->ts2str($rec.setts)}<br>{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
+            <td align="center">{$InProve_Smarty->ts2str($rec.unsetts)}<br>{$InProve_Smarty->guid2name('gxt_users', $rec.unsetuserguid)}</td>
         {/if}
     </tr>
     {/foreach}
@@ -53,7 +53,7 @@ $(document).ready(function(){
 {if $smarty.request.type!="history"}
 <span id="all_history">
     <span class="file">
-    {$Accendo_Smarty->msg("ui-icon-zoomin","Click to see all locking history.")}
+    {$InProve_Smarty->msg("ui-icon-zoomin","Click to see all locking history.")}
     </span>
 </span>
 <br clear="all">

@@ -38,7 +38,7 @@
     <div class="myhr"></div>
     <div class="left">
         {if $smarty.const.__LAYER_ROLE__=="Client"}
-        {if $Accendo_Smarty->getSessVar("LoginStatus.server.status") && $upqueue}
+        {if $InProve_Smarty->getSessVar("LoginStatus.server.status") && $upqueue}
             &uarr;&nbsp;Sync Up&nbsp;<input type="checkbox" id="syncupBlogout" name="syncupBlogout" value="1" checked>
         {/if}
         {/if}

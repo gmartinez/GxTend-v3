@@ -160,7 +160,7 @@
         {assign var=field_val value=$smarty.request.field_val}
         {assign var=title_tab value=$smarty.request.title_tab}
         {assign var=parms value=['tbl'=>$tbl,'frm'=>$frm,'pkey'=>[$field_id=>$field_val]]}
-        {$Accendo_Smarty->getJsAddTab($grid_ctrlid, $parms, $title_tab)}
+        {$InProve_Smarty->getJsAddTab($grid_ctrlid, $parms, $title_tab)}
     }
     {/if}
 

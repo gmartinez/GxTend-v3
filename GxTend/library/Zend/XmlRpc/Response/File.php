@@ -62,11 +62,11 @@ class Zend_XmlRpc_Response_File extends Zend_XmlRpc_Response
         $msg = "Error generating response file.";
         $xrzfile = null;
         $xrzsize = 0;
-        $respfile = Accendo_Session::getSessVar("MyProfile.tmpdir")."/".Accendo_System::get_guid($_SERVER["REMOTE_ADDR"]);
-        $sersize = Accendo_File::save($respfile.".ser", serialize(parent::getReturnValue()));
+        $respfile = InProve_Session::getSessVar("MyProfile.tmpdir")."/".InProve_System::get_guid($_SERVER["REMOTE_ADDR"]);
+        $sersize = InProve_File::save($respfile.".ser", serialize(parent::getReturnValue()));
         if ($sersize > (1024*64)) {
             #
-            $zipStatus = Accendo_Zip::archive($respfile.".xrz", array($respfile.".ser"));
+            $zipStatus = InProve_Zip::archive($respfile.".xrz", array($respfile.".ser"));
             if ($zipStatus["sts"]!==false) {
                 $sts = true;
                 $msg = "Response file successfully generated.";

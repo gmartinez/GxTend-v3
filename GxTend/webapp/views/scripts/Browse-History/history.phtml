@@ -24,16 +24,16 @@
             <td>
             <h3>{$commitData.changes|count} change(s) commited from {$commitData.VisualId}</h3>
             <div class="column left" style="padding:1em;">
-                <b>Id :</b> <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$Accendo_Smarty->cutstr($commitId,0,7)}</a><br>
-                <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$Accendo_Smarty->cutstr($commitData.subject,0,80)}
+                <b>Id :</b> <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$InProve_Smarty->cutstr($commitId,0,7)}</a><br>
+                <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commitData.subject,0,80)}
             </div>
             <div class="column right" style="padding:1em;">
-                <b>Commited on :</b> {$Accendo_Smarty->ts2str($commitData.commiterTs)}<br>
+                <b>Commited on :</b> {$InProve_Smarty->ts2str($commitData.commiterTs)}<br>
                 <b>Commited by :</b>
-                                    {if $commitData.commiter==$Accendo_Smarty->getSessVar('MyProfile.userdata.username')}
-                                        <span class="green">{$commitData.commiter}</span> / {$Accendo_Smarty->guid2name("gxt_users",$commitData.commiter_guid)}
+                                    {if $commitData.commiter==$InProve_Smarty->getSessVar('MyProfile.userdata.username')}
+                                        <span class="green">{$commitData.commiter}</span> / {$InProve_Smarty->guid2name("gxt_users",$commitData.commiter_guid)}
                                     {else}
-                                        <span class="blue">{$commitData.commiter}</span> / {$Accendo_Smarty->guid2name("gxt_users",$commitData.commiter_guid)}
+                                        <span class="blue">{$commitData.commiter}</span> / {$InProve_Smarty->guid2name("gxt_users",$commitData.commiter_guid)}
                                     {/if}
             </div>
             </td>

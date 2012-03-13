@@ -15,14 +15,14 @@
     <div style="float:left;">
     <span onclick='var offset=$("#editlnk_xypos").offset();mDialog("/cvs/kbconf?kbguid={$kbdata.kbguid}", "Set Local Working Copy Properties", null, null, [offset.left,offset.top]);' class='file' title="Click to Set/Change Path"><strong>Path :</strong></span>
     {if $kbdata.local_kbdir}
-        {$Accendo_Smarty->cutstr($kbdata.local_kbdir,0,80)}
+        {$InProve_Smarty->cutstr($kbdata.local_kbdir,0,80)}
     {else}
-        {$Accendo_Smarty->msg("ui-icon-alert","Not Set")}
+        {$InProve_Smarty->msg("ui-icon-alert","Not Set")}
     {/if}
         <span id="editlnk_xypos"></span>
     {if $kbdata.local_kbdir}
         {if $projdata.repo_stats.ava == "!exist"}
-        &nbsp;{$Accendo_Smarty->msg("ui-icon-alert","Local Repository Not Found")}
+        &nbsp;{$InProve_Smarty->msg("ui-icon-alert","Local Repository Not Found")}
         {else}
         &nbsp;<span id="checkinlnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$projdata.projguid}", "{$kbdata.kbguid}", 0));' class='pointer'><img src='{$smarty.const._IMG_COMMIT_SM_}' alt='{$smarty.const._LBL_COMMIT_}' title='Click to See/Commit KB changes into "Local History Repo"'></span>
         {if $kbdata.kbclass>=7500}
@@ -34,7 +34,7 @@
         &nbsp;<span id="integralnk" onclick='mDialog("{$iframe_url}", "Commits Data & Promotion Status", 550, 900);' class='pointer'><img src='{$smarty.const._IMG_PROMOTE_SM_}' alt='{$smarty.const._LBL_PROMOTE_}' title='Click to promote my changes into consolidated KB'></span>
         {/if}
         {/if}
-    &nbsp;{$Accendo_Smarty->msg("HandT","Path_and_Ops.phtml")}
+    &nbsp;{$InProve_Smarty->msg("HandT","Path_and_Ops.phtml")}
     {/if}
     </div>
 
@@ -42,7 +42,7 @@
         {if $kbdata.local_kbdir}
         <input type="text" title="{$smarty.const._LBL_SEARCH_}" id="qrystr" name="qrystr" value="{$smarty.request.qrystr}" maxlength="2048" size="37">
         <input type="button" title="{$smarty.const._TITLE_SUBMIT_}" id="gobtn" name="gobtn" value="Go" onclick='$("#diffs").show("slow", show_srchres("{$projdata.projguid}", "{$kbdata.kbguid}", 1));'>
-        {$Accendo_Smarty->msg("HandT","Search_and_Lock.phtml")}
+        {$InProve_Smarty->msg("HandT","Search_and_Lock.phtml")}
         &nbsp;
         <div style="font-size:0.85em;">
         [List <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[My_Locks]");$("#gobtn").click();'>my</span> / <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[All_Locks]");$("#gobtn").click();'>all</span> active locks]&nbsp;

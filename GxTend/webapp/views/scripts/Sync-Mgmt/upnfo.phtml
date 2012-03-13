@@ -9,7 +9,7 @@
         <tr id="row_{$rec.sqlid}" class='{cycle values="odd,even"}'>
             <td><span class="pointer" onclick="$('#nfo_{$rec.sqlid}').toggle();">{$rec.sqlid}</span></td>
             <td align="center">{$rec.sqldesc}</td>
-            <td align="center">{$Accendo_Smarty->ts2str($rec.setts)}</td>
+            <td align="center">{$InProve_Smarty->ts2str($rec.setts)}</td>
             <td align="center">
             <span style="cursor:pointer;" onclick="oponEntry('del',{$rec.sqlid});"><img src="{$smarty.const._IMG_REMOVE_SM_}" title="Delete"></span>
             </td>
@@ -25,7 +25,7 @@
         {/foreach}
     </tbody>
     <tfoot>
-        <tr><td colspan="4" style="font-size:.75em;">Last Up Sync Datetime {$Accendo_Smarty->ts2str($upqueue.last_upsync_ts)}&nbsp;</td></tr>
+        <tr><td colspan="4" style="font-size:.75em;">Last Up Sync Datetime {$InProve_Smarty->ts2str($upqueue.last_upsync_ts)}&nbsp;</td></tr>
     </tfoot>
     </table>
 </div>

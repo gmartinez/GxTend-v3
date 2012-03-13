@@ -1,6 +1,6 @@
 <div id="log_promote">
     <div class="column left">
-        <strong>Target : </strong> {$Accendo_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
+        <strong>Target : </strong> {$InProve_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
         <br>
         <strong>Unlock After Import : </strong> {($logData.unlockAimport) ? "Yes" : "No"}
     </div>
@@ -36,13 +36,13 @@
             {/if}
         </td>
         <td align="center">
-            &nbsp;{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+            &nbsp;{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
             {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
             &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
             {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
             &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
             {elseif $rec.gxinfo.COMP=="OLDER"}
-            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$Accendo_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
             {/if}
             {if $rec.gxinfo.generated==1}
             &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">

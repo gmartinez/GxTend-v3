@@ -1,15 +1,15 @@
 <div style="margin:5px;">
-<strong>URL : </strong> {$Accendo_Smarty->getSessVar("MetaData.url")}
+<strong>URL : </strong> {$InProve_Smarty->getSessVar("MetaData.url")}
 </div>
 
 <div style="margin:5px;">
-<strong>Reachable : </strong> {if $Accendo_Smarty->getSessVar("LoginStatus.server.data")} <span class="green">Yes</span> {else} <span class="red">No</span>{/if}
+<strong>Reachable : </strong> {if $InProve_Smarty->getSessVar("LoginStatus.server.data")} <span class="green">Yes</span> {else} <span class="red">No</span>{/if}
 </div>
 
 <div style="margin:5px;">
 <strong>License Status : </strong>
-    {if $Accendo_Smarty->getSessVar("LoginStatus.server.data.license_status") != "__VALID_KEY__"}
-        &nbsp;<span class="red">{$Accendo_Smarty->getSessVar("LoginStatus.server.data.license_status")} - {constant($Accendo_Smarty->getSessVar("LoginStatus.server.data.license_status"))}</span>
+    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.license_status") != "__VALID_KEY__"}
+        &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.license_status")} - {constant($InProve_Smarty->getSessVar("LoginStatus.server.data.license_status"))}</span>
     {else}
         &nbsp;<span class="green">Valid license installed, no issues detected.</span>
     {/if}
@@ -17,17 +17,17 @@
 
 <div style="margin:5px;">
 <strong>Server Status : </strong>
-    {if $Accendo_Smarty->getSessVar("LoginStatus.server.data.server_status")}
-        &nbsp;<span class="red">{$Accendo_Smarty->getSessVar("LoginStatus.server.data.server_status")}</span>
+    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}
+        &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}</span>
     {else}
         &nbsp;<span class="green">Online</span>
     {/if}
 </div>
 
-{if $Accendo_Smarty->getSessVar("LoginStatus.islogged")}
+{if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
 <div style="margin:5px;">
 <strong>Auth Token Status : </strong>
-    {if $Accendo_Smarty->getSessVar("LoginStatus.server.data.token.status") != "ok"}
+    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.token.status") != "ok"}
         &nbsp;<span class="red">No Match</span>
     {else}
         &nbsp;<span class="green">Match</span>
@@ -37,9 +37,9 @@
 
 <div style="margin:5px;">
 <strong>Overall Status : </strong>
-    {if $Accendo_Smarty->getSessVar("LoginStatus.server.status")}
+    {if $InProve_Smarty->getSessVar("LoginStatus.server.status")}
     &nbsp;<img src='{$smarty.const._IMG_CONNECT_SM_}' alt='available' title='Server Status is Available'> <span class="green">Available</span>
-    {elseif !$Accendo_Smarty->getSessVar("LoginStatus.server.status")}
+    {elseif !$InProve_Smarty->getSessVar("LoginStatus.server.status")}
     &nbsp;<img src='{$smarty.const._IMG_DISCONNECT_SM_}' alt='unavailable' title='Server Status is Unavailable'> <span class="red">Unavailable</span>
     {else}
     &nbsp;<img src='{$smarty.const._IMG_WARN_SM_}' alt='undetermined' title='Server Status is Undetermined'> <span class="gray">Undetermined</span>
@@ -47,13 +47,13 @@
 </div>
 
 <div style="margin:5px;">
-<strong>GxTend Version : </strong> {$Accendo_Smarty->getSessVar("LoginStatus.server.data.build_version")}
+<strong>GxTend Version : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.build_version")}
 </div>
 
 <div style="margin:5px;">
-<strong>Server Datetime : </strong> {$Accendo_Smarty->getSessVar("LoginStatus.server.data.datetime")} (On data retrieval)
+<strong>Server Datetime : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.datetime")} (On data retrieval)
 </div>
 
 <div style="margin:5px;">
-<strong>Server Timezone : </strong> {$Accendo_Smarty->getSessVar("LoginStatus.server.data.tzname")} (GMT offset for this timezone is {$Accendo_Smarty->sec2str($Accendo_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
+<strong>Server Timezone : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.tzname")} (GMT offset for this timezone is {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
 </div>

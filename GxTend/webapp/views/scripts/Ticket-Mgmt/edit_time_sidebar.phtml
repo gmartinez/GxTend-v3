@@ -1,11 +1,11 @@
 <div>
     <p style="margin:0px;">
-    <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Time Track">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Time Tracks by")}
+    <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Time Track">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Time Tracks by")}
     <p>
     <ul style="margin-left:-10px;">
     {foreach from=$data.hoursfrom key=pos item=commenter}
         <li>
-        {$Accendo_Smarty->guid2name("gxt_users",$commenter.userguid)} [ {$commenter.number_of_times} ]<br>
+        {$InProve_Smarty->guid2name("gxt_users",$commenter.userguid)} [ {$commenter.number_of_times} ]<br>
         {if $commenter.phone}{$commenter.phone}<br>{/if}
         {if $commenter.im}{$commenter.im}<br></if>{/if}
         </li>

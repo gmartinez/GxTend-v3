@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     {include file='common_head.phtml'}
-    {if $Accendo_Smarty->getSessVar("LoginStatus.islogged")}
+    {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
     <script type="text/javascript">
     $(document).ready(function(){
 
@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="container" style="background:url('../img/main_bkg_{$smarty.const.__LAYER_ROLE__}.png') no-repeat right bottom;">
-    {if $Accendo_Smarty->getSessVar("LoginStatus.islogged")}
+    {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
 	<div id="east_panel" class="ui-layout-center">
         &nbsp;
 	</div>
