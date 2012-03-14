@@ -71,17 +71,17 @@ $(document).ready(function(){
                 &nbsp;{$rec.objnam}
                 {/if}
             </td>
-            <td>&nbsp;{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
-            <td align="center">&nbsp;{$Accendo_Smarty->ts2str($rec.setts)}</td>
+            <td>&nbsp;{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
+            <td align="center">&nbsp;{$InProve_Smarty->ts2str($rec.setts)}</td>
             <td align="center">
-                {if $rec.setuserguid==$Accendo_Smarty->getSessVar("MyProfile.userdata.userguid") || $unsetlocks}
+                {if $rec.setuserguid==$InProve_Smarty->getSessVar("MyProfile.userdata.userguid") || $unsetlocks}
                 {if $rec.b64}
                 <span id="{$rec.b64|sha1}">
                 <input class="objlst" type="checkbox" name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>
                 </span>
                 {/if}
                 {else}
-                <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}' has an active lock on this object since '{$Accendo_Smarty->ts2str($rec.setts)}'">
+                <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}' has an active lock on this object since '{$InProve_Smarty->ts2str($rec.setts)}'">
                 {/if}
             </td>
             </tr>

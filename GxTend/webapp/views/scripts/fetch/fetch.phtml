@@ -66,7 +66,7 @@ function mergeAfetch() {
     </legend>
     {if !is_array($remote_changes)}
         <br clear="all">
-        {$Accendo_Smarty->msg("ui-icon-info","None Found")}
+        {$InProve_Smarty->msg("ui-icon-info","None Found")}
         <div class="myhr"></div>
         <div id="bottom_left" class="left">
             {include file='../index/ttp.phtml'}
@@ -80,16 +80,16 @@ function mergeAfetch() {
         {foreach from=$remote_changes key=commit_id item=commit_data}        
         <br clear="all">
         <span class="column left">
-            <b>Id :</b> {$Accendo_Smarty->cutstr($commit_id,0,7)}
-            {if $commit_data.codeline == $Accendo_Smarty->getSessVar("MyProfile.userdata.username")}
+            <b>Id :</b> {$InProve_Smarty->cutstr($commit_id,0,7)}
+            {if $commit_data.codeline == $InProve_Smarty->getSessVar("MyProfile.userdata.username")}
                 &nbsp;<img class="tip" alt="merge" src="../img/icons/16/warning.png" title="Commit's Compare Status|Commit in remote personal codeline not present in local personal codeline.">
                 {assign var=commitsToMerge value=$commitsToMerge+1}
             {/if}
             <br>
-            <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$Accendo_Smarty->cutstr($commit_data.subject,0,80)}
+            <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commit_data.subject,0,80)}
         </span>
         <span class="column right" id="{$commit_id}">
-            <b>Commited on :</b> {$Accendo_Smarty->ts2str($commit_data.commiterTs)}<br>
+            <b>Commited on :</b> {$InProve_Smarty->ts2str($commit_data.commiterTs)}<br>
             <b>Commited by :</b> {$commit_data.commiter}
             <input type="hidden" name="commits[]" value="{$commit_id}">
         </span>

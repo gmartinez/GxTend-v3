@@ -60,7 +60,7 @@ function goChgPrm(mode,k,v) {
                     Path
                 </td>
                 <td align="left" class="first">
-                    {$Accendo_Smarty->cutstr($repo_stats.path,0,50)}
+                    {$InProve_Smarty->cutstr($repo_stats.path,0,50)}
                 </td>
             </tr>
             <tr>
@@ -68,7 +68,7 @@ function goChgPrm(mode,k,v) {
                     Size
                 </td>
                 <td align="left">
-                    {$Accendo_Smarty->bytes2str($repo_stats.fsysSize)}
+                    {$InProve_Smarty->bytes2str($repo_stats.fsysSize)}
                     {if $repo_stats.fsysSize}                    
                     &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_cleanup").show();' class='pointer'><img src="{$smarty.const._IMG_CLEANUP_SM_}" title="Cleanup repository."></span>
                     {if $smarty.const.__LAYER_ROLE__ == "Server"}
@@ -87,7 +87,7 @@ function goChgPrm(mode,k,v) {
                     Working Tree Size
                 </td>
                 <td align="left">
-                    {$Accendo_Smarty->bytes2str($repo_stats.fsysSizeOfWrkTree)}
+                    {$InProve_Smarty->bytes2str($repo_stats.fsysSizeOfWrkTree)}
                 </td>
             </tr>
             {/if}
@@ -118,7 +118,7 @@ function goChgPrm(mode,k,v) {
                     <strong>{$k}</strong>
                 </td>
                 <td align="left">
-                    {$Accendo_Smarty->cutstr($v,0,50)}
+                    {$InProve_Smarty->cutstr($v,0,50)}
                     <span id="{$k|sha1}" style="display:none;" onclick='goChgPrm("edt","{$k}","{$v}");' class='pointer right'><img src="{$smarty.const._IMG_EDIT_SM_}" title="Edit entry."></span>
                 </td>
             </tr>
@@ -134,7 +134,7 @@ function goChgPrm(mode,k,v) {
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="cleanup">
                     <p>
-                        {$Accendo_Smarty->msg("ui-icon-info","Aggessive cleanup of the repository might take several minutes to complete.")}
+                        {$InProve_Smarty->msg("ui-icon-info","Aggessive cleanup of the repository might take several minutes to complete.")}
                     </p>                
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
@@ -147,7 +147,7 @@ function goChgPrm(mode,k,v) {
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="updsrvnfo">
                     <p>
-                        {$Accendo_Smarty->msg("ui-icon-info","Update server's repository metadata info might take a few minutes to complete.")}
+                        {$InProve_Smarty->msg("ui-icon-info","Update server's repository metadata info might take a few minutes to complete.")}
                     </p>                
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
@@ -160,7 +160,7 @@ function goChgPrm(mode,k,v) {
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="mergerpcl">
                     <p>
-                        {$Accendo_Smarty->msg("ui-icon-info","Merge remote PCL into local PCL will align both.")}
+                        {$InProve_Smarty->msg("ui-icon-info","Merge remote PCL into local PCL will align both.")}
                     </p>                
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
@@ -171,12 +171,12 @@ function goChgPrm(mode,k,v) {
                 <form id="form_setbaseline" action="/Browse-Repos/setbaseline" method="POST" enctype="multipart/form-data" style="display:none;">
                 <input type="hidden" name="projguid" value="{$projguid}">
                     {if $repo_stats.personalBranch == "not found"}
-                        {$Accendo_Smarty->msg("ui-icon-alert","Personal Baseline Code Not Found")}
+                        {$InProve_Smarty->msg("ui-icon-alert","Personal Baseline Code Not Found")}
                         <p>
                         Set it using {$start_point} as starting point.
                         </p>
                     {else}
-                        {$Accendo_Smarty->msg("ui-icon-info","By Re-Basing your PCL you will loose any local uncommited changes you might have.")}
+                        {$InProve_Smarty->msg("ui-icon-info","By Re-Basing your PCL you will loose any local uncommited changes you might have.")}
                         <p>
                          Re-base using {$start_point} as starting point.
                         </p>
@@ -192,7 +192,7 @@ function goChgPrm(mode,k,v) {
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="chgprm">
                     <p>
-                        {$Accendo_Smarty->msg("ui-icon-info","Add/Change repository config entry.")}
+                        {$InProve_Smarty->msg("ui-icon-info","Add/Change repository config entry.")}
                     </p>
                     <p>
                         <strong>Key :</strong> <input type="input" id="prmkey" name="prmkey" size="30" value="">
@@ -216,7 +216,7 @@ function goChgPrm(mode,k,v) {
                 {if $rec.type == "local"}
                     <p>
                     Named '<b>{$rec.name}</b>' has <b>{$rec.commits}</b> commits.
-                    <br>Last performed by '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' on '<b>{$Accendo_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> entries.
+                    <br>Last performed by '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' on '<b>{$InProve_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> entries.
                     </p>
                 {/if}
             {/foreach}
@@ -227,7 +227,7 @@ function goChgPrm(mode,k,v) {
                 {if $rec.type == "remote"}
                     <p>
                     Named '<b>{$rec.name}</b>' has <b>{$rec.commits}</b> commits.
-                    <br>Last performed by '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' on '<b>{$Accendo_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> entries.
+                    <br>Last performed by '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' on '<b>{$InProve_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> entries.
                     </p>
                 {/if}
             {/foreach}

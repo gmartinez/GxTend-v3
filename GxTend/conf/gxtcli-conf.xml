@@ -12,7 +12,7 @@
 		<var name='PROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
 		<var name='COMMONPROGRAMFILES'><string>__NEED_SETTING__</string></var>
 		<var name='COMMONPROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
-		<var name='ACCENDO_BE_HOME'><string>__NEED_SETTING__</string></var>
+		<var name='INPROVE_BE_HOME'><string>__NEED_SETTING__</string></var>
 		<var name='MSBUILD'><string>__NEED_SETTING__</string></var>
 		<var name='UPDATE_CHANNEL'><string>__NEED_SETTING__</string></var>
 		</struct>

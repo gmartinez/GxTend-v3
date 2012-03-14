@@ -18,11 +18,11 @@ function execreorg(set2exec) {
 </script>
 
 <div id="reorg">
-<span style="font-size:1.5em;"><strong>Status :</strong> {$Accendo_Smarty->getSessVar("MetaData.checksts.msg")}</span>
+<span style="font-size:1.5em;"><strong>Status :</strong> {$InProve_Smarty->getSessVar("MetaData.checksts.msg")}</span>
 <div class="myhr"></div>
 
 {if !$chgcode}
- Current database structure version reports to be the same this build is set to (Version # {$Accendo_Smarty->get_prm("meta_struct_version")})
+ Current database structure version reports to be the same this build is set to (Version # {$InProve_Smarty->get_prm("meta_struct_version")})
 {/if}
 {foreach $chgcode as $dsc => $code name=changeSets}
 <div class="infoset">
@@ -53,5 +53,5 @@ function execreorg(set2exec) {
     <li>You can <span style="color:red;font-weight:bold;">monitor progress</span> by checking running processes using 'show processlist' MySql sentence.</li>
     <li>In some cases it might be a better choice to perform the above changes manually by using always present MySql shell interface or some visual stateful application (eg; MySql Workbench).</li>
 </ul>
-<p>Having an issue ? Please report to <a href="mailto:support@accendo-it.com">support@accendo-it.com</a> enclosing yours and your company name.</p>
+<p>Having an issue ? Please report to <a href="mailto:support@in-prove.com">support@in-prove.com</a> enclosing yours and your company name.</p>
 </div>

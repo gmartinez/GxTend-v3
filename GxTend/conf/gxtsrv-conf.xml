@@ -12,7 +12,7 @@
 		<var name='PROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
 		<var name='COMMONPROGRAMFILES'><string>__NEED_SETTING__</string></var>
 		<var name='COMMONPROGRAMFILES(x86)'><string>__NEED_SETTING__</string></var>
-		<var name='ACCENDO_BE_HOME'><string>__NEED_SETTING__</string></var>
+		<var name='INPROVE_BE_HOME'><string>__NEED_SETTING__</string></var>
 		<var name='MSBUILD'><string>__NEED_SETTING__</string></var>
 		<var name='UPDATE_CHANNEL'><string>__NEED_SETTING__</string></var>
 		</struct>
@@ -22,11 +22,11 @@
 	<!-- Server Status -->
 	<var name='srvstat'>
 		<struct>
-        <var name='SERVER_VERSION'><string></string></var>
-        <var name='SERVER_STATUS'><string></string></var>
-        <var name='BATCH_REPO'><string>conn#1</string></var>
-        <var name='BATCH_LANG'><string>en</string></var>
-        <var name='BATCH_TOKEN'><string>e4750f707a8c9219a94e970a0c54cf03dec5d2ef</string></var>
+		<var name='SERVER_VERSION'><string></string></var>
+		<var name='SERVER_STATUS'><string></string></var>
+		<var name='BATCH_REPO'><string>conn#1</string></var>
+		<var name='BATCH_LANG'><string>en</string></var>
+		<var name='BATCH_TOKEN'><string>e4750f707a8c9219a94e970a0c54cf03dec5d2ef</string></var>
 		</struct>
 	</var>
 	<!-- Server Status -->

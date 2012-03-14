@@ -108,7 +108,7 @@ function chgConnType() {
                     <tr style="display:none;" class="options kbver_1111 kbver_2222 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200">
                         <td style="font-weight:bold;width:30%;">Current Progress / State</td>
                         {if $versyncsts.status == "connection_failed"}
-                            <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;Error connecting to KB [ {$Accendo_Smarty->getSessVar("GxKbCnx.ecod")} : {$Accendo_Smarty->getSessVar("GxKbCnx.emsg")} ]
+                            <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;Error connecting to KB [ {$InProve_Smarty->getSessVar("GxKbCnx.ecod")} : {$InProve_Smarty->getSessVar("GxKbCnx.emsg")} ]
                         {elseif $versyncsts.status == "not_finished"}
                             <td><img src="{$smarty.const._IMG_CLOCK_SM_}" alt="progress">&nbsp;&nbsp;Last run {$versyncsts.datetime}, {$versyncsts.vers} % is versioned, and {$versyncsts.sync} % was synchronized.
                         {elseif $versyncsts.status == "sync_pending"}
@@ -116,7 +116,7 @@ function chgConnType() {
                         {elseif $versyncsts.status == "finished"}
                             <td class="green"><img src="{$smarty.const._IMG_SAVE_SM_}" alt="fully">&nbsp;&nbsp;Fully Synchronized.
                         {else}
-                            <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;{$versyncsts|print_r} [ {$Accendo_Smarty->getSessVar("GxKbCnx.ecod")} : {$Accendo_Smarty->getSessVar("GxKbCnx.emsg")} ]
+                            <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;{$versyncsts|print_r} [ {$InProve_Smarty->getSessVar("GxKbCnx.ecod")} : {$InProve_Smarty->getSessVar("GxKbCnx.emsg")} ]
                         {/if}
                         </td>
                     </tr>

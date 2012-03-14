@@ -25,9 +25,11 @@ function applyFilter(pname,pvalue) {
     {if $smarty.request.filterONtodo || $list.todosts.total.open!=0}
     {if !$smarty.request.projguid || $list.milestone.projguid==$smarty.request.projguid}
         <h2 style="cursor:pointer;text-decoration:underline;" onclick="applyFilter('todoguid','{$list.todoguid}');">{$list.todoabv}</h2>
-        <button class="button-rss" style="font-size:0.7em;" type="button" onclick="window.open('/Rss/?todoguid={$list.todoguid}&token={$Accendo_Smarty->userToken()}', '_blank');">&nbsp;&nbsp;RSS</button>
-        {if $list.milestone}
-        <strong>Related milestone:</strong> <i>{$list.milestone.mistabv}</i>, <strong>due date</strong> <i style="color:{$list.milestone.dueDateColor};">{$Accendo_Smarty->ts2str($list.milestone.mistduets, "date")}</i>
+        <button class="button-rss" style="font-size:0.7em;" type="button" onclick="window.open('/Rss/?todoguid={$list.todoguid}&token={$InProve_Smarty->userToken()}', '_blank');">&nbsp;&nbsp;RSS</button>
+        {if $list.milestone && $list.milestone.mistabv!="_LBL_GLUE_"}
+        <strong>Related milestone:</strong> <i>{$list.milestone.mistabv}</i>, <strong>due date</strong> <i style="color:{$list.milestone.dueDateColor};">{$InProve_Smarty->ts2str($list.milestone.mistduets, "date")}</i>
+        {else}
+        <i>No milestone is related to this list</i>
         {/if}
         <ul style="line-height: 2.3em;">
         {foreach from=$items_data[$list.todoguid] key=tk item=ticket}
@@ -35,9 +37,9 @@ function applyFilter(pname,pvalue) {
             <li class="entry_with_status_{$ticket.ttssts}">
                 {$ticket.ttsabv}
                 <span style="font-size:.9em;">
-                &nbsp;{$Accendo_Smarty->msg("white:back", $Accendo_Smarty->guid2name("gxt_users",$ticket.assigned_to))}
-                {if $ticket.ttsduets}&nbsp;{$Accendo_Smarty->msg("white:back", $Accendo_Smarty->ts2str($ticket.ttsduets,"date"))}{/if}
-                &nbsp;{$Accendo_Smarty->msg("green:white", $all_status[$ticket.ttssts])}
+                &nbsp;{$InProve_Smarty->msg("white:back", $InProve_Smarty->guid2name("gxt_users",$ticket.assigned_to))}
+                {if $ticket.ttsduets}&nbsp;{$InProve_Smarty->msg("white:back", $InProve_Smarty->ts2str($ticket.ttsduets,"date"))}{/if}
+                &nbsp;{$InProve_Smarty->msg("green:white", $all_status[$ticket.ttssts])}
                 &nbsp;
                 <span class="file" onclick="loadappdiv('/Ticket-Mgmt/edit?ttsguid={$ticket.ttsguid}');">
                     {if $ticket.unseen}
@@ -54,7 +56,7 @@ function applyFilter(pname,pvalue) {
                 {if $list.grants.rw}
                 <button class="button-add" style="font-size:0.8em;" type="button" onclick="loadappdiv('/Ticket-Mgmt/edit?todoguid={$list.todoguid}&form_mode={$smarty.const._LBL_ADD_}');">&nbsp;&nbsp;Add Ticket</button>&nbsp;&nbsp;
                 {else}
-                {$Accendo_Smarty->msg("#efefef:black", "Read Only Access")}&nbsp;&nbsp;
+                {$InProve_Smarty->msg("#efefef:black", "Read Only Access")}&nbsp;&nbsp;
                 {/if}
             </div>
         {if !$smarty.request.filterONuser && !$smarty.request.filterONduets}
@@ -62,7 +64,7 @@ function applyFilter(pname,pvalue) {
             {if !$ticket.open}
             <li class="entry_with_status_{$ticket.ttssts}" style="color: #999; font-size:0.8em;">
                 {$ticket.ttsabv}
-                &nbsp;{$Accendo_Smarty->msg("#efefef:black", $all_status[$ticket.ttssts])}
+                &nbsp;{$InProve_Smarty->msg("#efefef:black", $all_status[$ticket.ttssts])}
                 &nbsp;
                 <span class="file" onclick="loadappdiv('/Ticket-Mgmt/edit?ttsguid={$ticket.ttsguid}');">
                     {if $ticket.unseen}
@@ -139,7 +141,7 @@ function applyFilter(pname,pvalue) {
             <ul style="padding-left:1.5em;list-style-type:square;">
             {foreach from=$lists_data key=lk item=list}
                 {if $list.todosts.total.open!=0 || ($list.todosts.total.open==0 && $list.todosts.total.close==0)}
-                <li class="file" onclick="applyFilter('todoguid','{$list.todoguid}');">{$Accendo_Smarty->cutstr($list.todoabv)}</li>
+                <li class="file" onclick="applyFilter('todoguid','{$list.todoguid}');">{$InProve_Smarty->cutstr($list.todoabv)}</li>
                 {/if}
             {/foreach}
             </ul>
@@ -150,7 +152,7 @@ function applyFilter(pname,pvalue) {
             <ul style="padding-left:1.5em;list-style-type:square;">
             {foreach from=$lists_data key=lk item=list}
                 {if $list.todosts.total.open==0 && $list.todosts.total.close!=0}
-                <li class="file" onclick="applyFilter('todoguid','{$list.todoguid}');">{$Accendo_Smarty->cutstr($list.todoabv)}</li>
+                <li class="file" onclick="applyFilter('todoguid','{$list.todoguid}');">{$InProve_Smarty->cutstr($list.todoabv)}</li>
                 {/if}
             {/foreach}
             </ul>

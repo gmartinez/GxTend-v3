@@ -176,7 +176,7 @@ function go_for_lock(type) {
     <div class="myhr"></div>
 
     {if !is_array($local_changes)}
-        {$Accendo_Smarty->msg("ui-icon-alert", $local_changes)}
+        {$InProve_Smarty->msg("ui-icon-alert", $local_changes)}
     {else}
 
         <div class="column left">
@@ -216,18 +216,18 @@ function go_for_lock(type) {
                 </td>
                 <td>
                     &nbsp;{$rec.gxinfo.objdsc|utf8_encode}
-                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid == $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
-                    &nbsp;<img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="Object's Lock Status|You have an active lock on this object since '{$Accendo_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid == $InProve_Smarty->getSessVar("MyProfile.userdata.userguid")}
+                    &nbsp;<img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="Object's Lock Status|You have an active lock on this object since '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
                     {/if}
                 </td>
                 <td align="center">
-                    &nbsp;{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+                    &nbsp;{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
                     {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
                     &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
                     {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
                     &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
                     {elseif $rec.gxinfo.COMP=="OLDER"}
-                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$Accendo_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
                     {/if}
                     {if $rec.gxinfo.generated==1}
                     &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
@@ -236,8 +236,8 @@ function go_for_lock(type) {
                     {/if}
                 </td>
                 <td align="center">
-                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid != $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
-                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$Accendo_Smarty->guid2name('gxt_users', $rec.gxinfo.lock.setuserguid)}' has an active lock on this object since '{$Accendo_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid != $InProve_Smarty->getSessVar("MyProfile.userdata.userguid")}
+                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$InProve_Smarty->guid2name('gxt_users', $rec.gxinfo.lock.setuserguid)}' has an active lock on this object since '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
                     {else}
                         {if $rec.b64}
                         <span id="{$rec.b64|sha1}">
@@ -276,7 +276,7 @@ function go_for_lock(type) {
             <div class="myhr"></div>
 
             <div id="addcomm" class="newitm" style="padding:10px 0;">
-                <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+                <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
                 <div style="margin-left:60px;">
                     <div style="float:left;">
                         <strong>Commenting on your commits is usually a good idea...</strong>
@@ -287,7 +287,7 @@ function go_for_lock(type) {
                         <div id="assoc_tickets">
                         </div>
                     <div class="myhr"></div>
-                    {if $Accendo_Smarty->getSessVar("LoginStatus.server.status")}
+                    {if $InProve_Smarty->getSessVar("LoginStatus.server.status")}
                         {if $project.remo_repo_stats.ava == "open"}
                             {if $project.repo_stats.ava == "open"}
                                 <img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title='Select to Push after commit.'>
@@ -304,10 +304,10 @@ function go_for_lock(type) {
 
                             {/if}
                         {else}
-                            &nbsp;{$Accendo_Smarty->msg("ui-icon-info","Push after commit not available as remote repository is not open")}
+                            &nbsp;{$InProve_Smarty->msg("ui-icon-info","Push after commit not available as remote repository is not open")}
                         {/if}
                     {else}
-                        &nbsp;{$Accendo_Smarty->msg("ui-icon-info","Push after commit not available as server is not online")}
+                        &nbsp;{$InProve_Smarty->msg("ui-icon-info","Push after commit not available as server is not online")}
                     {/if}
                     </div>
                 </div>

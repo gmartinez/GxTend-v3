@@ -41,10 +41,10 @@ $(document).ready(function(){
     <div style="margin-left:60px;">
     <div style="margin:0 0 5px;">
         <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Time Track">&nbsp;
-        <strong>{$Accendo_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$Accendo_Smarty->ts2str($item.data.added_on)}
+        <strong>{$InProve_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$InProve_Smarty->ts2str($item.data.added_on)}
     </div>
     <div class="{$hours_type}" style="margin:0 0 5px; font-size:1.1em;">
-        <p><strong>{$item.ttentry.hours}</strong> hour(s) of <strong>'{$item.ttentry.hours_type_desc}'</strong> on {$Accendo_Smarty->ts2str($item.ttentry.date,'date')}</p>
+        <p><strong>{$item.ttentry.hours}</strong> hour(s) of <strong>'{$item.ttentry.hours_type_desc}'</strong> on {$InProve_Smarty->ts2str($item.ttentry.date,'date')}</p>
         {if $item.ttentry.notes}<p><strong>Notes :</strong> {$item.ttentry.notes}</p>{/if}
     </div>
     </div>
@@ -52,7 +52,7 @@ $(document).ready(function(){
 {/foreach}
 
 <div id="addtime" style="padding:10px 0;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
     <div style="font-size:0.8em;float:right;">
         {if count($ticket_items)}
         <a href="javascript:;" class="toggleTimeDet" onclick="$('.hours_detail').toggle();$('.toggleTimeDet').toggle();" style="display:inline;">Toggle to Full Details</a>
@@ -61,7 +61,7 @@ $(document).ready(function(){
     </div>
     <div style="margin-left:60px;">
         <div style="float:left;">
-            <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Track Time">&nbsp;{$Accendo_Smarty->msg("#efefef:orange", "Add time entry...")}
+            <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Track Time">&nbsp;{$InProve_Smarty->msg("#efefef:orange", "Add time entry...")}
         </div>
         
         <div style="clear:both;float:left;width:70%;">
@@ -70,7 +70,7 @@ $(document).ready(function(){
             <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
             <input type="hidden" name="itmtyp" value="timetrack">
             <input type="hidden" name="options" value="{$options}">
-                &nbsp;Date <input type="text" size="10" id="timetrack_date" name="timetrack_date" value="{$Accendo_Smarty->ts2str($smarty.now,'date')}" readonly="readonly">
+                &nbsp;Date <input type="text" size="10" id="timetrack_date" name="timetrack_date" value="{$InProve_Smarty->ts2str($smarty.now,'date')}" readonly="readonly">
                 <p>
                 &nbsp;Type {$timetrack_hours_type}
                 &nbsp;Hours <input type="text" size="6" id="timetrack_hours" name="timetrack_hours" value="" class="number required"> (eg. 2.5)
@@ -86,7 +86,7 @@ $(document).ready(function(){
                 </div>
             </form>
         {else}
-            &nbsp;{$Accendo_Smarty->msg("ui-icon-info", "Read only access.")}
+            &nbsp;{$InProve_Smarty->msg("ui-icon-info", "Read only access.")}
         {/if}
         </div>
 
@@ -95,7 +95,7 @@ $(document).ready(function(){
             {foreach $data.total_time_on as $typedsc => $sumtime}
             <p>&nbsp;<strong>Total on {$typedsc} : </strong>{$sumtime}</p>
             {/foreach}
-            <p style="font-size:1.25em;">&nbsp;<strong style="color:green;">&sum; : </strong> {$Accendo_Smarty->msg("green:white", $data.total_time)} hour(s)</p>
+            <p style="font-size:1.25em;">&nbsp;<strong style="color:green;">&sum; : </strong> {$InProve_Smarty->msg("green:white", $data.total_time)} hour(s)</p>
         </div>
         {/if}        
     </div>

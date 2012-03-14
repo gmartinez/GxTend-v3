@@ -83,7 +83,7 @@
         {if $pagerVisible != "false"}
         <div id="pager_{$grid_ctrlid}" class="scroll pager"></div>
         {/if}
-        {if $Accendo_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
+        {if $InProve_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
         <div id="dbug_{$grid_ctrlid}" class="grid-debug" onclick="dbugGrid('{$grid_ctrlid}');">Click for debugging info.&nbsp;</div>
         {/if}
         <!-- Grid Control -->

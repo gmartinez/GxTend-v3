@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     {include file='common_head.phtml'}
-    {if $Accendo_Smarty->getSessVar("LoginStatus.islogged")}
+    {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
     <script type="text/javascript">
     $(document).ready(function(){
         $('body > #container').layout({
@@ -72,19 +72,19 @@
         {/if}
 
 		$("#west_panel").load(
-                            "/menu/?id=west #{$Accendo_Smarty->getSessVar('MyProfile.westpanel.menuid')}",
+                            "/menu/?id=west #{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')}",
                             null,
                             function (responseText, textStatus, XMLHttpRequest) {
                                 if (responseText) {
-                                    $("#{$Accendo_Smarty->getSessVar('MyProfile.westpanel.menuid')}").jstree({
+                                    $("#{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')}").jstree({
                                         "plugins" : [ "html_data", "ui", "cookies", "themeroller" ],
                                         "themeroller" : {
                                             "opened" : "ui-icon-folder-open",
                                             "closed" : "ui-icon-folder-collapsed"
                                         }
                                     }).bind("loaded.jstree", function (event, data) { 
-                                    {if $Accendo_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
-                                        $("#{$Accendo_Smarty->getSessVar('MyProfile.westpanel.menuid')} .dbgtoolsmnu").show();
+                                    {if $InProve_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
+                                        $("#{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')} .dbgtoolsmnu").show();
                                     {/if}
                                     });
                                 } else {
@@ -162,7 +162,7 @@
 </head>
 <body>
 <div id="container" style="background:url('../img/main_bkg_{$smarty.const.__LAYER_ROLE__}.png') no-repeat right bottom;">
-    {if $Accendo_Smarty->getSessVar("LoginStatus.islogged")}
+    {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
 	<div id="header" class="ui-layout-north">
             <div id="header-left">
                 <a href="/"><img src="../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png" alt="GxTend" title="GxTend Home"></a>
@@ -189,7 +189,7 @@
 			<div id="footer-inner">
 				<div id="footerlog">
                     <div id="srvidname" style="float:left;">
-                    <img src="../img/icons/16/server.png" alt="GxTend Server" title="GxTend server you are working with"> {$Accendo_Smarty->getSessVar("MetaData.desc")}
+                    <img src="../img/icons/16/server.png" alt="GxTend Server" title="GxTend server you are working with"> {$InProve_Smarty->getSessVar("MetaData.desc")}
                     </div>
                     {if $smarty.const.__LAYER_ROLE__=="Client"}
                     <div id="srvstatus" style="float:left;"></div>
@@ -199,7 +199,7 @@
                     {/if}
 				</div>
 				<div id="copyright">
-					&copy; 2005-{$smarty.now|date_format:'%Y'} Accendo
+					&copy; 2005-{$smarty.now|date_format:'%Y'} InProve
 				</div>
 			</div>
 	</div>

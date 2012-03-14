@@ -6,10 +6,10 @@ History of <span class="green">{$file_relative_name}</span>
 <tbody>
     {foreach from=$file_vers key=k item=rec}
         <tr>
-        <td align="center">{$Accendo_Smarty->ts2str($rec.timestamp)}</td>
+        <td align="center">{$InProve_Smarty->ts2str($rec.timestamp)}</td>
         <td align="center">{$rec.status}</td>
         <td align="center">
-            {$Accendo_Smarty->cutstr($rec.dst_hash,0,7)}
+            {$InProve_Smarty->cutstr($rec.dst_hash,0,7)}
             &nbsp;<a href="/Http/gitfile?filename={$rec.b64filename}&filehash={$rec.dst_hash}"><img src="{$smarty.const._IMG_DOWNLOAD_SM_}" title="{$smarty.const._LBL_DOWNLOAD_}"></a>
         </td>
         </tr>

@@ -78,8 +78,8 @@ $(document).ready(function(){
         'checkScript': '/Upload/check?options={$options}',
         'multi': true,
         'auto': true,
-        'sizeLimit': {$Accendo_Smarty->get_prm("upload_maxsize")},
-        'simUploadLimit': {$Accendo_Smarty->get_prm("upload_maxsimu")},
+        'sizeLimit': {$InProve_Smarty->get_prm("upload_maxsize")},
+        'simUploadLimit': {$InProve_Smarty->get_prm("upload_maxsimu")},
         'fileDesc': 'All Files',
         'fileExt': '*.*',
         'buttonText': 'Attach File(s)',
@@ -118,7 +118,7 @@ $(document).ready(function(){
 
     function chgReponsible() {
 
-        if ($("#assigned_to").val() != "{$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}") {
+        if ($("#assigned_to").val() != "{$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}") {
             $("#notify_resp_area").show();
             $("#notify_responsible").prop("checked", true);
         } else {
@@ -165,10 +165,10 @@ $(document).ready(function(){
         </div>
         <div style="float:right;">
             <b>Severity</b> : <span id="read_ttspri"></span>
-            <b>Due date</b> : {$Accendo_Smarty->ts2str($data.ttsduets,'date')}&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="button-rss" type="button" onclick="window.open('/Rss/?ttsguid={$smarty.request.ttsguid}&token={$Accendo_Smarty->userToken()}', '_blank');" style="float:right;font-size:.7em;">&nbsp;&nbsp;RSS</button>
+            <b>Due Date</b> : {$InProve_Smarty->ts2str($data.ttsduets,'date')}&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="button-rss" type="button" onclick="window.open('/Rss/?ttsguid={$smarty.request.ttsguid}&token={$InProve_Smarty->userToken()}', '_blank');" style="float:right;font-size:.7em;">&nbsp;&nbsp;RSS</button>
             <br>
-            <b>Responsible</b> : <span id="read_assigned_to"></span><br>
+            <b>Assigned To</b> : <span id="read_assigned_to"></span><br>
             <b>Status</b> : <span id="read_ttssts"></span>&nbsp;|&nbsp;<span id="read_ttspercent"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="button-edit" type="button" onclick="$('.header_data').toggle();" style="float:right;font-size:.7em;">&nbsp;&nbsp;Edit</button>
         </div>
@@ -197,14 +197,14 @@ $(document).ready(function(){
                 <b>Severity</b>&nbsp;{$data.ttspri}
                 </p>
                 <p>
-                <b>Due date</b>&nbsp;<input type="text" size="12" id="ttsduets" name="ttsduets" value="{$Accendo_Smarty->ts2str($data.ttsduets,'date')}" readonly="readonly">
+                <b>Due Date</b>&nbsp;<input type="text" size="12" id="ttsduets" name="ttsduets" value="{$InProve_Smarty->ts2str($data.ttsduets,'date')}" readonly="readonly">
                 </p>
                 <p>
-                <b>Responsible</b>&nbsp;{$data.assigned_to}
+                <b>Assigned To</b>&nbsp;{$data.assigned_to}
                 <span id="notify_resp_area" style="display:none;">
                     <p>
                     <input type="checkbox" name="notify_responsible" id="notify_responsible" value="1">
-                    Notify new responsible user via email ?
+                    Notify assignee via email ?
                     </p>
                 </span>
                 </p>

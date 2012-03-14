@@ -34,7 +34,7 @@
 			User
 		</td>
 		<td align="left">
-			{$Accendo_Smarty->guid2name("gxt_users",$record.userguid)}
+			{$InProve_Smarty->guid2name("gxt_users",$record.userguid)}
 		</td>
 	</tr>
     <tr>
@@ -50,7 +50,7 @@
 			Queue -> Start -> Finish
 		</td>
 		<td align="left">
-			{$Accendo_Smarty->ts2str($record.queue_time)} -> {$Accendo_Smarty->ts2str($record.ini_time)} -> {$Accendo_Smarty->ts2str($record.end_time)}
+			{$InProve_Smarty->ts2str($record.queue_time)} -> {$InProve_Smarty->ts2str($record.ini_time)} -> {$InProve_Smarty->ts2str($record.end_time)}
 		</td>
 	</tr>
     <tr>
@@ -58,7 +58,7 @@
 			Current Status / TTP
 		</td>
 		<td align="left">
-			{$record.status} / {$Accendo_Smarty->sec2str($record.end_time - $record.ini_time)}
+			{$record.status} / {$InProve_Smarty->sec2str($record.end_time - $record.ini_time)}
 		</td>
 	</tr>
     </table>
@@ -77,10 +77,10 @@
         </div>
         {/if}
         <div id="tab-2">
-            {$Accendo_Smarty->dBug($record.inoutlog.in)}
+            {$InProve_Smarty->dBug($record.inoutlog.in)}
         </div>
         <div id="tab-3">
-            {$Accendo_Smarty->dBug($record.inoutlog.out)}
+            {$InProve_Smarty->dBug($record.inoutlog.out)}
         </div>
     </div>
 </body>

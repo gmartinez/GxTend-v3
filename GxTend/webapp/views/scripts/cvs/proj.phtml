@@ -35,7 +35,7 @@ function buildLR(projguid) {
     <div style="float:left;">
     <strong>&nbsp;Local Repo.:&nbsp;</strong>
     {if $project.repo_stats.ava == "!exist"}
-        {$Accendo_Smarty->msg("ui-icon-alert","Not Found")}
+        {$InProve_Smarty->msg("ui-icon-alert","Not Found")}
         {if $project.remo_repo_stats.ava == "open" || $project.remo_repo_stats.ava == "read"}
         &nbsp;<span onclick='if(confirm("Confirm repository creation ?")) { buildLR("{$project.projguid}"); }' class='pointer'><img src="{$smarty.const._IMG_DOWNLOAD_SM_}" title="Click to build project repository local instance"></span>
         {/if}

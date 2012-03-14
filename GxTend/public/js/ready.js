@@ -1,6 +1,6 @@
 /**
- * @author gmartinez@accendo-it.com
- * @copyright Accendo-IT
+ * @author gonzalo@in-prove.com
+ * @copyright InProve
  */
 
 var _MSG_WAIT_SM_ = "<span class='msg_wait small'> Just a moment...</span>";

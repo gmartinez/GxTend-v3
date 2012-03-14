@@ -87,7 +87,7 @@ function loadTickets() {
     <br clear="all">
 
     {if !is_array($local_changes)}
-        {$Accendo_Smarty->msg("ui-icon-alert", $local_changes)}
+        {$InProve_Smarty->msg("ui-icon-alert", $local_changes)}
     {else}
         <form id="form_promote" action="/Comp-Kbs/promote" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="left_projguid" value="{$left_projguid}">
@@ -116,13 +116,13 @@ function loadTickets() {
                     &nbsp;{$rec.gxinfo.objdsc|utf8_encode}
                 </td>
                 <td align="center">
-                    &nbsp;{$Accendo_Smarty->ts2str($rec.gxinfo.objupdts)}
+                    &nbsp;{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
                     {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
                     &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
                     {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
                     &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
                     {elseif $rec.gxinfo.COMP=="OLDER"}
-                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$Accendo_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
                     {/if}
                     {if $rec.gxinfo.generated==1}
                     &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
@@ -131,10 +131,10 @@ function loadTickets() {
                     {/if}
                 </td>
                 <td align="center">
-                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid == $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
-                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="Object's Lock Status|You have an active lock on this object since '{$Accendo_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
-                    {elseif $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid != $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
-                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$Accendo_Smarty->guid2name('gxt_users', $rec.gxinfo.lock.setuserguid)}' has an active lock on this object since '{$Accendo_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid == $InProve_Smarty->getSessVar("MyProfile.userdata.userguid")}
+                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="Object's Lock Status|You have an active lock on this object since '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    {elseif $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid != $InProve_Smarty->getSessVar("MyProfile.userdata.userguid")}
+                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$InProve_Smarty->guid2name('gxt_users', $rec.gxinfo.lock.setuserguid)}' has an active lock on this object since '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
                     {else}
                         {if $rec.b64}
                         <span id="{$rec.b64|sha1}">
@@ -154,7 +154,7 @@ function loadTickets() {
 
             <p id="flow-desc">
             <strong>Promotion Flow</strong><br>
-            &nbsp;&nbsp;&nbsp;{$Accendo_Smarty->guid2name('gxt_kbs', $smarty.request.left_kbguid)} <span style="font-size:2em;line-height:1em;">&nbsp;»&nbsp;</span> {$Accendo_Smarty->guid2name('gxt_kbs', $smarty.request.right_kbguid)}
+            &nbsp;&nbsp;&nbsp;{$InProve_Smarty->guid2name('gxt_kbs', $smarty.request.left_kbguid)} <span style="font-size:2em;line-height:1em;">&nbsp;»&nbsp;</span> {$InProve_Smarty->guid2name('gxt_kbs', $smarty.request.right_kbguid)}
             </p>
             <p id="promo-opts">
             <strong>Promotion Options</strong><br>
@@ -167,12 +167,12 @@ function loadTickets() {
             </p>
             <p id="exec-opts">
             <strong>Execution Options</strong><br>
-            &nbsp;&nbsp;<img alt="queue" src="{$smarty.const._IMG_CLOCK_SM_}" title="Queue for asynchronous execution"> Queue for asynchronous execution <input type="checkbox" id="queue4exec" name="queue4exec" value="1" {$Accendo_Smarty->get_prm("promote_async_status")}>
+            &nbsp;&nbsp;<img alt="queue" src="{$smarty.const._IMG_CLOCK_SM_}" title="Queue for asynchronous execution"> Queue for asynchronous execution <input type="checkbox" id="queue4exec" name="queue4exec" value="1" {$InProve_Smarty->get_prm("promote_async_status")}>
             </p>
 
             <div id="addcomm" class="newitm" style="padding:10px 0;">        
             <div class="myhr"></div>
-                <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+                <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
                 <div style="margin-left:60px;">
                     <div style="float:left;vertical-align:top;width:60%;">
                         <strong>You may want to add a blog entry to the selected tickets...</strong>

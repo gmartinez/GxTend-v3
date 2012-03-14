@@ -18,7 +18,7 @@ $(document).ready(function(){
         <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$change.changed_by}" alt="User Image">
         <div style="margin-left:50px;">
         <div style="float:right;">
-            <strong>{$Accendo_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$Accendo_Smarty->ts2str($change.changed_on)}
+            <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}
         </div>
         <div style="text-align:left;">
             {if $change.change_dsc=="insert"}
@@ -38,7 +38,7 @@ $(document).ready(function(){
                     {/if}
             {elseif $change.change_dsc=="update"}
                 <strong>Description :</strong> Change ticket property <span class="blue">'{$change.change_update_dsc}'</span>.<br>
-                <strong>From &rarr; To :</strong> {$Accendo_Smarty->cutstr($change.change_old)} <strong>&rarr;</strong> {$Accendo_Smarty->cutstr($change.change_new)|default:'<span class="red">void</span>'}
+                <strong>From &rarr; To :</strong> {$InProve_Smarty->cutstr($change.change_old)} <strong>&rarr;</strong> {$InProve_Smarty->cutstr($change.change_new)|default:'<span class="red">void</span>'}
             {else}
                 {$change.change_dsc} : {$change.change_old} -> {$change.change_new}
             {/if}
@@ -63,7 +63,7 @@ $(document).ready(function(){
         <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$change.changed_by}" alt="User Image">
         <div style="margin-left:50px;">
         <div style="float:right;">
-            <strong>{$Accendo_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$Accendo_Smarty->ts2str($change.changed_on)}
+            <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}
         </div>
         <div style="text-align:left;">
             <strong>Description :</strong> Open/View ticket.
@@ -81,12 +81,12 @@ $(document).ready(function(){
         <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$change.changed_by}" alt="User Image">
         <div style="margin-left:50px;">
         <div style="float:right;">
-            <strong>{$Accendo_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$Accendo_Smarty->ts2str($change.changed_on)}
+            <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}
         </div>
         <div style="text-align:left;">
             <strong>Description :</strong> Email notification issued.
             {if $smarty.const.__LAYER_ROLE__ == "Server"}
-            &nbsp;{$Accendo_Smarty->get_popup_link("email_read","/Email-Mgmt/read?emguid={$change.emguid}","uii|ui-icon-extlink","Click to Open","640x480")}
+            &nbsp;{$InProve_Smarty->get_popup_link("email_read","/Email-Mgmt/read?emguid={$change.emguid}","uii|ui-icon-extlink","Click to Open","640x480")}
             {/if}
         </div>
         </div>
