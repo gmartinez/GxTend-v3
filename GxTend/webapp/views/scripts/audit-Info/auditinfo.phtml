@@ -34,7 +34,7 @@
 			User
 		</td>
 		<td align="left">
-			{$Accendo_Smarty->guid2name("gxt_users",$record.userguid)}
+			{$InProve_Smarty->guid2name("gxt_users",$record.userguid)}
 		</td>
 	</tr>
     <tr>
@@ -42,7 +42,7 @@
 			Datetime
 		</td>
 		<td align="left">
-			{$Accendo_Smarty->ts2str($record.timestamp)}
+			{$InProve_Smarty->ts2str($record.timestamp)}
 		</td>
 	</tr>
     <tr>
@@ -69,10 +69,10 @@
         </div>
         {/if}
         <div id="tab-2">
-            {$Accendo_Smarty->dBug($record.logtxt)}
+            {$InProve_Smarty->dBug($record.logtxt)}
         </div>
         <div id="tab-3">
-            {$Accendo_Smarty->dBug($record.prcdmp.PS_STAT)}
+            {$InProve_Smarty->dBug($record.prcdmp.PS_STAT)}
         </div>
     </div>
 

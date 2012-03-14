@@ -57,12 +57,12 @@ $(document).ready(function(){
         <div style="margin-left:60px;">
         <div style="margin:0 0 5px;">
             <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;
-            <strong>{$Accendo_Smarty->guid2name("gxt_users",$commits_info.$commitId.userguid)}</strong>, {$Accendo_Smarty->ts2str($commiterTs)}
+            <strong>{$InProve_Smarty->guid2name("gxt_users",$commits_info.$commitId.userguid)}</strong>, {$InProve_Smarty->ts2str($commiterTs)}
         </div>
         <div style="margin:0 0 5px; font-size:1.1em;">
             <p>
             <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">
-            {$Accendo_Smarty->cutstr($commitId,0,7)}
+            {$InProve_Smarty->cutstr($commitId,0,7)}
             </a>
             &nbsp;{$commits_info.$commitId.subject}
             </p>
@@ -70,7 +70,7 @@ $(document).ready(function(){
         </div>
     </div>
     {/foreach}
-    <div class="left" style="margin-top:5px;font-size:.8em">Info gathered at {$gather.layer} layer on {$Accendo_Smarty->ts2str($gather.start)}</div>
+    <div class="left" style="margin-top:5px;font-size:.8em">Info gathered at {$gather.layer} layer on {$InProve_Smarty->ts2str($gather.start)}</div>
     {if count($commits_list)>3}
     <div class="right" style="margin-top:5px;font-size:.8em">
     <a href="javascript:;" class="older_commits" style="float:right;display:none;" onclick="$('.older_commits').toggle();">See only last 3 commits</a>

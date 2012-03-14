@@ -2,15 +2,15 @@
 <rss version='2.0'>
 <channel>
     <title>GxTend's Ticket : {$ticketData.ttsabv}</title>
-    <description>Related Milestone : {$mistData.mistabv} due to {$Accendo_Smarty->ts2str($mistData.mistduets, "date")}</description>
-    <link>http://gxtend.accendo-it.com</link>
+    <description>Related Milestone : {$mistData.mistabv} due to {$InProve_Smarty->ts2str($mistData.mistduets, "date")}</description>
+    <link>http://gxtend.in-prove.com</link>
     <lastBuildDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</lastBuildDate>
     <pubDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</pubDate>
-    <copyright>&copy; 2005-{$smarty.now|date_format:'%Y'} Accendo</copyright>
+    <copyright>&copy; 2005-{$smarty.now|date_format:'%Y'} InProve</copyright>
     <image>
         <title>GxTend - Rss Feed</title>
         <url>../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png</url>
-        <link>http://gxtend.accendo-it.com</link>
+        <link>http://gxtend.in-prove.com</link>
     </image>
 
     {foreach from=$ticketItems key=ik item=titem}
@@ -30,7 +30,7 @@
 
             <p align="right">
             {foreach from=$titem.atchs key=fi item=file}
-            <br><img src="../img/icons/16/mail-attachment.png">&nbsp;<a href="javascript:;" title="Download not available from RSS feed">{$file.file_name} [{$Accendo_Smarty->bytes2str($file.file_size)}]</a>
+            <br><img src="../img/icons/16/mail-attachment.png">&nbsp;<a href="javascript:;" title="Download not available from RSS feed">{$file.file_name} [{$InProve_Smarty->bytes2str($file.file_size)}]</a>
             {/foreach}
             </p>
             ]]>

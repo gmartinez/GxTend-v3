@@ -34,7 +34,7 @@ $(document).ready(function(){
 		}
 	});
 
-    $("#form_{$form_ctrlid} input:visible:first").focus();
+    $("#form_{$form_ctrlid} :input:visible:first").focus();
 
 });
 </script>

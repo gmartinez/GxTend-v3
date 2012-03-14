@@ -9,14 +9,14 @@
         {if $rec.dnsync_sts == "outdated"}
         <tr class='{cycle values="odd,even"}'>
             <td>{$rec.TABLE_NAME}</td>
-            <td align="center">{$Accendo_Smarty->bytes2str($rec.DATA_LENGTH)}</td>
-            <td align="center">{$Accendo_Smarty->ts2str($rec.UPDATE_TIMESTAMP)}</td>
+            <td align="center">{$InProve_Smarty->bytes2str($rec.DATA_LENGTH)}</td>
+            <td align="center">{$InProve_Smarty->ts2str($rec.UPDATE_TIMESTAMP)}</td>
         </tr>
         {/if}
         {/foreach}
     </tbody>
     <tfoot>
-        <tr><td colspan="3" style="font-size:.75em;">Last Dn Sync Datetime {$Accendo_Smarty->ts2str($dnqueue.last_dnsync_ts)}&nbsp;</td></tr>
+        <tr><td colspan="3" style="font-size:.75em;">Last Dn Sync Datetime {$InProve_Smarty->ts2str($dnqueue.last_dnsync_ts)}&nbsp;</td></tr>
     </tfoot>
     </table>
 </div>

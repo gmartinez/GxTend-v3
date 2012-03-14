@@ -69,8 +69,8 @@ $(document).ready(function(){
             {foreach from=$resultset key=k item=rec}
             <tr class='{cycle values="odd,even"}'>
             <td>&nbsp;<img src="../img/gx/objclass/{$gx_objcls[$rec.objcls].small}.png" title="{$gx_objcls[$rec.objcls].long}">&nbsp;{$rec.objnam}</td>
-            <td>&nbsp;{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
-            <td align="center">&nbsp;{$Accendo_Smarty->ts2str($rec.setts)}</td>
+            <td>&nbsp;{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}</td>
+            <td align="center">&nbsp;{$InProve_Smarty->ts2str($rec.setts)}</td>
             <td align="center">
             {if $setilist}
                 {if $rec.b64}
@@ -79,7 +79,7 @@ $(document).ready(function(){
                 </span>
                 {/if}
             {else}
-                <img class="tip" alt="listed" src="{$smarty.const._IMG_IGNORE_SM_}" title="Object's Ignore List Status|'{$Accendo_Smarty->guid2name('gxt_users', $rec.setuserguid)}' set this entry so matching objects are ignored on '{$Accendo_Smarty->ts2str($rec.setts)}'">
+                <img class="tip" alt="listed" src="{$smarty.const._IMG_IGNORE_SM_}" title="Object's Ignore List Status|'{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}' set this entry so matching objects are ignored on '{$InProve_Smarty->ts2str($rec.setts)}'">
             {/if}
             </td>
             </tr>

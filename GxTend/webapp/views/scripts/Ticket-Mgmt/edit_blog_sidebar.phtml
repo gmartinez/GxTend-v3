@@ -1,24 +1,24 @@
 <div>
     <p style="margin:0px;">
-    <img src="{$smarty.const._IMG_MAIL_FWD_SM_}" alt="Subscribed" title="Subscribed">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Notifications")}&nbsp;{$Accendo_Smarty->msg("HandT","TTS_Ticket_Blog.phtml|notifications")}
+    <img src="{$smarty.const._IMG_MAIL_FWD_SM_}" alt="Subscribed" title="Subscribed">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Notifications")}&nbsp;{$InProve_Smarty->msg("HandT","TTS_Ticket_Blog.phtml|notifications")}
     </p>
     <ul style="margin-left:-10px;">
     {foreach $data.actsubsc as $pos => $userguid}
         <li>
-        {$Accendo_Smarty->guid2name("gxt_users",$userguid)}
-        {if $userguid == $Accendo_Smarty->getSessVar("MyProfile.userdata.userguid")}
+        {$InProve_Smarty->guid2name("gxt_users",$userguid)}
+        {if $userguid == $InProve_Smarty->getSessVar("MyProfile.userdata.userguid")}
         &nbsp;<span class="pointer" onclick="unsubsc('{$smarty.request.ttsguid}','{$userguid}');">(Unsubscribe)</span>
         {/if}
         </li>
     {/foreach}
     </ul>
     <p style="margin:25px 0px 0px 0px;">
-    <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Commented" title="Commented">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Comments by")}
+    <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Commented" title="Commented">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Comments by")}
     </p>
     <ul style="margin-left:-10px;">
     {foreach $data.entriesfrom as $pos => $commenter}
         <li>
-        {$Accendo_Smarty->guid2name("gxt_users",$commenter.userguid)} [ {$commenter.number_of_comments} ]<br>
+        {$InProve_Smarty->guid2name("gxt_users",$commenter.userguid)} [ {$commenter.number_of_comments} ]<br>
         {if $commenter.phone}{$commenter.phone}<br>{/if}
         {if $commenter.im}{$commenter.im}<br></if>{/if}
         </li>

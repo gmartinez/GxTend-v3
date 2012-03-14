@@ -53,15 +53,15 @@ function getServicesStatus() {
 <span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">Product Information</span>
     <ul>
         <li><strong>Layer :</strong> {$smarty.const.__LAYER_ROLE__}</li>
-        <li><strong>Built On :</strong> {$Accendo_Smarty->ts2str($smarty.const.__TIMESTAMP__)}</li>
+        <li><strong>Built On :</strong> {$InProve_Smarty->ts2str($smarty.const.__TIMESTAMP__)}</li>
         <li><strong>Current Installed Version :</strong> <span id="currentver">{$smarty.const.__BUILD_VERSION__}</span></li>
         {if $smarty.const.__LAYER_ROLE__ == "Server"}
         <li><strong>Metadata Status :</strong> 
-            {if $Accendo_Smarty->getSessVar("MetaData.checksts.sts")!="ok"}            
-                <span style="color:red;">{$Accendo_Smarty->getSessVar("MetaData.checksts.msg")}</span>
+            {if $InProve_Smarty->getSessVar("MetaData.checksts.sts")!="ok"}            
+                <span style="color:red;">{$InProve_Smarty->getSessVar("MetaData.checksts.msg")}</span>
                 &nbsp;<span class="pointer" onclick="mDialog('/Setup/reorg', 'View/Perform Pending Metadata Changes', 600, 900);">Click here to review/perform changes</span>
             {else}
-                <span style="color:green;">{$Accendo_Smarty->getSessVar("MetaData.checksts.msg")}</span>
+                <span style="color:green;">{$InProve_Smarty->getSessVar("MetaData.checksts.msg")}</span>
             {/if}
         </li>
         <li><strong>Latest Available Build :</strong> <span id="chknewver"></span></li>
@@ -88,10 +88,10 @@ function getServicesStatus() {
             {/if}
         </li>
         {if $licnfo}
-        <li class="moreS2" style="display:none;"><strong>Requested :</strong> {$Accendo_Smarty->ts2str($licnfo.key_data.requested)}</li>
-        <li class="moreS2" style="display:none;"><strong>Generated :</strong> {$Accendo_Smarty->ts2str($licnfo.key_data.generated)}</li>
+        <li class="moreS2" style="display:none;"><strong>Requested :</strong> {$InProve_Smarty->ts2str($licnfo.key_data.requested)}</li>
+        <li class="moreS2" style="display:none;"><strong>Generated :</strong> {$InProve_Smarty->ts2str($licnfo.key_data.generated)}</li>
         <li class="moreS2" style="display:none;"><strong>Type :</strong> {ucfirst($licnfo.license.lictype)}</li>
-        <li class="moreS2" style="display:none;"><strong>Due Date :</strong> {$Accendo_Smarty->ts2str(strtotime($licnfo.license.duedate),"date")}</li>
+        <li class="moreS2" style="display:none;"><strong>Due Date :</strong> {$InProve_Smarty->ts2str(strtotime($licnfo.license.duedate),"date")}</li>
         <li class="moreS2" style="display:none;"><strong>Maximum Users :</strong> {$licnfo.license.maxusers}</li>
         <li class="moreS2" style="display:none;"><strong>Maximum KBs :</strong> {$licnfo.license.maxgxkbs}</li>
         <li style="list-style-type:none;font-size:.85em;">
@@ -110,8 +110,8 @@ function getServicesStatus() {
         <li><strong>OS Architecture :</strong> {$osinfo.architecture}</li>
         <li class="moreS3" style="display:none;"><strong>OS Version :</strong> {$osinfo.version}</li>
         <li class="moreS3" style="display:none;"><strong>OS Level :</strong> {$osinfo.level}</li>
-        <li class="moreS3" style="display:none;"><strong>OS Current Time :</strong> {$Accendo_Smarty->ts2str($osinfo.time)}</li>
-        <li class="moreS3" style="display:none;"><strong>OS Time Zone Offset :</strong> {$Accendo_Smarty->sec2str($osinfo.timezone.offset)}</li>
+        <li class="moreS3" style="display:none;"><strong>OS Current Time :</strong> {$InProve_Smarty->ts2str($osinfo.time)}</li>
+        <li class="moreS3" style="display:none;"><strong>OS Time Zone Offset :</strong> {$InProve_Smarty->sec2str($osinfo.timezone.offset)}</li>
         <li style="list-style-type:none;font-size:.85em;">
             <a class="lblS3" style="display:block;" href="javascript:;" onclick="$('.moreS3,.lblS3').toggle();">See More...</a>
             <a class="lblS3" style="display:none;" href="javascript:;" onclick="$('.moreS3,.lblS3').toggle();">See Less...</a>
@@ -123,10 +123,10 @@ function getServicesStatus() {
 <span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">Backend Information</span>
     <ul>
         <li><strong>Backend Version :</strong> {$beinfo.version}</li>
-        <li class="moreS4" style="display:none;"><strong>PHP Max.Execution Time :</strong> {$Accendo_Smarty->sec2str($Accendo_Smarty->get_prm("php.max_execution_time"))}</li>
-        <li class="moreS4" style="display:none;"><strong>PHP Max.Input Time :</strong> {$Accendo_Smarty->sec2str($Accendo_Smarty->get_prm("php.max_input_time"))}</li>
-        <li class="moreS4" style="display:none;"><strong>PHP Memory Limit :</strong> {$Accendo_Smarty->get_prm("php.memory_limit")}</li>
-        <li class="moreS4" style="display:none;"><strong>PHP Time Zone Offset :</strong> {$Accendo_Smarty->sec2str($Accendo_Smarty->getSessVar("MyProfile.tz.gmtoffset"))}</li>
+        <li class="moreS4" style="display:none;"><strong>PHP Max.Execution Time :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->get_prm("php.max_execution_time"))}</li>
+        <li class="moreS4" style="display:none;"><strong>PHP Max.Input Time :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->get_prm("php.max_input_time"))}</li>
+        <li class="moreS4" style="display:none;"><strong>PHP Memory Limit :</strong> {$InProve_Smarty->get_prm("php.memory_limit")}</li>
+        <li class="moreS4" style="display:none;"><strong>PHP Time Zone Offset :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("MyProfile.tz.gmtoffset"))}</li>
         
         <li style="list-style-type:none;font-size:.85em;">
             <a class="lblS4" style="display:block;" href="javascript:;" onclick="$('.moreS4,.lblS4').toggle();">See More...</a>
@@ -136,5 +136,5 @@ function getServicesStatus() {
 </div>
 
 <div class="myhr"></div>
-<p>GxTend is a complete SCM (Software Configuration Management) tool by <a href="http://www.accendo-it.com" target="_blank">Accendo<a>, that specifically target GeneXus projects.</p>
-<p>Having an issue ? Please report to <a href="mailto:support@accendo-it.com">support@accendo-it.com</a> enclosing yours and your company name.</p>
+<p>GxTend is a complete SCM (Software Configuration Management) tool that specifically target GeneXus projects.</p>
+<p>Having an issue ? Please report to <a href="mailto:support@in-prove.com">support@in-prove.com</a> enclosing yours and your company name.</p>

@@ -16,7 +16,7 @@ $(document).ready(function(){
     </span>
 
     <span class="right">
-    {$Accendo_Smarty->get_popup_link("email_write","/Email-Mgmt/write",null,"","640x480","Write new Message")}
+    {$InProve_Smarty->get_popup_link("email_write","/Email-Mgmt/write",null,"","640x480","Write new Message")}
     {if $smarty.request.id=="out"}
         <br><a href="javascript:;" onclick="loadappdiv('/Email-Mgmt/?id=in');">Click for InBound Messages</a>
     {else}

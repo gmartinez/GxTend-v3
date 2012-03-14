@@ -1,23 +1,23 @@
 <div>
     <p style="margin:0px;">
-    <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Commits by")}
+    <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Commits by")}
     <p>
     <ul style="margin-left:-10px;">
     {foreach $data.commitsfrom as $pos => $commenter}
         <li>
-        {$Accendo_Smarty->guid2name("gxt_users",$commenter.userguid)} [ {$commenter.number_of_commits} ]<br>
+        {$InProve_Smarty->guid2name("gxt_users",$commenter.userguid)} [ {$commenter.number_of_commits} ]<br>
         {if $commenter.phone}{$commenter.phone}<br>{/if}
         {if $commenter.im}{$commenter.im}<br></if>{/if}
         </li>
     {/foreach}
     </ul>
     <p style="margin:25px 0px 0px 0px;">
-    <img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="Promote" title="Promote">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Promotions by")}
+    <img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="Promote" title="Promote">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Promotions by")}
     <p>
     <ul style="margin-left:-10px;">
     {foreach $data.promotesfrom as $pos => $commenter}
         <li>
-        {$Accendo_Smarty->guid2name("gxt_users",$commenter.userguid)} [ {$commenter.number_of_promotes} ]<br>
+        {$InProve_Smarty->guid2name("gxt_users",$commenter.userguid)} [ {$commenter.number_of_promotes} ]<br>
         {if $commenter.phone}{$commenter.phone}<br>{/if}
         {if $commenter.im}{$commenter.im}<br></if>{/if}
         </li>

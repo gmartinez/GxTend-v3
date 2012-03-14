@@ -26,7 +26,7 @@
 			User
 		</td>
 		<td align="left">
-			{$Accendo_Smarty->guid2name("gxt_users",$record.userguid)}
+			{$InProve_Smarty->guid2name("gxt_users",$record.userguid)}
 		</td>
 	</tr>
     <tr>
@@ -34,7 +34,7 @@
 			Start Datetime
 		</td>
 		<td align="left">
-			{$Accendo_Smarty->ts2str($record.startts)}
+			{$InProve_Smarty->ts2str($record.startts)}
 		</td>
 	</tr>
     <tr>
@@ -42,7 +42,7 @@
 			Last Request
 		</td>
 		<td align="left">
-			{$Accendo_Smarty->ts2str($record.lastots)}
+			{$InProve_Smarty->ts2str($record.lastots)}
 		</td>
 	</tr>
     </table>
@@ -61,10 +61,10 @@
         </div>
         {/if}
         <div id="tab-2">
-            {$Accendo_Smarty->dBug($record.cliinfo)}
+            {$InProve_Smarty->dBug($record.cliinfo)}
         </div>
         <div id="tab-3">
-            {$Accendo_Smarty->dBug($record.pidinfo)}
+            {$InProve_Smarty->dBug($record.pidinfo)}
         </div>
     </div>
 

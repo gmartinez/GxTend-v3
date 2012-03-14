@@ -28,8 +28,8 @@ $(document).ready(function(){
         'checkScript': '/Upload/check?options={$options}',
         'multi': true,
         'auto': true,
-        'sizeLimit': {$Accendo_Smarty->get_prm("upload_maxsize")},
-        'simUploadLimit': {$Accendo_Smarty->get_prm("upload_maxsimu")},
+        'sizeLimit': {$InProve_Smarty->get_prm("upload_maxsize")},
+        'simUploadLimit': {$InProve_Smarty->get_prm("upload_maxsimu")},
         'fileDesc': 'All Files',
         'fileExt': '*.*',
         'buttonText': 'Attach File(s)',
@@ -52,7 +52,7 @@ $(document).ready(function(){
     <div style="margin-left:60px;">
     <div style="margin:0 0 5px;">
         <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;
-        <strong>{$Accendo_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$Accendo_Smarty->ts2str($item.data.added_on)}
+        <strong>{$InProve_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$InProve_Smarty->ts2str($item.data.added_on)}
     </div>
     <div class="text" style="margin:0 0 5px; font-size:1.1em;">
         <p>{$item.data.itmtxt}</p>
@@ -75,7 +75,7 @@ $(document).ready(function(){
 
 {if $data.grants.rw}
 <div id="addcomm" style="padding:10px 0;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
     <div style="font-size:0.8em;float:right;">
         {if count($ticket_items)}
         <a href="javascript:;" class="toggleBlogDet" onclick="$('.comment_detail').toggle();$('.toggleBlogDet').toggle();" style="display:inline;">Toggle to Full Details</a>
@@ -87,7 +87,7 @@ $(document).ready(function(){
         <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
         <input type="hidden" name="itmtyp" value="comment">
         <input type="hidden" name="options" value="{$options}">
-            <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Add a comment & files...")}
+            <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Add a comment & files...")}
             <p>
             <textarea rows="10" cols="100" id="itmtxt" name="itmtxt"></textarea>
             </p>
@@ -101,16 +101,16 @@ $(document).ready(function(){
             </p>
             <br>
             <p>
-            <img src="{$smarty.const._IMG_MAIL_NEW_SM_}" alt="Subscribe" title="Subscribe">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Subscribe people to receive email notifications")}
-            &nbsp;{$Accendo_Smarty->msg("HandT","TTS_Ticket_Blog.phtml|subscribe")}
+            <img src="{$smarty.const._IMG_MAIL_NEW_SM_}" alt="Subscribe" title="Subscribe">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Subscribe people to receive email notifications")}
+            &nbsp;{$InProve_Smarty->msg("HandT","TTS_Ticket_Blog.phtml|subscribe")}
             </p>
             {foreach from=$data.grpusr key=groupguid item=notify}
-                <div style="cursor:pointer;font-weight:bold;" onclick="setcheck('#group_{$groupguid} .usrlst');">{$Accendo_Smarty->guid2name("gxt_groups",$groupguid)}</div>
+                <div style="cursor:pointer;font-weight:bold;" onclick="setcheck('#group_{$groupguid} .usrlst');">{$InProve_Smarty->guid2name("gxt_groups",$groupguid)}</div>
                 <div id="group_{$groupguid}" style="width:640px;">
                 {foreach from=$notify key=p item=suscinfo}
                     <div style="float:left;width:145px;margin:5px;text-align:left;">
-                    <input type="checkbox" name="notify[]" value="{$suscinfo.userguid}" id="user_{$suscinfo.userguid}" class="usrlst" {if $suscinfo.notify && $suscinfo.userguid!=$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}checked="checked"{/if}>
-                    {$Accendo_Smarty->guid2name("gxt_users",$suscinfo.userguid)}
+                    <input type="checkbox" name="notify[]" value="{$suscinfo.userguid}" id="user_{$suscinfo.userguid}" class="usrlst" {if $suscinfo.notify && $suscinfo.userguid!=$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}checked="checked"{/if}>
+                    {$InProve_Smarty->guid2name("gxt_users",$suscinfo.userguid)}
                     </div>
                 {/foreach}
                 </div>

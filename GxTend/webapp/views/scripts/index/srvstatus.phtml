@@ -1,7 +1,7 @@
 <div class="file" onclick="mDialog('/index/srvdata', 'GxTend Server Data', 384, 512);$('#container #footer #footer-inner #footerlog #srvstatus').load('/index/srvstatus');">
-{if $Accendo_Smarty->getSessVar("LoginStatus.server.status")}
+{if $InProve_Smarty->getSessVar("LoginStatus.server.status")}
     &nbsp;|&nbsp; <img src='{$smarty.const._IMG_CONNECT_SM_}' alt='available' title='Server Status is Available'> <span class="green">Available</span>
-{elseif !$Accendo_Smarty->getSessVar("LoginStatus.server.status")}
+{elseif !$InProve_Smarty->getSessVar("LoginStatus.server.status")}
     &nbsp;|&nbsp; <img src='{$smarty.const._IMG_DISCONNECT_SM_}' alt='unavailable' title='Server Status is Unavailable'> <span class="red">Unavailable</span>
 {else}
     &nbsp;|&nbsp; <img src='{$smarty.const._IMG_WARN_SM_}' alt='undetermined' title='Server Status is Undetermined'> <span class="gray">Undetermined</span>

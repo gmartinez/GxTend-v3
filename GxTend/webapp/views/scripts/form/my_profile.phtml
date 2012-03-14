@@ -49,7 +49,7 @@ $(document).ready(function(){
 <div id="my_data">
     <div style="vertical-align:middle;text-align:right;float:right;">
         <div style="text-align:center;">
-        <img id="my_image" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+        <img id="my_image" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
         <p style="clear:both;">
         <input type="file" name="image" id="image">&nbsp;<span style="color:#92162a;font-size:0.75em;cursor:pointer;" onclick="if(confirm('Are you sure you want to reset your image ?')) { changeImg('reset_image'); }">Reset Image</span>
         </div>

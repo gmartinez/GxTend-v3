@@ -45,13 +45,13 @@ $(document).ready(function(){
         {elseif $item.data.itmtyp=="promote"}
             <img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="Promote" title="Promote">&nbsp;
         {/if}
-        <strong>{$Accendo_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$Accendo_Smarty->ts2str($item.data.added_on)}
+        <strong>{$InProve_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$InProve_Smarty->ts2str($item.data.added_on)}
     </div>
     <div style="margin:0 0 5px;">
         {if $item.data.itmtyp=="commit"}
             <p>
                 <a class="pointer" title="Click to view/promote commit(s) content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$item.commit.projguid}&commits={$item.commit.to|trim}', 'Commits Data & Promotion Status', 550, 900);">
-                {$Accendo_Smarty->cutstr($item.commit.to,0,7)}
+                {$InProve_Smarty->cutstr($item.commit.to,0,7)}
                 </a>
                 &nbsp;{$item.commit.comment}
             </p>
@@ -78,7 +78,7 @@ $(document).ready(function(){
 {/foreach}
 
 <div id="addcode" style="padding:10px 0;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$Accendo_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
     <div style="font-size:0.8em;float:right;">
         {if count($ticket_items)}
         <a href="javascript:;" class="toggleCodeDet" onclick="$('.codechgs_detail').toggle();$('.toggleCodeDet').toggle();" style="display:inline;">Toggle to Full Details</a>
@@ -87,7 +87,7 @@ $(document).ready(function(){
     </div>
     <div style="margin-left:60px;">
         <div style="float:left;">
-            <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;{$Accendo_Smarty->msg("#efefef:blue", "Relate Commit/Promotion to this ticket...")}
+            <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Relate Commit/Promotion to this ticket...")}
         </div>
 
         <div style="clear:both;float:left;width:70%;">
@@ -107,7 +107,7 @@ $(document).ready(function(){
                 </div>
             </form>
         {else}
-            &nbsp;{$Accendo_Smarty->msg("ui-icon-info", "Read only access.")}
+            &nbsp;{$InProve_Smarty->msg("ui-icon-info", "Read only access.")}
         {/if}
         </div>
         
@@ -123,7 +123,7 @@ $(document).ready(function(){
             {$sum_of_commits = $sum_of_commits + count($commitslst)}
             {/foreach}
             {if $sum_of_commits}
-            <p style="font-size:1.25em;">&nbsp;<strong style="color:green;">&sum; : </strong> {$Accendo_Smarty->msg("green:white", $sum_of_commits)}</p>
+            <p style="font-size:1.25em;">&nbsp;<strong style="color:green;">&sum; : </strong> {$InProve_Smarty->msg("green:white", $sum_of_commits)}</p>
             {/if}            
         </div>
         {/if}
