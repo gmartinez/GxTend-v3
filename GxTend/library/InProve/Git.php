@@ -19,7 +19,7 @@ class InProve_Git {
     public function issuecommand($command, $repopath, $worktree) {
 
         #
-        $InProve_BE_HOME = InProve_System::get_eva("InProve_BE_HOME");
+        $INPROVE_BE_HOME = InProve_System::get_eva("INPROVE_BE_HOME");
 
         # Set git environment variables...
         if (file_exists($repopath) && ($worktree===null || $worktree==="null" || file_exists($worktree))) {
@@ -32,7 +32,7 @@ class InProve_Git {
             InProve_System::get_eva("GIT_COMMITTER_NAME", InProve_Session::getSessVar("MyProfile.userdata.username"));
             InProve_System::get_eva("GIT_COMMITTER_EMAIL", InProve_Session::getSessVar("MyProfile.userdata.email"));
             #
-            list($cmdsts, $cmdout) = InProve_System::shell_exec("\"$InProve_BE_HOME/Git/bin/git.exe\" $command");
+            list($cmdsts, $cmdout) = InProve_System::shell_exec("\"$INPROVE_BE_HOME/Git/bin/git.exe\" $command");
 
         } else {
             #
@@ -45,7 +45,7 @@ class InProve_Git {
         }
 
         $env = array(
-                    "InProve_BE_HOME"=>$InProve_BE_HOME,
+                    "INPROVE_BE_HOME"=>$INPROVE_BE_HOME,
                     "GIT_AUTHOR_NAME"=>getenv("GIT_AUTHOR_NAME"),
                     "GIT_AUTHOR_EMAIL"=>getenv("GIT_AUTHOR_EMAIL"),
                     "GIT_COMMITTER_NAME"=>getenv("GIT_COMMITTER_NAME"),
