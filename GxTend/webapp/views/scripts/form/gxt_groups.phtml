@@ -10,7 +10,7 @@
 			<b>Group Id</b>
             </td>
 			<td align="left">
-            {$InProve_Smarty->cutstr($groupguid,0,7)}<p>
+            {$InProve_Smarty->cutstr($groupguid,0,$smarty.const._GUID_LEN_)}<p>
             </td>
 		</tr>
         {/if}

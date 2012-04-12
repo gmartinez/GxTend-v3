@@ -27,6 +27,16 @@ $(document).ready(function(){
         }
     });
 
+    $("input:radio[name=publisher]").change(function() {
+        opt = $("input:radio[name=publisher]:checked").val();
+        if (opt == "all") {
+            $("#section_4 > table > tbody > tr").show();
+        } else {
+            $("#section_4 > table > tbody > tr").hide();
+            $("#section_4 > table > tbody > tr."+opt).show();
+        }
+    });
+
     {if $smarty.request.secti}
     togglebwsections({$smarty.request.secti});
     {else}
@@ -98,156 +108,52 @@ function deleteFile(file2delete) {
 
 function togglebwsections(id) {
 
-    $("#ttpnfo").hide();
+    if (id=="next") {
+        $("#form_config .section").each( function(idx,obj) {
+            if ($(obj).is(":visible")) {
+            id = idx + 1 + 1;
+            }
+        });
+    }
+
     if (!$("#section_"+id).is(":visible")) {
         if (id==4) {
-            $("#form_config").hide();
+            //$("#form_config").hide();
         } else {
-            $("#form_config").show();
-            $(".section").hide();
+            //$("#form_config").show();
         }
+        $(".section").hide();
         $("#section_"+id).show();
-
     }
+
 }
 </script>
 
 <div id="secsel" class="right" style="font-size:.8em;">
-    {foreach $sectionLst as $i => $label name=sects}
-        {if $label}
-        <span onclick="togglebwsections({$i});" class="file">{$label}</span>
-        {if !$smarty.foreach.sects.last}&nbsp;|&nbsp;{/if}
-        {/if}
-    {/foreach}
-</div>
-
-<form id="form_config" action="/Config/post" method="POST" enctype="multipart/form-data">
-<div id="section_1" class="section" style="display:none;">
-    <div class="myhr">Environment Properties</div>
-    <table id="envproptbl" align="center" width="95%">
-    {foreach $entriesLst.envvars as $prop_name => $prop_value}
-    <tr>
-        <td style="text-align:left;font-weight:bold;width:30%;">
-            <span id="label_{$prop_name|sha1}">{$entriesDef.$prop_name.label|default:$prop_name}</span>
-            {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"><img style="vertical-align:middle; padding:5px;" src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></span>{/if}
-        </td>
-        <td align="left">
-            <input type="{$entriesDef.$prop_name.inputtype|default:'text'}" size="70" id="input_{$prop_name|sha1}" class="{$entriesDef.$prop_name.class}" name="envvars[{$prop_name}]" value="{$prop_value}" {if $entriesDef.$prop_name.readonly}readonly="readonly"{/if} entryname="{$prop_name}" entryvalue="{$prop_value}">
-            {if $entriesDef.$prop_name.defvalue}
-            &nbsp;&laquo;&nbsp;
-            {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
-            <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">Default</a>&nbsp;|&nbsp;
-            {/if}
-            <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">Unset</a>
-            {/if}
-        </td>
-    </tr>
-    {/foreach}
-    <tr>
-        <td>
-            &nbsp;
-        </td>
-        <td>
-            <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">Set all above with 'Default' values</a>
-        </td>
-    </tr>        
-    </table>
-</div>
-
-{if $smarty.const.__LAYER_ROLE__ == "Server"}
-<div id="section_2" class="section" style="display:none;">
-    <div class="myhr">Server Properties</div>
-    <table id="srvproptbl" align="center" width="95%">
-    {foreach $entriesLst.srvstat as $prop_name => $prop_value}
-    <tr>
-        <td style="text-align:left;font-weight:bold;width:30%;">
-            <span id="label_{$prop_name|sha1}">{$entriesDef.$prop_name.label|default:$prop_name}</span>
-            {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"><img style="vertical-align:middle; padding:5px;" src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></span>{/if}
-        </td>
-        <td align="left">
-            <input type="{$entriesDef.$prop_name.inputtype|default:'text'}" size="70" id="input_{$prop_name|sha1}" class="{$entriesDef.$prop_name.class}" name="srvstat[{$prop_name}]" value="{$prop_value}" {if $entriesDef.$prop_name.readonly}readonly="readonly"{/if} entryname="{$prop_name}" entryvalue="{$prop_value}">
-            {if $entriesDef.$prop_name.defvalue}
-            &nbsp;&laquo;&nbsp;
-            {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
-            <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">Default</a>&nbsp;|&nbsp;
-            {/if}
-            <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">Unset</a>
-            {/if}
-        </td>
-    </tr>
-    {/foreach}
-    </table>
-</div>
-{/if}
-
-<div id="section_3" class="section" style="display:none;">
-    {foreach $entriesLst.gxtend_servers as $server_name => $server_props}
-    <div class="myhr">Metadata Connection(s) Properties (for {$server_name})</div>
-    <table id="connproptbl" align="center" width="96%">
-    {foreach $server_props as $prop_name => $prop_value}
-    <tr>
-        <td style="text-align:left;font-weight:bold;width:30%;">
-            <span id="label_{$prop_name|sha1}">{$entriesDef.$prop_name.label|default:$prop_name}</span>
-            {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"><img style="vertical-align:middle; padding:5px;" src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></span>{/if}
-        </td>
-        <td align="left">
-            <input type="{$entriesDef.$prop_name.inputtype|default:'text'}" size="70" id="input_{$prop_name|sha1}" class="{$entriesDef.$prop_name.class}" name="gxtend_servers[{$server_name}][{$prop_name}]" value="{$prop_value}" {if $entriesDef.$prop_name.readonly}readonly="readonly"{/if} entryname="{$prop_name}" entryvalue="{$prop_value}">
-            {if $entriesDef.$prop_name.defvalue}
-            &nbsp;&laquo;&nbsp;
-            {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
-            <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">Default</a>&nbsp;|&nbsp;
-            {/if}
-            <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">Unset</a>
-            {/if}
-            {if $prop_name == "schema" && $smarty.const.__LAYER_ROLE__ == "Client"}&nbsp;<a id="delete_{$prop_value|sha1}" href="javascript:;" style="font-size:.8em;" onclick="deleteFile('{$prop_value}');">Delete file</a>{/if}
-        </td>
-    </tr>
-    {/foreach}
-    <tr>
-        <td>
-            &nbsp;
-        </td>
-        <td>
-            <a href="javascript:;" onclick="$('#connproptbl .setDefVal').click();">Set all above with 'Default' values</a>
-        </td>
-    </tr>        
-    </table>
-    {/foreach}
-</div>
-
-    <div class="myhr"></div>
-    <div id="ttpnfo" class="left">
-        {include file='../index/ttp.phtml' bck2top='no'}
-    </div>
-    <div class="buttons right">
-        {$smarty.const._FORM_BTN_UPDATE_}
-        &nbsp;or&nbsp;
-        <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
-    </div>
-</form>
-
-<div id="section_4" class="section" style="display:none;">
-    <div class="myhr">Programs Currently Installed</div>
-    <table align="center" width="95%" class="list">
-    <thead>
-        <tr><th>Name</th><th>Publisher</th><th>Version</th></tr>
-    </thead>
-    <tbody>
-    {foreach $lstSoft as $entry_id => $entry_data}
-    {if $entry_data.DisplayName && strtolower($entry_data.Publisher)=="artech"}
-    <tr class="{strtolower($entry_data.Publisher)|sha1}">
-        <td>
-            {$entry_data.DisplayName|utf8_encode}
-        </td>
-        <td>
-            {$entry_data.Publisher|utf8_encode}
-        </td>
-        <td>
-            {$entry_data.DisplayVersion}
-        </td>
-    </tr>
+{foreach $sectionLst as $i => $label name=sects}
+    {if $label}
+    <span onclick="togglebwsections({$smarty.foreach.sects.iteration});" class="file">{$label}</span>
     {/if}
-    {/foreach}
-    </tbody>
-    </table>
+    {if !$smarty.foreach.sects.last}&nbsp;|&nbsp;{/if}
+{/foreach}
 </div>
+<form id="form_config" action="/Config/post" method="POST" enctype="multipart/form-data">
+{foreach $sectionLst as $i => $label name=sects}
+    <div id="section_{$smarty.foreach.sects.iteration}" class="section" style="display:none;">
+
+        {include file="section$i.phtml"}
+        
+        <div class="myhr"></div>
+        <div class="buttons right">
+        {if !$smarty.foreach.sects.last && $i<3}
+            <button type="button" class="button-next" title="{$smarty.const._TITLE_NEXT_}" onclick="togglebwsections('next');">{$smarty.const._LBL_NEXT_}</button>
+        {/if}
+        {if $i==3}
+            {$smarty.const._FORM_BTN_UPDATE_}
+            &nbsp;or&nbsp;
+            <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
+        {/if}
+        </div>        
+    </div>
+{/foreach}        
+</form>

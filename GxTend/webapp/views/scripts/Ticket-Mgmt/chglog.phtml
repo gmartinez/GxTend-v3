@@ -15,7 +15,7 @@ $(document).ready(function(){
     {foreach $ticket_changes as $chgguid => $change}
     {if $change.change_dsc!="seetts" && $change.change_dsc!="email"}
         <div id="{$chgguid}" style="padding:10px 0; border-bottom:1px solid #DDDDDD;">
-        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$change.changed_by}" alt="User Image">
+        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="User Image">
         <div style="margin-left:50px;">
         <div style="float:right;">
             <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}
@@ -60,7 +60,7 @@ $(document).ready(function(){
     {foreach $ticket_changes as $chgguid => $change}
     {if $change.change_dsc=="seetts"}
         <div id="{$chgguid}" style="padding:10px 0; border-bottom:1px solid #DDDDDD;">
-        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$change.changed_by}" alt="User Image">
+        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="User Image">
         <div style="margin-left:50px;">
         <div style="float:right;">
             <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}
@@ -78,7 +78,7 @@ $(document).ready(function(){
     {foreach $ticket_changes as $chgguid => $change}
     {if $change.change_dsc=="email"}
         <div id="{$chgguid}" style="padding:10px 0; border-bottom:1px solid #DDDDDD;">
-        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$change.changed_by}" alt="User Image">
+        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="User Image">
         <div style="margin-left:50px;">
         <div style="float:right;">
             <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}

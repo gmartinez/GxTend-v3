@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 {foreach $ticket_items as $ti => $item}
 <div id="{$item.data.itmguid}" class="hours_detail" style="padding:10px 0; border-bottom:1px solid #DDDDDD; display: none;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$item.data.added_by}" alt="User Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$item.data.added_by}&v={$smarty.now}" alt="User Image">
     <div style="margin-left:60px;">
     <div style="margin:0 0 5px;">
         <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Time Track">&nbsp;
@@ -52,7 +52,7 @@ $(document).ready(function(){
 {/foreach}
 
 <div id="addtime" style="padding:10px 0;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="My Image">
     <div style="font-size:0.8em;float:right;">
         {if count($ticket_items)}
         <a href="javascript:;" class="toggleTimeDet" onclick="$('.hours_detail').toggle();$('.toggleTimeDet').toggle();" style="display:inline;">Toggle to Full Details</a>
@@ -66,7 +66,7 @@ $(document).ready(function(){
         
         <div style="clear:both;float:left;width:70%;">
         {if $data.grants.rw}
-            <form id="form_itm_time" action="Ticket-Mgmt/additm" method="POST" enctype="multipart/form-data">
+            <form id="form_itm_time" action="/Ticket-Mgmt/additm" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
             <input type="hidden" name="itmtyp" value="timetrack">
             <input type="hidden" name="options" value="{$options}">

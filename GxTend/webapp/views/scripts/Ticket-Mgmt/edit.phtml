@@ -69,24 +69,6 @@ $(document).ready(function(){
         }
     });
 
-    // Upload files initialization...
-    $('#ticket #fileInput').uploadify({
-        'uploader': '/jquery/addons/upload/uploadify.swf',
-        'script': '/Upload/upload',
-        'cancelImg': '/jquery/addons/upload/cancel.png',
-        'scriptData': { 'options':'{$options}' },
-        'checkScript': '/Upload/check?options={$options}',
-        'multi': true,
-        'auto': true,
-        'sizeLimit': {$InProve_Smarty->get_prm("upload_maxsize")},
-        'simUploadLimit': {$InProve_Smarty->get_prm("upload_maxsimu")},
-        'fileDesc': 'All Files',
-        'fileExt': '*.*',
-        'buttonText': 'Attach File(s)',
-        'displayData': 'speed',
-        'onComplete': onFileComplete
-    });
-
     {if !$data.grants.rw || $data.source != "gxtend"}
         $("#ticket #form_tts .right button").attr("disabled", "disabled");
     {/if}
@@ -106,15 +88,6 @@ $(document).ready(function(){
     });
 
 });
-
-    function onFileComplete(event,queueID,fileObj,response,data) {
-        if (response=="ok") {
-            $('#attchsRow').show();
-            $("#attchsRow").append("<input type='checkbox' name='atchs[]' value='" + fileObj.name + "' checked> " + fileObj.name + " [" + bytes2str(fileObj.size) + "]<br>");
-        } else {
-            alert(response);
-        }
-    }
 
     function chgReponsible() {
 
@@ -161,7 +134,7 @@ $(document).ready(function(){
             <b>To-Do</b> : <span id="read_todoguid"></span><br>
             &nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&rdsh; <b>Summary</b> : <span>{$data.ttsabv}</span><br>
-            &nbsp;<button class="button-history" type="button" onclick="mDialog('/Ticket-Mgmt/chglog?ttsguid={$smarty.request.ttsguid}', 'Ticket Changelog', 480, 850);" style="font-size:.7em;">&nbsp;&nbsp;Changelog</button>
+            <button class="button-history" type="button" onclick="mDialog('/Ticket-Mgmt/chglog?ttsguid={$smarty.request.ttsguid}', 'Ticket Changelog', 480, 850);" style="font-size:.7em;">&nbsp;&nbsp;Changelog</button>
         </div>
         <div style="float:right;">
             <b>Severity</b> : <span id="read_ttspri"></span>
@@ -170,42 +143,36 @@ $(document).ready(function(){
             <br>
             <b>Assigned To</b> : <span id="read_assigned_to"></span><br>
             <b>Status</b> : <span id="read_ttssts"></span>&nbsp;|&nbsp;<span id="read_ttspercent"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="button-edit" type="button" onclick="$('.header_data').toggle();" style="float:right;font-size:.7em;">&nbsp;&nbsp;Edit</button>
+                <span style="float:right;">
+                <button class="button-tag" type="button" onclick="mDialog('/Ticket-Mgmt/settag?ttsguid={$smarty.request.ttsguid}', 'Ticket Tags', 480, 640);" style="font-size:.7em;">&nbsp;&nbsp;Tag</button>
+                <button class="button-edit" type="button" onclick="$('.header_data').toggle();" style="font-size:.7em;">&nbsp;&nbsp;Edit</button>
+                </span>
         </div>
     </div>
     <br clear="all">
     {/if}
 
     <div class="header_data" {if $data.form_mode != $smarty.const._LBL_ADD_}style="display:none;"{/if}>
-	<form id="form_tts" action="Ticket-Mgmt/addedt" method="POST" enctype="multipart/form-data">
+	<form id="form_tts" action="/Ticket-Mgmt/addedt" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
     <input type="hidden" name="itmtyp" value="comment">
-    <input type="hidden" name="options" value="{$options}">
+    <input type="hidden" name="options" value="{$b64options}">
     <table align="center" width="100%" border="0">
 		<tr>
-            <td style="text-align:left;vertical-align:top;width:60%;">
+            <td style="text-align:left;vertical-align:top;width:55%;">
                 <b>To-Do</b>&nbsp;{$data.todoguid}
                 <p>
                 <b>Summary</b><br>
-                <textarea rows="3" cols="80" id="ttsabv" name="ttsabv" class="string required">{$data.ttsabv}</textarea>
+                <textarea rows="3" cols="70" id="ttsabv" name="ttsabv" class="string required">{$data.ttsabv}</textarea>
                 </p>
-                <p>
-                <b>Topic</b>&nbsp;{$data.ttstopic}
-                <p>
 			</td>
             <td style="text-align:left;vertical-align:top;">
-                <b>Severity</b>&nbsp;{$data.ttspri}
-                </p>
-                <p>
+                <b>Severity</b>&nbsp;{$data.ttspri}&nbsp;
                 <b>Due Date</b>&nbsp;<input type="text" size="12" id="ttsduets" name="ttsduets" value="{$InProve_Smarty->ts2str($data.ttsduets,'date')}" readonly="readonly">
-                </p>
                 <p>
                 <b>Assigned To</b>&nbsp;{$data.assigned_to}
                 <span id="notify_resp_area" style="display:none;">
-                    <p>
-                    <input type="checkbox" name="notify_responsible" id="notify_responsible" value="1">
-                    Notify assignee via email ?
-                    </p>
+                <input type="checkbox" name="notify_responsible" id="notify_responsible" value="1">&nbsp;Notify assignee via email ?
                 </span>
                 </p>
                 <p>
@@ -223,8 +190,7 @@ $(document).ready(function(){
 			</td>
             <td style="text-align:left;vertical-align:top;">
                 <br>
-                <input type="file" name="fileInput" id="fileInput">
-                <div id="attchsRow" style="display:none;" style="float:right;"></div>
+                {include file='../Upload/widget.phtml'}
 			</td>
         </tr>
         {/if}

@@ -3,7 +3,7 @@ $(document).ready(function(){
     
     {if $smarty.const.__LAYER_ROLE__ == "Server"}
     getVersionStatus();
-    getServicesStatus();
+    $("#servicessts").load("/Services/?match=gxtend");
     {/if}
 
 });
@@ -30,19 +30,6 @@ function getVersionStatus() {
     );
     
 }
-
-function getServicesStatus() {
-    
-    $("#servicessts").html('{$smarty.const._MSG_WAIT_SM_}');
-
-    $.get(
-        "/Services/?match=gxtend",
-        function (data, textStatus, jqXHR) {
-            $("#servicessts").html(data);
-        }
-    );
-
-}
 </script>
 
 <div class="heading-block">
@@ -65,7 +52,7 @@ function getServicesStatus() {
             {/if}
         </li>
         <li><strong>Latest Available Build :</strong> <span id="chknewver"></span></li>
-        <li><strong>Status of Related Services :</strong> <span id="servicessts"></span></li>
+        <li><strong>Status of Related Services :</strong> <span id="servicessts">{$smarty.const._MSG_WAIT_SM_}</span></li>
         {/if}
     </ul>    
 </div>

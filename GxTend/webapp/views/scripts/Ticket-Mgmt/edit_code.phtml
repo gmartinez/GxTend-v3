@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 {foreach $ticket_items as $ti => $item}
 <div id="{$item.data.itmguid}" class="codechgs_detail" style="padding:10px 0; border-bottom:1px solid #DDDDDD; display: none;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$item.data.added_by}" alt="User Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$item.data.added_by}" alt="User Image">
     <div style="margin-left:60px;">
     <div style="margin:0 0 5px;">
         {if $item.data.itmtyp=="commit"}
@@ -51,7 +51,7 @@ $(document).ready(function(){
         {if $item.data.itmtyp=="commit"}
             <p>
                 <a class="pointer" title="Click to view/promote commit(s) content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$item.commit.projguid}&commits={$item.commit.to|trim}', 'Commits Data & Promotion Status', 550, 900);">
-                {$InProve_Smarty->cutstr($item.commit.to,0,7)}
+                {$InProve_Smarty->cutstr($item.commit.to,0,$smarty.const._GUID_LEN_)}
                 </a>
                 &nbsp;{$item.commit.comment}
             </p>
@@ -78,7 +78,7 @@ $(document).ready(function(){
 {/foreach}
 
 <div id="addcode" style="padding:10px 0;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}" alt="My Image">
     <div style="font-size:0.8em;float:right;">
         {if count($ticket_items)}
         <a href="javascript:;" class="toggleCodeDet" onclick="$('.codechgs_detail').toggle();$('.toggleCodeDet').toggle();" style="display:inline;">Toggle to Full Details</a>
@@ -92,7 +92,7 @@ $(document).ready(function(){
 
         <div style="clear:both;float:left;width:70%;">
         {if $data.grants.rw}
-            <form id="form_itm_code" action="Ticket-Mgmt/additm" method="POST" enctype="multipart/form-data">
+            <form id="form_itm_code" action="/Ticket-Mgmt/additm" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
             <input type="hidden" name="itmtyp" value="commit">
             <input type="hidden" name="options" value="{$options}">

@@ -68,7 +68,7 @@ $(document).ready(function(){
         {/if}
         <br clear="all">
         <div class="column left">
-            <b>Id :</b> {$InProve_Smarty->cutstr($commit_id,0,7)}<br>
+            <b>Id :</b> {$InProve_Smarty->cutstr($commit_id,0,$smarty.const._GUID_LEN_)}<br>
             <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commit_data.subject,0,80)}
         </div>
         <div class="column right" id="{$commit_id}">

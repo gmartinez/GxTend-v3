@@ -80,7 +80,7 @@ function mergeAfetch() {
         {foreach from=$remote_changes key=commit_id item=commit_data}        
         <br clear="all">
         <span class="column left">
-            <b>Id :</b> {$InProve_Smarty->cutstr($commit_id,0,7)}
+            <b>Id :</b> {$InProve_Smarty->cutstr($commit_id,0,$smarty.const._GUID_LEN_)}
             {if $commit_data.codeline == $InProve_Smarty->getSessVar("MyProfile.userdata.username")}
                 &nbsp;<img class="tip" alt="merge" src="../img/icons/16/warning.png" title="Commit's Compare Status|Commit in remote personal codeline not present in local personal codeline.">
                 {assign var=commitsToMerge value=$commitsToMerge+1}

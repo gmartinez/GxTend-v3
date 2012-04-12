@@ -1,0 +1,175 @@
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="../jquery/addons/jqFileUpl/jquery.fileupload.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#fileInput").fileupload({
+        dataType: "json",
+        url: "/Upload/upload",
+        formData: { options:"{$smarty.request.b64options}" },
+        dropZone: "#GenericDialog #dropZone",
+        limitConcurrentUploads: {$InProve_Smarty->get_prm("upload_maxsimu")},
+        add: function (e, data) {
+            $("#fileupload-selection-holder").show();
+            $.each(data.files, function (index, file) {
+                var errmsg = "";
+                if (file.size > {$appmaxfsize}) {
+                    errmsg = "Error, size is greater than max allowed";
+                }
+
+                var re = new RegExp({$options.allowtype});
+                if (!file.name.match(re)) {
+                    errmsg = "Error, file type is not within allowed types";
+                }
+
+                if (errmsg!="") {
+                    data.files.splice(index,1);
+                    $("#fileupload-selection").append("&nbsp;" + file.name + " [" + bytes2str(file.size) + "] -&gt; <font color='red'>" + errmsg + "</font><br>");
+                } else {
+                    $("#fileupload-selection").append("&nbsp;" + file.name + " [" + bytes2str(file.size) + "] -&gt; <font color='green'>File successfully queued for upload</font><br>");
+                }                
+            });
+            if (data.files.length) {
+                data.submit();
+            }
+        },
+        done: function (e, data) {
+            $("#fileupload-result").show();
+            $.each(data.result, function (index, file) {
+                if (file.size) {
+                $("#fileupload-result").append("<input class='fileupload-file' type='checkbox' name='atchs[]' value='" + file.name + "' checked> " + file.name + " [" + bytes2str(file.size) + "]<br>");
+                } else {
+                $("#fileupload-result").append("<input class='fileupload-file' type='checkbox' name='atchs[]' value='' disabled='disabled'> " + file.name + " -&gt; <font color='red'>Error, rejected by server</font><br>");
+                }
+            });
+            $("#GenericDialog").dialog("close");
+        },
+        stop : function (e) {
+            {if $options.onstop=="updMyVisualId"}
+            var uploadedfilename = $("#fileupload-result input.fileupload-file").val();
+            if (uploadedfilename) {
+            $("#fileupload-progress, #fileupload-result").html("").hide();
+            changeImg(uploadedfilename);
+            }
+            {else}
+            setTimeout("$('#fileupload-progress').append(\"or <a href='javascript:;' onclick='resetTempFiles();'>Remove Uploaded Files</a>\").show();", 2500);
+            {/if}
+        }
+    });    
+
+    $('#fileInput').bind('fileuploadstart', function () {
+        var widget = $(this),
+            progressElement = $('#fileupload-progress').fadeIn(),
+            interval = 500,
+            total = 0,
+            loaded = 0,
+            loadedBefore = 0,
+            progressTimer,
+            progressHandler = function (e, data) {
+                loaded = data.loaded;
+                total = data.total;
+            },
+            stopHandler = function () {
+                widget
+                    .unbind('fileuploadprogressall', progressHandler)
+                    .unbind('fileuploadstop', stopHandler);
+                window.clearInterval(progressTimer);
+                progressElement.fadeOut(function () {
+                    progressElement.html('');
+                });
+            },
+            formatTime = function (seconds) {
+                var date = new Date(seconds * 1000);
+                return ('0' + date.getUTCHours()).slice(-2) + ':' +
+                    ('0' + date.getUTCMinutes()).slice(-2) + ':' +
+                    ('0' + date.getUTCSeconds()).slice(-2);
+            },
+            formatBytes = function (bytes) {
+                if (bytes >= 1000000000) {
+                    return (bytes / 1000000000).toFixed(2) + ' GB';
+                }
+                if (bytes >= 1000000) {
+                    return (bytes / 1000000).toFixed(2) + ' MB';
+                }
+                if (bytes >= 1000) {
+                    return (bytes / 1000).toFixed(2) + ' KB';
+                }
+                return bytes + ' B';
+            },
+            formatPercentage = function (floatValue) {
+                return (floatValue * 100).toFixed(2) + ' %';
+            },
+            updateProgressElement = function (loaded, total, bps) {
+                progressElement.html(
+                    formatBytes(bps) + 'ps | ' +
+                        formatTime((total - loaded) / bps) + ' | ' +
+                        formatPercentage(loaded / total) + ' | ' +
+                        formatBytes(loaded) + ' / ' + formatBytes(total)
+                );
+            },
+            intervalHandler = function () {
+                var diff = loaded - loadedBefore;
+                if (!diff) {
+                    return;
+                }
+                loadedBefore = loaded;
+                updateProgressElement(
+                    loaded,
+                    total,
+                    diff * (1000 / interval)
+                );
+            };
+        widget
+            .bind('fileuploadprogressall', progressHandler)
+            .bind('fileuploadstop', stopHandler);
+        progressTimer = window.setInterval(intervalHandler, interval);
+    });
+
+});
+
+function clickOnDropZone() {
+
+    $("#fileupload-selection-holder").hide();
+    $("#fileupload-selection").html("");
+    $("#fileInput").click();
+
+}
+
+
+function resetTempFiles() {
+
+    $.ajax({
+        url: "/Upload/reset",
+        data: { options:"{$smarty.request.b64options}" },
+        cache: false,
+        complete: function(jqXHR, textStatus) {
+            $("#fileupload-progress, #fileupload-result").html("").hide();
+        }
+    });
+
+}
+</script>
+
+<input id="fileInput" type="file" name="files[]" style="display:none;" {if $options.multiple=='yes'}multiple{/if}>
+<div id="dropZone" style="background-color:#d4ccb0;margin:5px;height:80px;line-height:80px;text-align:center;font-size:1.5em;cursor:pointer;" onclick="clickOnDropZone();">Click or Drop File{if $options.multiple=='yes'}(s){/if} Here</div>
+
+<div id="fileupload-selection-holder" style="display:none;">
+<div class="myhr">Selected files</div>
+<p id="fileupload-selection">
+</p>
+</div>
+
+<div class="myhr">Instructions</div>
+<p>
+&nbsp;You can either drag and drop files in the area above or click on it to open the select file dialog, dropped or selected files will be sent to the application.
+</p>
+<p>
+&nbsp;The following policies apply for the current files upload instance:
+<ul>
+    <li>Allowed File Types : {$options.allowtype}</li>
+    <li>Multiple File Selection : {$options.multiple|ucfirst}</li>
+    <li>Maximum File Size : {$InProve_Smarty->bytes2str($appmaxfsize)} (@ server {$InProve_Smarty->bytes2str($sysmaxfsize)})</li>
+    <li>Concurrent Uploads : {$InProve_Smarty->get_prm("upload_maxsimu")}</li>
+</ul>
+</p>

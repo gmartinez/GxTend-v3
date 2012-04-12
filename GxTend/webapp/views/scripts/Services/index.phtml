@@ -1,6 +1,6 @@
 {if $services}
 {foreach $services as $srv name=dset}
-    <a href="javascript:;" onclick="mDialog('/Services/action?match={$srv.DisplayName}', 'Action on Service', 250, 500);">{$srv.DisplayName}</a> is 
+    <a href="javascript:;" onclick="mDialog('/Services/action?match={$smarty.request.match}&srvname={$srv.DisplayName}', 'Action on Service', 250, 500);">{$srv.DisplayName}</a> is 
     {if $srv.State != "Running"}
         <span class="red">{$srv.State}</span>
     {else}

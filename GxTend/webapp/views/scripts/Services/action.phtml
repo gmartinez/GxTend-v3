@@ -5,11 +5,11 @@ function applyAction(action) {
     
     jQuery.getJSON(
             "/Services/apply",
-            { action:action, srvname:'{$smarty.request.match}' },
+            { action:action, srvname:'{$smarty.request.srvname}' },
             function (r, textStatus) {
                 if (r.sts == "ok") {
                     $("#service_action div.left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> "+r.msg);
-                    setTimeout("getServicesStatus();",2500);
+                    setTimeout("getServicesStatus('servicessts');",2500);
                 } else {
                     $("#service_action div.left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> "+r.msg);
                 }
@@ -17,6 +17,19 @@ function applyAction(action) {
             }
     );
     
+}
+
+function getServicesStatus(hldid) {
+    
+    $("#"+hldid).html('{$smarty.const._MSG_WAIT_SM_}');
+
+    $.get(
+        "/Services/?match={$smarty.request.match}",
+        function (data, textStatus, jqXHR) {
+            $("#"+hldid).html(data);
+        }
+    );
+
 }
 </script>
 <div id="service_action">

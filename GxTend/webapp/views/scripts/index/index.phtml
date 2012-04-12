@@ -93,13 +93,6 @@
                             }
         );
 
-        $("#GenericDialog").dialog({
-            bgiframe: true,
-            autoOpen: false,
-            modal: true,
-            position: 'center'
-        });
-
         {if $smarty.const.__LAYER_ROLE__=="Server"}
         $("#qryidx_form").ajaxForm({
             dataType: 'json',

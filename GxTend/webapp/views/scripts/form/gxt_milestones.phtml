@@ -29,7 +29,7 @@
 			<b>Milestone Id</b>
             </td>
 			<td align="left">
-            {$InProve_Smarty->cutstr($mistguid,0,7)}<p>
+            {$InProve_Smarty->cutstr($mistguid,0,$smarty.const._GUID_LEN_)}<p>
             </td>
 		</tr>
         {/if}

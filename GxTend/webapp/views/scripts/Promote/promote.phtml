@@ -91,7 +91,12 @@ function refreshChkCell() {
     {foreach $commit as $commitData}
         {foreach $commitData.changes as $object}
             {foreach $targetKbs as $kbrec}
+                {if $kbrec.kbclass >= 7500}
                 setChkCell("{$kbrec.kbguid}_{$object.b64|sha1}","{$kbrec.kbguid}","{$object.b64}",{if $commit@last && $object@last && $kbrec@last}true{else}false{/if});
+                {else}
+                $("#{$kbrec.kbguid}_{$object.b64|sha1}").html("---");
+                {if $commit@last && $object@last && $kbrec@last}setsubmitsts("#form_promote .objlst", "#form_promote button");{/if}
+                {/if}
             {/foreach}
         {/foreach}
     {/foreach}
@@ -108,10 +113,10 @@ function setChkCell(cellid,kb,obj,islast) {
                         function (responseText, textStatus, XMLHttpRequest) {
                             {if $smarty.request.viewport == "winforcli" && count($setofcommits) == 1}
                             $("#"+cellid+" input.objlst").prop("checked",true);
+                            {/if}
                             if (islast) {
                                 setsubmitsts("#form_promote .objlst", "#form_promote button");
                             }
-                            {/if}
                         }
                     );
 
@@ -148,7 +153,7 @@ function setChkCell(cellid,kb,obj,islast) {
             <div class="commit_holder">
             <br clear="all">
             <div class="column left">
-                <b>Id :</b> {if $smarty.request.viewport == "winforcli"}{$InProve_Smarty->cutstr($commitId,0,7)}{else}<a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$InProve_Smarty->cutstr($commitId,0,7)}</a>{/if}<br>
+                <b>Id :</b> {if $smarty.request.viewport == "winforcli"}{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}{else}<a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}</a>{/if}<br>
                 <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commitData.subject,0,80)}
             </div>
             <div class="column right">
@@ -161,9 +166,11 @@ function setChkCell(cellid,kb,obj,islast) {
                 <tr>
                     <th>Object</th>
                     <th>Modified</th>
+                    {if $kbrec.kbclass >= 7500}
                     {foreach $targetKbs as $kbrec}
                     <th width="25%">{$InProve_Smarty->guid2name("gxt_kbs",$kbrec.kbguid)}</th>
                     {/foreach}
+                    {/if}
                 </tr>
             </thead>
             <tbody>
@@ -182,10 +189,10 @@ function setChkCell(cellid,kb,obj,islast) {
                     {else}
                     <img src="../img/icons/16/file.png" title="File">
                     {if $smarty.request.viewport == "winforcli"}
-                    &nbsp;{$rec.gxinfo.objnam|basename}
+                    &nbsp;{if $kbrec.kbclass >= 7500}{$rec.gxinfo.objnam|basename}{else}{$rec.gxinfo.objnam}{/if}
                     {else}
                     <a class="pointer" title="Click to see object change history" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}', 'Object Change History & Promotion Status', 550, 900);">
-                    &nbsp;{$rec.gxinfo.objnam|basename}
+                    &nbsp;{if $kbrec.kbclass >= 7500}{$rec.gxinfo.objnam|basename}{else}{$rec.gxinfo.objnam}{/if}
                     </a>
                     {/if}
                     {/if}
@@ -208,11 +215,13 @@ function setChkCell(cellid,kb,obj,islast) {
                     &nbsp;<img class="tip" alt="new" src="../img/icons/16/new.png" title="Object's Status|Object was added during commit.<br>If marked it will be promoted into target Kb.">
                     {/if}
                 </td>
+                {if $kbrec.kbclass >= 7500}
                 {foreach $targetKbs as $kbrec}
                 <td align="center">
                     <span id="{$kbrec.kbguid}_{$rec.b64|sha1}"></span>
                 </td>
                 {/foreach}
+                {/if}
                 </tr>
                 {/foreach}
             </tbody>
