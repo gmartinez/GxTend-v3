@@ -24,7 +24,7 @@
             <td>
             <h3>{$commitData.changes|count} change(s) commited from {$commitData.VisualId}</h3>
             <div class="column left" style="padding:1em;">
-                <b>Id :</b> <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$InProve_Smarty->cutstr($commitId,0,7)}</a><br>
+                <b>Id :</b> <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}</a><br>
                 <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commitData.subject,0,80)}
             </div>
             <div class="column right" style="padding:1em;">

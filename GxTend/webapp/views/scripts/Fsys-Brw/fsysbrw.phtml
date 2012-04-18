@@ -18,7 +18,7 @@
             </span>
             {else}
             <a href="/Download/download?file_guid={$rec.b64info}">
-                <img src="../img/icons/16/mimetypes/{$rec.mimetype}.png">&nbsp;
+                <img src="../img/icons/16/mimetypes/{if file_exists('../img/icons/16/mimetypes/$rec[mimetype].png')}{$rec[mimetype]}.png{else}blank.png{/if}">&nbsp;
                 {$rec.basename}
             </a>
             {/if}

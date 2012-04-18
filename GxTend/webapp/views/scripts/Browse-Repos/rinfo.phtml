@@ -45,7 +45,7 @@ function goChgPrm(mode,k,v) {
 }
 </script>
 
-<div id="rinfo">
+<div id="rinfo" class="profile">
     <div id="tabber_repnfo">
         <ul>
             <li><a href="#tab-1">Repository</a></li>
@@ -192,14 +192,16 @@ function goChgPrm(mode,k,v) {
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="chgprm">
                     <p>
-                        {$InProve_Smarty->msg("ui-icon-info","Add/Change repository config entry.")}
+                        {$InProve_Smarty->msg("ui-icon-info","Add/Edit Config Property")}
                     </p>
-                    <p>
-                        <strong>Key :</strong> <input type="input" id="prmkey" name="prmkey" size="30" value="">
-                    </p>
-                    <p>
-                        <strong>Value :</strong> <input type="input" id="prmval" name="prmval" size="75" value="">
-                    </p>
+                    <div>
+                    <label for="key"><strong>Key</strong></label>
+                    <input type="input" id="prmkey" name="prmkey" size="30" value="">
+                    </div>
+                    <div>
+                    <label for="val"><strong>Value</strong></label>
+                    <input type="input" id="prmval" name="prmval" size="75" value="" style="width:80%;">
+                    </div>
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
                         &nbsp;or&nbsp;

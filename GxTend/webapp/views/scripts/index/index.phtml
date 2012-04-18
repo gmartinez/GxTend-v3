@@ -1,8 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    {include file='common_head.phtml'}
+{include file='../skel/header.phtml'}
+
     {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
     <script type="text/javascript">
     $(document).ready(function(){
@@ -93,13 +90,6 @@
                             }
         );
 
-        $("#GenericDialog").dialog({
-            bgiframe: true,
-            autoOpen: false,
-            modal: true,
-            position: 'center'
-        });
-
         {if $smarty.const.__LAYER_ROLE__=="Server"}
         $("#qryidx_form").ajaxForm({
             dataType: 'json',
@@ -158,11 +148,7 @@
         setTimeout("bkgSync();", 30000);
     }    
     </script>
-    {/if}
-</head>
-<body>
-<div id="container" style="background:url('../img/main_bkg_{$smarty.const.__LAYER_ROLE__}.png') no-repeat right bottom;">
-    {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
+
 	<div id="header" class="ui-layout-north">
             <div id="header-left">
                 <a href="/"><img src="../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png" alt="GxTend" title="GxTend Home"></a>
@@ -204,11 +190,7 @@
 			</div>
 	</div>
 	{else}
-		{include file='pass.phtml'}
+    {include file='pass.phtml'}
 	{/if}
-</div>
 
-<div id="GenericDialog" title="Generic Dialog"></div>
-
-</body>
-</html>
+{include file='../skel/footer.phtml'}

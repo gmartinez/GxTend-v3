@@ -2,7 +2,7 @@
     <div id="{$file.file_guid}" class="attch_holder" style="margin:5px;float:right;">
     {if $smarty.request.preview == "on" && $file.prev}
         <a href="/Download/download?file_guid={$file.file_guid}" title="Click to Download">
-        <img src="/Download/download?file_guid={$file.file_guid}" title="{$file.file_name} [{$InProve_Smarty->bytes2str($file.file_size)}]" height="100" width="100">
+        <img src="/Download/download?file_guid={$file.file_guid}" title="{$file.file_name} [{$InProve_Smarty->bytes2str($file.file_size)}]" height="48" width="48">
         </a>
     {else}
         <img src="../img/icons/32/mail-attachment.png" alt="Attachment" title="Attachment">

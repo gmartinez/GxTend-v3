@@ -1,15 +1,15 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    {include file='../index/common_head.phtml'}
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $("#tabs").tabs();
-    });
-    </script>
-</head>
-<body class="popup">
+{include file="../skel/header.phtml"}
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tabs").tabs({
+        select: function(event, ui) {
+            if (ui.index==1) {
+            $("#emailTab1 .atchs").load("/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=off");
+            }
+        }
+    });        
+});
+</script>
 
     <table align="center" width="100%" class="list-horizontal">
     <tr>
@@ -17,7 +17,7 @@
 			Id / Type
 		</td>
 		<td align="left" class="first">
-			{$InProve_Smarty->cutstr($email.emguid,0,7)} / {if $email.emsentts>-1}Outbound{else}Inbound{/if}
+			{$InProve_Smarty->cutstr($email.emguid,0,$smarty.const._GUID_LEN_)} / {if $email.emsentts>-1}Outbound{else}Inbound{/if}
             <span style="float:right;">{$reply}  Reply | {$forward} Forward</span>
 		</td>
 	</tr>
@@ -90,38 +90,35 @@
 		</td>
 	</tr>
     </table>
-    <p>
+
     <div id="tabs">
         <ul>
-            <li><a href="#emailTab1"><span>Body</span></a></li>
-            {if !empty($email.emheader.raw)}<li><a href="#emailTab2"><span>Headers</span></a></li>{/if}
-            {if !empty($atchs)}<li><a href="#emailTab3"><span>Attachments</span></a></li>{/if}
-            {if !empty($email.emsentlog)}<li><a href="#emailTab4"><span>Log</span></a></li>{/if}
+            <li><a href="#emailTab0"><span>Body</span></a></li>
+            <li><a href="#emailTab1"><span>Attachments</span></a></li>
+            <li><a href="#emailTab2"><span>Headers</span></a></li>
+            <li><a href="#emailTab3"><span>Log</span></a></li>
         </ul>
-        <div id="emailTab1">
+        <div id="emailTab0">
             {$email.embody}
         </div>
-        {if !empty($email.emheader.raw)}
+        <div id="emailTab1">            
+            <div class="atchs" style="margin:5px; text-align:right;">
+                {$smarty.const._MSG_WAIT_SM_}
+            </div>
+            {if $atchs}
+            <div style="font-size:0.8em;float:right;cursor:pointer;">
+            <span class="togglePreview" onclick="$('#emailTab1 .atchs').load('/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=on');$('#emailTab1 .togglePreview').toggle();" style="display:inline;">Enable Preview</span>
+            <span class="togglePreview" onclick="$('#emailTab1 .atchs').load('/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=off');$('#emailTab1 .togglePreview').toggle();" style="display:none;">Disable Preview</span>
+            </div>
+            <br clear="both">
+            {/if}
+        </div>
         <div id="emailTab2">
             <pre>{$email.emheader.raw}</pre>
         </div>
-        {/if}
-        {if !empty($atchs)}
         <div id="emailTab3">
-            {foreach from=$atchs key=k item=rec}
-                <p>
-                <a href="/Download/download?file_guid={$rec.file_guid}" title="Click to Download File">{$rec.file_name} [{$InProve_Smarty->bytes2str($rec.file_size)}]</a>
-                </p>
-            {/foreach}
-            <div id="downtarget" style="display:none;"></div>
-        </div>
-        {/if}
-        {if !empty($email.emsentlog)}
-        <div id="emailTab4">
             <pre>{$email.emsentlog}</pre>
         </div>
-        {/if}
     </div>
 
-</body>
-</html>
+{include file="../skel/footer.phtml"}
