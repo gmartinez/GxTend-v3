@@ -4,11 +4,6 @@
 	<br>
 	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
-        <h3>
-            Company this Client {if $form_mode != $smarty.const._LBL_ADD_}is{else}will be{/if} related to {$compid}
-            &nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl: 'gxt_companies'}, null, '$(\'#addNew\').click();');">[+]</span>
-        </h3>        
-        <div class="myhr"></div>
 		<table align="center" width="100%">
 		<tr><td align="left">
 			<b>Abv. Description</b>

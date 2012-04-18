@@ -1,0 +1,27 @@
+<div class="myhr">Programs Currently Installed</div>
+
+<input type="radio" name="publisher" value="{sha1(strtolower('artech'))}" checked>&nbsp;Artech
+<input type="radio" name="publisher" value="{sha1(strtolower('inprove-it'))}">&nbsp;InProve
+<input type="radio" name="publisher" value="all">&nbsp;All
+<table align="center" width="100%" class="list">
+<thead>
+    <tr><th>Name</th><th>Publisher</th><th>Version</th></tr>
+</thead>
+<tbody>
+{foreach $lstSoft as $entry_id => $entry_data}
+{if $entry_data.DisplayName}
+<tr class="{sha1(strtolower($entry_data.Publisher))}" {if strtolower($entry_data.Publisher)!="artech"}style="display:none;"{/if}>
+    <td>
+        {$entry_data.DisplayName|utf8_encode}
+    </td>
+    <td>
+        {$entry_data.Publisher|utf8_encode}
+    </td>
+    <td>
+        {$entry_data.DisplayVersion}
+    </td>
+</tr>
+{/if}
+{/foreach}
+</tbody>
+</table>

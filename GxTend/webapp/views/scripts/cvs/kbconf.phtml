@@ -24,7 +24,9 @@ $(document).ready(function(){
     $("#conn_type").change(function() {
         chgConnType();
     });
-    chgConnType();    
+    chgConnType();
+
+    $("#local_kbdir").focus();
 });
     
 function chgConnType() {
@@ -44,8 +46,8 @@ function chgConnType() {
 <input type="hidden" name="kbguid" value="{$smarty.get.kbguid}">
     <table align="center" width="100%" cellpadding="2px">
     <tr>
-        <td style="font-weight:bold;width:30%;"><b>Local KB Path</b></td>
-        <td><input type="text" size="60" id="local_kbdir" name="local_kbdir" value="{$kbdata.local_kbdir}"></td>
+        <td style="font-weight:bold;width:30%;"><b>KB Path</b></td>
+        <td><input type="text" size="60" id="local_kbdir" name="local_kbdir" value="{$kbdata.local_kbdir}" {if $kbdata.kbclass==1111}readonly="readonly"{/if}></td>
     </tr>
     {if $kbdata.kbclass >= 10000}
     <tr>

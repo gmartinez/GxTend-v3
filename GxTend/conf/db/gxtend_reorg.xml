@@ -180,6 +180,32 @@
                 </struct>
             </var>
 
+            <var name='7_to_8'>
+                <struct>
+                <var name='eval_before'>
+                <string>
+                    $sql_sep = ';';
+                    $engine = 'MyISAM';
+                    $charset = 'latin1';
+                </string>
+                </var>
+
+                <var name='changes'>
+                <string>
+                    DROP TABLE `gxt_companies`;
+                    ALTER TABLE `gxt_clients` DROP COLUMN `compid`;
+                    DROP TABLE `gxt_sectors`;
+                    ALTER TABLE `gxt_users` DROP COLUMN `sectorid`;
+                </string>
+                </var>
+
+                <var name='eval_after'>
+                <string>
+                </string>
+                </var>
+                </struct>
+            </var>
+
         </struct>
     </var>
 

@@ -87,12 +87,12 @@ label.error {
     margin:0 5px 0 5px;
 }
 
-input[disabled=disabled],
-input[readonly=readonly],
-select[readonly=readonly],
-select[disabled=disabled],
-textarea[readonly=readonly],
-textarea[disabled=disabled] {
+input[disabled],
+input[readonly],
+select[readonly],
+select[disabled],
+textarea[readonly],
+textarea[disabled] {
     /*opacity: .5;*/
     color:#BFBFBF;
 }

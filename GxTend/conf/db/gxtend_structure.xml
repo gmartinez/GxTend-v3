@@ -37,15 +37,8 @@
                     CREATE TABLE IF NOT EXISTS `gxt_clients` (
                       `cliid` int(11) NOT NULL auto_increment,
                       `cliabv` varchar(255) default '',
-                      `compid` int(11) NOT NULL default '0',
                       `countryid` int(11) NOT NULL default '0',
                       PRIMARY KEY (`cliid`)
-                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
-
-                    CREATE TABLE IF NOT EXISTS `gxt_companies` (
-                      `compid` int(11) NOT NULL auto_increment,
-                      `compabv` varchar(255) default '',
-                      PRIMARY KEY (`compid`)
                     ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
 
                     CREATE TABLE IF NOT EXISTS `gxt_cvsindex` (
@@ -201,12 +194,6 @@
                       PRIMARY KEY (`projguid`)
                     ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
 
-                    CREATE TABLE IF NOT EXISTS `gxt_sectors` (
-                      `sectorid` int(11) NOT NULL auto_increment,
-                      `sectorabv` varchar(255) default '',
-                      PRIMARY KEY (`sectorid`)
-                    ) ENGINE=$engine DEFAULT CHARSET=$charset COMMENT='';
-
                     CREATE TABLE IF NOT EXISTS `gxt_security` (
                       `type` varchar(10) NOT NULL default '',
                       `guid` varchar(40) NOT NULL default '',
@@ -288,7 +275,6 @@
                       `userguid` varchar(40) default '',
                       `groupguid` varchar(40) default '',
                       `othergroups` varchar(255) default '',
-                      `sectorid` int(11) NOT NULL default '0',
                       `cliid` int(11) NOT NULL default '0',
                       `username` varchar(255) default '',
                       `pass` varchar(255) default '',
@@ -544,7 +530,6 @@
                       `userguid` STRING,
                       `groupguid` STRING,
                       `othergroups` STRING,
-                      `sectorid` INTEGER,
                       `cliid` INTEGER,
                       `username` STRING,
                       `pass` STRING,

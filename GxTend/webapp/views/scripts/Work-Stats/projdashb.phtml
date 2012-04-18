@@ -53,7 +53,7 @@ $(document).ready(function(){
     <p style="font-weight:bold;font-size:1.5em;">Last Team Actions</p>
     {foreach $commits_list as $commitId => $commiterTs name=foo}
     <div id="{$commitId}" class="{if $smarty.foreach.foo.iteration>3}older_commits{/if}" style="padding:10px 0; border-bottom:1px solid #DDDDDD; {if $smarty.foreach.foo.iteration>3}display:none;{/if}">
-        <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getusrimg?userguid={$commits_info.$commitId.userguid}" alt="User Image">
+        <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$commits_info.$commitId.userguid}&v={$smarty.now}" alt="User Image">
         <div style="margin-left:60px;">
         <div style="margin:0 0 5px;">
             <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;
@@ -62,7 +62,7 @@ $(document).ready(function(){
         <div style="margin:0 0 5px; font-size:1.1em;">
             <p>
             <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">
-            {$InProve_Smarty->cutstr($commitId,0,7)}
+            {$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}
             </a>
             &nbsp;{$commits_info.$commitId.subject}
             </p>

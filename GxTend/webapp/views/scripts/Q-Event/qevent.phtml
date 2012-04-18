@@ -1,42 +1,35 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    {include file='../index/common_head.phtml'}
-</head>
-<body>
+{include file="../skel/header.phtml"}
+<script type="text/javascript">
+$(document).ready(function(){
 
-	<script type="text/javascript">
-	$(document).ready(function(){
+    $("#form").ajaxForm({
+        dataType:  'json',
+        beforeSubmit: function() {
+            $.blockUI({ message: '{$smarty.const._MSG_WAIT_}' });
+        },
+        success: function (r) {
+            setTimeout(window.close(), 3000);
+            notify("Notification",r.msg,"info",3000);
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+    });
 
-        $("#form").ajaxForm({
-            dataType:  'json',
-            beforeSubmit: function() {
-                $.blockUI({ message: '{$smarty.const._MSG_WAIT_}' });
-            },
-            success: function (r) {
-                setTimeout(window.close(), 3000);
-                notify("Notification",r.msg,"info",3000);
-            },
-            error: function (jqXHR) {
-                handleXHRerror(jqXHR);
-            }
+    $('.datepick').datepicker({ minDate: '-0' });
+
+    $("#onqeventstatus").change(function() {
+            var $sboxval = $("#onqeventstatus").val();
+            $(".when2exec").hide();
+            $("#"+$sboxval).show();
         });
 
-	    $('.datepick').datepicker({ minDate: '-0' });
+    $("#"+$("#onqeventstatus").val()).show();
 
-        $("#onqeventstatus").change(function() {
-                var $sboxval = $("#onqeventstatus").val();
-                $(".when2exec").hide();
-                $("#"+$sboxval).show();
-            });
+    initializeButtons();
 
-        $("#"+$("#onqeventstatus").val()).show();
-
-        initializeButtons();
-
-    });
-	</script>
+});
+</script>
 
     <form id="form" action="post" method="POST" enctype="multipart/form-data">
         <fieldset>
@@ -88,5 +81,4 @@
         </fieldset>
 	</form>
 
-</body>
-</html>
+{include file="../skel/footer.phtml"}

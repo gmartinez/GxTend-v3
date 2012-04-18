@@ -13,7 +13,7 @@ $(document).ready(function(){
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
         <h3>
             Client this User {if $form_mode != $smarty.const._LBL_ADD_}is{else}will be{/if} related to {$cliid}
-            &nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_clients' }, null, '$(\'#addNew\').click();');">[+]</span>
+            &nbsp;[<a href="javascript:;" title="Add Entry" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_clients' }, null, '$(\'#addNew\').click();');">+</a>]
         </h3>        
         <div class="myhr"></div>
 		<table align="center" width="100%">
@@ -22,9 +22,9 @@ $(document).ready(function(){
             </td>
 			<td align="left">
             {if $form_mode == $smarty.const._LBL_ADD_}
-			<input type="text" size="15" name="f|username|unique" value="{$username}" class="string required">
+			<input type="text" size="20" name="f|username|unique" value="{$username}" class="string required">
             {else}
-			<input type="text" size="15" name="f|username|unique" value="{$username}" readonly="readonly">
+			<input type="text" size="20" name="f|username|unique" value="{$username}" readonly="readonly">
             <img class="pointer" src="../img/icons/16/password.png" title="Change Password" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=users', 'Change User\'s Password', 250, 500);">
             {/if}
             </td>
@@ -44,25 +44,10 @@ $(document).ready(function(){
             </td>
         </tr>
 		<tr><td align="left">
-			<b>Primary Group</b>
+			<b>User Groups</b>
             </td>
 			<td align="left">
-			{$groupguid|default:"A group named after 'Username' will be created and set as user's primary"}
-            </td>
-        </tr>
-		<tr><td align="left">
-			<b>Other Groups</b>
-            </td>
-			<td align="left">
-			{$othergroups}&nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">[+]</span>
-			<br>(Use Ctrl key for multiple selection)
-            </td>
-        </tr>
-        <tr><td align="left">
-            <b>Users's Sector</b>
-            </td>
-            <td align="left">
-            {$sectorid}&nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_sectors' }, null, '$(\'#addNew\').click();');">[+]</span>
+			{$othergroups}&nbsp;[Use Ctrl+Click for multiple selection | <a href="javascript:;" title="Add Entry" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">+</a>]
             </td>
         </tr>
 		<tr><td align="left">

@@ -35,19 +35,27 @@ function loadappdiv(url, data, div, evalA) {
 /**
  * Open generic dialog box...
  */
-function mDialog(url, title, height, width, position, print, download) {
-
-    // Pre-populate div of content with loading indicator...
-    $("#GenericDialog").html(_MSG_WAIT_SM_);
+function mDialog(url, title, height, width, position, print, download, onload, onclose) {
 
     // Create and open dialog...
-    $("#GenericDialog").dialog("option", "title", title);
-    $("#GenericDialog").dialog("option", "height", (height) ? height : 'auto');
-    $("#GenericDialog").dialog("option", "width", (width) ? width : 450);
-    $('#GenericDialog').dialog('option', 'show', 'blind');
-    $("#GenericDialog").dialog("option", "position", (position) ? position : 'center');
-    $("#GenericDialog").dialog('option', 'buttons', {});
-    $("#GenericDialog").dialog("open");
+    $("#GenericDialog").dialog({
+                                bgiframe: true,
+                                autoOpen: false,
+                                modal: true,
+                                title: title,
+                                height: (height ? height : 'auto'),
+                                width: (width ? width : 480),
+                                show: 'blind',
+                                position: (position ? position : 'center'),
+                                buttons: {}
+                                });    
+    if (onclose) {
+        $( "#GenericDialog" ).bind( "dialogclose", function(event, ui) {
+            onclose();
+        });
+    }
+    $("#GenericDialog").html(_MSG_WAIT_SM_).dialog("open");
+    
     
     // Load content...
     if (url.substring(0,5)=="http:") {
@@ -62,6 +70,7 @@ function mDialog(url, title, height, width, position, print, download) {
                                         $("#GenericDialog").html("The submitted request did not return the expected result.<p class='red'>Error " + xhr.status + " " + xhr.statusText + "</p>")
                                     } else {
                                         initializeButtons();
+                                        if (onload) onload();
                                     }
                                 }
         );
@@ -279,21 +288,6 @@ function checkLength(o,n,min,max) {
 }
 
 /**
- * Check regular expresion matching...
- */
-function checkRegexp(o,regexp,errmsg) {
-
-    if ( !( regexp.test( o.val() ) ) ) {
-        o.addClass('ui-state-error');
-        $("#validateTips").html(errmsg).effect("highlight",{},2000);
-        return false;
-    } else {
-        return true;
-    }
-
-}
-
-/**
  * Check is objects values are the same...
  */
 function checkSame(o,po,errmsg) {
@@ -356,6 +350,12 @@ function initializeButtons() {
     $(".button-history").button({
         icons: {
             primary: 'ui-icon-script'
+        }
+    });
+
+    $(".button-tag").button({
+        icons: {
+            primary: 'ui-icon-tag'
         }
     });
 
@@ -464,6 +464,24 @@ function initializeButtons() {
     $(".button-alert").button({
         icons: {
             primary: 'ui-icon-alert'
+        }
+    });
+
+    $(".button-next").button({
+        icons: {
+            primary: 'ui-icon-circle-arrow-e'
+        }
+    });
+
+    $(".button-prev").button({
+        icons: {
+            primary: 'ui-icon-circle-arrow-w'
+        }
+    });
+
+    $(".button-attch").button({
+        icons: {
+            primary: 'ui-icon-circle-arrow-n'
         }
     });
 

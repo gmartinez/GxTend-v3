@@ -1,7 +1,7 @@
 /*!
- * jQuery clueTip plugin v1.2.4
+ * jQuery clueTip plugin v1.2.5
  *
- * Date: Fri Dec 09 23:26:18 2011 EST
+ * Date: Mon Jan 16 23:33:54 2012 EST
  * Requires: jQuery v1.3+
  *
  * Copyright 2011, Karl Swedberg
@@ -16,9 +16,8 @@
 
 (function($) {
 
-
   $.cluetip = {
-    version: '1.2.4',
+    version: '1.2.5',
 
     // the HTML that will be used for the tooltip
     template: ['<div>',
@@ -135,6 +134,7 @@
   };
   var $cluetipWait,
       standardClasses = 'cluetip ui-widget ui-widget-content ui-cluetip',
+      caches = {},
       counter = 0,
       imgCount = 0;
 
@@ -164,7 +164,8 @@
 
     /** =create cluetip divs **/
     counter++;
-    var cluetipId = $.cluetip.backCompat || !options.multiple ? 'cluetip' : 'cluetip-' + counter,
+    var cluezIndex,
+        cluetipId = $.cluetip.backCompat || !options.multiple ? 'cluetip' : 'cluetip-' + counter,
         cluetipSelector = '#' + cluetipId,
         prefix = $.cluetip.backCompat ? '#' : '.',
         insertionType = $.cluetip.setup.insertionType,
@@ -179,7 +180,7 @@
       .attr('id', cluetipId)
       .css({position: 'absolute', display: 'none'});
 
-      var cluezIndex = +options.cluezIndex;
+      cluezIndex = +options.cluezIndex;
       $cluetipOuter = $cluetip.find(prefix + 'cluetip-outer').css({position: 'relative', zIndex: cluezIndex});
       $cluetipInner = $cluetip.find(prefix + 'cluetip-inner');
       $cluetipTitle = $cluetip.find(prefix + 'cluetip-title');
@@ -202,7 +203,8 @@
           cluetipContents = false,
           isActive = false,
           closeOnDelay = 0,
-          tipAttribute = opts[opts.attribute] || $link.attrProp(opts.attribute) || $link.attr(opts.attribute),
+          tipAttribute = opts[opts.attribute] ||
+            ( opts.attribute == 'href' ? $link.attr(opts.attribute) : $link.attrProp(opts.attribute) || $link.attr(opts.attribute) ),
           ctClass = opts.cluetipClass;
 
       cluezIndex = +opts.cluezIndex;
@@ -214,6 +216,7 @@
       // if hideLocal is set to true, on DOM ready hide the local content that will be displayed in the clueTip
       if (opts.local && opts.localPrefix) {tipAttribute = opts.localPrefix + tipAttribute;}
       if (opts.local && opts.hideLocal && tipAttribute) { $(tipAttribute + ':first').hide(); }
+
       var tOffset = parseInt(opts.topOffset, 10), lOffset = parseInt(opts.leftOffset, 10);
       // vertical measurement variables
       var tipHeight, wHeight,
@@ -245,7 +248,9 @@
 
 //activate clueTip
     var activate = function(event) {
-      var pY, continueOn = opts.onActivate($link);
+      var pY,
+          continueOn = opts.onActivate($link),
+          ajaxMergedSettings;
       if (continueOn === false) {
         return false;
       }
@@ -367,6 +372,10 @@
               }
             },
             error: function(xhr, textStatus) {
+              if ( options.ajaxCache && !caches[tipAttribute] ) {
+                caches[tipAttribute] = {status: 'error', textStatus: textStatus, xhr: xhr};
+              }
+
               if (isActive) {
                 if (optionError) {
                   optionError.call(link, xhr, textStatus, $cluetip, $cluetipInner);
@@ -375,7 +384,11 @@
                 }
               }
             },
-            success: function(data, textStatus) {
+            success: function(data, textStatus, xhr) {
+              if ( options.ajaxCache && !caches[tipAttribute] ) {
+                caches[tipAttribute] = {status: 'success', data: data, textStatus: textStatus, xhr: xhr};
+              }
+
               cluetipContents = opts.ajaxProcess.call(link, data);
 
               // allow for changing the title based on data returned by xhr
@@ -383,11 +396,13 @@
                 tipTitle = cluetipContents.title;
                 cluetipContents = cluetipContents.content;
               }
+
               if (isActive) {
                 if (optionSuccess) {
                   optionSuccess.call(link, data, textStatus, $cluetip, $cluetipInner);
                 }
                 $cluetipInner.html(cluetipContents);
+
               }
             },
             complete: function(xhr, textStatus) {
@@ -402,10 +417,11 @@
                 }
               }
               if (imgCount && !$.browser.opera) {
-                $(imgs).bind('load error', function() {
+                $(imgs).bind('load.ct error.ct', function() {
                   imgCount--;
-                  if (imgCount<1) {
+                  if (imgCount === 0) {
                     $cluetipWait.hide();
+                    $(imgs).unbind('.ct');
                     if (isActive) { cluetipShow(pY); }
                   }
                 });
@@ -415,8 +431,14 @@
               }
             }
           };
-          var ajaxMergedSettings = $.extend(true, {}, opts.ajaxSettings, ajaxSettings);
-          $.ajax(ajaxMergedSettings);
+
+          ajaxMergedSettings = $.extend(true, {}, opts.ajaxSettings, ajaxSettings);
+
+          if ( caches[tipAttribute] ) {
+            cachedAjax( caches[tipAttribute], ajaxMergedSettings );
+          } else {
+            $.ajax(ajaxMergedSettings);
+          }
         }
 
 /***************************************
@@ -636,7 +658,20 @@
           $link.attrProp('title', $link.data('cluetip').title);
         });
       }
-    });
+
+      // trigger a cached Ajax response
+      function cachedAjax(info, settings) {
+        var status = info.status;
+        settings.beforeSend(info.xhr, settings);
+        if ( status == 'error' ) {
+          settings[status](info.xhr, info.textStatus);
+        } else if (status == 'success') {
+          settings[status](info.data, info.textStatus, info.xhr);
+        }
+        settings.complete(info.xhr, settings.textStatus);
+      }
+
+    }); // end this.each
 
     /** =private functions
     ************************************************************/
