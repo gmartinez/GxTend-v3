@@ -1,21 +1,15 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    {include file='../index/common_head.phtml'}
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $("#tabs").tabs({
-            select: function(event, ui) {
-                if (ui.index==1) {
-                $("#emailTab1 .atchs").load("/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=off");
-                }
+{include file="../skel/header.phtml"}
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tabs").tabs({
+        select: function(event, ui) {
+            if (ui.index==1) {
+            $("#emailTab1 .atchs").load("/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=off");
             }
-        });        
-    });
-    </script>
-</head>
-<body class="popup">
+        }
+    });        
+});
+</script>
 
     <table align="center" width="100%" class="list-horizontal">
     <tr>
@@ -127,5 +121,4 @@
         </div>
     </div>
 
-</body>
-</html>
+{include file="../skel/footer.phtml"}

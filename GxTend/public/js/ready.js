@@ -35,7 +35,7 @@ function loadappdiv(url, data, div, evalA) {
 /**
  * Open generic dialog box...
  */
-function mDialog(url, title, height, width, position, print, download) {
+function mDialog(url, title, height, width, position, print, download, onload, onclose) {
 
     // Create and open dialog...
     $("#GenericDialog").dialog({
@@ -44,12 +44,18 @@ function mDialog(url, title, height, width, position, print, download) {
                                 modal: true,
                                 title: title,
                                 height: (height ? height : 'auto'),
-                                width: (width ? width : 450),
+                                width: (width ? width : 480),
                                 show: 'blind',
                                 position: (position ? position : 'center'),
                                 buttons: {}
-                                });
+                                });    
+    if (onclose) {
+        $( "#GenericDialog" ).bind( "dialogclose", function(event, ui) {
+            onclose();
+        });
+    }
     $("#GenericDialog").html(_MSG_WAIT_SM_).dialog("open");
+    
     
     // Load content...
     if (url.substring(0,5)=="http:") {
@@ -64,6 +70,7 @@ function mDialog(url, title, height, width, position, print, download) {
                                         $("#GenericDialog").html("The submitted request did not return the expected result.<p class='red'>Error " + xhr.status + " " + xhr.statusText + "</p>")
                                     } else {
                                         initializeButtons();
+                                        if (onload) onload();
                                     }
                                 }
         );

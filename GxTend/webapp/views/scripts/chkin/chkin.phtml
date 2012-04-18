@@ -120,7 +120,9 @@ function filter_by_objsts() {
 
     if ($newRows) { $("#div_checkin #click2add").show(); }
     if ($diffRows) { $("#div_checkin #click2lck").show(); }
+    {if $kbdata.kbclass>=7500}
     if ($hiddenRows) { $("#div_checkin #filterctrls").show(); }
+    {/if}
     $("#div_checkin #resultrows").text($visibleRows);
 
 }
@@ -168,9 +170,11 @@ function go_for_lock(type) {
         {/if}
     </div>
     <div class="column right">
+        {if $kbdata.kbclass>=7500}
         <span id="click2lck" class="file" style="display:none;" onclick='go_for_lock("lst2lck");'><img alt="info" src="../img/icons/16/info.png" title="Search &amp; Lock"> Click to search &amp; lock ALL modified objects</span>
         <br>
         <span id="click2add" class="file" style="display:none;" onclick='go_for_lock("lst2add");'><img alt="new" src="../img/icons/16/new.png" title="Search &amp; Lock"> Click to add &amp; lock ALL new objects</span>
+        {/if}
     </div>
     <br clear="all">
     <div class="myhr"></div>
@@ -200,7 +204,7 @@ function go_for_lock(type) {
         <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
             <table width="100%" align="center" class="list">
             <thead>
-                <tr><th>Object</th><th>Description</th><th>Modified @ Local &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_checkin .objlst");setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+                <tr><th>Object</th><th>{if $kbdata.kbclass<7500}Folder{else}Description{/if}</th><th>Modified @ Local &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_checkin .objlst");setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
             </thead>
             <tbody>
                 {foreach $local_changes as $k => $rec}
@@ -210,7 +214,8 @@ function go_for_lock(type) {
                     <img src="../img/gx/objclass/{$gx_objcls[$rec.gxinfo.objcls].small}.png" title="{$gx_objcls[$rec.gxinfo.objcls].long}">
                     &nbsp;{$rec.gxinfo.objnam}
                     {else}
-                    <img src="../img/icons/16/file.png" title="File">
+                    {$mimeicon='./img/icons/16/mimetypes/'|cat:pathinfo($rec.gxinfo.objnam,$smarty.const.PATHINFO_EXTENSION)|cat:'.png'}
+                    <img src="{if file_exists($mimeicon)}{$mimeicon}{else}./img/icons/16/mimetypes/blank.png{/if}" title="File">
                     &nbsp;{$rec.gxinfo.objnam|basename}
                     {/if}
                 </td>
@@ -241,7 +246,7 @@ function go_for_lock(type) {
                     {else}
                         {if $rec.b64}
                         <span id="{$rec.b64|sha1}">
-                            {if !$rec.gxinfo.lock}
+                            {if !$rec.gxinfo.lock && $kbdata.kbclass>=7500}
                                 {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
                                     <img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
                                     {if $rec.gxinfo.objcls!=111}
@@ -317,7 +322,7 @@ function go_for_lock(type) {
             <div class="myhr"></div>
 
             <div id="bottom_left" class="left">
-                {include file='../index/ttp.phtml'}
+                {include file='../skel/ttp.phtml'}
             </div>
             <div  id="bottom_right" class="buttons right">
                 {if $kbdata.kbclass<7500}

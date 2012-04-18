@@ -58,16 +58,24 @@
 			<input type="text" id="userprofmobile" name="userprof|mobile" value="{$userprof_mobile}">
 			</div>
 			<div>
-			<label for="userprof|fax"><strong>Fax #</strong></label>
-			<input type="text" id="userproffax" name="userprof|fax" value="{$userprof_fax}">
-			</div>
-			<div>
 			<label for="userprof|home"><strong>Home #</strong></label>
 			<input type="text" id="userprofhome" name="userprof|home" value="{$userprof_home}">
 			</div>
 			<div>
 			<label for="userprof|imname"><strong>IM Name</strong></label>
 			<input type="text" id="userprofimname" name="userprof|imname" value="{$userprof_imname}"> on {$imtype}
+			</div>
+			<div>
+			<label for="userprof|sector"><strong>Sector</strong></label>
+			{$userprof_sector}
+			</div>
+			<div>
+			<label for="userprof|website"><strong>Website</strong></label>
+			<input type="text" id="userprofwebsite" name="userprof|website" value="{$userprof_website}">
+			</div>
+			<div>
+			<label for="userprof|comments"><strong>Comments</strong></label>
+			<textarea rows="5" cols="80" name="userprof|comments">{$userprof_comments}</textarea>
 			</div>
 			<!--div>
 			<label for="userprof|token"><strong>Token</strong></label>

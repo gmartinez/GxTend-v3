@@ -39,14 +39,14 @@
     </div>
 
     <div style="float:right;">
-        {if $kbdata.local_kbdir}
+        {if $kbdata.local_kbdir && $kbdata.kbclass>=7500}
         <input type="text" title="{$smarty.const._LBL_SEARCH_}" id="qrystr" name="qrystr" value="{$smarty.request.qrystr}" maxlength="2048" size="37">
         <input type="button" title="{$smarty.const._TITLE_SUBMIT_}" id="gobtn" name="gobtn" value="Go" onclick='$("#diffs").show("slow", show_srchres("{$projdata.projguid}", "{$kbdata.kbguid}", 1));'>
         {$InProve_Smarty->msg("HandT","Search_and_Lock.phtml")}
         &nbsp;
         <div style="font-size:0.85em;">
         [List <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[My_Locks]");$("#gobtn").click();'>my</span> / <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[All_Locks]");$("#gobtn").click();'>all</span> active locks]&nbsp;
-        {if $kbdata.kbclass>=7500}[<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Add_New]");$("#gobtn").click();'>Add new object(s)</span>]&nbsp;{/if}
+        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Add_New]");$("#gobtn").click();'>Add new object(s)</span>]&nbsp;
         [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Ignore_List]");$("#gobtn").click();'>Ignore list</span>]&nbsp;
         </div>
         {/if}

@@ -1,47 +1,41 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    {include file='../index/common_head.phtml'}
-    <script type="text/javascript">
-    $(document).ready(function(){
-        //
-        initializeButtons();
+{include file="../skel/header.phtml"}
+<script type="text/javascript">
+$(document).ready(function(){
+    //
+    initializeButtons();
 
-        // Form submit...
-        $("form").ajaxForm({
-            dataType: 'json',
-            async: false,
-            beforeSubmit: function() {
-                $('form.toValidate').validate({
-                ignore: ":hidden"
-                });
-                if ( $('.toValidate').valid() ) {
-                    $("form").block({ message: '{$smarty.const._MSG_WAIT_}' });
-                    return true;
-                }
-                return false;
-            },
-            success: function (r) {
-                $("form").block({ message: r.msg });
-                if (r.sts) {
-                    setTimeout('window.close();', 2500);
-                } else {
-                    setTimeout('$("form").unblock();', 2500);
-                }
-            },
-            error: function (jqXHR) {
-                handleXHRerror(jqXHR);
+    // Form submit...
+    $("form").ajaxForm({
+        dataType: 'json',
+        async: false,
+        beforeSubmit: function() {
+            $('form.toValidate').validate({
+            ignore: ":hidden"
+            });
+            if ( $('.toValidate').valid() ) {
+                $("form").block({ message: '{$smarty.const._MSG_WAIT_}' });
+                return true;
             }
-        });
-
-        initRichTextEditor('body','MyBasicOptions');
-
+            return false;
+        },
+        success: function (r) {
+            $("form").block({ message: r.msg });
+            if (r.sts) {
+                setTimeout('window.close();', 2500);
+            } else {
+                setTimeout('$("form").unblock();', 2500);
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
     });
-    </script>
-</head>
 
-<body class="popup">
+    initRichTextEditor('body','MyBasicOptions');
+
+});
+</script>
+
     <form id="write_email_form" class="toValidate" action="/Email-Mgmt/send" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="options" value="{$b64options}">
     <table align="center" width="100%" class="list-horizontal">
@@ -122,6 +116,4 @@
     </div>
     </form>
     
-    <div id="GenericDialog" title="Generic Dialog"></div>
-</body>
-</html>
+{include file="../skel/footer.phtml"}

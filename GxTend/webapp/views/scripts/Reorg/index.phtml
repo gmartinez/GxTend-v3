@@ -1,24 +1,53 @@
+<!--External Includes-->
+<script type="text/javascript" src="../syntax/shCore.js"></script>
+<script type="text/javascript" src="../syntax/shAutoloader.js"></script>
+<link href="../syntax/css/shCore.css" rel="stylesheet" type="text/css" />
+<link href="../syntax/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+
 <script type="text/javascript">
 $(document).ready(function(){
-    
-});
 
-function execreorg(set2exec) {
-    if (confirm("Confirm execution of change set ?")) {
-        $("#reorg .buttons").html('{$smarty.const._BAR_WAIT_}');
-        $.get(
-            "/Reorg/post?set2exec="+set2exec,
-            function (data, textStatus, jqXHR) {
-                $("#reorg .buttons").html('');
-                $("#sqlResult").show().html(data);
+	$("#reorg form").ajaxForm({
+		dataType: 'json',
+        async: true,
+		beforeSubmit: function() {
+            $('#reorg .toValidate').validate({
+               ignore: ":hidden"
+            });
+            if ( $('#reorg .toValidate').valid() ) {
+                $("#reorg button").prop("disabled", true).addClass("ui-state-disabled");
+                if (confirm("Confirm execution of changeset ?")) {
+                $("#reorg form").hide(); $("#reorg #sqlResult").show();
+                return true;
+                }
             }
-        );    
-    }
-}
+            return false;
+		},
+		success: function (r) {
+            if (r.sts) {
+                $("#reorg #sqlResult").html(base64_decode(r.msg));
+            } else {
+                notify("Notification",r.msg,(r.sts ? "info":"error"),2500);
+                $("#reorg form").show(); $("#reorg #sqlResult").hide();
+                $("#reorg button").prop("disabled", false).removeClass("ui-state-disabled");
+            }
+		},
+		error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+		}
+	});
+
+    SyntaxHighlighter.autoloader(
+        'sql  ../syntax/shBrushSql.js',
+        'php  ../syntax/shBrushPhp.js'
+    );
+    SyntaxHighlighter.all();
+
+});
 </script>
 
 <div id="reorg">
-<span style="font-size:1.5em;"><strong>Status :</strong> {$InProve_Smarty->getSessVar("MetaData.checksts.msg")}</span>
+<h3><strong>Status :</strong> {$metasts.msg}</h3>
 <div class="myhr"></div>
 
 {if !$chgcode}
@@ -27,19 +56,34 @@ function execreorg(set2exec) {
 {foreach $chgcode as $dsc => $code name=changeSets}
 <div class="infoset">
     <span class="ui-state-active ui-corner-all" style="padding:5px;">Changes to get from {$dsc}</span>
-    <div style="margin-top:5px;">
+    <div style="margin-top:10px;">
     {if $code.eval}
         [PHP]
-        {$code.eval}
+        <pre type="syntaxhighlighter" class="brush: php">{$code.eval}</pre>
     {/if}
     {if $code.sql}
         [SQL]
-        {$code.sql}
+        <pre type="syntaxhighlighter" class="brush: sql">{$code.sql}</pre>
         {if $smarty.foreach.changeSets.first}
-        <div id="sqlResult" class="ui-state-active ui-corner-all" style="padding:5px;display:none;"></div>
-        <div class="buttons right">
-            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}" onclick="execreorg('{$dsc}');">{$smarty.const._LBL_SUBMIT_}</button>
-        </div>
+        <form action="/Reorg/post" method="POST" enctype="multipart/form-data" class="toValidate right">
+        <input type="hidden" name="set2exec" value="{$dsc}">
+            <h3>Authentication Information</h3><br />
+            <table>
+            <tr>
+                <td>&nbsp;<b>Username</b></td>
+                <td>
+                    <input name="username" type="text" value="" size="20" class="required" />
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;<b>Password</b></td>
+                <td><input name="password" type="password" value="" size="20" class="required" /></td>
+            </tr>
+            </table>
+            <br />
+            <div style="float:right;">{$smarty.const._FORM_BTN_SUBMIT_}</div>
+        </form>
+        <div id="sqlResult" class="ui-state-active ui-corner-all" style="padding:5px;display:none;">{$smarty.const._MSG_WAIT_SM_}</div>
         {/if}
         <br clear="all">
     {/if}

@@ -50,7 +50,7 @@ $(document).ready(function(){
         {$InProve_Smarty->msg("ui-icon-info","None Found")}
         <div class="myhr"></div>
         <div id="bottom_left" class="left">
-            {include file='../index/ttp.phtml'}
+            {include file='../skel/ttp.phtml'}
         </div>
         <div  id="bottom_right" class="right">
             &nbsp;
@@ -125,7 +125,7 @@ $(document).ready(function(){
         {/foreach}
         <div class="myhr"></div>
         <div id="bottom_left" class="left">
-            {include file='../index/ttp.phtml'}
+            {include file='../skel/ttp.phtml'}
         </div>
         <div  id="bottom_right" class="right buttons">
             <span class="file" onclick="$('.othersCommits').hide('slow');$('.myCommits').show('slow');"><strong>My Own :</strong> {$myCommits|default:0}</span>
