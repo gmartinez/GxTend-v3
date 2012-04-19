@@ -80,11 +80,7 @@ class InProve_Git {
         } else {
 
             # Current repository status (GxTend)...
-            if (!file_exists($repopath."/status")) {
-                $repo_stats["ava"] = "open";
-            } else {
-                $repo_stats["ava"] = trim(basename(InProve_File::read($repopath."/status")));
-            }
+            $repo_stats["ava"] = self::getRepoStatus($repopath);
 
             # Current branch HEAD...
             # Working Tree Size...
@@ -170,6 +166,50 @@ class InProve_Git {
     return $repo_stats;
     }
 
+     
+     /*
+     * Git repository related operations to set the repository in a specific status from the remote client point of view
+     * 1. git specific parameter http.receivepack (boolean) controls wheter anonymous push is allowed by the git-http-backend
+     * 2. magic file named 'git-daemon-export-ok' controls wheter the repository will be exported by the git-http-backend
+      */
+    public function getRepoStatus($repopath) {
+
+        if (file_exists($repopath)) {
+            $magicfile = file_exists($repopath."/git-daemon-export-ok");
+            $git_output = InProve_Git::issuecommand("config http.receivepack", $repopath); $receivepack = trim($git_output["out"]);
+            
+            if ($magicfile && $receivepack=="true") {
+                $sts = "open";
+            } elseif ($magicfile && $receivepack!="true") {
+                $sts = "read";
+            } elseif (!$magicfile && $receivepack!="true") {
+                $sts = "close";
+            }
+        }
+
+    return $sts;
+    }
+
+    /*
+     * 
+     */
+    public function setRepoStatus($repopath, $sts) {
+        
+        if (file_exists($repopath)) {
+            if ($sts == "open") {
+                InProve_File::save($repopath."/git-daemon-export-ok", "Set on ".InProve_System::ts2str(time())." by ".InProve_Session::getSessVar("MyProfile.userdata.username"));
+                $git_output = InProve_Git::issuecommand("config http.receivepack true", $repopath);
+            } elseif ($sts == "read") {
+                InProve_File::save($repopath."/git-daemon-export-ok", "Set on ".InProve_System::ts2str(time())." by ".InProve_Session::getSessVar("MyProfile.userdata.username"));
+                $git_output = InProve_Git::issuecommand("config http.receivepack false", $repopath);
+            } elseif ($sts == "close") {
+                unlink($repopath."/git-daemon-export-ok");
+                $git_output = InProve_Git::issuecommand("config http.receivepack false", $repopath);
+            }
+        }
+
+    }
+    
 }
 
 ?>

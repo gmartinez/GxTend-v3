@@ -12,13 +12,8 @@
                 function (data, textStatus) {
                     showlogmsg();       // Display user message...
                     $("#nfoDialog").html("");
-                    if (data.err==false) {
-                        $("#repo_NE").hide();
-                        $("#repo_E").show();
-                    } else {
-                        $("#repo_NE").show();
-                        $("#repo_E").hide();
-                    }
+                    $("#east_panel.ui-tabs").tabs("load",$("#east_panel.ui-tabs").tabs("option", "selected"));
+                    $("#east_panel #tabber_3caafe3a989fdae1bd545a0850a7693b43eed791").tabs("load",$("#east_panel #tabber_3caafe3a989fdae1bd545a0850a7693b43eed791").tabs("option", "selected"));
                 }
         );
 
