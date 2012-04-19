@@ -1,32 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    {include file='../index/common_head.phtml'}
+{include file="../skel/header.phtml"}
+<!--External Includes-->
+<script type="text/javascript" src="../syntax/shCore.js"></script>
+<script type="text/javascript" src="../syntax/shAutoloader.js"></script>
+<link href="../syntax/css/shCore.css" rel="stylesheet" type="text/css" />
+<link href="../syntax/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
 
-    <!--External Includes-->
-	<script type="text/javascript" src="../syntax/shCore.js"></script>
-	<script type="text/javascript" src="../syntax/shAutoloader.js"></script>
-    <link href="../syntax/css/shCore.css" rel="stylesheet" type="text/css" />
-    <link href="../syntax/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$(document).ready(function(){
+    SyntaxHighlighter.autoloader(
+        'sql  ../syntax/shBrushSql.js',
+        'php  ../syntax/shBrushPhp.js',
+        'xml  ../syntax/shBrushXml.js',
+        'css  ../syntax/shBrushCss.js',
+        'js   ../syntax/shBrushJScript.js',
+        'java ../syntax/shBrushJava.js',
+        'css  ../syntax/shBrushCss.js',
+        'rb   ../syntax/shBrushRuby.js'
+    );
+    SyntaxHighlighter.all();
+});
+</script>
 
-    <script type="text/javascript">
-    $(document).ready(function(){
-        SyntaxHighlighter.autoloader(
-          'sql  ../syntax/shBrushSql.js',
-          'php  ../syntax/shBrushPhp.js',
-          'xml  ../syntax/shBrushXml.js',
-          'css  ../syntax/shBrushCss.js',
-          'js   ../syntax/shBrushJScript.js',
-          'java ../syntax/shBrushJava.js',
-          'css  ../syntax/shBrushCss.js',
-          'rb   ../syntax/shBrushRuby.js'
-        );
-        SyntaxHighlighter.all();
-    });
-    </script>
-</head>
-<body>
     <table align="center" width="100%" class="list-horizontal">
     {if $smarty.request.projguid}
     <tr>
@@ -59,5 +53,5 @@
 	</tr>
     </table>
     <pre type="syntaxhighlighter" class="brush: {$brush}">{$content}</pre>
-</body>
-</html>
+
+{include file="../skel/footer.phtml"}

@@ -1,23 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    {include file='../index/common_head.phtml'}
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $("#tabs").tabs();
+{include file="../skel/header.phtml"}
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tabs").tabs();
 
-        $("#GenericDialog").dialog({
-            bgiframe: true,
-            autoOpen: false,
-            modal: true,
-            position: 'center',
-            open: function(event, ui) { $("#GenericDialog").html('{$smarty.const._MSG_WAIT_SM_}'); }
-        });
+    $("#GenericDialog").dialog({
+        bgiframe: true,
+        autoOpen: false,
+        modal: true,
+        position: 'center',
+        open: function(event, ui) { $("#GenericDialog").html('{$smarty.const._MSG_WAIT_SM_}'); }
     });
-    </script>
-</head>
-<body class="popup">
+});
+</script>
 
     <table align="center" width="100%" class="list-horizontal">
     <tr>
@@ -78,7 +72,4 @@
     </ul>
     </div>
 
-    <div id="GenericDialog" title="Generic Dialog"></div>
-    
-</body>
-</html>
+{include file="../skel/footer.phtml"}

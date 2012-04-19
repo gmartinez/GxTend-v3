@@ -50,7 +50,7 @@ function mDialog(url, title, height, width, position, print, download, onload, o
                                 buttons: {}
                                 });    
     if (onclose) {
-        $( "#GenericDialog" ).bind( "dialogclose", function(event, ui) {
+        $("#GenericDialog").bind( "dialogclose", function(event, ui) {
             onclose();
         });
     }
@@ -62,6 +62,8 @@ function mDialog(url, title, height, width, position, print, download, onload, o
         $("#GenericDialog").html('<iframe src ="'+url+'" width="99%" height="99%" frameborder="0"><p>Your browser does not support iframes.</p></iframe>');        
     } else if (url.substring(0,5)=="text:") {
         $("#GenericDialog").html(url.substring(5));
+    } else if (url.substring(0,1)=="#") {
+        $("#GenericDialog").html($(url).html());
     } else {
         $("#GenericDialog").load(url,
                                 null,
@@ -340,6 +342,12 @@ function bytes2str(bytes) {
 function initializeButtons() {  
 
     $(".button-noicon").button();
+
+    $(".button-gear").button({
+        icons: {
+            primary: 'ui-icon-gear'
+        }
+    });
 
     $(".button-circle").button({
         icons: {
