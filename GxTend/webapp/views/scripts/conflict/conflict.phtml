@@ -1,47 +1,39 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    {include file='../index/common_head.phtml'}
+{include file="../skel/header.phtml"}
+<script type="text/javascript">
+$(document).ready(function(){
 
-    <script type="text/javascript">
-    $(document).ready(function(){
-    
-        $("#form_compare,#form_catchup,#form_confr,#form_checkin").ajaxForm({
-                                    dataType: "json",
-                                    async: false,
-                                    beforeSubmit: function() {
-                                        $.blockUI({ message: '{$smarty.const._MSG_WAIT_}' });
-                                    },
-                                    success: function (r) {
-                                        $.unblockUI();
-                                        notify("Notification",r.msg,"info",2500);
-                                    },
-                                    error: function (jqXHR) {
-                                        handleXHRerror(jqXHR);
-                                    }
-        });
-
-        setsubmitsts("#form_catchup > :checkbox:checked", "#submit_catchup");
-        setsubmitsts("#form_confr > :radio:checked", "#submit_confr");
-        setsubmitsts("#form_checkin > :checkbox:checked", "#submit_chkin");
-
-        $("#show_hide_lnk").toggle(
-            function() {
-                $("#show_hide_div").show();
-                $("#show_hide_img").attr("src", "{$smarty.const._IMG_HIDE_SM_}");
-            },
-            function() {
-                $("#show_hide_div").hide();
-                $("#show_hide_img").attr("src", "{$smarty.const._IMG_SHOW_SM_}");
-            }
-        );
-
+    $("#form_compare,#form_catchup,#form_confr,#form_checkin").ajaxForm({
+                                dataType: "json",
+                                async: false,
+                                beforeSubmit: function() {
+                                    $.blockUI({ message: '{$smarty.const._MSG_WAIT_}' });
+                                },
+                                success: function (r) {
+                                    $.unblockUI();
+                                    notify("Notification",r.msg,"info",2500);
+                                },
+                                error: function (jqXHR) {
+                                    handleXHRerror(jqXHR);
+                                }
     });
-    </script>
 
-</head>
-<body>
+    setsubmitsts("#form_catchup > :checkbox:checked", "#submit_catchup");
+    setsubmitsts("#form_confr > :radio:checked", "#submit_confr");
+    setsubmitsts("#form_checkin > :checkbox:checked", "#submit_chkin");
+
+    $("#show_hide_lnk").toggle(
+        function() {
+            $("#show_hide_div").show();
+            $("#show_hide_img").attr("src", "{$smarty.const._IMG_HIDE_SM_}");
+        },
+        function() {
+            $("#show_hide_div").hide();
+            $("#show_hide_img").attr("src", "{$smarty.const._IMG_SHOW_SM_}");
+        }
+    );
+
+});
+</script>
 
     <table align="center" width="100%">
     <tr><td align="left"><img src="../img/gx/objclass/{$gx_objcls[$smarty.get.OBJCLS].small}.png" title="{$gx_objcls[$smarty.get.OBJCLS].long}">&nbsp;{$smarty.get.OBJNAM}</td><td align="left">{$smarty.get.OBJDSC}</td></tr>
@@ -123,5 +115,4 @@
         </td></tr>
     </table>
 
-</body>
-</html>
+{include file="../skel/footer.phtml"}

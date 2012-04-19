@@ -1,15 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    {include file='../index/common_head.phtml'}
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $("#tabs").tabs();
-    });
-    </script>
-</head>
-<body class="popup">
+{include file="../skel/header.phtml"}
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tabs").tabs();
+});
+</script>
+
     <h2 style="float:right;">Log Entry Details&nbsp;</h2>
     <br clear="all">
     <table align="center" width="100%" class="list-horizontal">
@@ -76,5 +71,4 @@
         </div>
     </div>
 
-</body>
-</html>
+{include file="../skel/footer.phtml"}
