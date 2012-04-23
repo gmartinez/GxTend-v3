@@ -66,7 +66,7 @@ function getVersionStatus() {
             {if $licsts!="__VALID_KEY__"}
                 &nbsp;<span class="red">{$licsts} - {constant($licsts)}</span>
                 {if $iframesrc != "0601"}
-                &nbsp;<span class="pointer" onclick="mDialog('{$iframesrc}', 'Request GxTend License', 480, 640);">Click here to request key</span>
+                &nbsp;<span class="pointer" onclick="mDialog('{$iframesrc}', 'GxTend License Request', 480, 640);">Click here to request key</span>
                 {else}
                 &nbsp;Could not generate key request file.
                 {/if}
@@ -90,7 +90,10 @@ function getVersionStatus() {
 </div>
 
 <div class="infoset">
-<span class="ui-state-active ui-corner-all left" style="padding:0 5px 0 5px;">Environment Information</span><span class="ui-icon ui-icon-gear pointer left" title="Click to view/set configuration entries" onclick="mDialog('/Config/?secti=4', 'Configuration Settings', 600, 900);"></span><br clear="all">
+<span class="ui-state-active ui-corner-all left" style="padding:0 5px 0 5px;">Environment Information</span>
+<span class="ui-icon ui-icon-gear pointer left" title="Click to view/set configuration entries" onclick="mDialog('/Config/?secti=4', 'Configuration Settings', 600, 900);"></span>
+{$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode('../temp/logs/error.log')}&send_as=error.log&brushas=xml",null,null,"800x600","<span class='ui-icon ui-icon-flag pointer left' title='Click to view error log'></span>")}
+<br clear="all">
     <ul>
         <li><strong>Computer Name :</strong> {$osinfo.host}</li>
         <li><strong>OS Name :</strong> {$osinfo.name}</li>

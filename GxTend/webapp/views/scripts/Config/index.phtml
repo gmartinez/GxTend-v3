@@ -54,10 +54,12 @@ function checkValues(entryspec) {
     $("#form_config input:text").each( function(idx,obj) {
     if (!entryspec || entryspec==$(obj).attr("entryname")) {
         if ($(obj).val() && $(obj).val() != "__NEED_SETTING__" && $("#check_"+hex_sha1($(obj).attr("entryname"))).attr("id")) {
+            $("#check_"+hex_sha1($(obj).attr("entryname"))).html("").addClass("msg_wait small");
             $.getJSON(
                     "/Config/check",
-                    { chkif:"inFilesystem" , chkval:$(obj).val(), entryname:$(obj).attr("entryname") },
+                    { chkif:"Available" , chkval:$(obj).val(), entryname:$(obj).attr("entryname") },
                     function(r) {
+                        $("#check_"+hex_sha1($(obj).attr("entryname"))).removeClass("msg_wait small");
                         if (r.sts=="ok") {
                             $("#check_"+hex_sha1($(obj).attr("entryname"))).html("<img src='../img/icons/16/tick.png' alt='ok' title='"+r.msg+"'>");
                         } else if (r.sts=="err") {
@@ -137,8 +139,10 @@ function togglebwsections(id) {
     {if !$smarty.foreach.sects.last}&nbsp;|&nbsp;{/if}
 {/foreach}
 </div>
+<h3>About</h3>
+<p>This process will take care of setting primary configuration values, please take a moment to visually check the values are ok before proceeding.</p>
 <form id="form_config" action="/Config/post" method="POST" enctype="multipart/form-data">
-{foreach $sectionLst as $i => $label name=sects}
+    {foreach $sectionLst as $i => $label name=sects}
     <div id="section_{$smarty.foreach.sects.iteration}" class="section" style="display:none;">
 
         {include file="section$i.phtml"}
@@ -155,5 +159,5 @@ function togglebwsections(id) {
         {/if}
         </div>        
     </div>
-{/foreach}        
+    {/foreach}        
 </form>

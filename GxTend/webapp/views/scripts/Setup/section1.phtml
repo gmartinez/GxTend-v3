@@ -1,13 +1,13 @@
-<div class="myhr">Server Properties</div>
-<table id="srvproptbl" align="center" width="95%">
-{foreach $entriesLst.srvstat as $prop_name => $prop_value}
+<div class="myhr">Metadata Initial Properties</div>
+<table id="envproptbl" align="center" width="95%">
+{foreach $entriesLst as $prop_name => $prop_value}
 <tr>
     <td style="text-align:left;font-weight:bold;width:30%;">
         <span id="label_{$prop_name|sha1}">{$entriesDef.$prop_name.label|default:$prop_name}</span>
         {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"></span>{/if}
     </td>
     <td align="left">
-        <input type="{$entriesDef.$prop_name.inputtype|default:'text'}" size="70" id="input_{$prop_name|sha1}" class="{$entriesDef.$prop_name.class}" name="srvstat[{$prop_name}]" value="{$prop_value}" {if $entriesDef.$prop_name.readonly}readonly="readonly"{/if} entryname="{$prop_name}" entryvalue="{$prop_value}">
+        <input type="{$entriesDef.$prop_name.inputtype|default:'text'}" size="70" id="input_{$prop_name|sha1}" class="{$entriesDef.$prop_name.class}" name="{$prop_name}" value="{$prop_value}" {if $entriesDef.$prop_name.readonly}readonly="readonly"{/if} entryname="{$prop_name}" entryvalue="{$prop_value}">
         {if $entriesDef.$prop_name.defvalue}
         &nbsp;&laquo;&nbsp;
         {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
@@ -17,5 +17,8 @@
         {/if}
     </td>
 </tr>
-{/foreach}
+{/foreach}  
 </table>
+{if $smarty.const.__LAYER_ROLE__=="Server"}
+<p>You can help you out by <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">clicking here</a> to get all the above boxes populated by GxTend.</p>
+{/if}

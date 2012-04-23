@@ -55,7 +55,10 @@
                         $("#configGear").show("slow");
                     }
                 }
-        );
+        ).error(function(jqXHR) {
+            handleXHRerror(jqXHR);
+            $("#submitopts").html('{$smarty.const._MSG_ERR_}');
+        });
 
     }
 </script>

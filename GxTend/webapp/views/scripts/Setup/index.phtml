@@ -44,10 +44,12 @@ function checkValues(entryspec) {
     $("#form_setup input:text").each( function(idx,obj) {
     if (!entryspec || entryspec==$(obj).attr("entryname")) {
         if ($(obj).val() && $(obj).val() != "__NEED_SETTING__" && $("#check_"+hex_sha1($(obj).attr("entryname"))).attr("id")) {
+            $("#check_"+hex_sha1($(obj).attr("entryname"))).html("").addClass("msg_wait small");
             $.getJSON(
                     "/Config/check",
-                    { chkif:"inFilesystem" , chkval:$(obj).val(), entryname:$(obj).attr("entryname") },
+                    { chkif:"Available" , chkval:$(obj).val(), entryname:$(obj).attr("entryname") },
                     function(r) {
+                        $("#check_"+hex_sha1($(obj).attr("entryname"))).removeClass("msg_wait small");
                         if (r.sts=="ok") {
                             $("#check_"+hex_sha1($(obj).attr("entryname"))).html("<img src='../img/icons/16/tick.png' alt='ok' title='"+r.msg+"'>");
                         } else if (r.sts=="err") {
@@ -97,39 +99,12 @@ function togglebwsections(id) {
         {/if}
     {/foreach}
 </div>
-
+<h3>About</h3>
+<p>This process will take care of creating GxTend's metadata, please take a moment to visually check the values are ok and proceed to submit.</p>
 <form id="form_setup" action="/Setup/post" method="POST" enctype="multipart/form-data">
-<div id="section_1" class="section">
-    <div class="myhr">Metadata Initial Properties</div>
-    <table id="envproptbl" align="center" width="95%">
-    {foreach $entriesLst as $prop_name => $prop_value}
-    <tr>
-        <td style="text-align:left;font-weight:bold;width:30%;">
-            <span id="label_{$prop_name|sha1}">{$entriesDef.$prop_name.label|default:$prop_name}</span>
-            {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"><img style="vertical-align:middle; padding:5px;" src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></span>{/if}
-        </td>
-        <td align="left">
-            <input type="{$entriesDef.$prop_name.inputtype|default:'text'}" size="70" id="input_{$prop_name|sha1}" class="{$entriesDef.$prop_name.class}" name="{$prop_name}" value="{$prop_value}" {if $entriesDef.$prop_name.readonly}readonly="readonly"{/if} entryname="{$prop_name}" entryvalue="{$prop_value}">
-            {if $entriesDef.$prop_name.defvalue}
-            &nbsp;&laquo;&nbsp;
-            {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
-            <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">Default</a>&nbsp;|&nbsp;
-            {/if}
-            <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">Unset</a>
-            {/if}
-        </td>
-    </tr>
-    {/foreach}
-    <tr>
-        <td>
-            &nbsp;
-        </td>
-        <td>
-            <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">Set all above with 'Default' values</a>
-        </td>
-    </tr>        
-    </table>
-</div>
+    <div id="section_1" class="section">
+        {include file="section1.phtml"}
+    </div>
 
     <div class="myhr"></div>
     <div id="ttpnfo" class="left">

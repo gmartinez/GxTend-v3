@@ -4,7 +4,7 @@
 <tr>
     <td style="text-align:left;font-weight:bold;width:30%;">
         <span id="label_{$prop_name|sha1}">{$entriesDef.$prop_name.label|default:$prop_name}</span>
-        {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"><img style="vertical-align:middle; padding:5px;" src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></span>{/if}
+        {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"></span>{/if}
     </td>
     <td align="left">
         <input type="{$entriesDef.$prop_name.inputtype|default:'text'}" size="70" id="input_{$prop_name|sha1}" class="{$entriesDef.$prop_name.class}" name="envvars[{$prop_name}]" value="{$prop_value}" {if $entriesDef.$prop_name.readonly}readonly="readonly"{/if} entryname="{$prop_name}" entryvalue="{$prop_value}">
@@ -18,12 +18,5 @@
     </td>
 </tr>
 {/foreach}
-<tr>
-    <td>
-        &nbsp;
-    </td>
-    <td>
-        <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">Set all above with 'Default' values</a>
-    </td>
-</tr>        
 </table>
+<p>You can help you out by <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">clicking here</a> to get all the above boxes populated by GxTend.</p>

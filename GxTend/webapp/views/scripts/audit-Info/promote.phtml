@@ -82,7 +82,7 @@ function filter_by_objsts() {
         </td>
         <td align="center">            
             {if $rec.sts=="ok"}
-            {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/tick.png' alt='{$rec.sts}' title='{$rec.sts}'>")}            
+            {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/tick.png' alt='{$rec.sts}' title='{$rec.sts}'>")}
             {else}
             {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/error.png' alt='{$rec.sts}' title='{$rec.sts}'>")}
             {/if}
