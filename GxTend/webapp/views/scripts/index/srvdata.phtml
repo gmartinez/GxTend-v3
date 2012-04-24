@@ -1,3 +1,4 @@
+<div id="server_status" style="font-size:1.10em;">
 <div style="margin:5px;">
 <strong>URL : </strong> {$InProve_Smarty->getSessVar("MetaData.url")}
 </div>
@@ -6,6 +7,7 @@
 <strong>Reachable : </strong> {if $InProve_Smarty->getSessVar("LoginStatus.server.data")} <span class="green">Yes</span> {else} <span class="red">No</span>{/if}
 </div>
 
+{if $InProve_Smarty->getSessVar("LoginStatus.server.data")}
 <div style="margin:5px;">
 <strong>License Status : </strong>
     {if $InProve_Smarty->getSessVar("LoginStatus.server.data.license_status") != "__VALID_KEY__"}
@@ -36,17 +38,6 @@
 {/if}
 
 <div style="margin:5px;">
-<strong>Overall Status : </strong>
-    {if $InProve_Smarty->getSessVar("LoginStatus.server.status")}
-    &nbsp;<img src='{$smarty.const._IMG_CONNECT_SM_}' alt='available' title='Server Status is Available'> <span class="green">Available</span>
-    {elseif !$InProve_Smarty->getSessVar("LoginStatus.server.status")}
-    &nbsp;<img src='{$smarty.const._IMG_DISCONNECT_SM_}' alt='unavailable' title='Server Status is Unavailable'> <span class="red">Unavailable</span>
-    {else}
-    &nbsp;<img src='{$smarty.const._IMG_WARN_SM_}' alt='undetermined' title='Server Status is Undetermined'> <span class="gray">Undetermined</span>
-    {/if}
-</div>
-
-<div style="margin:5px;">
 <strong>GxTend Version : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.build_version")}
 </div>
 
@@ -56,4 +47,20 @@
 
 <div style="margin:5px;">
 <strong>Server Timezone : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.tzname")} (GMT offset for this timezone is {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
+</div>
+{/if}
+
+<div class="myhr"></div>
+<div style="margin:5px;">
+<strong>Overall Status : </strong>
+    {if $InProve_Smarty->getSessVar("LoginStatus.server.status")}
+    &nbsp;<img src='{$smarty.const._IMG_CONNECT_SM_}' alt='available' title='Server Status is Available'> <span class="green">Available</span>
+    {elseif !$InProve_Smarty->getSessVar("LoginStatus.server.status")}
+    &nbsp;<img src='{$smarty.const._IMG_DISCONNECT_SM_}' alt='unavailable' title='Server Status is Unavailable'> <span class="red">Unavailable</span>
+    {else}
+    &nbsp;<img src='{$smarty.const._IMG_WARN_SM_}' alt='undetermined' title='Server Status is Undetermined'> <span class="gray">Undetermined</span>
+    {/if}
+</div>
+<div class="myhr"></div>
+
 </div>

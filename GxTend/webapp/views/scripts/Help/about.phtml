@@ -65,13 +65,13 @@ function getVersionStatus() {
             <strong>Status :</strong>
             {if $licsts!="__VALID_KEY__"}
                 &nbsp;<span class="red">{$licsts} - {constant($licsts)}</span>
-                {if $iframesrc != "0601"}
-                &nbsp;<span class="pointer" onclick="mDialog('{$iframesrc}', 'GxTend License Request', 480, 640);">Click here to request key</span>
-                {else}
-                &nbsp;Could not generate key request file.
-                {/if}
             {else}
                 &nbsp;<span class="green">Valid license installed, no issues detected.</span>
+            {/if}
+            {if $iframesrc != "0601"}
+                &nbsp;|&nbsp;<span class="pointer" onclick="mDialog('{$iframesrc}', 'GxTend License Request', 480, 640);">Request New License</span>
+            {else}
+                &nbsp;Could not generate license request file.
             {/if}
         </li>
         {if $licnfo}
