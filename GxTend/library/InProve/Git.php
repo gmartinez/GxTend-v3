@@ -174,7 +174,7 @@ class InProve_Git {
       */
     public function getRepoStatus($repopath) {
         
-        if (__LAYER_ROLE__==="Client") { return "open"; }
+        if (__LAYER_ROLE__=="Client") { return "open"; }
 
         if (file_exists($repopath)) {
             $magicfile = file_exists($repopath."/git-daemon-export-ok");

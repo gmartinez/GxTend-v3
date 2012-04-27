@@ -8,7 +8,7 @@ $(document).ready(function(){
         dataType: "json",
         url: "/Upload/upload",
         formData: { options:"{$smarty.request.b64options}" },
-        dropZone: "#GenericDialog #dropZone",
+        dropZone: "#UploadDialog #dropZone",
         limitConcurrentUploads: {$InProve_Smarty->get_prm("upload_maxsimu")},
         add: function (e, data) {
             $("#fileupload-selection-holder").show();
@@ -43,7 +43,7 @@ $(document).ready(function(){
                 $("#fileupload-result").append("<input class='fileupload-file' type='checkbox' name='atchs[]' value='' disabled='disabled'> " + file.name + " -&gt; <font color='red'>Error, rejected by server</font><br>");
                 }
             });
-            $("#GenericDialog").dialog("close");
+            $("#UploadDialog").dialog("close");
         },
         stop : function (e) {
             {if $options.onstop=="updMyVisualId"}

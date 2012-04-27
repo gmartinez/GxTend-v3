@@ -18,7 +18,7 @@
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
         <h3>
             Project this Milestone {if $form_mode != $smarty.const._LBL_ADD_}is{else}will be{/if} related to {$projguid}
-            {if $smarty.const.__LAYER_ROLE__=="Server"}
+            {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
             &nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_projects' }, null, '$(\'#addNew\').click();');">[+]</span>
             {/if}
         </h3>        

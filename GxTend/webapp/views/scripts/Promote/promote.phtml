@@ -106,7 +106,7 @@ function refreshChkCell() {
 
 function setChkCell(cellid,kb,obj,islast) {
 
-    $("#"+cellid).html("<img src='../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif'>");
+    $("#"+cellid).html("<span class='msg_wait small'></span>");
     $("#"+cellid).load(
                         "/Promote/getcell",
                         { kbguid:kb,objnfo:obj,cellid:cellid },
@@ -132,12 +132,12 @@ function setChkCell(cellid,kb,obj,islast) {
         {/if}
     </div>
     <div style="text-align:right;">        
-        Total # of {if !$smarty.request.src_path}objects{else}versions{/if} : <a href="javascript:;" id="nbrOfObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfObjects');" style="font-weight:bold;"><img src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></a>&nbsp;
+        Total # of {if !$smarty.request.src_path}objects{else}versions{/if} : <a href="javascript:;" id="nbrOfObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfObjects');" style="font-weight:bold;"><span class='msg_wait small'></span></a>&nbsp;
         <span class='ui-icon ui-icon-refresh file' title="Refresh Promotion Status Cells" style="float:right;margin-left:4px;" onclick="refreshChkCell();"></span>
         {if count($setofcommits)>1}
             {if !$smarty.request.src_path && $smarty.request.viewport != "winforcli"}
-            [ newest <a href="javascript:;" id="nbrOfNewestObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfNewestObjects');"><img src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></a>&nbsp;
-            |&nbsp;repeated <a href="javascript:;" id="nbrOfRepeatedObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfRepeatedObjects');"><img src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></a> ]
+            [ newest <a href="javascript:;" id="nbrOfNewestObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfNewestObjects');"><span class='msg_wait small'></span></a>&nbsp;
+            |&nbsp;repeated <a href="javascript:;" id="nbrOfRepeatedObjects" class="nbrOfs" onclick="toggleViewObjects('nbrOfRepeatedObjects');"><span class='msg_wait small'></span></a> ]
             {/if}
             <br>Spread across {count($setofcommits)} commits
         {/if}
@@ -235,7 +235,7 @@ function setChkCell(cellid,kb,obj,islast) {
         {include file='../skel/ttp.phtml' bck2top='no'}
     </div>
     <div class="right">
-        {if $smarty.const.__LAYER_ROLE__=="Server"}
+        {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
             <img alt="queue" src="{$smarty.const._IMG_CLOCK_SM_}" title="Queue for asynchronous execution">
             &nbsp;Queue for asynchronous execution
             &nbsp;<input type="checkbox" id="queue4exec" name="queue4exec" value="1" {$InProve_Smarty->get_prm("promote_async_status")}>&nbsp;
@@ -250,7 +250,7 @@ function setChkCell(cellid,kb,obj,islast) {
     <br clear="all">
     <br clear="all">    
     <div  id="bottom_right" class="buttons right">
-        {if $smarty.const.__LAYER_ROLE__=="Server"}
+        {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
             {$smarty.const._FORM_BTN_PROMOTE_}
         {else}
             {$InProve_Smarty->msg("ui-icon-info", "Promotion of objects is only available in Server layer.")}

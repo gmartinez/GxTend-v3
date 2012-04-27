@@ -1,7 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
     
-    {if $smarty.const.__LAYER_ROLE__ == "Server"}
+    {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
     getVersionStatus();
     $("#servicessts").load("/Services/?match=gxtend");
     {/if}
@@ -42,7 +42,7 @@ function getVersionStatus() {
         <li><strong>Layer :</strong> {$smarty.const.__LAYER_ROLE__}</li>
         <li><strong>Built On :</strong> {$InProve_Smarty->ts2str($smarty.const.__TIMESTAMP__)}</li>
         <li><strong>Current Installed Version :</strong> <span id="currentver">{$smarty.const.__BUILD_VERSION__}</span></li>
-        {if $smarty.const.__LAYER_ROLE__ == "Server"}
+        {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
         <li><strong>Metadata Status :</strong> 
             {if $InProve_Smarty->getSessVar("MetaData.checksts.sts")!="ok"}            
                 <span style="color:red;">{$InProve_Smarty->getSessVar("MetaData.checksts.msg")}</span>

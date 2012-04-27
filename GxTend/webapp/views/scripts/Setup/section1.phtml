@@ -19,6 +19,6 @@
 </tr>
 {/foreach}  
 </table>
-{if $smarty.const.__LAYER_ROLE__=="Server"}
-<p>You can help you out by <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">clicking here</a> to get all the above boxes populated by GxTend.</p>
+{if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
+<p>You can <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">click here</a> to get all the above boxes populated by GxTend.</p>
 {/if}

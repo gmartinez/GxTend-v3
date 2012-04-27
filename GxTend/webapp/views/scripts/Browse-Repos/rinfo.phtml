@@ -71,7 +71,7 @@ function goChgPrm(mode,k,v) {
                     {$InProve_Smarty->bytes2str($repo_stats.fsysSize)}
                     {if $repo_stats.fsysSize}                    
                     &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_cleanup").show();' class='pointer'><img src="{$smarty.const._IMG_CLEANUP_SM_}" title="Cleanup repository."></span>
-                    {if $smarty.const.__LAYER_ROLE__ == "Server"}
+                    {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
                     &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_updsrvnfo").show();' class='pointer'><img src="{$smarty.const._IMG_UPDSRVNFO_SM_}" title="Update server's repository metadata info."></span>
                     {/if}
                     {if $smarty.const.__LAYER_ROLE__ == "Client"}
@@ -142,7 +142,7 @@ function goChgPrm(mode,k,v) {
                         <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
                     </div>
                 </form>
-                {if $smarty.const.__LAYER_ROLE__ == "Server"}
+                {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
                 <form id="form_updsrvnfo" action="/Browse-Repos/ropts" method="POST" enctype="multipart/form-data" style="display:none;">
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="updsrvnfo">

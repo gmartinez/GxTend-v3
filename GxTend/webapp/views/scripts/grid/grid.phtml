@@ -25,10 +25,10 @@
                 <input id="finput_{$grid_ctrlid}" class="qinput" type="text" name="sfilter" size="70" value="{$filtconf._startup}" readonly="readonly">
             </span>
             <span id="ficonOn_{$grid_ctrlid}" class="pointer" style="display:{($filtconf._startup)?"block":"none"};float:left;">
-                  <img src="/img/filteron.png" alt="Filter On" title="There is active filter(s) on grid's result" onclick="var currFilter = $('#tabber_{$grid_ctrlid} #finput_{$grid_ctrlid}').val();mDialog('text:'+currFilter,'Currently Set Filters on Grid', 250, 500, false, false);">
+                  <img src="/img/icons/16/filteron.png" alt="Filter On" title="There is active filter(s) on grid's result" onclick="var currFilter = $('#tabber_{$grid_ctrlid} #finput_{$grid_ctrlid}').val();mDialog('text:'+currFilter,'Currently Set Filters on Grid', 250, 500, false, false);">
             </span>
             <span id="ficonOff_{$grid_ctrlid}" class="pointer" style="display:{($filtconf._startup)?"none":"block"};float:left;">
-                  <img src="/img/filteroff.png" alt="Filter Off" title="There is NOT active filter(s) on grid's result">
+                  <img src="/img/icons/16/filteroff.png" alt="Filter Off" title="There is NOT active filter(s) on grid's result">
             </span>
             {/if}
             <!-- Filters Input -->

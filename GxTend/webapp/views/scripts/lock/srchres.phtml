@@ -57,7 +57,7 @@ function filter_by_objsts() {
 
 function update_object(b64,src_path,objupdts,atlkbupdts) {
 
-    $("#"+hex_sha1(b64)).html("<img src='../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif'>");
+    $("#"+hex_sha1(b64)).html("<span class='msg_wait small'></span>");
 
     $.getJSON(
             "/Lock/updobj",

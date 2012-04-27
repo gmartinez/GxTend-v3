@@ -35,10 +35,14 @@ function loadappdiv(url, data, div, evalA) {
 /**
  * Open generic dialog box...
  */
-function mDialog(url, title, height, width, position, print, download, onload, onclose) {
+function mDialog(url, title, height, width, position, print, download, onload, onclose, dialdiv) {
+
+    if (typeof(dialdiv)=="undefined") {
+        dialdiv = "#GenericDialog";
+    }
 
     // Create and open dialog...
-    $("#GenericDialog").dialog({
+    $(dialdiv).dialog({
                                 bgiframe: true,
                                 autoOpen: false,
                                 modal: true,
@@ -48,28 +52,28 @@ function mDialog(url, title, height, width, position, print, download, onload, o
                                 show: 'blind',
                                 position: (position ? position : 'center'),
                                 buttons: {}
-                                });    
+                                });
     if (onclose) {
-        $("#GenericDialog").bind( "dialogclose", function(event, ui) {
+        $(dialdiv).bind( "dialogclose", function(event, ui) {
             onclose();
         });
     }
-    $("#GenericDialog").html(_MSG_WAIT_SM_).dialog("open");
+    $(dialdiv).html(_MSG_WAIT_SM_).dialog("open");
     
     
     // Load content...
     if (url.substring(0,5)=="http:") {
-        $("#GenericDialog").html('<iframe src ="'+url+'" width="99%" height="99%" frameborder="0"><p>Your browser does not support iframes.</p></iframe>');        
+        $(dialdiv).html('<iframe src ="'+url+'" width="99%" height="99%" frameborder="0"><p>Your browser does not support iframes.</p></iframe>');        
     } else if (url.substring(0,5)=="text:") {
-        $("#GenericDialog").html(url.substring(5));
+        $(dialdiv).html(url.substring(5));
     } else if (url.substring(0,1)=="#") {
-        $("#GenericDialog").html($(url).html());
+        $(dialdiv).html($(url).html());
     } else {
-        $("#GenericDialog").load(url,
+        $(dialdiv).load(url,
                                 null,
                                 function(response, status, xhr) {
                                     if (status=="error") {
-                                        $("#GenericDialog").html("The submitted request did not return the expected result.<p class='red'>Error " + xhr.status + " " + xhr.statusText + "</p>")
+                                        $(dialdiv).html("The submitted request did not return the expected result.<p class='red'>Error " + xhr.status + " " + xhr.statusText + "</p>")
                                     } else {
                                         initializeButtons();
                                         if (onload) onload();
@@ -79,10 +83,10 @@ function mDialog(url, title, height, width, position, print, download, onload, o
     }
 
     if (print) {
-        $("#GenericDialog").dialog('option', 'buttons', { "Print": function() { $('div#header-print, div#GenericDialog, div#footer-print').jqprint(); } } );
+        $(dialdiv).dialog('option', 'buttons', { "Print": function() { $('div#header-print, div#GenericDialog, div#footer-print').jqprint(); } } );
     }
     if (download) {
-        $("#GenericDialog").dialog('option', 'buttons', { "Download": function() { var image = $('#download-file').attr('source'); window.open('/Http/getfile?filename=' + image, '_blank'); return true; } } );
+        $(dialdiv).dialog('option', 'buttons', { "Download": function() { var image = $('#download-file').attr('source'); window.open('/Http/getfile?filename=' + image, '_blank'); return true; } } );
     }
 }
 

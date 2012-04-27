@@ -103,7 +103,7 @@ function chgConnType() {
 			{$pkbguid}
             </td>
 		</tr>
-        {if $smarty.const.__LAYER_ROLE__ == "Server"}
+        {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
 		<tr id="kboptsprops"><td align="left" colspan="2">
                 <br>
                 <fieldset><legend>KB Specific Options/Properties</legend>

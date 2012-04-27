@@ -85,7 +85,7 @@ $(document).ready(function(){
         </div>
         <div style="text-align:left;">
             <strong>Description :</strong> Email notification issued.
-            {if $smarty.const.__LAYER_ROLE__ == "Server"}
+            {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
             &nbsp;{$InProve_Smarty->get_popup_link("email_read","/Email-Mgmt/read?emguid={$change.emguid}","uii|ui-icon-extlink","Click to Open","640x480")}
             {/if}
         </div>

@@ -65,7 +65,7 @@ legend {
   padding:0.7em 0.5em;
   border:1px dotted #BFBFBF;
   /* font-size:90%; */
-  background: #172741 url(../css/theme/northstreet/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
+  background: #172741 url(../css/theme/Client/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
   font-weight:bold;
   color:#fff;
 }
@@ -141,7 +141,7 @@ textarea[disabled] {
 }
 
 #west_panel {
-	background: #f5f3e5 url(../css/theme/northstreet/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) 50% top repeat-x;
+	background: #f5f3e5 url(../css/theme/Client/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) 50% top repeat-x;
 	padding:10px;
 }
 
@@ -194,7 +194,7 @@ textarea[disabled] {
 
 #header {
 	position:relative;
-    background: #ece8da url(../css/theme/northstreet/images/ui-bg_gloss-wave_100_ece8da_500x100.png) 50% 50% repeat-x;
+    background: #ece8da url(../css/theme/Client/images/ui-bg_gloss-wave_100_ece8da_500x100.png) 50% 50% repeat-x;
 }
 
 .popup #header {
@@ -236,7 +236,7 @@ textarea[disabled] {
 
 		#nav-links ul li {
 			display:inline;
-			background: #172741 url(../css/theme/northstreet/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
+			background: #172741 url(../css/theme/Client/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
 			padding:8px 5px;
 			font-weight:bold;
 		}
@@ -267,7 +267,7 @@ textarea[disabled] {
 		}
 
 #footer {
-    background: #ece8da url(../css/theme/northstreet/images/ui-bg_gloss-wave_100_ece8da_500x100.png) 50% 50% repeat-x;
+    background: #ece8da url(../css/theme/Client/images/ui-bg_gloss-wave_100_ece8da_500x100.png) 50% 50% repeat-x;
     color:#312e25;
 }
 
@@ -422,6 +422,10 @@ h1.title {
     cursor: pointer;
 }
 
+code, pre {
+  font-family: Consolas, Monaco, Menlo, "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+}
+
 
 .center {
 	margin:0 auto;
@@ -469,14 +473,14 @@ h1.title {
 .profile h3 {
 	margin:0;
 	padding:10px;
-	background: #172741 url(../css/theme/northstreet/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
+	background: #172741 url(../css/theme/Client/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
 	color:white;
 	position:relative;
 }
 
 .profile .form {
 	border:1px solid #F2F2F2;
-	background: #f5f3e5 url(../css/theme/northstreet/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) 50% top repeat-x;
+	background: #f5f3e5 url(../css/theme/Client/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) 50% top repeat-x;
 	margin-top:0;
 	margin-right:auto;
 	margin-left:auto;
@@ -632,6 +636,15 @@ h1.title {
     padding:0.4em 1em;
 }
 
+.ui-pg-table input {
+    padding:2px;
+    height: auto;
+}
+
+.ui-pg-table select {
+    padding:0px;
+}
+
 .grid-debug {
     margin-top:5px;
     cursor:pointer;
@@ -708,7 +721,7 @@ table.list-horizontal td.header {
 	border-width:1px 0 0 0;
 	border-style:solid;
 	border-color:#fff;
-	background: #172741 url(../css/theme/northstreet/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
+	background: #172741 url(../css/theme/Client/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
 	color:#fff;
 	}
 table.list-horizontal th, table.list-horizontal td.header {
@@ -801,7 +814,7 @@ table.list tfoot td {
 	color:#fff;
     border: 1px solid #09172f;
     border-width:1px 0;
-    background: #172741 url(../css/theme/northstreet/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
+    background: #172741 url(../css/theme/Client/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
     font-weight: bold;
     color: #ffffff;
 	}
@@ -857,7 +870,7 @@ table.list caption {
 	margin:0;
 	padding:0.5em 0.25em;
 	}
-    
+
 table.table
 {
 	font-size: 11px;
@@ -868,7 +881,7 @@ table.table
 }
 table.table thead th
 {
-	background: #172741 url(../css/theme/northstreet/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
+	background: #172741 url(../css/theme/Client/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
     color: white;
     font-weight: bold;
 }
@@ -980,23 +993,23 @@ ul#gridHeaderIcons span.ui-icon {float: left; margin: 0 2px;}
 }
 
 .ui-pnotify .ui-state-highlight .ui-icon {
-    background-image:url("../css/theme/northstreet/images/ui-icons_ffffff_256x240.png");
+    background-image:url("../css/theme/Client/images/ui-icons_ffffff_256x240.png");
 }
 
 .ui-pnotify .ui-state-highlight {
     border: 1px solid #09172f;
-    background: #172741 url(../css/theme/northstreet/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
+    background: #172741 url(../css/theme/Client/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
     color:#fff;
 }
 
 .ui-pnotify .ui-state-error {
-    background:#92162A url(../css/theme/northstreet/images/ui-bg_highlight-soft_10_92162a_1x100.png) 50% 50% repeat-x;
+    background:#92162A url(../css/theme/Client/images/ui-bg_highlight-soft_10_92162a_1x100.png) 50% 50% repeat-x;
     border:1px solid #5B0A17;
     color:#fff;
 }
 
 .ui-pnotify .ui-state-error .ui-icon {
-    background-image: url("../css/theme/northstreet/images/ui-icons_ffffff_256x240.png");
+    background-image: url("../css/theme/Client/images/ui-icons_ffffff_256x240.png");
 }
 
 .ui-pnotify .ui-widget {
@@ -1018,7 +1031,7 @@ fieldset.exception {
 
 fieldset.exception legend {
     border: 1px solid #dddddd;
-	background: #172741 url(../css/theme/northstreet/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
+	background: #172741 url(../css/theme/Client/images/ui-bg_highlight-hard_15_172741_1x100.png) 50% 50% repeat-x;
 	color: #fff;
 	padding: 0.3em;
 	font-weight:bold;
