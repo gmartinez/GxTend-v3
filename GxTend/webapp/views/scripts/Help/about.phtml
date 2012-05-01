@@ -17,10 +17,12 @@ function getVersionStatus() {
         function (data, textStatus, jqXHR) {
             if (data.sts) {
             var last_version = data.__BUILD_VERSION__;
+            var update_dialog = "<span class=\"ui-icon ui-icon-wrench pointer\" style=\"display:inline-block;\" title=\"Click to launch GxTend update process\" onclick=\"mDialog('/Update/?secti=1', 'Update Dialog', 600, 900);\"></span>";
             } else {
             var last_version = data.msg;
+            var update_dialog = "";
             }
-            $("#chknewver").text(last_version + " ( @ " + data.channel + " update channel )");
+            $("#chknewver").html(last_version + " ( @ " + data.channel + " update channel )" + " " + update_dialog);
             if ($("#currentver").text() != last_version) {
                 $("#chknewver").attr("style", "color:red;");
             } else {
@@ -37,7 +39,7 @@ function getVersionStatus() {
 </div>
 
 <div class="infoset">
-<span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">Product Information</span>
+<span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">Setup Information</span>
     <ul>
         <li><strong>Layer :</strong> {$smarty.const.__LAYER_ROLE__}</li>
         <li><strong>Built On :</strong> {$InProve_Smarty->ts2str($smarty.const.__TIMESTAMP__)}</li>
@@ -91,7 +93,7 @@ function getVersionStatus() {
 
 <div class="infoset">
 <span class="ui-state-active ui-corner-all left" style="padding:0 5px 0 5px;">Environment Information</span>
-<span class="ui-icon ui-icon-gear pointer left" title="Click to view/set configuration entries" onclick="mDialog('/Config/?secti=4', 'Configuration Settings', 600, 900);"></span>
+<span class="ui-icon ui-icon-wrench pointer left" title="Click to view/set configuration entries" onclick="mDialog('/Config/?secti=4', 'Configuration Settings', 600, 900);"></span>
 {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode('../temp/logs/error.log')}&send_as=error.log&brushas=xml",null,null,"800x600","<span class='ui-icon ui-icon-flag pointer left' title='Click to view error log'></span>")}
 <br clear="all">
     <ul>

@@ -39,6 +39,9 @@
 
 <div style="margin:5px;">
 <strong>GxTend Version : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.build_version")}
+{if $allowupdate}
+&nbsp;<span class="ui-icon ui-icon-wrench pointer" style="display:inline-block;" title="Click to launch GxTend update process" onclick="mDialog('/Update/?secti=1', 'Update Dialog', 600, 900);"></span>
+{/if}
 </div>
 
 <div style="margin:5px;">

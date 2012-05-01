@@ -1,15 +1,15 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-    $("#form_setup").ajaxForm({
+    $("#form_update").ajaxForm({
         dataType: 'json',
         async: false,
         beforeSubmit: function() {
-            $("#form_setup").validate({
+            $("#form_update").validate({
                ignore: ":hidden"
             });
-            if ( $("#form_setup").valid() ) {
-                 $("#form_setup .buttons").hide();
+            if ( $("#form_update").valid() ) {
+                 $("#form_update .buttons").hide();
                 return true;
             }
             return false;            
@@ -17,9 +17,10 @@ $(document).ready(function(){
         success: function (r) {
             notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
             if (r.sts) {
-                setTimeout('window.location.reload();', 2500);
+                loadappdiv('/Help/about');
+                $("#GenericDialog").dialog("close");
             } else {
-                $("#form_setup .buttons").show("slow");
+                $("#form_update .buttons").show("slow");
             }
         },
         error: function (jqXHR) {
@@ -33,15 +34,20 @@ $(document).ready(function(){
     $("#secsel > span:first").click();
     {/if}
 
-    $("#form_setup input:text").blur(function() { checkValues(); });
+    $("#form_update input:text").blur(function() { checkValues(); });
     
     checkValues();
+    
+    {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
+    $("#evtmgrsts").load("/Services/?match=gxtend_evtmgr",null,function(){ $(this).removeClass("msg_wait small"); });
+    {/if}
+
 
 });
 
 function checkValues(entryspec) {
                         
-    $("#form_setup input:text").each( function(idx,obj) {
+    $("#form_update input:text").each( function(idx,obj) {
     if (!entryspec || entryspec==$(obj).attr("entryname")) {
         if ($(obj).val() && $(obj).val() != "__NEED_SETTING__" && $("#check_"+hex_sha1($(obj).attr("entryname"))).attr("id")) {
             $("#check_"+hex_sha1($(obj).attr("entryname"))).html("").addClass("msg_wait small");
@@ -100,8 +106,9 @@ function togglebwsections(id) {
     {/foreach}
 </div>
 <h3>About</h3>
-<p>This process will take care of creating GxTend's metadata, please take a moment to visually check the values are ok and proceed to submit.</p>
-<form id="form_setup" action="/Setup/post" method="POST" enctype="multipart/form-data">
+<p>This process allows to "soft" update your GxTend's software installation.</p>
+<p>As the process will proceed to download the latest available version if you browse the internet through an http proxy server, please set its properties below.</p>
+<form id="form_update" action="/Update/post" method="POST" enctype="multipart/form-data">
     <div id="section_1" class="section">
         {include file="section1.phtml"}
     </div>

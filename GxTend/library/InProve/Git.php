@@ -58,7 +58,6 @@ class InProve_Git {
     return array("env"=>$env, "sts"=>$cmdsts, "out"=>$cmdout);
     }
 
-
 	/**
 	 * Get repository status/info...
      *
@@ -86,7 +85,7 @@ class InProve_Git {
             # Working Tree Size...
             $giticmd = self::issuecommand("name-rev --name-only HEAD", $repopath, $worktree);
             if ($giticmd["sts"]==0) {
-                $repo_stats["head"] = $giticmd["out"];
+                $repo_stats["head"] = trim($giticmd["out"]);
             }            
 
             # More in depth repo details...
@@ -165,7 +164,6 @@ class InProve_Git {
 
     return $repo_stats;
     }
-
      
      /*
      * Git repository related operations to set the repository in a specific status from the remote client point of view
