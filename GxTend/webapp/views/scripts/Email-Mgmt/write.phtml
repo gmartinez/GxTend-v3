@@ -5,25 +5,24 @@ $(document).ready(function(){
     initializeButtons();
 
     // Form submit...
-    $("form").ajaxForm({
+    $("#write_email_form").ajaxForm({
         dataType: 'json',
         async: false,
         beforeSubmit: function() {
-            $('form.toValidate').validate({
+            $('#write_email_form .toValidate').validate({
             ignore: ":hidden"
             });
             if ( $('.toValidate').valid() ) {
-                $("form").block({ message: '{$smarty.const._MSG_WAIT_}' });
+                $("#write_email_form .submit_btn_holder").toggle();
                 return true;
             }
             return false;
         },
         success: function (r) {
-            $("form").block({ message: r.msg });
             if (r.sts) {
                 setTimeout('window.close();', 2500);
             } else {
-                setTimeout('$("form").unblock();', 2500);
+                $("#write_email_form .submit_btn_holder").toggle();
             }
         },
         error: function (jqXHR) {
@@ -36,6 +35,8 @@ $(document).ready(function(){
 });
 </script>
 
+    <h2 style="float:right;">Write Email&nbsp;</h2>
+    <br clear="all">
     <form id="write_email_form" class="toValidate" action="/Email-Mgmt/send" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="options" value="{$b64options}">
     <table align="center" width="100%" class="list-horizontal">
@@ -112,8 +113,15 @@ $(document).ready(function(){
         {include file='../Upload/widget.phtml'}
     </div>
     <div class="buttons right">
+        <div class="submit_btn_holder">
         {$smarty.const._FORM_BTN_SUBMIT_}
-    </div>
-    </form>
-    
+        &nbsp;or&nbsp;
+        <a href="javascript:;" onclick="window.close();">cancel</a>&nbsp;
+        </div>
+        <div class="submit_btn_holder" style="display:none;">
+        {$smarty.const._BAR_WAIT_}
+        </div>
+    </div>       
+    </form>    
+
 {include file="../skel/footer.phtml"}

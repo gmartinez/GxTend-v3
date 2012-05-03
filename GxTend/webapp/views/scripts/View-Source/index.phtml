@@ -47,7 +47,7 @@ $(document).ready(function(){
         {/if}
         {if $smarty.request.send_as}
             {$smarty.request.send_as}
-            <a class="pointer" style="float:right;" title="Click to Download File ({$InProve_Smarty->bytes2str({filesize(base64_decode($smarty.request.filename))})})" href="/Http/getfile?filename={$smarty.request.filename}&send_as{$smarty.request.send_as}"><span class="ui-icon ui-icon-arrowstop-1-s"></span></a>
+            <a class="pointer" style="float:right;" title="Click to Download File ({$InProve_Smarty->bytes2str({filesize(base64_decode($smarty.request.filename))})})" href="/Http/getfile?filename={$smarty.request.filename}&send_as={$smarty.request.send_as}"><span class="ui-icon ui-icon-arrowstop-1-s"></span></a>
         {/if}
 		</td>
 	</tr>

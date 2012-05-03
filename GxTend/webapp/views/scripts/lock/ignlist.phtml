@@ -18,10 +18,10 @@ $(document).ready(function(){
             }
 
             if (r.unflaglist.sts == "ok") {
-                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Objects were Successfully Removed from List");
+                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Entries were Successfully removed from list");
                 $("#diffs").unblock();
             } else {
-                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Some Objects could not be Removed from List");
+                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Some entries could not be removed from list");
                 $("#diffs").unblock();
             }
 

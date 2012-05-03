@@ -9,7 +9,7 @@ $(document).ready(function(){
                ignore: ":hidden"
             });
             if ( $("#form_config").valid() ) {
-                 $("#form_config .buttons").hide();
+                 $("#form_config .submit_btn_holder").toggle();
                 return true;
             }
             return false;            
@@ -19,7 +19,7 @@ $(document).ready(function(){
             if (r.sts) {
                 setTimeout('window.location.reload();', 2500);                
             } else {
-                $("#form_config .buttons").show("slow");
+                $("#form_config .submit_btn_holder").toggle();
             }
         },
         error: function (jqXHR) {
@@ -153,9 +153,14 @@ function togglebwsections(id) {
             <button type="button" class="button-next" title="{$smarty.const._TITLE_NEXT_}" onclick="togglebwsections('next');">{$smarty.const._LBL_NEXT_}</button>
         {/if}
         {if $i==3}
+            <div class="submit_btn_holder">
             {$smarty.const._FORM_BTN_UPDATE_}
             &nbsp;or&nbsp;
             <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
+            </div>
+            <div class="submit_btn_holder" style="display:none;">
+            {$smarty.const._BAR_WAIT_}
+            </div>
         {/if}
         </div>        
     </div>

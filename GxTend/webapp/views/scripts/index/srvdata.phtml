@@ -18,7 +18,7 @@
 </div>
 
 <div style="margin:5px;">
-<strong>Server Status : </strong>
+<strong>GxTend Status : </strong>
     {if $InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}
         &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}</span>
     {else}
@@ -45,11 +45,11 @@
 </div>
 
 <div style="margin:5px;">
-<strong>Server Datetime : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.datetime")} (On data retrieval)
+<strong>Datetime : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.datetime")} (On data retrieval)
 </div>
 
 <div style="margin:5px;">
-<strong>Server Timezone : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.tzname")} (GMT offset for this timezone is {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
+<strong>Timezone : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.tzname")} (GMT offset for this timezone is {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
 </div>
 {/if}
 

@@ -9,7 +9,7 @@ $(document).ready(function(){
                ignore: ":hidden"
             });
             if ( $("#form_setup").valid() ) {
-                 $("#form_setup .buttons").hide();
+                 $("#form_setup .submit_btn_holder").toggle();
                 return true;
             }
             return false;            
@@ -19,7 +19,7 @@ $(document).ready(function(){
             if (r.sts) {
                 setTimeout('window.location.reload();', 2500);
             } else {
-                $("#form_setup .buttons").show("slow");
+                $("#form_setup .submit_btn_holder").toggle();
             }
         },
         error: function (jqXHR) {
@@ -78,8 +78,8 @@ function checkValues(entryspec) {
 
 function togglebwsections(id) {
 
-    $("#ttpnfo").hide();
     if (!$("#section_"+id).is(":visible")) {
+        $("#ttpnfo").hide();
         if (id==4) {
             $("#form_config").hide();
         } else {
@@ -107,12 +107,14 @@ function togglebwsections(id) {
     </div>
 
     <div class="myhr"></div>
-    <div id="ttpnfo" class="left">
-        {include file='../skel/ttp.phtml' bck2top='no'}
-    </div>
     <div class="buttons right">
+        <div class="submit_btn_holder">
         {$smarty.const._FORM_BTN_SUBMIT_}
         &nbsp;or&nbsp;
         <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
+        </div>
+        <div class="submit_btn_holder" style="display:none;">
+        {$smarty.const._BAR_WAIT_}
+        </div>
     </div>
 </form>

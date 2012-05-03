@@ -9,18 +9,18 @@ $(document).ready(function(){
                ignore: ":hidden"
             });
             if ( $("#form_update").valid() ) {
-                 $("#form_update .buttons").hide();
+                 $("#form_update .submit_btn_holder").toggle();
                 return true;
             }
             return false;            
         },
         success: function (r) {
-            notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
+            showlogmsg();       // Display user notification...
             if (r.sts) {
                 loadappdiv('/Help/about');
                 $("#GenericDialog").dialog("close");
             } else {
-                $("#form_update .buttons").show("slow");
+                $("#form_update .submit_btn_holder").toggle();
             }
         },
         error: function (jqXHR) {
@@ -83,9 +83,9 @@ function checkValues(entryspec) {
 }
 
 function togglebwsections(id) {
-
-    $("#ttpnfo").hide();
+    
     if (!$("#section_"+id).is(":visible")) {
+        $('#ttpnfo').hide();
         if (id==4) {
             $("#form_config").hide();
         } else {
@@ -107,19 +107,21 @@ function togglebwsections(id) {
 </div>
 <h3>About</h3>
 <p>This process allows to "soft" update your GxTend's software installation.</p>
-<p>As the process will proceed to download the latest available version if you browse the internet through an http proxy server, please set its properties below.</p>
+<p>As the process will download the latest available version from the internet, if you browse through an http proxy server, please set its properties below.</p>
 <form id="form_update" action="/Update/post" method="POST" enctype="multipart/form-data">
     <div id="section_1" class="section">
         {include file="section1.phtml"}
     </div>
 
     <div class="myhr"></div>
-    <div id="ttpnfo" class="left">
-        {include file='../skel/ttp.phtml' bck2top='no'}
-    </div>
     <div class="buttons right">
+        <div class="submit_btn_holder">
         {$smarty.const._FORM_BTN_SUBMIT_}
         &nbsp;or&nbsp;
         <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
-    </div>
+        </div>
+        <div class="submit_btn_holder" style="display:none;">
+        {$smarty.const._BAR_WAIT_}
+        </div>
+    </div>    
 </form>

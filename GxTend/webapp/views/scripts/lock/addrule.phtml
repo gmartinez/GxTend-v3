@@ -11,8 +11,7 @@ $(document).ready(function(){
 		success: function (r) {
             if (r.flag.sts == "ok") {
                 $("#div_regexp #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Matching rule successfully added to list");
-                $("#GenericDialog").dialog("close");
-                $('#gobtn_{$smarty.request.kbguid}').click();
+                $("#gobtn").click();
             } else {
                 $("#div_regexp #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Could not add matching rule successfully to list");
                 $("#div_regexp").unblock();

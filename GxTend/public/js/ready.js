@@ -98,11 +98,11 @@ function showlogmsg() {
     var timeOut = 10000;
 
     $.getJSON(
-        "Ajax/getmsg",
+        "/Ajax/getmsg",
         null,
         function (data, textStatus) {
             if (textStatus=="success") {
-                notify("Notification <span style='float:right;'>"+data.time+"</span>",data.msg,data.type,timeOut);
+                notify("User Notification", data.msg, data.type, timeOut);
             } else {
                 alert("Error retrieving user message.");
             }

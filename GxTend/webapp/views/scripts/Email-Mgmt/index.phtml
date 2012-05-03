@@ -12,15 +12,15 @@ $(document).ready(function(){
 
 <div class="heading-block" style="margin-bottom:25px;">
     <span class="left" style="font-size:1.5em;font-weight:bold;">
-    Email {ucfirst($smarty.request.id)}bound messages
+    Email {ucfirst($smarty.request.id)}bound Messages
     </span>
 
     <span class="right">
-    {$InProve_Smarty->get_popup_link("email_write","/Email-Mgmt/write",null,"","800x600","Write new Message")}
+    {$InProve_Smarty->get_popup_link("email_write","/Email-Mgmt/write",null,"","800x600","<span class='ui-icon ui-icon-pencil' style='display:inline-block;'></span> Write new Message")}
     {if $smarty.request.id=="out"}
-        <br><a href="javascript:;" onclick="loadappdiv('/Email-Mgmt/?id=in');">Click for InBound Messages</a>
+        &nbsp;|&nbsp;<a href="javascript:;" onclick="loadappdiv('/Email-Mgmt/?id=in');"><span class="ui-icon ui-icon-arrowreturnthick-1-s" style="vertical-align:middle;display:inline-block;"></span> InBound Messages</a>
     {else}
-        <br><a href="javascript:;" onclick="loadappdiv('/Email-Mgmt/?id=out');">Click for OutBound Messages</a>
+        &nbsp;|&nbsp;<a href="javascript:;" onclick="loadappdiv('/Email-Mgmt/?id=out');"><span class="ui-icon ui-icon-arrowreturnthick-1-n" style="vertical-align:middle;display:inline-block;"></span> OutBound Messages</a>
     {/if}
     </span>
 </div>

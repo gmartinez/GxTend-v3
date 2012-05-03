@@ -1,9 +1,9 @@
-<div style="float:left;">
-<div id="ttpnfo" style="font-size:.8em;">
+<div style="float:left;font-size:.8em;">
+<div id="ttpnfo">
     TTP : {($smarty.now - $smarty.server.REQUEST_TIME) ? {$InProve_Smarty->sec2str($smarty.now - $smarty.server.REQUEST_TIME)} : "< 1 second"}
 </div>
 {if $bck2top!='no'}
-<div id="bck2top" style="font-size:.8em;">
+<div id="bck2top">
     <a href="javascript:;" onclick="$('#east_panel').animate({ scrollTop: 0 }, 1000);"><span class="ui-icon ui-icon-arrow-1-n" style="float:left;"></span> Top</a>
 </div>
 {/if}

@@ -5,21 +5,6 @@
         <li><span class="file" onclick="loadappdiv('/My-Profile/')">My Profile</span></li>
         </ul>
     </li>
-    <li id="monitoring"><span class="folder">Monitoring</span>
-        <ul>
-        <li id="monitoring_batch_status"><span class="folder">Batch Status</span>
-            <ul>
-                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtqueue')">Events Queue</span></li>
-                <li><span class="file" onclick="loadappdiv('/Email-Mgmt/?id=out')">E-Mail Queue</span></li>
-            </ul>
-        </li>
-        <li id="monitoring_sessions"><span class="folder">Sessions</span>
-            <ul>
-                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_sessions')">Sessions History</span></li>
-                <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_audit')">Auditing Logs</span></li>
-            </ul>
-        </li>
-        </ul>
     <li id="people"><span class="folder">People</span>
         <ul>
             <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_clients')">Clients</span></li>
@@ -48,10 +33,22 @@
             </li>
         </ul>
     </li>
-    <li id="settings"><span class="folder">Settings</span>
+    <li id="settings"><span class="folder">Settings & Monitoring</span>
         <ul>
             <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_prmdef')">Parameters</span></li>
             <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtdef')">Events (Scheduler)</span></li>
+            <li id="settings_background_ops"><span class="folder">Background Ops</span>
+                <ul>
+                    <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtqueue')">Events Queue</span></li>
+                    <li><span class="file" onclick="loadappdiv('/Email-Mgmt/?id=out')">E-Mail Queue</span></li>
+                </ul>
+            </li>
+            <li id="settings_audit_info"><span class="folder">Audit Info</span>
+                <ul>
+                    <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_sessions')">App Sessions</span></li>
+                    <li><span class="file" onclick="loadappdiv('/Logs-Mgmt/')">App Logs</span></li>
+                </ul>
+            </li>
         </ul>
     </li>
     <li id="help"><span class="folder">Help</span>
@@ -65,7 +62,11 @@
             </li>
         </ul>
     </li>
-    <li><span class="file logout" onclick="mDialog('/index/logout', 'Exiting...', 150, 300);">&nbsp;Logout</span></li>
+    <li style="padding-top:1em;text-align:right;font-size:1.15em;">
+        <span class="file logout" onclick="mDialog('/index/logout', 'Exiting...', 150, 300);">
+        Logout <span class="ui-icon ui-icon-power" style="display:inline-block;vertical-align:middle;"></span>
+        </span>
+    </li>
 </ul>
 </div>
 
@@ -74,6 +75,13 @@
     <li id="my_options"><span class="folder">My Options</span>
         <ul>
         <li><span class="file" onclick="loadappdiv('/My-Profile/')">My Profile</span></li>
+        <li id="logging"><span class="folder">Logging</span>
+            <ul>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtqueue')">Queued Events</span></li>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_audit')">Audited Ops</span></li>
+            <li><span class="file" onclick="loadappdiv('/Sync-Mgmt/')">Sync Status</span></li>
+            </ul>
+        </li>
         </ul>
     </li>
     <li id="tasks_definition"><span class="folder">Tasks Definition</span>
@@ -83,13 +91,6 @@
             <li><span class="file" onclick="loadappdiv('/Ticket-Mgmt/listall')">Tickets</span></li>
         </ul>
     </li>
-    <li id="logging"><span class="folder">Logging</span>
-        <ul>
-        <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtqueue')">Queued Events</span></li>
-        <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_audit')">Auditing Logs</span></li>
-        <li><span class="file" onclick="loadappdiv('/Sync-Mgmt/')">Sync Status</span></li>
-        </ul>
-    </li>
     <li id="help"><span class="folder">Help</span>
         <ul>
             <li><span class="file" onclick="loadappdiv('/Help/about')">About</span></li>
@@ -101,6 +102,10 @@
             </li>
         </ul>
     </li>
-    <li><span class="file logout" onclick="mDialog('/index/logout', 'Exiting...', 150, 300);">&nbsp;Logout</span></li>
+    <li style="padding-top:1em;text-align:right;font-size:1.15em;">
+        <span class="file logout" onclick="mDialog('/index/logout', 'Exiting...', 150, 300);">
+        Logout <span class="ui-icon ui-icon-power" style="display:inline-block;vertical-align:middle;"></span>
+        </span>
+    </li>
 </ul>
 </div>
