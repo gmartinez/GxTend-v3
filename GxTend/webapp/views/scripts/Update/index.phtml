@@ -17,7 +17,8 @@ $(document).ready(function(){
         success: function (r) {
             showlogmsg();       // Display user notification...
             if (r.sts) {
-                loadappdiv('/Help/about');
+                loadWestPanel();
+                loadappdiv("/Help/about");
                 $("#GenericDialog").dialog("close");
             } else {
                 $("#form_update .submit_btn_holder").toggle();

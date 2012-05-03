@@ -64,27 +64,7 @@ $(document).ready(function(){
     setTimeout("bkgSync();", 30000);
     {/if}
 
-    $("#west_panel").load(
-                        "/menu/?id=west #{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')}",
-                        null,
-                        function (responseText, textStatus, XMLHttpRequest) {
-                            if (responseText) {
-                                $("#{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')}").jstree({
-                                    "plugins" : [ "html_data", "ui", "cookies", "themeroller" ],
-                                    "themeroller" : {
-                                        "opened" : "ui-icon-folder-open",
-                                        "closed" : "ui-icon-folder-collapsed"
-                                    }
-                                }).bind("loaded.jstree", function (event, data) { 
-                                {if $InProve_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
-                                    $("#{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')} .dbgtoolsmnu").show();
-                                {/if}
-                                });
-                            } else {
-                                alert("Error retrieving west-menu options.");
-                            }
-                        }
-    );
+    loadWestPanel();
 
     {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
     $("#qryidx_form").ajaxForm({
@@ -114,7 +94,36 @@ $(document).ready(function(){
 
 /*
 * 
-    */
+*/
+function loadWestPanel() {
+
+    $("#west_panel").load(
+                        "/menu/?id=west #{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')}",
+                        null,
+                        function (responseText, textStatus, XMLHttpRequest) {
+                            if (responseText) {
+                                $("#{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')}").jstree({
+                                    "plugins" : [ "html_data", "ui", "cookies", "themeroller" ],
+                                    "themeroller" : {
+                                        "opened" : "ui-icon-folder-open",
+                                        "closed" : "ui-icon-folder-collapsed"
+                                    }
+                                }).bind("loaded.jstree", function (event, data) { 
+                                {if $InProve_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
+                                    $("#{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')} .dbgtoolsmnu").show();
+                                {/if}
+                                });
+                            } else {
+                                alert("Error retrieving west-menu options.");
+                            }
+                        }
+    );
+
+}
+
+/*
+* 
+*/
 function bkgSync() {
 
     bkgSync.exeTS = Math.round(+new Date()/1000);

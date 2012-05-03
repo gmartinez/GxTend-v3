@@ -17,7 +17,7 @@ $(document).ready(function(){
         success: function (r) {
             notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
             if (r.sts) {
-                setTimeout('window.location.reload();', 2500);
+                setTimeout("window.location.reload();", 2500);
             } else {
                 $("#form_setup .submit_btn_holder").toggle();
             }
