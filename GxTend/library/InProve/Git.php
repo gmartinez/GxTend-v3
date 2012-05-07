@@ -19,18 +19,20 @@ class InProve_Git {
     public function issuecommand($command, $repopath, $worktree) {
 
         #
-        $INPROVE_BE_HOME = InProve_System::get_eva("INPROVE_BE_HOME");
+        $INPROVE_BE_HOME = getenv("INPROVE_BE_HOME");
 
         # Set git environment variables...
         if (file_exists($repopath) && ($worktree===null || $worktree==="null" || file_exists($worktree))) {
             #
             putenv("GIT_DIR=$repopath");
-            if ($worktree!==null) { InProve_System::get_eva("GIT_WORK_TREE", $worktree); }
+            if ($worktree!==null) { putenv("GIT_WORK_TREE=$worktree"); }
+            putenv("TEMP=".InProve_Session::getSessVar("MyProfile.tmpdir"));
+            putenv("TMP=".InProve_Session::getSessVar("MyProfile.tmpdir"));
             #
-            InProve_System::get_eva("GIT_AUTHOR_NAME", "Unknown");
-            InProve_System::get_eva("GIT_AUTHOR_EMAIL", "Unknown");
-            InProve_System::get_eva("GIT_COMMITTER_NAME", InProve_Session::getSessVar("MyProfile.userdata.username"));
-            InProve_System::get_eva("GIT_COMMITTER_EMAIL", InProve_Session::getSessVar("MyProfile.userdata.email"));
+            putenv("GIT_AUTHOR_NAME=Unknown");
+            putenv("GIT_AUTHOR_EMAIL=Unknown");
+            putenv("GIT_COMMITTER_NAME=".InProve_Session::getSessVar("MyProfile.userdata.username"));
+            putenv("GIT_COMMITTER_EMAIL=".InProve_Session::getSessVar("MyProfile.userdata.email"));
             #
             list($cmdsts, $cmdout) = InProve_System::shell_exec("\"$INPROVE_BE_HOME/Git/bin/git.exe\" $command");
 
@@ -46,6 +48,8 @@ class InProve_Git {
 
         $env = array(
                     "INPROVE_BE_HOME"=>$INPROVE_BE_HOME,
+                    "TEMP"=>getenv("TEMP"),
+                    "TMP"=>getenv("TMP"),
                     "GIT_AUTHOR_NAME"=>getenv("GIT_AUTHOR_NAME"),
                     "GIT_AUTHOR_EMAIL"=>getenv("GIT_AUTHOR_EMAIL"),
                     "GIT_COMMITTER_NAME"=>getenv("GIT_COMMITTER_NAME"),
