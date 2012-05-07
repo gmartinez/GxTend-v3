@@ -17,9 +17,13 @@ $(document).ready(function(){
         success: function (r) {
             showlogmsg();       // Display user notification...
             if (r.sts) {
+                $("#GenericDialog").dialog("close");
+                {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
                 loadWestPanel();
                 loadappdiv("/Help/about");
-                $("#GenericDialog").dialog("close");
+                {else}
+                window.location.reload();
+                {/if}
             } else {
                 $("#form_update .submit_btn_holder").toggle();
             }
