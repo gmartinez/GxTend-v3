@@ -1,8 +1,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
     
-    {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
     getVersionStatus();
+    {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
     $("#servicessts").load("/Services/?match=gxtend");
     {/if}
 
@@ -101,7 +101,7 @@ function getVersionStatus() {
     <ul>
         <li><strong>Computer Name :</strong> {$osinfo.host}</li>
         <li><strong>OS Name :</strong> {$osinfo.name}</li>
-        <li><strong>OS Architecture :</strong> {$osinfo.architecture}</li>
+        <li><strong>OS Architecture :</strong> {$osinfo.architecture|default:"Not Available"}</li>
         <li class="moreS3" style="display:none;"><strong>OS Version :</strong> {$osinfo.version}</li>
         <li class="moreS3" style="display:none;"><strong>OS Level :</strong> {$osinfo.level}</li>
         <li class="moreS3" style="display:none;"><strong>OS Current Time :</strong> {$InProve_Smarty->ts2str($osinfo.time)}</li>
