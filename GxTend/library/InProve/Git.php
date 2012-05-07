@@ -19,7 +19,7 @@ class InProve_Git {
     public function issuecommand($command, $repopath, $worktree) {
 
         #
-        $INPROVE_BE_HOME = getenv("INPROVE_BE_HOME");
+        $INPROVE_BE_HOME = InProve_System::get_eva("INPROVE_BE_HOME");
 
         # Set git environment variables...
         if (file_exists($repopath) && ($worktree===null || $worktree==="null" || file_exists($worktree))) {
@@ -90,7 +90,7 @@ class InProve_Git {
             $giticmd = self::issuecommand("name-rev --name-only HEAD", $repopath, $worktree);
             if ($giticmd["sts"]==0) {
                 $repo_stats["head"] = trim($giticmd["out"]);
-            }            
+            }
 
             # More in depth repo details...
             if ($commits_per_branch!==0) {
