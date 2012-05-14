@@ -153,7 +153,7 @@ function setChkCell(cellid,kb,obj,islast) {
             <div class="commit_holder">
             <br clear="all">
             <div class="column left">
-                <b>Id :</b> {if $smarty.request.viewport == "winforcli"}{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}{else}<a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}</a>{/if}<br>
+                <b>Id :</b> {if $smarty.request.viewport == "winforcli"}{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}{else}<a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 600, 900);">{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}</a>{/if}<br>
                 <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commitData.subject,0,80)}
             </div>
             <div class="column right">
@@ -182,7 +182,7 @@ function setChkCell(cellid,kb,obj,islast) {
                     {if $smarty.request.viewport == "winforcli"}
                     &nbsp;{$rec.gxinfo.objnam}
                     {else}
-                    <a class="pointer" title="Click to see object change history" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}', 'Object Change History & Promotion Status', 550, 900);">
+                    <a class="pointer" title="Click to see object change history" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}', 'Object Change History & Promotion Status', 600, 900);">
                     &nbsp;{$rec.gxinfo.objnam}
                     </a>
                     {/if}
@@ -191,7 +191,7 @@ function setChkCell(cellid,kb,obj,islast) {
                     {if $smarty.request.viewport == "winforcli"}
                     &nbsp;{if $kbrec.kbclass >= 7500}{$rec.gxinfo.objnam|basename}{else}{$rec.gxinfo.objnam}{/if}
                     {else}
-                    <a class="pointer" title="Click to see object change history" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}', 'Object Change History & Promotion Status', 550, 900);">
+                    <a class="pointer" title="Click to see object change history" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&src_path={$rec.src_path}', 'Object Change History & Promotion Status', 600, 900);">
                     &nbsp;{if $kbrec.kbclass >= 7500}{$rec.gxinfo.objnam|basename}{else}{$rec.gxinfo.objnam}{/if}
                     </a>
                     {/if}

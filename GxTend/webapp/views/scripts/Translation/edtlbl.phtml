@@ -1,0 +1,63 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#form_translate").ajaxForm({
+        dataType: 'json',
+        async: false,
+        beforeSubmit: function() {
+            $("#form_translate").validate({
+               ignore: ":hidden"
+            });
+            if ( $("#form_translate").valid() ) {
+                 $("#form_translate .submit_btn_holder").toggle();
+                return true;
+            }
+            return false;            
+        },
+        success: function (r) {
+            notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
+            if (r.sts) {
+                $("#GenericDialog").dialog("close");
+                $.each(r.newEntry, function (index, entry) {
+                    if ($("#"+entry.lang+entry.key).text() != entry.val) {
+                        $("#"+entry.lang+entry.key).html(entry.val + " <img src='../img/icons/16/tick.png' alt='ok' title='Modified'>").effect("highlight",{ },5000);
+                    }
+                });
+            } else {
+                $("#form_translate .submit_btn_holder").toggle();
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+    });
+
+});
+
+</script>
+
+<h3>Label Edition</h3>
+<form id="form_translate" action="/Translation/postentry" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="entry" value="{$smarty.request.entry}">
+
+    {foreach $labelData as $lng => $label}
+    <p>
+        <strong>{$lng}</strong><br />
+        <textarea id="{$lng}" name="translations[{$lng}]" style="width:100%;height:50px;">{$label.val}</textarea>
+        {foreach $glossarieData.$lng as $glng => $glabel name=glosslist}
+        <a href="javascript:;" onclick="$('#{$lng}').val('{$glabel.val}')">{$glabel.val}</a>{if !$smarty.foreach.glosslist.last}&nbsp;|&nbsp;{/if}
+        {/foreach}
+    </p>
+    {/foreach}        
+
+    <div class="myhr"></div>
+    <div class="buttons right">
+    <div class="submit_btn_holder">
+    {$smarty.const._FORM_BTN_UPDATE_}
+    &nbsp;{$lL.__or__}&nbsp;
+    <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
+    </div>
+    <div class="submit_btn_holder" style="display:none;">
+    {$smarty.const._BAR_WAIT_}
+    </div>
+</form>

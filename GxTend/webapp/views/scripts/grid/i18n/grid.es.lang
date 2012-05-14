@@ -1,0 +1,17 @@
+<?php
+
+$lL["__there_is_active_filters__"] = "Hay filtro(s) activo(s) en el grid";
+$lL["__there_is_not_active_filters__"] = "No hay filtro(s) activo(s) en el grid";
+$lL["__currently_set_filters__"] = "Filtros configurados actualmente";
+$lL["__search__"] = "Buscar";
+$lL["__grid_not_searcheable__"] = "Grilla No Permite Busquedas";
+$lL["__reset__"] = "Redefinir";
+$lL["__by_prefixing__"] = "Prefijando el texto de su busqueda ud puede limitar la busqueda a una columna especifica.";
+$lL["__available_columns_are__"] = "Columnas disponibles son";
+$lL["__data_export__"] = "Exportacion de Datos";
+$lL["__click_for_debug__"] = "Clic para obtener informacion estadistica y de depuracion.";
+$lL["__close_tab__"] = "Cerrar Tab";
+$lL["__error_loading_tab_content__"] = "Error, no se pudo cargar el contenido del tab.";
+$lL["__grid_debug_information__"] = "Informacion de la Grilla";
+
+?>

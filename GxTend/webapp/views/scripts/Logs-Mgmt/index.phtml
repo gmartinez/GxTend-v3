@@ -10,13 +10,13 @@ $(document).ready(function(){
 
 <div class="heading-block" style="margin-bottom:25px;">
     <span class="left" style="font-size:1.5em;font-weight:bold;">
-    App Logs
+    {$lL.__app_logs__}
     </span>
 
     <span class="right">
-    <a href="javascript:;" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_audit',null,'#logsdata');"><span class="ui-icon ui-icon-calculator" style="vertical-align:middle;display:inline-block;"></span> Audit Entries</a>
+    <a href="javascript:;" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_audit',null,'#logsdata');"><span class="ui-icon ui-icon-calculator" style="vertical-align:middle;display:inline-block;"></span> {$lL.__audit_entries__}</a>
     &nbsp;|&nbsp;
-    <a href="javascript:;" onclick="loadappdiv('/Logs-Mgmt/lstsyslogs',null,'#logsdata');"><span class="ui-icon ui-icon-flag" style="vertical-align:middle;display:inline-block;"></span> System Logs</a>
+    <a href="javascript:;" onclick="loadappdiv('/Logs-Mgmt/lstsyslogs',null,'#logsdata');"><span class="ui-icon ui-icon-flag" style="vertical-align:middle;display:inline-block;"></span> {$lL.__system_logs__}</a>
     </span>
 </div>
 

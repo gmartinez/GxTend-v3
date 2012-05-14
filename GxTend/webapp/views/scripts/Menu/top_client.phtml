@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    function dataSync(type) {
+
+        $(".sync_data").toggle();
+        jQuery.getJSON(
+                "/Index/sync?type="+type,
+                null,
+                function (data, textStatus) {
+                    showlogmsg();       // Display user message...
+                    $("#header-right #top_menu #nav-links #upqueue").html("?");
+                    $("#header-right #top_menu #nav-links #dnqueue").html("?");
+                    $(".sync_data").toggle();
+                    $("#header-right #top_menu #nav-links #upqueue").load("/Index/sync?type=upqueue");
+                    $("#header-right #top_menu #nav-links #dnqueue").load("/Index/sync?type=dnqueue");
+                }
+        );
+
+    }
+</script>
+
+<div id="nav-links">
+    <ul>
+    <li class="sync_data" style="cursor:pointer;" onclick="dataSync('full');">Sync &uarr;<span style="font-size:.7em;vertical-align:top;" id="upqueue">?</span>&darr;<span span style="font-size:.7em;vertical-align:bottom;" id="dnqueue">?</span></li>
+    <li class="sync_data" style="display:none;"><img src="../img/loading_16-Client.gif"> Syncing...</li>
+    <li><a href="javascript:;" class="file" onclick="loadappdiv('/cvs/');">My Workspace</a></li>
+    <li><a href="javascript:;" class="file" onclick="loadappdiv('/Ticket-Mgmt/listall');">To-Dos</a></li>
+    <li><a href="javascript:;" class="file" onclick="mDialog('/index/logout', '...', 150, 300);">Logout</a></li>
+    </ul>
+</div>

@@ -1,0 +1,37 @@
+<?php
+
+$lL["__my_options__"] = "My Options";
+$lL["__my_profile__"] = "Settings";
+$lL["__people__"] = "People & Clients";
+$lL["__clients__"] = "Clients";
+$lL["__users__"] = "Users";
+$lL["__users__groups__"] = "Users' Groups";
+$lL["__hosts__"] = "Hosts";
+$lL["__knowledge__"] = "Knowledge";
+$lL["__tasks_definition__"] = "Tasks Definition";
+$lL["__projects__"] = "Projects";
+$lL["__milestones__"] = "Milestones";
+$lL["__to_do_lists__"] = "To-Do Lists";
+$lL["__tickets__"] = "Tickets";
+$lL["__code__"] = "Code";
+$lL["__kbs_mgmt___"] = "KBs Mgmt.";
+$lL["__browse_kbs__"] = "Browse KBs";
+$lL["__browse_history__"] = "Browse History";
+$lL["__compare___promote__"] = "Compare & Promote";
+$lL["__settings___monitoring__"] = "Settings & Monitoring";
+$lL["__parameters__"] = "Parameters";
+$lL["__events__scheduler___"] = "Events (Scheduler)";
+$lL["__background_ops__"] = "Background Ops";
+$lL["__events_queue__"] = "Events Queue";
+$lL["__e_mail_queue__"] = "E-Mail Queue";
+$lL["__audit_info__"] = "Audit Info";
+$lL["__app_sessions__"] = "App Sessions";
+$lL["__app_logs__"] = "App Logs";
+$lL["__help__"] = "Help";
+$lL["__about__"] = "About";
+$lL["__debugging_tools__"] = "Debugging Tools";
+$lL["__query_metadata__"] = "Query Metadata";
+$lL["__query_gxkb__"] = "Query GxKb";
+$lL["__logout__"] = "Logout";
+
+?>

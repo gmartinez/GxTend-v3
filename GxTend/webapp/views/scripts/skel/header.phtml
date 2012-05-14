@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{$smarty.cookies['gxtend_login_language']|default:'en'}">
 <head>
     <title>GxTend - The Missing Gear</title>
 
@@ -10,13 +9,16 @@
 	<!--External Includes-->
 	<script type="text/javascript" src="../jquery/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="../jquery/jquery-ui-1.8.20.custom.min.js"></script>
+    {if $smarty.cookies['gxtend_login_language'] && $smarty.cookies['gxtend_login_language']!="en"}
+	<script type="text/javascript" src="../jquery/i18n/jquery.ui.datepicker-{$smarty.cookies['gxtend_login_language']}.js"></script>
+    {/if}
 
     <!--External Includes-->
     <script type="text/javascript" src="../jquery/addons/charts/highcharts.js"></script>
 
     <!--External Includes-->
 	<link rel="stylesheet" type="text/css" href="../jquery/addons/jqGrid43/css/ui.jqgrid.css">
-	<script type="text/javascript" src="../jquery/addons/jqGrid43/i18n/grid.locale-en.js"></script>
+	<script type="text/javascript" src="../jquery/addons/jqGrid43/i18n/grid.locale-{$smarty.cookies['gxtend_login_language']|default:'en'}.js"></script>
 	<script type="text/javascript" src="../jquery/addons/jqGrid43/jquery.jqGrid.min.js"></script>
 
     <!--External Includes-->
@@ -25,6 +27,9 @@
     
     <!-- External Includes Validate-->
     <script type="text/javascript" src="../jquery/addons/validate/jquery.validate.min.js"></script>
+    {if $smarty.cookies['gxtend_login_language'] && $smarty.cookies['gxtend_login_language']!="en"}
+	<script type="text/javascript" src="../jquery/addons/validate/localization/messages_{$smarty.cookies['gxtend_login_language']}.js"></script>
+    {/if}
 
     <!-- External Includes Pnotify -->
     <script type="text/javascript" src="../jquery/addons/pnotify/jquery.pnotify.min.js"></script>
@@ -43,7 +48,7 @@
     <script type="text/javascript" src="../jquery/addons/singlef/jquery.cookie.js"></script>
 
     <!--Own .js & .css -->
-    <script type="text/javascript" src="../js/ready.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="../js/gxtend.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     <script type="text/javascript" src="../js/libs/sha1.js"></script>
     <script type="text/javascript" src="../js/libs/utf8_decode.js"></script>
     <script type="text/javascript" src="../js/libs/base64_decode.js"></script>
@@ -52,5 +57,4 @@
     
 </head>
 <body>
-
-<div id="container" style="background:url('../img/main_bkg_{$smarty.const.__LAYER_ROLE__}.png') no-repeat right bottom;">
+    <div id="container">

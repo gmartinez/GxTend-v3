@@ -1,0 +1,10 @@
+<?php
+
+$lL["__notification__"] = "Notificação";
+$lL["__confirm_file_deletion__"] = "Confirma a Exclusão do Arquivo";
+$lL["__about__"] = "Sobre";
+$lL["__about_detail__"] = "Este processo vai cuidar dos valores de ajuste de configuração principal, por favor, tome um momento para verificar visualmente que os valores estão corretos antes de prosseguir.";
+$lL["__cancel__"] = "cancelar";
+$lL["__or__"] = "ou";
+
+?>

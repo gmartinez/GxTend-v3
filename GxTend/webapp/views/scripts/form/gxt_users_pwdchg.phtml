@@ -35,7 +35,7 @@ $(document).ready(function(){
         <table align="center" width="100%">
         {if $smarty.get.chgtype=="mine"}
 		<tr><td align="left">
-			<b>Enter Current Password</b>
+			<b>{$lL.__enter_current_password__}</b>
             </td>
 			<td align="left">
 			<input type="password" size="30" id="cur_password" name="cur_password" value="" class="string required">
@@ -43,14 +43,14 @@ $(document).ready(function(){
         </tr>
         {/if}
 		<tr><td align="left">
-			<b>Select New Password</b>
+			<b>{$lL.__select_new_password__}</b>
             </td>
 			<td align="left">
 			<input type="password" size="30" id="new_password" name="new_password" value="" class="string required">
             </td>
         </tr>
 		<tr><td align="left">
-			<b>Repeat New Password</b>
+			<b>{$lL.__repeat_new_password__}</b>
             </td>
 			<td align="left">
 			<input type="password" size="30" id="repeat_password" name="repeat_password" value="" class="string required">
@@ -61,7 +61,7 @@ $(document).ready(function(){
             &nbsp;
             </td>
 			<td align="left">
-			<b>Issue User E-Mail Notification</b>
+			<b>{$lL.__issue_user_e_mail_notification__}</b>
 			<input type="checkbox" id="notify_user" name="notify_user" value="1" checked>
             </td>
         </tr>

@@ -9,6 +9,7 @@ html {
 body {
 	font:normal 76% "Segoe UI", "Trebuchet MS", Tahoma, Arial, Helvetica, sans-serif;
     color:#312e25;
+    background:url('../img/main_bkg_Server.png') no-repeat right bottom;
 	margin:0;
 	padding:0;
 	height:100%;
@@ -95,6 +96,7 @@ textarea[readonly],
 textarea[disabled] {
     /*opacity: .5;*/
     color:#BFBFBF;
+    background-color:#F2F2F2;
 }
 
 /*===================================
@@ -316,27 +318,27 @@ textarea[disabled] {
     margin:0 0 7px;
     padding:0px 10px 0 0;
     text-align:right;
-    width:100px;
+    width:125px;
 }
 
 .login-box-field {
     display:inline;
     float:left;
     margin:0 0 7px;
-    width:230px;
+    width:216px;
 }
 
 
 .form-login, .login-box-field select {
 	padding:3px 5px;
-    width:205px;
+    width:180px;
 	border: 1px solid #327e04;
 	background-color:#fff;
 	font-size: 14px;
 }
 
 .login-box-field select {
-    width:216px;
+    width:192px;
 }
 
 
@@ -456,6 +458,11 @@ code, pre {
 
 .grey, .gray {
     color:#312e25;
+}
+
+.alpha {
+    cursor:pointer;
+    font-size:.8em;
 }
 
 /*===================================

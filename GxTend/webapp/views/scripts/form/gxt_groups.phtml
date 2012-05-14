@@ -7,7 +7,7 @@
 		<table align="center" width="100%">
         {if $form_mode != $smarty.const._LBL_ADD_}
 		<tr><td align="left">
-			<b>Group Id</b>
+			<b>{$lL.__group_id__}</b>
             </td>
 			<td align="left">
             {$InProve_Smarty->cutstr($groupguid,0,$smarty.const._GUID_LEN_)}<p>
@@ -15,14 +15,14 @@
 		</tr>
         {/if}
 		<tr><td align="left">
-			<b>Abv. Description</b>
+			<b>{$lL.__abv__description__}</b>
             </td>
 			<td align="left">
 			<input type="text" size="60" name="f|groupabv|unique" value="{$groupabv}" class="string required">
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Is Admin</b>
+			<b>{$lL.__is_admin__}</b>
             </td>
 			<td align="left">
 			{$isadmin}
@@ -30,14 +30,14 @@
 		</tr>
         {if !$userParam && $form_mode != $smarty.const._LBL_ADD_}
 		<tr><td align="left">
-			<b>Current Users in this Group</b>
+			<b>{$lL.__current_users_in_this_group__}</b>
             </td>
 			<td align="left">
             <table align="center" width="100%" class="list">
             <thead>
             <tr>
-                <th>User</th>
-                <th>Ops</th>
+                <th>{$lL.__user__}</th>
+                <th>{$lL.__actions__}</th>
             </tr>
             </thead>
             <tbody>

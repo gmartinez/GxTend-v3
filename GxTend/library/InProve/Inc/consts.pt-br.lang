@@ -1,0 +1,272 @@
+<?php
+
+#
+define("__AUDIT_METADATA_CHANGE__", "Mudança de metadados.");
+define("__AUDIT_MSG2USR_INFO__", "Mensagem informativa para o usuário.");
+define("__AUDIT_MSG2USR_WARN__", "Mensagem de aviso para o usuário.");
+define("__AUDIT_MSG2USR_ERRO__", "Mensagem de erro para o usuário.");
+define("__AUDIT_TCSYNC_DN__", "Sincronização de dados, para baixo.");
+define("__AUDIT_TCSYNC_UP__", "Sincronização de dados, para cima.");
+define("__AUDIT_FETCH_OP__", "Repositório de código, Fetch.");
+define("__AUDIT_PUSH_OP__", "Repositório de código, Push.");
+define("__AUDIT_COMMIT_OP__", "Mudança de código, Commit.");
+define("__AUDIT_CATCHUP_OP__", "Mudança de código, Catchup.");
+define("__AUDIT_PROMOTE_OP__", "Promoção de mudanças.");
+define("__AUDIT_HOUSEKEEP_OP__", "Tarefas de manutenção.");
+
+#
+define("_IMG_INFO_SM_", "../img/icons/16/info.png");
+define("_IMG_WARN_SM_", "../img/icons/16/warning.png");
+define("_IMG_ERR_SM_", "../img/icons/16/error.png");
+define("_IMG_EDIT_SM_", "../img/icons/16/edit.png");
+define("_IMG_COMMENT_BLUE_SM_", "../img/icons/16/comment_blue.png");
+define("_IMG_COMMENT_GRAY_SM_", "../img/icons/16/comment_gray.png");
+define("_IMG_CLOCK_SM_", "../img/icons/16/clock.png");
+define("_IMG_DEL_SM_", "../img/icons/16/delete.png");
+define("_IMG_REMOVE_SM_", "../img/icons/16/remove.png");
+define("_IMG_HIDE_SM_", "../img/icons/16/no.png");
+define("_IMG_SHOW_SM_", "../img/icons/16/tick.png");
+define("_IMG_SAVE_SM_", "../img/icons/16/tick.png");
+define("_IMG_ADD_SM_", "../img/icons/16/add.png");
+define("_IMG_REFRESH_SM_", "../img/icons/16/refresh.png");
+define("_IMG_SUBMIT_SM_", "../img/icons/16/next.png");
+define("_IMG_CANCEL_SM_", "../img/icons/16/cancel.png");
+define("_IMG_PUSH_SM_", "../img/icons/16/repo-push.png");
+define("_IMG_FETCH_SM_", "../img/icons/16/repo-fetch.png");
+define("_IMG_JOIN_SM_", "../img/icons/16/repo-join.png");
+define("_IMG_MERGE_SM_", "../img/icons/16/merge.png");
+define("_IMG_FIND_SM_", "../img/icons/16/find.png");
+define("_IMG_CONNECT_SM_", "../img/icons/16/connect.png");
+define("_IMG_DISCONNECT_SM_", "../img/icons/16/disconnect.png");
+
+#
+define("_IMG_MAIL_SM_", "../img/icons/16/mail.png");
+define("_IMG_MAIL_ATTCH_SM_", "../img/icons/16/mail-attachment.png");
+define("_IMG_MAIL_FWD_SM_", "../img/icons/16/mail-forward.png");
+define("_IMG_MAIL_NEW_SM_", "../img/icons/16/mail-new.png");
+define("_IMG_MAIL_REP_SM_", "../img/icons/16/mail-reply-sender.png");
+define("_IMG_MAIL_REPALL_SM_", "../img/icons/16/mail-reply-all.png");
+define("_IMG_MAIL_WRT_SM_", "../img/icons/16/mail-write.png");
+
+#
+define("_IMG_SEARCH_SM_", "../img/icons/16/search.png");
+define("_LBL_SEARCH_", "Pesquisar");
+define("_IMG_SEE_SM_", "../img/icons/16/search.png");
+define("_LBL_SEE_", "Ver");
+define("_IMG_LOCK_SM_", "../img/icons/16/locked.png");
+define("_IMG_LOCK_OWN_SM_", "../img/icons/16/locked_own.png");
+define("_LBL_LOCK_", "Ativar Bloqueio");
+define("_IMG_UNLOCK_SM_", "../img/icons/16/unlocked.png");
+define("_LBL_UNLOCK_", "Liberar Bloqueio");
+define("_IMG_IGNORE_SM_", "../img/icons/16/ignored.png");
+define("_LBL_IGNORE_", "Adicionar na Lista de Ignorados");
+define("_IMG_UNLIST_SM_", "../img/icons/16/unlist.png");
+define("_LBL_UNLIST_", "Remover da lista");
+define("_IMG_FLAG_SM_", "../img/icons/16/flag.png");
+define("_LBL_FLAG_", "Definir Bandeira em Objetos");
+define("_IMG_CLEANUP_SM_", "../img/icons/16/cleanup.png");
+define("_LBL_CLEANUP_", "Limpeza");
+define("_IMG_UPDSRVNFO_SM_", "../img/icons/16/updsrvnfo.png");
+define("_LBL_UPDSRVNFO_", "Atualizar informações do servidor");
+define("_IMG_WAND_SM_", "../img/icons/16/wand.png");
+define("_LBL_WAND_", "Criar Novo");
+define("_IMG_CHKOUT_SM_", "../img/cvs/menucheckout.ico");
+define("_LBL_CHKOUT_", "Check-Out Repositório");
+define("_IMG_DISCOVERGXKB_SM_", "../img/cvs/menurepobrowse.ico");
+define("_LBL_DISCOVERGXKB_", "Descubra KBs");
+define("_IMG_COMPARE_SM_", "../img/icons/16/compare.png");
+define("_LBL_TOGGLE_CHECKS_", "Clique para alternar checks");
+define("_IMG_DOWNLOAD_SM_", "../img/icons/16/download.png");
+define("_LBL_DOWNLOAD_", "Baixar");
+define("_IMG_SETSECUR_SM_", "../img/icons/16/key.png");
+define("_LBL_SETSECUR_", "Segurança");
+define("_IMG_FOLDER_SM_", "../img/icons/16/folder.png");
+define("_IMG_FOLDER_OPEN_SM_", "../img/icons/16/folder-open.png");
+define("_IMG_PACKAGE_SM_", "../img/icons/16/compress.png");
+define("_LBL_PACKAGE_", "Construir pacote Zip");
+define("_IMG_RESET_SM_", "../img/icons/16/reset.png");
+define("_LBL_RESET_", "Redefinir");
+define("_IMG_CATCHUP_SM_", "../img/icons/16/catchup.png");
+define("_LBL_CATCHUP_", "Catch-up");
+define("_IMG_COMMIT_SM_", "../img/icons/16/checkin.png");
+define("_LBL_COMMIT_", "Commit");
+define("_IMG_PROMOTE_SM_", "../img/icons/16/promote.png");
+define("_LBL_PROMOTE_", "Promote");
+
+#
+define("_TITLE_ADD_", "Clique para adicionar novo registro");
+define("_TITLE_EDIT_", "Clique para editar novo registro");
+define("_TITLE_DEL_", "Clique para excluir registro");
+define("_TITLE_TRUCATE_", "Clique para excluir todos os registros");
+define("_TITLE_HIDE_", "Clique para Ocultar");
+define("_TITLE_SHOW_", "Clique para Exibir");
+define("_TITLE_HIDE_SHOW_", "Clique para Ocultar/Exibir");
+define("_TITLE_ADD_", "Clique to adicionar");
+
+#
+define("_LBL_ADD_RECORD_", "Adicionar");
+define("_LBL_EDIT_RECORD_", "Editar");
+
+#
+define("_LBL_INSERT_", "Inserir");
+define("_TITLE_INSERT_", "Inserir novo registro");
+define("_LBL_UPDATE_", "Salvar");
+define("_TITLE_UPDATE_", "Salvar as alterações no registro atual");
+define("_LBL_ADD_", "Adicionar");
+define("_TITLE_ADD_", "Inserir novo com base no registro atual");
+define("_LBL_DELETE_", "Excluir");
+define("_TITLE_DELETE_", "Excluir registro atual");
+define("_LBL_RESET_", "Redefinir");
+define("_TITLE_RESET_", "Redefinir");
+define("_LBL_CHANGE_", "Mudar");
+define("_TITLE_CHANGE_", "Clique para processo de mudança");
+define("_LBL_SUBMIT_", "Enviar");
+define("_TITLE_SUBMIT_", "Clique para enviar dados");
+define("_LBL_PUSH_", "Push");
+define("_LBL_FETCH_", "Fetch");
+define("_LBL_CHKALL_", "&radic;");
+define("_TITLE_CHKALL_", "Alternar para todo o grupo");
+define("_LBL_CANCEL_", "Cancelar");
+define("_TITLE_CANCEL_", "Clique para cancelar");
+define("_LBL_NEXT_", "Próximo");
+define("_TITLE_NEXT_", "Clique para mover para a próxima seção");
+define("_LBL_PREV_", "Anterior");
+define("_TITLE_PREV_", "Clique para mover para a seção anterior");
+
+#
+define("_LBL_NOT_AVAILABLE_", "Não Disponível");
+define("_LBL_NOT_SET_", "Não Definido");
+define("_LBL_INV_FMT_", "Formato Inválido");
+define("_LBL_GLUE_", "Cola");
+define("_LBL_NONE_", "Nenhum");
+
+#
+define("_BAR_WAIT_", "<span class=\"msg_wait medium\"> Processamento...</span>");
+define("_MSG_WAIT_", "<span class=\"msg_wait medium\"> Só um momento...</span>");
+define("_MSG_WAIT_SM_", "<span class=\"msg_wait small\"> Só um momento...</span>");
+define("_MSG_SUC_", "Sucesso");
+define("_MSG_ERR_", "Erro");
+define("_MSG_WRN_", "Aviso");
+
+#
+define("_IDX_FOUND_", "Indice consultado com êxito");
+define("_IDX_NOT_FOUND_", "Indidce não encontrado");
+
+#
+define("_FORM_MSG_OK_COMMIT_", "Dados salvos com sucesso");
+define("_FORM_MSG_WRN_COMMIT_", "Nenhuma ação válida de mudança foi apresentada");
+define("_FORM_MSG_ERR_COMMIT_", "Falha ao salvar dados");
+define("_FORM_MSG_NO_CHANGE_", "Nenhum dado foi alterado");
+define("_FORM_MSG_ERR_UNIQUE_", "Violação de restrição exclusiva");
+define("_FORM_BTN_INSERT_", "
+                            <button class='button-insert' type='submit' id='submit_insert_btn' name='submit_btn' value='"._LBL_INSERT_."' title='"._TITLE_INSERT_."'>
+                            "._LBL_INSERT_."
+                            </button>
+                            ");
+define("_FORM_BTN_ADD_", "
+                            <button class='button-add' type='submit' id='submit_add_btn' name='submit_btn' value='"._LBL_ADD_."' title='"._TITLE_ADD_."'>
+                            "._LBL_ADD_."
+                            </button>
+                            ");
+define("_FORM_BTN_RESET_", "
+                            <button class='button-reset' type='reset' id='submit_reset_btn' name='reset_btn' value='"._LBL_RESET_."' title='"._TITLE_RESET_."'>
+                            "._LBL_RESET_."
+                            </button>
+                            ");
+define("_FORM_BTN_UPDATE_", "
+                            <button class='button-update' type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_UPDATE_."' title='"._TITLE_UPDATE_."'>
+                            "._LBL_UPDATE_."
+                            </button>
+                            ");
+define("_FORM_BTN_DELETE_", "
+                            <button class='button-delete' type='submit' id='submit_delete_btn' name='submit_btn' value='"._LBL_DELETE_."' title='"._TITLE_DELETE_."' onClique=\"return(confirm('Confirmar Exclusão de Dados ?'))\">
+                            "._LBL_DELETE_."
+                            </button>
+                            ");
+define("_FORM_BTN_SUBMIT_", "
+                            <button type='submit' id='submit_submit_btn' class='button-circle' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            "._LBL_SUBMIT_."
+                            </button>
+                            ");
+define("_FORM_BTN_COMMIT_", "
+                            <button type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            <img src='"._IMG_COMMIT_SM_."'> "._LBL_COMMIT_."
+                            </button>
+                            ");
+define("_FORM_BTN_PROMOTE_", "
+                            <button type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            <img src='"._IMG_PROMOTE_SM_."'> "._LBL_PROMOTE_."
+                            </button>
+                            ");
+define("_FORM_BTN_CATCHUP_", "
+                            <button type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            <img src='"._IMG_CATCHUP_SM_."'> "._LBL_CATCHUP_."
+                            </button>
+                            ");
+define("_FORM_BTN_PUSH_", "
+                            <button type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            <img src='"._IMG_PUSH_SM_."'> "._LBL_PUSH_."
+                            </button>
+                            ");
+define("_FORM_BTN_FETCH_", "
+                            <button type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            <img src='"._IMG_FETCH_SM_."'> "._LBL_FETCH_."
+                            </button>
+                            ");
+define("_FORM_BTN_LOCK_", "
+                            <button type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            <img src='"._IMG_LOCK_SM_."'> "._LBL_LOCK_."
+                            </button>
+                            ");
+define("_FORM_BTN_UNLOCK_", "
+                            <button type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            <img src='"._IMG_UNLOCK_SM_."'> "._LBL_UNLOCK_."
+                            </button>
+                            ");
+define("_FORM_BTN_UNLIST_", "
+                            <button type='submit' id='submit_update_btn' name='submit_btn' value='"._LBL_SUBMIT_."' title='"._TITLE_SUBMIT_."'>
+                            <img src='"._IMG_UNLIST_SM_."'> "._LBL_UNLIST_."
+                            </button>
+                            ");
+#
+define("_CHKIN_MSG_OK_", "<img src=\"../img/icons/16/tick.png\"> Todos os objetos foram comprometidos.");
+define("_CHKIN_MSG_WRN_", "<img src=\"../img/icons/16/important.png\"> Alguns objetos não foram comprometidos.");
+define("_CHKIN_MSG_ERR_", "<img src=\"../img/icons/16/error.png\"> Nenhum objeto foi cometido.");
+
+#
+define("_CATCHUP_MSG_OK_", "<img src=\"../img/icons/16/tick.png\"> Todos os objetos foram atualizados.");
+define("_CATCHUP_MSG_WRN_", "<img src=\"../img/icons/16/important.png\"> Alguns objetos não foram atualizados.");
+define("_CATCHUP_MSG_ERR_", "<img src=\"../img/icons/16/error.png\"> Nenhum objeto foi atualizado.");
+
+#
+define("_SECURITY_MSG_ERR_", "<img src=\"../img/icons/16/error.png\"> Você não tem acesso a...");
+
+#
+define("_FSYS_READ_ERR_", "<img src=\"../img/icons/16/error.png\"> Não foi possível acessar os arquivos.");
+
+#
+define("_EVT_STS_0_", "<img src=\"../img/icons/16/error.png\" title=\"Cancelado\">");
+define("_EVT_STS_1_", "<img src=\"../img/icons/16/suspend.png\" title=\"Pausado\">");
+define("_EVT_STS_2_", "<img src=\"../img/icons/16/clock.png\" title=\"Liberado\">");
+define("_EVT_STS_3_", "<img src=\"../img/icons/16/processing.png\" title=\"Processamento\">");
+define("_EVT_STS_6_", "<img src=\"../img/icons/16/schedule.png\" title=\"Programado para ser liberado mais tarde\">");
+define("_EVT_STS_9_", "<img src=\"../img/icons/16/tick.png\" title=\"Processado\">");
+
+#
+define("_DELIVERY_PENDING_", "<font color=green>Pendente</font>");
+define("_DELIVERY_ERROR_", "<font color=red>Pendente (err)</font>");
+
+#
+define("__FLAG_SET_ERR_GX_NAME_CONSTRAINT_VIOLATED__", "Erro na definição do nome do objeto GeneXus.");
+define("__FLAG_SET_ERR_ALREADY_EXISTS__", "Já existe uma bandeira/bloqueio ativo nesse objeto.");
+
+#
+define("0600", "Chave NÃO Encontrada.");
+define("0601", "Chave NÃO Encontrada, Não foi possível gerar arquivo de solicitação.");
+define("0602", "Chave Encontrada, Arquivo de solicitação gerado não é válido.");
+define("0603", "Chave Encontrada, Chegou ao seu vencimento.");
+define("0604", "Key Found, Não é válido para este host.");
+define("0605", "Key Found, Limite de usuários ultrapassado.");
+define("0606", "Key Found, Limite de KBs ultrapassado.");
+
+?>

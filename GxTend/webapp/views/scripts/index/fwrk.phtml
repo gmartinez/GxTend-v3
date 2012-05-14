@@ -3,9 +3,9 @@ $(document).ready(function(){
     $('body > #container').layout({
     defaults: {
         //size:					"auto",
-        togglerTip_open:		"Close This Pane",
-        togglerTip_closed:		"Open This Pane",
-        resizerTip:				"Resize This Pane",
+        togglerTip_open:		"__LNG__Close This Pane__LNG__",
+        togglerTip_closed:		"__LNG__Open This Pane__LNG__",
+        resizerTip:				"__LNG__Resize This Pane__LNG__",
         //	effect defaults - overridden on some panes
         fxName:					"slide",		// none, slide, drop, scale
         fxSpeed_open:			750,
@@ -98,11 +98,11 @@ $(document).ready(function(){
 function loadWestPanel() {
 
     $("#west_panel").load(
-                        "/menu/?id=west #{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')}",
+                        "/menu/?id=west",
                         null,
                         function (responseText, textStatus, XMLHttpRequest) {
                             if (responseText) {
-                                $("#{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')}").jstree({
+                                $("#west_panel").jstree({
                                     "plugins" : [ "html_data", "ui", "cookies", "themeroller" ],
                                     "themeroller" : {
                                         "opened" : "ui-icon-folder-open",
@@ -110,7 +110,7 @@ function loadWestPanel() {
                                     }
                                 }).bind("loaded.jstree", function (event, data) { 
                                 {if $InProve_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
-                                    $("#{$InProve_Smarty->getSessVar('MyProfile.westpanel.menuid')} .dbgtoolsmnu").show();
+                                    $("#west_panel #appmnu .dbgtoolsmnu").show();
                                 {/if}
                                 });
                             } else {
@@ -155,7 +155,7 @@ function bkgSync() {
 </script>
 <div id="header" class="ui-layout-north">
     <div id="header-left">
-        <a href="/"><img src="../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png" alt="GxTend" title="GxTend Home"></a>
+        <a href="/"><img src="../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png" alt="GxTend" title="GxTend"></a>
     </div>
     <div id="header-middle">
         <div id="logmsgwall" style="display:none;"></div>
@@ -164,7 +164,7 @@ function bkgSync() {
         {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
         <form id="qryidx_form" action="/QryIdx/search" method="POST" enctype="multipart/form-data">
         <input type="text" title="{$smarty.const._LBL_SEARCH_}" name="qrystr" value="{$smarty.request.qrystr}" maxlength="2048" size="30">
-        <button type=submit class="button-search" name="submit_search" value="Search" title="{$smarty.const._TITLE_SUBMIT_}" disabled="disabled">Search</button>
+        <button type=submit class="button-search" name="submit_search" value="{$smarty.const._LBL_SEARCH_}" title="{$smarty.const._TITLE_SUBMIT_}" disabled="disabled">{$smarty.const._LBL_SEARCH_}</button>
         </form>
         {else}
         <div id="top_menu">&nbsp;</div>
@@ -173,18 +173,18 @@ function bkgSync() {
 </div>
 <div id="west_panel" class="ui-layout-west">{$smarty.const._MSG_WAIT_SM_}</div>
 <div id="east_panel" class="ui-layout-center">
-    <div class='welcome'><img src='../img/welcome_{$smarty.const.__LAYER_ROLE__}.png' alt='Welcome to GxTend' title='Welcome to GxTend'></div>
+    <div class='welcome'><img src='../img/welcome_{$smarty.const.__LAYER_ROLE__}.png' alt='{$smarty.const.__pass_welcome_to_gxtend__}' title='{$smarty.const.__pass_welcome_to_gxtend__}'></div>
 </div>
 <div id="footer" class="ui-layout-south">
     <div id="footer-inner">
     <div id="footerlog">
         <div id="srvidname" style="float:left;">
-        <img src="../img/icons/16/server.png" alt="GxTend Server" title="GxTend server you are working with"> {$InProve_Smarty->getSessVar("MetaData.desc")}
+        <img src="../img/icons/16/server.png" alt="GxTend Server" title="{$lL.__server_you_are_working_with__}"> {$InProve_Smarty->getSessVar("MetaData.desc")}
         </div>
         {if $smarty.const.__LAYER_ROLE__=="Client"}
         <div id="srvstatus" style="float:left;"></div>
         <div id="autosync" style="float:left;display:none;">
-        &nbsp;|&nbsp; <img src="../img/loading_16-Client.gif" alt="GxTend Server" title="GxTend server you are working with"> Auto Syncing...
+        &nbsp;|&nbsp; <img src="../img/loading_16-Client.gif" alt="GxTend Server" title="GxTend server you are working with"> __LNG__Auto Syncing__LNG__...
         </div>
         {/if}
     </div>

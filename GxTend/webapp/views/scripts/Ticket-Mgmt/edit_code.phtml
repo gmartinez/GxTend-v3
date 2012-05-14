@@ -50,7 +50,7 @@ $(document).ready(function(){
     <div style="margin:0 0 5px;">
         {if $item.data.itmtyp=="commit"}
             <p>
-                <a class="pointer" title="Click to view/promote commit(s) content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$item.commit.projguid}&commits={$item.commit.to|trim}', 'Commits Data & Promotion Status', 550, 900);">
+                <a class="pointer" title="Click to view/promote commit(s) content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$item.commit.projguid}&commits={$item.commit.to|trim}', 'Commits Data & Promotion Status', 600, 900);">
                 {$InProve_Smarty->cutstr($item.commit.to,0,$smarty.const._GUID_LEN_)}
                 </a>
                 &nbsp;{$item.commit.comment}
@@ -117,7 +117,7 @@ $(document).ready(function(){
             <p>&nbsp;<strong># Commits on {$commitsin} : </strong>{count($commitslst)}
             {if $commitsin=="Ticket"}
             {$ticket_csvlst_of_commits = implode(",",$commitslst)}
-            &nbsp;<span class="ui-icon ui-icon-extlink pointer right" title="Click to view/promote ticket commits" onclick="mDialog('/Promote/?projguid={$item.commit.projguid}&commits={$ticket_csvlst_of_commits}', 'Commits Data & Promotion Status', 550, 900);"></span>
+            &nbsp;<span class="ui-icon ui-icon-extlink pointer right" title="Click to view/promote ticket commits" onclick="mDialog('/Promote/?projguid={$item.commit.projguid}&commits={$ticket_csvlst_of_commits}', 'Commits Data & Promotion Status', 600, 900);"></span>
             {/if}            
             </p>
             {$sum_of_commits = $sum_of_commits + count($commitslst)}

@@ -17,7 +17,7 @@
 	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
         <h3>
-            Project this Milestone {if $form_mode != $smarty.const._LBL_ADD_}is{else}will be{/if} related to {$projguid}
+            __LNG__Project this Milestone__LNG__ {if $form_mode != $smarty.const._LBL_ADD_}__LNG__is__LNG__{else}__LNG__will be__LNG__{/if} __LNG__related to__LNG__ {$projguid}
             {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
             &nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_projects' }, null, '$(\'#addNew\').click();');">[+]</span>
             {/if}
@@ -26,7 +26,7 @@
 		<table align="center" width="100%">
         {if $form_mode != $smarty.const._LBL_ADD_}
 		<tr><td align="left">
-			<b>Milestone Id</b>
+			<b>__LNG__Milestone Id__LNG__</b>
             </td>
 			<td align="left">
             {$InProve_Smarty->cutstr($mistguid,0,$smarty.const._GUID_LEN_)}<p>
@@ -34,21 +34,21 @@
 		</tr>
         {/if}
 		<tr><td align="left">
-			<b>Description</b>
+			<b>__LNG__Description__LNG__</b>
             </td>
 			<td align="left">
             <textarea rows="3" cols="80" name="f|mistabv">{$mistabv}</textarea>
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Responsible</b>
+			<b>__LNG__Responsible__LNG__</b>
             </td>
 			<td align="left">
             {$groupguid}
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Due date</b>
+			<b>__LNG__Due date__LNG__</b>
             </td>
 			<td align="left">
 			<input type="text" size="12" id="mistduets" name="mistduets" value="{$mistduets}">

@@ -1,0 +1,34 @@
+{include file="../skel/header.phtml"}
+<script type="text/javascript">
+$(document).ready(function(){
+
+});
+</script>
+
+    <h2>&nbsp;Labels Translation</h2>
+    <p>
+        &nbsp;&nbsp;&nbsp;This is an application internal tool for easy maintenance of application's internationalization.
+        <a href="javascript:;" onclick="mDialog('/Translation/edttmpl?i18nfile={$smarty.request.i18nfile}', '...', 480, 640);" style="float:right;">Edit Template&nbsp;&nbsp;&nbsp;</a>
+    </p>
+    <table class="table list" style="width:95%;">
+        <thead>
+            <tr>
+                <th>Key</th>
+                {foreach $avalangs as $langCode}
+                <th>{$langCode}</th>
+                {/foreach}        
+            </tr>        
+        </thead>
+        <tbody>
+        {foreach $labelsData as $key => $labelData}
+        <tr class="{if $i%2}odd{else}even{/if}">
+            <td><a href="javascript:;" id="{$key}" onclick="edtLang(this);" entry="{$labelData.entry}">{$key}</a></td>
+            {foreach $labelData.langs as $lang => $lbl}
+            <td id="{$lang}{$key}">{$lbl.val}</td>
+            {/foreach}
+        </tr>
+        {/foreach}        
+        </tbody>
+    </table>
+
+{include file="../skel/footer.phtml"}

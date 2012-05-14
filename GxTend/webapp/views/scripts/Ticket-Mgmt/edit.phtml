@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
     {if $data.form_mode == $smarty.const._LBL_ADD_}
-        initRichTextEditor('ttstxt','MyBasicOptions');
+        initRichTextEditor("ttstxt","MyBasicOptions");
     {else}
         $("#read_todoguid").text($("#todoguid option:selected").text());
         $("#read_ttspri").text($("#ttspri option:selected").text());
@@ -17,7 +17,7 @@ $(document).ready(function(){
             load: function(event, ui) {
                 initializeButtons();                
                 if (ui.index==0) {
-                    initRichTextEditor('itmtxt','MyBasicOptions');
+                    initRichTextEditor("itmtxt","MyBasicOptions");
                     $("#ticket #subsnfo").load("/Ticket-Mgmt/sidebar?ttsguid={$smarty.request.ttsguid}&sbid=blog");
                 }
                 if (ui.index==1) {
@@ -134,7 +134,7 @@ $(document).ready(function(){
             <b>To-Do</b> : <span id="read_todoguid"></span><br>
             &nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&rdsh; <b>Summary</b> : <span>{$data.ttsabv}</span><br>
-            <button class="button-history" type="button" onclick="mDialog('/Ticket-Mgmt/chglog?ttsguid={$smarty.request.ttsguid}', 'Ticket Changelog', 480, 850);" style="font-size:.7em;">&nbsp;&nbsp;Changelog</button>
+            <button class="button-history" type="button" onclick="mDialog('/Ticket-Mgmt/chglog?ttsguid={$smarty.request.ttsguid}', 'Ticket Changelog', 600, 900);" style="font-size:.7em;">&nbsp;&nbsp;Changelog</button>
         </div>
         <div style="float:right;">
             <b>Severity</b> : <span id="read_ttspri"></span>
@@ -201,7 +201,7 @@ $(document).ready(function(){
 			<td align="right">
                 <div class="buttons right">
                 {if $data.form_mode != $smarty.const._LBL_ADD_}
-                    {$smarty.const._FORM_BTN_UPDATE_}&nbsp;or&nbsp;<a href="javascript:;" onclick="$('.header_data').toggle();" style="">cancel</a>
+                    {$smarty.const._FORM_BTN_UPDATE_}&nbsp;{$lL.__or__}&nbsp;<a href="javascript:;" onclick="$('.header_data').toggle();" style="">cancel</a>
                 {else}
                     {$smarty.const._FORM_BTN_INSERT_}
                 {/if}

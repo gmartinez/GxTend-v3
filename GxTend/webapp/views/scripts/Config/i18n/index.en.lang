@@ -1,0 +1,10 @@
+<?php
+
+$lL["__notification__"] = "Notification";
+$lL["__confirm_file_deletion__"] = "Confirm File Deletion";
+$lL["__about__"] = "About";
+$lL["__about_detail__"] = "This process will take care of setting primary configuration values, please take a moment to visually check that the values are correct before proceeding.";
+$lL["__cancel__"] = "cancel";
+$lL["__or__"] = "or";
+
+?>

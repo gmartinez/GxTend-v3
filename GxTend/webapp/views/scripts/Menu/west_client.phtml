@@ -1,0 +1,37 @@
+<ul id="appmenu">
+    <li id="my_options"><span class="folder">__LNG__My Options__LNG__</span>
+        <ul>
+        <li><span class="file" onclick="loadappdiv('/My-Profile/')">__LNG__My Profile__LNG__</span></li>
+        <li id="logging"><span class="folder">__LNG__Logging__LNG__</span>
+            <ul>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_evtqueue')">__LNG__Queued Events__LNG__</span></li>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_audit')">__LNG__Audited Ops__LNG__</span></li>
+            <li><span class="file" onclick="loadappdiv('/Sync-Mgmt/')">__LNG__Sync Status__LNG__</span></li>
+            </ul>
+        </li>
+        </ul>
+    </li>
+    <li id="tasks_definition"><span class="folder">__LNG__Tasks Definition__LNG__</span>
+        <ul>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_milestones')">__LNG__Milestones__LNG__</span></li>
+            <li><span class="file" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_todos')">__LNG__To-Do Lists__LNG__</span></li>
+            <li><span class="file" onclick="loadappdiv('/Ticket-Mgmt/listall')">__LNG__Tickets__LNG__</span></li>
+        </ul>
+    </li>
+    <li id="help"><span class="folder">__LNG__Help__LNG__</span>
+        <ul>
+            <li><span class="file" onclick="loadappdiv('/Help/about')">__LNG__About__LNG__</span></li>
+            <li id="help_debugging_tools" class="dbgtoolsmnu" style="display:none;"><span class="folder red">__LNG__Debugging Tools__LNG__</span>
+                <ul>
+                    <li><span class="file" onclick="loadappdiv('/tools/dbquery')">__LNG__Query Metadata__LNG__</span></li>
+                    <li><span class="file" onclick="loadappdiv('/tools/kbquery')">__LNG__Query GxKb__LNG__</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li style="padding-top:1em;text-align:right;font-size:1.15em;">
+        <span class="file logout" onclick="mDialog('/index/logout', '...', 150, 300);">
+        __LNG__Logout__LNG__ <span class="ui-icon ui-icon-power" style="display:inline-block;vertical-align:middle;"></span>
+        </span>
+    </li>
+</ul>

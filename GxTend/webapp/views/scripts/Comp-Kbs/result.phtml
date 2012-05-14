@@ -17,7 +17,7 @@ $(document).ready(function(){
                 });
                 setsubmitsts("#form_promote .objlst", "#form_promote button");
                 $("#bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Promotion was Successful");
-                mDialog('text:'+base64_decode(r.msg),'Promote Execution Report', 480, 640, false, false);
+                mDialog('text:'+base64_decode(r.msg),'Promote Execution Report', 480, 640);
             } else {
                 $("#bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Error/Warning in Promotion");
             }
@@ -35,7 +35,7 @@ $(document).ready(function(){
     
     filter_by_objsts();
     
-    initRichTextEditor('ttstxt','MyBasicOptions');
+    initRichTextEditor("ttstxt","MyBasicOptions");
     $("#ttstxt").ckeditorGet().setReadOnly();
     
     $("#form_promote input[name=promotetype]").change(function () {

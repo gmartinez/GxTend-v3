@@ -31,7 +31,7 @@
         &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("merge", "{$projdata.projguid}", "{$kbdata.kbguid}"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='Click to See/Import other people changes into my KB'></span>
         {/if}
         {if $iframe_url}
-        &nbsp;<span id="integralnk" onclick='mDialog("{$iframe_url}", "Commits Data & Promotion Status", 550, 900);' class='pointer'><img src='{$smarty.const._IMG_PROMOTE_SM_}' alt='{$smarty.const._LBL_PROMOTE_}' title='Click to promote my changes into consolidated KB'></span>
+        &nbsp;<span id="integralnk" onclick='mDialog("{$iframe_url}", "Commits Data & Promotion Status", 600, 900);' class='pointer'><img src='{$smarty.const._IMG_PROMOTE_SM_}' alt='{$smarty.const._LBL_PROMOTE_}' title='Click to promote my changes into consolidated KB'></span>
         {/if}
         {/if}
     &nbsp;{$InProve_Smarty->msg("HandT","Path_and_Ops.phtml")}

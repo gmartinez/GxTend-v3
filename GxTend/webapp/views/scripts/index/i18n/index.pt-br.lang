@@ -1,0 +1,12 @@
+<?php
+
+$lL["__welcome_to_gxtend__"] = "Bem-vindo à GxTend";
+$lL["__language__"] = "Linguagem";
+$lL["__username__"] = "Nome de Usuário";
+$lL["__password__"] = "Senha";
+$lL["__gxtsrv__"] = "Servidor GxTend";
+$lL["__mdialog_config_title__"] = "Clique para ver/definir entradas de configuração";
+$lL["__mdialog_title__"] = "Configurações";
+$lL["__server_you_are_working_with__"] = "Servidor GxTend você está trabalhando com";
+
+?>

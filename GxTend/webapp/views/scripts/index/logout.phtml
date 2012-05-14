@@ -34,7 +34,7 @@
 </script>
 
 <div id="logout">
-    <h2>Confirm GxTend Logout ?</h2>
+    <h2>{$lL.__confirm_gxtend_logout__} ?</h2>
     <div class="myhr"></div>
     <div class="left">
         {if $smarty.const.__LAYER_ROLE__=="Client"}
@@ -46,10 +46,10 @@
     <div class="right">
         <div class="buttons">
             <button type="submit" value="Yes" id="yes">
-               Yes
+               {$lL.__yes__}
             </button>
             <button type="submit" value="No" id="no">
-               No
+               {$lL.__no__}
             </button>
         </div>
     </div>

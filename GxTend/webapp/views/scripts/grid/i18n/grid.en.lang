@@ -1,0 +1,17 @@
+<?php
+
+$lL["__there_is_active_filters__"] = "There is active filter(s) in grid";
+$lL["__there_is_not_active_filters__"] = "There is NOT active filter(s) in grid";
+$lL["__currently_set_filters__"] = "Currently set filters";
+$lL["__search__"] = "Search";
+$lL["__grid_not_searcheable__"] = "Grid Not Searchable";
+$lL["__reset__"] = "Reset";
+$lL["__by_prefixing__"] = "By prefixing your search text you can search in specific columns.";
+$lL["__available_columns_are__"] = "Available columns are";
+$lL["__data_export__"] = "Data Export";
+$lL["__click_for_debug__"] = "Click for stats & debug information.";
+$lL["__close_tab__"] = "Close Tab";
+$lL["__error_loading_tab_content__"] = "Error, could not load tab content.";
+$lL["__grid_debug_information__"] = "Grid Debug Information";
+
+?>

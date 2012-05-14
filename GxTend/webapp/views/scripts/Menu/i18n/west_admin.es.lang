@@ -1,0 +1,37 @@
+<?php
+
+$lL["__my_options__"] = "Mis Opciones";
+$lL["__my_profile__"] = "Configuración";
+$lL["__people__"] = "Personas y Clientes";
+$lL["__clients__"] = "Clientes";
+$lL["__users__"] = "Usuarios";
+$lL["__users__groups__"] = "Grupos de Usuarios";
+$lL["__hosts__"] = "Hosts";
+$lL["__knowledge__"] = "Conocimiento";
+$lL["__tasks_definition__"] = "Definición de Tareas";
+$lL["__projects__"] = "Proyectos";
+$lL["__milestones__"] = "Hitos";
+$lL["__to_do_lists__"] = "Listas de Tickets";
+$lL["__tickets__"] = "Tickets";
+$lL["__code__"] = "Código";
+$lL["__kbs_mgmt___"] = "Gestion de KBs";
+$lL["__browse_kbs__"] = "Navegar KBs";
+$lL["__browse_history__"] = "Browse Historia";
+$lL["__compare___promote__"] = "Comparar & Promover";
+$lL["__settings___monitoring__"] = "Configuración y Monitoreo";
+$lL["__parameters__"] = "Parámetros";
+$lL["__events__scheduler___"] = "Eventos (Scheduler)";
+$lL["__background_ops__"] = "Background Ops";
+$lL["__events_queue__"] = "Cola de Eventos";
+$lL["__e_mail_queue__"] = "Cola de E-Mail";
+$lL["__audit_info__"] = "Información de Auditoría";
+$lL["__app_sessions__"] = "Sesiones de la Aplicación";
+$lL["__app_logs__"] = "Logs de la Aplicación";
+$lL["__help__"] = "Ayuda";
+$lL["__about__"] = "Acerca de";
+$lL["__debugging_tools__"] = "Debugging Tools";
+$lL["__query_metadata__"] = "Query Metadata";
+$lL["__query_gxkb__"] = "Query GxKb";
+$lL["__logout__"] = "Cerrar Sesión";
+
+?>

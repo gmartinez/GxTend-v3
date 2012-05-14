@@ -15,7 +15,7 @@ $(document).ready(function(){
             return false;            
         },
         success: function (r) {
-            notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
+            notify("{$lL.__notification__}",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
             if (r.sts) {
                 setTimeout('window.location.reload();', 2500);                
             } else {
@@ -89,12 +89,12 @@ function checkValues(entryspec) {
 function deleteFile(file2delete) {
     
     $("#form_config .buttons").hide();    
-    if (confirm('Confirm File Deletion ?')) {
+    if (confirm('{$lL.__confirm_file_deletion__} ?')) {
         $.getJSON(
                 "/Config/delfile",
                 { file2delete:file2delete },
                 function(r) {
-                    notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
+                    notify("{$lL.__notification__}",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
                     if (r.sts) {                        
                         setTimeout('window.location.reload();', 2500);
                     } else {
@@ -139,8 +139,8 @@ function togglebwsections(id) {
     {if !$smarty.foreach.sects.last}&nbsp;|&nbsp;{/if}
 {/foreach}
 </div>
-<h3>About</h3>
-<p>This process will take care of setting primary configuration values, please take a moment to visually check the values are ok before proceeding.</p>
+<h3>{$lL.__about__}</h3>
+<p>{$lL.__about_detail__}</p>
 <form id="form_config" action="/Config/post" method="POST" enctype="multipart/form-data">
     {foreach $sectionLst as $i => $label name=sects}
     <div id="section_{$smarty.foreach.sects.iteration}" class="section" style="display:none;">
@@ -155,8 +155,8 @@ function togglebwsections(id) {
         {if $i==3}
             <div class="submit_btn_holder">
             {$smarty.const._FORM_BTN_UPDATE_}
-            &nbsp;or&nbsp;
-            <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
+            &nbsp;{$lL.__or__}&nbsp;
+            <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>{$lL.__cancel__}</a>&nbsp;
             </div>
             <div class="submit_btn_holder" style="display:none;">
             {$smarty.const._BAR_WAIT_}

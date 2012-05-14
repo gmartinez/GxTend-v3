@@ -61,7 +61,7 @@ $(document).ready(function(){
         </div>
         <div style="margin:0 0 5px; font-size:1.1em;">
             <p>
-            <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 550, 900);">
+            <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 600, 900);">
             {$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}
             </a>
             &nbsp;{$commits_info.$commitId.subject}
