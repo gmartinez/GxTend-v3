@@ -4,21 +4,21 @@
 </div>
 
 <div style="margin:5px;">
-<strong>Reachable : </strong> {if $InProve_Smarty->getSessVar("LoginStatus.server.data")} <span class="green">Yes</span> {else} <span class="red">No</span>{/if}
+<strong>{$lL.__reachable__} : </strong> {if $InProve_Smarty->getSessVar("LoginStatus.server.data")} <span class="green">{$lL.__yes__}</span> {else} <span class="red">{$lL.__no__}</span>{/if}
 </div>
 
 {if $InProve_Smarty->getSessVar("LoginStatus.server.data")}
 <div style="margin:5px;">
-<strong>License Status : </strong>
+<strong>{$lL.__license_status__} : </strong>
     {if $InProve_Smarty->getSessVar("LoginStatus.server.data.license_status") != "__VALID_KEY__"}
         &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.license_status")} - {constant($InProve_Smarty->getSessVar("LoginStatus.server.data.license_status"))}</span>
     {else}
-        &nbsp;<span class="green">Valid license installed, no issues detected.</span>
+        &nbsp;<span class="green">{$lL.__valid_license_installed__no_issues_detected__}.</span>
     {/if}
 </div>
 
 <div style="margin:5px;">
-<strong>GxTend Status : </strong>
+<strong>{$lL.__gxtend_status__} : </strong>
     {if $InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}
         &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}</span>
     {else}
@@ -28,40 +28,40 @@
 
 {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
 <div style="margin:5px;">
-<strong>Auth Token Status : </strong>
+<strong>{$lL.__auth_token_status__} : </strong>
     {if $InProve_Smarty->getSessVar("LoginStatus.server.data.token.status") != "ok"}
-        &nbsp;<span class="red">No Match</span>
+        &nbsp;<span class="red">{$lL.__no_match__}</span>
     {else}
-        &nbsp;<span class="green">Match</span>
+        &nbsp;<span class="green">{$lL.__match__}</span>
     {/if}
 </div>
 {/if}
 
 <div style="margin:5px;">
-<strong>GxTend Version : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.build_version")}
+<strong>{$lL.__gxtend_version__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.build_version")}
 {if $allowupdate}
-&nbsp;<span class="ui-icon ui-icon-wrench pointer" style="display:inline-block;" title="Click to launch GxTend update process" onclick="$('#GenericDialog').dialog('close');mDialog('/Update/', 'Update Dialog', 600, 900);"></span>
+&nbsp;<span class="ui-icon ui-icon-wrench pointer" style="display:inline-block;" title="{$lL.__click_to_launch_gxtend_update_process__}" onclick="$('#GenericDialog').dialog('close');mDialog('/Update/', 'Update Dialog', 600, 900);"></span>
 {/if}
 </div>
 
 <div style="margin:5px;">
-<strong>Datetime : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.datetime")} (On data retrieval)
+<strong>{$lL.__datetime__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.datetime")} ({$lL.__on_data_retrieval__})
 </div>
 
 <div style="margin:5px;">
-<strong>Timezone : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.tzname")} (GMT offset for this timezone is {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
+<strong>{$lL.__timezone__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.tzname")} ({$lL.__gmt_offset_for_this_timezone_is__} {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
 </div>
 {/if}
 
 <div class="myhr"></div>
 <div style="margin:5px;">
-<strong>Overall Status : </strong>
+<strong>{$lL.__overall_status__} : </strong>
     {if $InProve_Smarty->getSessVar("LoginStatus.server.status")}
-    &nbsp;<img src='{$smarty.const._IMG_CONNECT_SM_}' alt='available' title='Server Status is Available'> <span class="green">Available</span>
+    &nbsp;<img src='{$smarty.const._IMG_CONNECT_SM_}' alt='available' title='{$lL.__server_status_is__}'> <span class="green">{$lL.__available__}</span>
     {elseif !$InProve_Smarty->getSessVar("LoginStatus.server.status")}
-    &nbsp;<img src='{$smarty.const._IMG_DISCONNECT_SM_}' alt='unavailable' title='Server Status is Unavailable'> <span class="red">Unavailable</span>
+    &nbsp;<img src='{$smarty.const._IMG_DISCONNECT_SM_}' alt='unavailable' title='{$lL.__server_status_is__}'> <span class="red">{$lL.__unavailable__}</span>
     {else}
-    &nbsp;<img src='{$smarty.const._IMG_WARN_SM_}' alt='undetermined' title='Server Status is Undetermined'> <span class="gray">Undetermined</span>
+    &nbsp;<img src='{$smarty.const._IMG_WARN_SM_}' alt='undetermined' title='{$lL.__server_status_is__}'> <span class="gray">{$lL.__undetermined__}</span>
     {/if}
 </div>
 <div class="myhr"></div>

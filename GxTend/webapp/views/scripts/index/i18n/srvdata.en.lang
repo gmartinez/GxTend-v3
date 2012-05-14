@@ -1,0 +1,24 @@
+<?php
+
+$lL["__reachable__"] = "Reachable";
+$lL["__yes__"] = "Yes";
+$lL["__no__"] = "No";
+$lL["__license_status__"] = "License Status";
+$lL["__valid_license_installed__no_issues_detected__"] = "Valid license installed, no issues detected";
+$lL["__gxtend_status__"] = "GxTend Status";
+$lL["__auth_token_status__"] = "Auth Token Status";
+$lL["__no_match__"] = "No Match";
+$lL["__match__"] = "Match";
+$lL["__gxtend_version__"] = "GxTend Version";
+$lL["__click_to_launch_gxtend_update_process__"] = "Click to launch GxTend update process";
+$lL["__datetime__"] = "Datetime";
+$lL["__on_data_retrieval__"] = "On data retrieval";
+$lL["__timezone__"] = "Timezone";
+$lL["__gmt_offset_for_this_timezone_is__"] = "GMT offset for this timezone is";
+$lL["__overall_status__"] = "Overall Status";
+$lL["__server_status_is__"] = "Server Status is";
+$lL["__available__"] = "Available";
+$lL["__unavailable__"] = "Unavailable";
+$lL["__undetermined__"] = "Undetermined";
+
+?>

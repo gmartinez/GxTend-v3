@@ -1,7 +1,7 @@
 <?php
 
 $lL["__my_options__"] = "My Options";
-$lL["__my_profile__"] = "Settings";
+$lL["__my_profile__"] = "My Settings";
 $lL["__people__"] = "People & Clients";
 $lL["__clients__"] = "Clients";
 $lL["__users__"] = "Users";
