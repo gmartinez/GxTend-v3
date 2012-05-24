@@ -1,12 +1,12 @@
 {*LNG@index.phtml*}
-<div class="myhr">__LNG__Programs Currently Installed__LNG__</div>
+<div class="myhr">{$lL.__programs_currently_installed__}</div>
 
 <input type="radio" name="publisher" value="{sha1(strtolower('artech'))}" checked>&nbsp;Artech
 <input type="radio" name="publisher" value="{sha1(strtolower('inprove-it'))}">&nbsp;InProve
-<input type="radio" name="publisher" value="all">&nbsp;__LNG__All__LNG__
+<input type="radio" name="publisher" value="all">&nbsp;{$lL.__all__}
 <table align="center" width="100%" class="list">
 <thead>
-    <tr><th>__LNG__Name__LNG__</th><th>__LNG__Publisher__LNG__</th><th>__LNG__Version__LNG__</th></tr>
+    <tr><th>{$lL.__name__}</th><th>{$lL.__publisher__}</th><th>{$lL.__version__}</th></tr>
 </thead>
 <tbody>
 {foreach $lstSoft as $entry_id => $entry_data}

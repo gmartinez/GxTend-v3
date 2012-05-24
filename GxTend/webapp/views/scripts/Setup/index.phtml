@@ -15,7 +15,7 @@ $(document).ready(function(){
             return false;            
         },
         success: function (r) {
-            notify("__LNG__Notification__LNG__",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
+            notify("{$lL.__notification__}",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
             if (r.sts) {
                 setTimeout("window.location.reload();", 2500);
             } else {
@@ -100,8 +100,8 @@ function togglebwsections(id) {
     {/foreach}
 </div>
 
-<h3>__LNG__About__LNG__</h3>
-<p>__LNG__This process will take care of creating GxTend's metadata, please take a moment to visually check the values are ok and proceed to submit__LNG__.</p>
+<h3>{$lL.__about__}</h3>
+<p>{$lL.__this_process_will__}.</p>
 <form id="form_setup" action="/Setup/post" method="POST" enctype="multipart/form-data">
     <div id="section_1" class="section">
         {include file="section1.phtml"}
@@ -111,8 +111,8 @@ function togglebwsections(id) {
     <div class="buttons right">
         <div class="submit_btn_holder">
         {$smarty.const._FORM_BTN_SUBMIT_}
-        &nbsp;__LNG__or__LNG__&nbsp;
-        <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>__LNG__cancel__LNG__</a>&nbsp;
+        &nbsp;{$lL.__or__}&nbsp;
+        <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>{$lL.__cancel__}</a>&nbsp;
         </div>
         <div class="submit_btn_holder" style="display:none;">
         {$smarty.const._BAR_WAIT_}

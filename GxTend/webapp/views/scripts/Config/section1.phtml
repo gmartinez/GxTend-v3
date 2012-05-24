@@ -1,5 +1,5 @@
 {*LNG@index.phtml*}
-<div class="myhr">__LNG__Environment Properties__LNG__</div>
+<div class="myhr">{$lL.__environment_properties__}</div>
 <table id="envproptbl" align="center" width="95%">
 {foreach $entriesLst.envvars as $prop_name => $prop_value}
 <tr>
@@ -12,12 +12,12 @@
         {if $entriesDef.$prop_name.defvalue}
         &nbsp;&laquo;&nbsp;
         {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
-        <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">__LNG__Default__LNG__</a>&nbsp;|&nbsp;
+        <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">{$lL.__default__}</a>&nbsp;|&nbsp;
         {/if}
-        <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">__LNG__Unset__LNG__</a>
+        <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">{$lL.__unset__}</a>
         {/if}
     </td>
 </tr>
 {/foreach}
 </table>
-<p>__LNG__You can__LNG__ <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">__LNG__click here__LNG__</a> __LNG__to get all the above boxes populated by GxTend__LNG__.</p>
+<p>{$lL.__you_can__} <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">{$lL.__click_here__}</a> {$lL.__to_get_all_the_above_boxes_populated_by_gxtend__}.</p>
