@@ -1,4 +1,5 @@
-<div class="myhr">__LNG__Update Source Properties__LNG__</div>
+{*LNG@index.phtml*}
+<div class="myhr">{$lL.__update_source_properties__}</div>
 <table id="envproptbl" align="center" width="95%">
 {foreach $entriesLst as $prop_name => $prop_value}
 <tr>
@@ -11,14 +12,14 @@
         {if $entriesDef.$prop_name.defvalue}
         &nbsp;&laquo;&nbsp;
         {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
-        <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">__LNG__Default__LNG__</a>&nbsp;|&nbsp;
+        <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">{$lL.__default__}</a>&nbsp;|&nbsp;
         {/if}
-        <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">__LNG__Unset__LNG__</a>
+        <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">{$lL.__unset__}</a>
         {/if}
     </td>
 </tr>
 {/foreach}  
 </table>
 {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
-<p>__LNG__You are advised to stop background operations before proceeding with the update process__LNG__ (<span id="evtmgrsts" class="msg_wait small"></span>).</p>
+<p>{$lL.__you_are_advised_to__} (<span id="evtmgrsts" class="msg_wait small"></span>).</p>
 {/if}

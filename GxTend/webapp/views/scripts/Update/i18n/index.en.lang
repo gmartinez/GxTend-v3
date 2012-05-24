@@ -1,0 +1,13 @@
+<?php
+
+$lL["__about__"] = "About";
+$lL["__this_process_allows__"] = "This process allows to \"soft\" update your GxTend's software installation";
+$lL["__as_the_process_will__"] = "As the process will download the latest available version from the internet, if you browse through an http proxy server, please set its properties below";
+$lL["__or__"] = "or";
+$lL["__cancel__"] = "cancel";
+$lL["__update_source_properties__"] = "Properties for Software Update";
+$lL["__default__"] = "Default";
+$lL["__unset__"] = "Unset";
+$lL["__you_are_advised_to__"] = "You are advised to stop background operations before proceeding with the update process";
+
+?>

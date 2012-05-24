@@ -5,5 +5,6 @@ $lL["__translation_description__"] = "This allows for easy maintenance of applic
 $lL["__edit_template__"] = "Edit Template";
 $lL["__key_not_found_in_template__"] = "Key NOT found in template";
 $lL["__key_found_in_template__"] = "Key found in Template";
+$lL["__other_related_templates__"] = "Other Related Templates";
 
 ?>

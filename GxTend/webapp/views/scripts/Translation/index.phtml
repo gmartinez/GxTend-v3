@@ -34,4 +34,14 @@
         {/foreach}        
         </tbody>
     </table>
+    <p>
+        {if $relatedTemplates}
+        {$lL.__other_related_templates__}
+        <ul>
+        {foreach $relatedTemplates as $filename => $i18nfile}
+            <li><a href="javascript:;" onclick="mDialog('/Translation/edttmpl?i18nfile={$i18nfile}', '...', 480, 640);">{$filename}</a></li>
+        {/foreach}
+        </ul>
+        {/if}
+    </p>
 {include file="../skel/footer.phtml"}

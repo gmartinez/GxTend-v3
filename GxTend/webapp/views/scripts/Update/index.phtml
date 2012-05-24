@@ -111,9 +111,9 @@ function togglebwsections(id) {
     {/foreach}
 </div>
 
-<h3>__LNG__About__LNG__</h3>
-<p>__LNG__This process allows to "soft" update your GxTend's software installation__LNG__.</p>
-<p>__LNG__As the process will download the latest available version from the internet, if you browse through an http proxy server, please set its properties below__LNG__.</p>
+<h3>{$lL.__about__}</h3>
+<p>{$lL.__this_process_allows__}.</p>
+<p>{$lL.__as_the_process_will__}.</p>
 <form id="form_update" action="/Update/post" method="POST" enctype="multipart/form-data">
     <div id="section_1" class="section">
         {include file="section1.phtml"}
@@ -123,8 +123,8 @@ function togglebwsections(id) {
     <div class="buttons right">
         <div class="submit_btn_holder">
         {$smarty.const._FORM_BTN_SUBMIT_}
-        &nbsp;__LNG__or__LNG__&nbsp;
-        <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>__LNG__cancel__LNG__</a>&nbsp;
+        &nbsp;{$lL.__or__}&nbsp;
+        <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>{$lL.__cancel__}</a>&nbsp;
         </div>
         <div class="submit_btn_holder" style="display:none;">
         {$smarty.const._BAR_WAIT_}
