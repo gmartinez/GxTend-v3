@@ -31,52 +31,52 @@ $(document).ready(function(){
 });
 </script>
 
-    <h2 style="float:right;">Event Queueing&nbsp;</h2>
+    <h2 style="float:right;">__LNG__Event Queueing__LNG__&nbsp;</h2>
     <br clear="all">
     <form id="form" action="post" method="POST" enctype="multipart/form-data">
     <table class="table center" style="width:100%;">
     <tr><td align="left">
-        <b>Event Name</b>
+        <b>__LNG__Event Name__LNG__</b>
         <td align="left">
         <input type="text" size="10" name="evtname" value="{$record.evtname}" readonly="readonly">
     <tr><td align="left">
-        <b>Description</b>
+        <b>__LNG__Description__LNG__</b>
         <td align="left">
         <textarea name="f|evtdsc" rows="3" cols="60" readonly="readonly">{$record.evtdsc}</textarea>
     <tr><td align="left">
-        <b>Processor</b>
+        <b>__LNG__Processor__LNG__</b>
         <td align="left">
         <input type="text" size="80" name="evtproc" value="{$record.evtproc}" readonly="readonly">
     <tr><td align="left">
-        <b>Parameters</b>
+        <b>__LNG__Parameters__LNG__</b>
         <td align="left">
         <input type="text" size="80" name="evtparm" value="{$record.evtparm}">
     <tr><td align="left">
-        <b>Priority</b>
+        <b>__LNG__Priority__LNG__</b>
         <td align="left">
         <input type="text" size="5" name="evtpri" value="{$record.evtpri}" readonly="readonly">
     <tr><td align="left">
-        <b>Event Status</b>
+        <b>__LNG__Event Status__LNG__</b>
         <td align="left" class="nb">
         {$onqeventstatus}
     <tr><td align="left">
-        <b>Execution</b>
+        <b>__LNG__Execution__LNG__</b>
         <td align="left" class="nb">
         &nbsp;
             <div class="when2exec" style="display:none" id="1">
-            <span class="red">Event will be queued but not processed until someone release it.</span>
+            <span class="red">__LNG__Event will be queued but not processed until someone release it__LNG__.</span>
             </div>
             <div class="when2exec" style="display:none" id="2">
-            <span class="green">Event will be queued and processed.</span>
+            <span class="green">__LNG__Event will be queued and processed__LNG__.</span>
             </div>
             <div class="when2exec" style="display:none" id="6">
-            <span class="blue">Date <input class="datepick" name="spec_date" value="{$spec_date}" type="text" size=12 maxlength=10 readonly="readonly"> Time {$spec_hh} {$spec_mm}</span>
+            <span class="blue">__LNG__Date__LNG__ <input class="datepick" name="spec_date" value="{$spec_date}" type="text" size=12 maxlength=10 readonly="readonly"> __LNG__Time__LNG__ {$spec_hh} {$spec_mm}</span>
             </div>
         &nbsp;
     <tr><td align="left">
         &nbsp;
         <td align="right">
-        <button type="submit" class="button-add" name="submit_btn" value="Queue" title="Queue">Queue</button>
+        <button type="submit" class="button-add" name="submit_btn" value="Queue" title="Queue">__LNG__Queue__LNG__</button>
     </table>
 	</form>
 

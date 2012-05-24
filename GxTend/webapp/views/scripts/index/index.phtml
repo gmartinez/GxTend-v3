@@ -1,14 +1,7 @@
-{if $smarty.const.__LAYER_ROLE__=="Website"}
-    {include file='../_wsite/header.phtml'}
-    {include file='../_wsite/menu.phtml'}
-        {include file='../_wsite/home.phtml'}
-    {include file='../_wsite/footer.phtml'}
+{include file='../skel/header.phtml'}
+{if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
+    {include file='fwrk.phtml'}
 {else}
-    {include file='../skel/header.phtml'}
-    {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
-        {include file='fwrk.phtml'}
-    {else}
-        {include file='pass.phtml'}
-    {/if}
-    {include file='../skel/footer.phtml'}
+    {include file='pass.phtml'}
 {/if}
+{include file='../skel/footer.phtml'}

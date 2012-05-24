@@ -1,11 +1,11 @@
 <div id="repo_stats">
-    <strong>Project : </strong>{$project.projabv}
+    <strong>__LNG__Project__LNG__ : </strong>{$project.projabv}
     <br>
-    <strong>Repository : </strong>
+    <strong>__LNG__Repository__LNG__ : </strong>
     {if $repo_stats.ava != '!exist'}
-        <span style="text-decoration:underline;color:blue;cursor:pointer;" onclick="mDialog('/Browse-Repos/rinfo?repopath={$repo_stats.path|base64_encode}&projguid={$projguid}', 'Repository Detailed Stats', 480, 640);">Available</span>
+        <span style="text-decoration:underline;color:blue;cursor:pointer;" onclick="mDialog('/Browse-Repos/rinfo?repopath={$repo_stats.path|base64_encode}&projguid={$projguid}', '__LNG__Repository Detailed Stats__LNG__', 480, 640);">__LNG__Available__LNG__</span>
     {else}
-        {$InProve_Smarty->msg("ui-icon-alert","Not Available")}
+        {$InProve_Smarty->msg("ui-icon-alert","__LNG__Not Available__LNG__")}
     {/if}
 </div>
 
@@ -14,10 +14,10 @@
 <div id="repo_stats">
     <table align="center" width="100%">
     <tr>
-        <td align="left">Parent Kb</td><td align="left">{$relations.parent}</td>
+        <td align="left">__LNG__Parent Kb__LNG__</td><td align="left">{$relations.parent}</td>
     </tr>
     <tr>
-        <td align="left">Children Kb(s)</td><td align="left">{foreach from=$relations.children key=k item=rec}{$rec}<br>{/foreach}</td>
+        <td align="left">__LNG__Children KB(s)__LNG__</td><td align="left">{foreach from=$relations.children key=k item=rec}{$rec}<br>{/foreach}</td>
     </tr>
     </table>
 </div>

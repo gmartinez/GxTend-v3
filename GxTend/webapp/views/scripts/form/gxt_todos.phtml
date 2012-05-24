@@ -17,27 +17,27 @@ $(document).ready(function(){
 	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
         <h3>
-            __LNG__Milestone this To-Do__LNG__ {if $form_mode != $smarty.const._LBL_ADD_}__LNG__is__LNG__{else}__LNG__will be__LNG__{/if} __LNG__related to__LNG__ {$mistguid}
+            {$lL.__milestone_this_to_do__} {if $form_mode != $smarty.const._LBL_ADD_}{$lL.__is__}{else}{$lL.__will_be__}{/if} {$lL.__related_to__} {$mistguid}
             &nbsp;<span class="file" style="font-size:.8em;" onclick="loadappdiv('/Tbls-Mgmt/?tbl=gxt_milestones', null, '$(\'#addNew\').click();');">[+]</span>
         </h3>        
         <div class="myhr"></div>
 		<table align="center" width="100%">
         {if $form_mode != $smarty.const._LBL_ADD_}
 		<tr><td align="left">
-			<b>__LNG__ToDo Id__LNG__</b>
+			<b>{$lL.__todo_id__}</b>
 			<td align="left">
             {$InProve_Smarty->cutstr($todoguid,0,$smarty.const._GUID_LEN_)}
             <p>
         {/if}
 		<tr><td align="left">
-			<b>__LNG__Description__LNG__</b>
+			<b>{$lL.__description__}</b>
 			<td align="left">
             <textarea rows="3" cols="80" name="f|todoabv" class="string required">{$todoabv}</textarea>
         <!--
 		<tr><td align="left">
-			<b>Time tracking</b>
+			<b>{$lL.__time_tracking__}</b>
 			<td align="left">
-            {$timetrack}&nbsp;Enable track-time feature for items in this To-Do list ?
+            {$timetrack}&nbsp;{$lL.__enable_track_time_feature_for_items_in_this_to_do_list__} ?
         -->
 		<tr><td align="left">
 			&nbsp;

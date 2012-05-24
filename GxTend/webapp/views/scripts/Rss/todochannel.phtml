@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <rss version='2.0'>
 <channel>
-    <title>GxTend's To-Do List Named : {$todoData.todoabv}</title>
-    <description>Related Milestone : {$mistData.mistabv} due to {$InProve_Smarty->ts2str($mistData.mistduets, "date")}</description>
+    <title>__LNG__GxTend's To-Do List Named__LNG__ : {$todoData.todoabv}</title>
+    <description>__LNG__Related Milestone__LNG__ : {$mistData.mistabv} due to {$InProve_Smarty->ts2str($mistData.mistduets, "date")}</description>
     <link>http://gxtend.in-prove.com</link>
     <lastBuildDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</lastBuildDate>
     <pubDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</pubDate>
-    <copyright>&copy; 2005-{$smarty.now|date_format:'%Y'} InProve</copyright>
+    <copyright>&copy; 2005-{$smarty.now|date_format:'%Y'}</copyright>
     <image>
         <title>GxTend - Rss Feed</title>
         <url>../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png</url>
@@ -22,7 +22,7 @@
             <![CDATA[
             {$ticket.ttstxt}
             <p align="right">
-                Status : <font color="{if !$ticket.open}gray{else}green{/if}">{$ticket.ttsstsdsc}</font><br>
+                __LNG__Status__LNG__ : <font color="{if !$ticket.open}gray{else}green{/if}">{$ticket.ttsstsdsc}</font><br>
                 <a href="/Rss/?ttsguid={$ticket.ttsguid}&token={$InProve_Smarty->userToken()}" target="_blank">RSS Feed</a>
             </p>
             ]]>

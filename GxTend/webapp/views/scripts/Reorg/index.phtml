@@ -16,7 +16,7 @@ $(document).ready(function(){
             });
             if ( $('#reorg .toValidate').valid() ) {
                 $("#reorg button").prop("disabled", true).addClass("ui-state-disabled");
-                if (confirm("Confirm execution of changeset ?")) {
+                if (confirm("__LNG__Confirm execution of changeset__LNG__ ?")) {
                 $("#reorg form").hide(); $("#reorg #sqlResult").show();
                 return true;
                 }
@@ -47,15 +47,15 @@ $(document).ready(function(){
 </script>
 
 <div id="reorg">
-<h3><strong>Status :</strong> {$metasts.msg}</h3>
+<h3><strong>__LNG__Status__LNG__ :</strong> {$metasts.msg}</h3>
 <div class="myhr"></div>
 
 {if !$chgcode}
- Current database structure version reports to be the same this build is set to (Version # {$InProve_Smarty->get_prm("meta_struct_version")})
+ __LNG__Current database structure version reports to be the same this build is set to__LNG__ (Version # {$InProve_Smarty->get_prm("meta_struct_version")})
 {/if}
 {foreach $chgcode as $dsc => $code name=changeSets}
 <div class="infoset">
-    <span class="ui-state-active ui-corner-all" style="padding:5px;">Changes to get from {$dsc}</span>
+    <span class="ui-state-active ui-corner-all" style="padding:5px;">__LNG__Changes to get from__LNG__ {$dsc}</span>
     <div style="margin-top:10px;">
     {if $code.eval}
         [PHP]
@@ -67,16 +67,16 @@ $(document).ready(function(){
         {if $smarty.foreach.changeSets.first}
         <form action="/Reorg/post" method="POST" enctype="multipart/form-data" class="toValidate right">
         <input type="hidden" name="set2exec" value="{$dsc}">
-            <h3>Authentication Information</h3><br />
+            <h3>__LNG__Authentication Information__LNG__</h3><br />
             <table>
             <tr>
-                <td>&nbsp;<b>Username</b></td>
+                <td>&nbsp;<b>__LNG__Username__LNG__</b></td>
                 <td>
                     <input name="username" type="text" value="" size="20" class="required" />
                 </td>
             </tr>
             <tr>
-                <td>&nbsp;<b>Password</b></td>
+                <td>&nbsp;<b>__LNG__Password__LNG__</b></td>
                 <td><input name="password" type="password" value="" size="20" class="required" /></td>
             </tr>
             </table>
@@ -93,9 +93,10 @@ $(document).ready(function(){
 
 <div class="myhr"></div>
 <ul>
+    __LNG__
     <li>The execution of a set of changes might take <span style="color:red;font-weight:bold;">several minutes</span>.</li>
     <li>You can <span style="color:red;font-weight:bold;">monitor progress</span> by checking running processes using 'show processlist' MySql sentence.</li>
     <li>In some cases it might be a better choice to perform the above changes manually by using always present MySql shell interface or some visual stateful application (eg; MySql Workbench).</li>
+    __LNG__
 </ul>
-<p>Having an issue ? Please report to <a href="mailto:support@in-prove.com">support@in-prove.com</a> enclosing yours and your company name.</p>
 </div>

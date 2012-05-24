@@ -32,22 +32,25 @@ $(document).ready(function(){
 
 </script>
 
-<h3>Template Edition</h3>
+<h3>{$lL.__template_edition__}</h3>
 <p>{$filename}</p>
 <form id="form_template" action="/Translation/posthtml" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="i18nfile" value="{$smarty.request.i18nfile}">
     <p>
-    <textarea name="tmplContent" style="width:100%;height:310px;">{$tmplContent}</textarea>
+    <textarea name="tmplContent" style="width:95%;height:310px;">{$tmplContent}</textarea>
     </p>
 
     <div class="myhr"></div>
+
     <div class="buttons right">
-    <div class="submit_btn_holder">
-    {$smarty.const._FORM_BTN_UPDATE_}
-    &nbsp;{$lL.__or__}&nbsp;
-    <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
-    </div>
-    <div class="submit_btn_holder" style="display:none;">
-    {$smarty.const._BAR_WAIT_}
+        <div class="submit_btn_holder">
+            {$smarty.const._FORM_BTN_UPDATE_}
+            &nbsp;{$lL.__or__}&nbsp;
+            <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>{$lL.__cancel__}</a>&nbsp;
+        </div>
+        <div class="submit_btn_holder" style="display:none;">
+            {$smarty.const._BAR_WAIT_}
+        </div>
     </div>
 </form>
+<br clear="both">

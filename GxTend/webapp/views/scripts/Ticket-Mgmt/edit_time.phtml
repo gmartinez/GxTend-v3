@@ -37,31 +37,31 @@ $(document).ready(function(){
 
 {foreach $ticket_items as $ti => $item}
 <div id="{$item.data.itmguid}" class="hours_detail" style="padding:10px 0; border-bottom:1px solid #DDDDDD; display: none;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$item.data.added_by}&v={$smarty.now}" alt="User Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="/Ajax/getimg?userguid={$item.data.added_by}&v={$smarty.now}" alt="{$lL.__user_image__}">
     <div style="margin-left:60px;">
     <div style="margin:0 0 5px;">
-        <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Time Track">&nbsp;
+        <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="{$lL.__time__}" title="{$lL.__time_trace__}">&nbsp;
         <strong>{$InProve_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$InProve_Smarty->ts2str($item.data.added_on)}
     </div>
     <div class="{$hours_type}" style="margin:0 0 5px; font-size:1.1em;">
-        <p><strong>{$item.ttentry.hours}</strong> hour(s) of <strong>'{$item.ttentry.hours_type_desc}'</strong> on {$InProve_Smarty->ts2str($item.ttentry.date,'date')}</p>
-        {if $item.ttentry.notes}<p><strong>Notes :</strong> {$item.ttentry.notes}</p>{/if}
+        <p><strong>{$item.ttentry.hours}</strong> {$lL.__hour_s__of__} <strong>'{$item.ttentry.hours_type_desc}'</strong> {$lL.__on__} {$InProve_Smarty->ts2str($item.ttentry.date,'date')}</p>
+        {if $item.ttentry.notes}<p><strong>{$lL.__notes__} :</strong> {$item.ttentry.notes}</p>{/if}
     </div>
     </div>
 </div>
 {/foreach}
 
 <div id="addtime" style="padding:10px 0;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="My Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="{$lL.__my_image__}">
     <div style="font-size:0.8em;float:right;">
         {if count($ticket_items)}
-        <a href="javascript:;" class="toggleTimeDet" onclick="$('.hours_detail').toggle();$('.toggleTimeDet').toggle();" style="display:inline;">Toggle to Full Details</a>
-        <a href="javascript:;" class="toggleTimeDet" onclick="$('.hours_detail').toggle();$('.toggleTimeDet').toggle();" style="display:none;">Toggle to Summary View</a>
+        <a href="javascript:;" class="toggleTimeDet" onclick="$('.hours_detail').toggle();$('.toggleTimeDet').toggle();" style="display:inline;">{$lL.__toggle_to_see_all_entries__}</a>
+        <a href="javascript:;" class="toggleTimeDet" onclick="$('.hours_detail').toggle();$('.toggleTimeDet').toggle();" style="display:none;">{$lL.__toggle_to_hide_all_entries__}</a>
         {/if}
     </div>
     <div style="margin-left:60px;">
         <div style="float:left;">
-            <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Track Time">&nbsp;{$InProve_Smarty->msg("#efefef:orange", "Add time entry...")}
+            <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="{$lL.__time__}" title="{$lL.__time_trace__}">&nbsp;{$InProve_Smarty->msg("#efefef:orange", "{$lL.__add_time_entry__}...")}
         </div>
         
         <div style="clear:both;float:left;width:70%;">
@@ -70,12 +70,12 @@ $(document).ready(function(){
             <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
             <input type="hidden" name="itmtyp" value="timetrack">
             <input type="hidden" name="options" value="{$options}">
-                &nbsp;Date <input type="text" size="10" id="timetrack_date" name="timetrack_date" value="{$InProve_Smarty->ts2str($smarty.now,'date')}" readonly="readonly">
+                &nbsp;{$lL.__date__} <input type="text" size="10" id="timetrack_date" name="timetrack_date" value="{$InProve_Smarty->ts2str($smarty.now,'date')}" readonly="readonly">
                 <p>
-                &nbsp;Type {$timetrack_hours_type}
-                &nbsp;Hours <input type="text" size="6" id="timetrack_hours" name="timetrack_hours" value="" class="number required"> (eg. 2.5)
+                &nbsp;{$lL.__type__} {$timetrack_hours_type}
+                &nbsp;{$lL.__hours__} <input type="text" size="6" id="timetrack_hours" name="timetrack_hours" value="" class="number required"> (eg. 2.5)
                 </p>
-                <p>&nbsp;Notes <input type="text" size="50" id="timetrack_notes" name="timetrack_notes" value=""></p>
+                <p>&nbsp;{$lL.__notes__} <input type="text" size="50" id="timetrack_notes" name="timetrack_notes" value=""></p>
 
                 <div class="myhr"></div>
                 <div class="left">
@@ -86,16 +86,16 @@ $(document).ready(function(){
                 </div>
             </form>
         {else}
-            &nbsp;{$InProve_Smarty->msg("ui-icon-info", "Read only access.")}
+            &nbsp;{$InProve_Smarty->msg("ui-icon-info", "{$lL.__read_only_access__}.")}
         {/if}
         </div>
 
         {if $data.total_time}
         <div style="float:right;">
             {foreach $data.total_time_on as $typedsc => $sumtime}
-            <p>&nbsp;<strong>Total on {$typedsc} : </strong>{$sumtime}</p>
+            <p>&nbsp;<strong>{$lL.__total_on__} {$typedsc} : </strong>{$sumtime}</p>
             {/foreach}
-            <p style="font-size:1.25em;">&nbsp;<strong style="color:green;">&sum; : </strong> {$InProve_Smarty->msg("green:white", $data.total_time)} hour(s)</p>
+            <p style="font-size:1.25em;">&nbsp;<strong style="color:green;">&sum; : </strong> {$InProve_Smarty->msg("green:white", $data.total_time)} {$lL.__hour_s___}</p>
         </div>
         {/if}        
     </div>

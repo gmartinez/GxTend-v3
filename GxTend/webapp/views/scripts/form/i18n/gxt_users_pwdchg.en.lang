@@ -3,6 +3,6 @@
 $lL["__enter_current_password__"] = "Enter Current Password";
 $lL["__select_new_password__"] = "Select New Password";
 $lL["__repeat_new_password__"] = "Repeat New Password";
-$lL["__issue_user_e_mail_notification__"] = "Issue User E-Mail Notification";
+$lL["__issue_user_e_mail_notification__"] = "Notify User via Email";
 
 ?>

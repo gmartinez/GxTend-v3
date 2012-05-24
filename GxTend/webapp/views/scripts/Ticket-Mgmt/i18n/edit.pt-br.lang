@@ -1,0 +1,28 @@
+<?php
+
+$lL["__click_to_toggle_hierarchy__"] = "Clique para Alternar Ver Hierarquia";
+$lL["__project__"] = "Projeto";
+$lL["__milestone__"] = "Marco";
+$lL["__to_do__"] = "Lista";
+$lL["__summary__"] = "Resumo";
+$lL["__ticket_changelog__"] = "Ticket Changelog";
+$lL["__changelog__"] = "Log de Mudanças";
+$lL["__severity__"] = "Severidade";
+$lL["__due_date__"] = "Data Devida";
+$lL["__assigned_to__"] = "Atribuído a";
+$lL["__status__"] = "Estado";
+$lL["__ticket_tags__"] = "Rótulos do Ticket";
+$lL["__tag__"] = "Rótulo";
+$lL["__edit__"] = "Editar";
+$lL["__notify_assignee__"] = "Notificar o cessionário via e-mail";
+$lL["__progress__"] = "Progresso";
+$lL["__detailed_description__"] = "Descrição Detalhada";
+$lL["__file_upload_dialog__"] = "Diálogo para Upload de Arquivos";
+$lL["__attach_file_s___"] = "Anexar Archivo(s)";
+$lL["__or__"] = "ou";
+$lL["__cancel__"] = "cancelar";
+$lL["__comments_blog__"] = "Blog do Comentários";
+$lL["__code_changes__"] = "Alterações de Código";
+$lL["__time_tracking__"] = "Controle de tempo";
+
+?>

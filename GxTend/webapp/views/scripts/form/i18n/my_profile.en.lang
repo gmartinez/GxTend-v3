@@ -1,10 +1,9 @@
 <?php
 
 $lL["__my_visual_id__"] = "My Visual Id";
-$lL["__confirm_reset_visual_id__"] = "Are you sure you want to reset your image";
+$lL["__confirm_reset_visual_id__"] = "Are you sure you want to reset your visual id";
 $lL["__reset_visual_id__"] = "Reset Visual Id";
 $lL["__username__"] = "Username";
-$lL["__change_password__"] = "Change Password";
 $lL["__change_my_password__"] = "Change my Password";
 $lL["__full_name__"] = "Full Name";
 $lL["__email__"] = "Email";
@@ -19,5 +18,7 @@ $lL["__website__"] = "Website";
 $lL["__comments__"] = "Comments";
 $lL["__visual_id__"] = "Visual Id";
 $lL["__ext__"] = "extension";
+$lL["__file_upload_dialog__"] = "File Upload Dialog";
+$lL["__attach_file_s___"] = "Attach File(s)";
 
 ?>

@@ -11,37 +11,37 @@ $(document).ready(function(){
 		success: function (r) {
             for ( var i in r.gxcons ) {
                 if (r.gxcons[i] == "ok") {
-                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='Object successfully imported'>");
+                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='__LNG__Object successfully imported__LNG__'>");
                 } else if (r.gxcons[i] == "wrn") {
-                    $("#"+i).html("<img src='../img/icons/16/warning.png' alt='wrn' title='Object imported with warning(s)'>");
+                    $("#"+i).html("<img src='../img/icons/16/warning.png' alt='wrn' title='__LNG__Object imported with warning(s)__LNG__'>");
                 } else if (r.gxcons[i] == "err") {
-                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='Object not imported'>");
+                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='__LNG__Object not imported__LNG__'>");
                 }
             }
 
             for ( var i in r.gxdele ) {
                 if (r.gxdele[i] == "ok") {
-                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='Object successfully deleted'>");
+                    $("#"+i).html("<img src='../img/icons/16/tick.png' alt='ok' title='__LNG__Object successfully deleted__LNG__'>");
                 } else if (r.gxdele[i] == "err") {
-                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='Object not deleted'>");
+                    $("#"+i).html("<img src='../img/icons/16/error.png' alt='err' title='__LNG__Object not deleted__LNG__'>");
                 }
             }
 
             if (r.overall.xpzmsg) {
                 if (r.overall.xpzsts) {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> All objects were successfully packaged. [ <a href='/Download/download?file_guid="+r.overall.xpzmsg+"'>Click to Download</a> ]");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__All objects were successfully packaged__LNG__. [ <a href='/Download/download?file_guid="+r.overall.xpzmsg+"'>__LNG__Click to Download__LNG__</a> ]");
                 } else {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Error building .xpz file. ["+r.overall.xpzmsg+"]");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Error building .xpz file__LNG__. ["+r.overall.xpzmsg+"]");
                 }
             } else {
                 if (r.overall.okis > 0 && r.overall.wrns == 0 && r.overall.errs == 0) {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> All objects were successfully imported. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'Log Entry Details','800x600','Click to View Log')} ]");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__All objects were successfully imported__LNG__. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'__LNG__Log Entry Details__LNG__','800x600','__LNG__Click to View Log__LNG__')} ]");
                 } else if (r.overall.wrns > 0 && r.overall.errs == 0) {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='wrn'> Warnings in objects import. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'Log Entry Details','800x600','Click to View Log')} ]");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='wrn'> __LNG__Warnings in objects import__LNG__. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'__LNG__Log Entry Details__LNG__','800x600','__LNG__Click to View Log__LNG__')} ]");
                 } else if (r.overall.wrns > 0 || r.overall.errs > 0) {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Errors/Warnings in objects import. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'Log Entry Details','800x600','Click to View Log')} ]");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Errors/Warnings in objects import__LNG__. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'__LNG__Log Entry Details__LNG__','800x600','__LNG__Click to View Log__LNG__')} ]");
                 } else if (r.overall.okis == 0 && r.overall.wrns == 0 && r.overall.errs == 0) {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Could not obtain lock on KB.");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Could not obtain lock on KB__LNG__.");
                 }
             }
 
@@ -88,17 +88,17 @@ function filter_by_objsts() {
     {else}
         <div class="myhr"></div>
         <div class="left">
-            <img src="{$smarty.const._IMG_CATCHUP_SM_}" alt="{$smarty.const._LBL_CATCHUP_}" title="{$smarty.const._LBL_CATCHUP_}"> Catchup changes from "Local History Repo"
+            <img src="{$smarty.const._IMG_CATCHUP_SM_}" alt="{$smarty.const._LBL_CATCHUP_}" title="{$smarty.const._LBL_CATCHUP_}"> __LNG__Catchup changes from "Local History Repo"__LNG__
             &nbsp;|&nbsp;{$periods_filter}
             <span id="filterctrls" style="display:none;">
             &nbsp;|&nbsp;
-            <input type="checkbox" id="gen1chk" name="gen1chk" onchange="filter_by_objsts();"> <img class="tip" alt="gen1" src="../img/icons/16/lightning_green.png" title="Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance).">&nbsp;
-            <input type="checkbox" id="gen2chk" name="gen2chk" onchange="filter_by_objsts();" checked> <img class="tip" alt="gen2" src="../img/icons/16/lightning_red.png" title="Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance) BUT some of it has been modified by a user.">&nbsp;
-            <input type="checkbox" id="olderchk" name="olderchk" onchange="filter_by_objsts();"> <img class="tip" alt="older" src="../img/icons/16/warning.png" title="Visual Tag Information|Objects tagged with this icon were detected as being OLDER than its target">
+            <input type="checkbox" id="gen1chk" name="gen1chk" onchange="filter_by_objsts();"> <img class="tip" alt="gen1" src="../img/icons/16/lightning_green.png" title="__LNG__Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance)__LNG__.">&nbsp;
+            <input type="checkbox" id="gen2chk" name="gen2chk" onchange="filter_by_objsts();" checked> <img class="tip" alt="gen2" src="../img/icons/16/lightning_red.png" title="__LNG__Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance) BUT some of it has been modified by a user__LNG__.">&nbsp;
+            <input type="checkbox" id="olderchk" name="olderchk" onchange="filter_by_objsts();"> <img class="tip" alt="older" src="../img/icons/16/warning.png" title="__LNG__Visual Tag Information|Objects tagged with this icon were detected as being OLDER than its target__LNG__.">
             </span>
         </div>
         <div class="column right">
-            <span id="resultrows"></span> row(s)
+            <span id="resultrows"></span> __LNG__row(s)__LNG__
         </div>
         <br clear="all">
 
@@ -108,7 +108,7 @@ function filter_by_objsts() {
         <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
             <table width="100%" align="center" class="list">
             <thead>
-                <tr><th>Object</th><th>Description</th><th>Modified @ Server &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_catchup .objlst");setsubmitsts("#form_catchup .objlst", "#form_catchup button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+                <tr><th>__LNG__Object__LNG__</th><th>__LNG__Description__LNG__</th><th>__LNG__Modified @ Server__LNG__ &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_catchup .objlst");setsubmitsts("#form_catchup .objlst", "#form_catchup button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
             </thead>
             <tbody>
                 {foreach from=$local_changes key=k item=rec}
@@ -131,21 +131,21 @@ function filter_by_objsts() {
                 <td align="center">
                     &nbsp;{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
                     {if $rec.gxinfo.COMP=="NEW"}
-                    &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+                    &nbsp;<img alt="new" src="../img/icons/16/new.png" title="__LNG__Does not exist in target__LNG__.">
                     {elseif $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
-                    &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
+                    &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="__LNG__Object detected as deleted in source__LNG__.">
                     {elseif $rec.gxinfo.COMP=="OLDER"}
-                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="__LNG__Target modified on__LNG__ {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
                     {/if}
                     {if $rec.gxinfo.generated==1}
-                    &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
+                    &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="__LNG__Automatically generated__LNG__.">
                     {else if $rec.gxinfo.generated==2}
-                    &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="Automatically generated BUT modified.">
+                    &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="__LNG__Automatically generated BUT modified__LNG__.">
                     {/if}
                 </td>
                 <td align="center">
                     {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid == $InProve_Smarty->getSessVar("MyProfile.userdata.userguid")}
-                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="Object's Lock Status|You have an active lock on this object since '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="__LNG__Object's Lock Status|You have an active lock on this object since__LNG__ '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
                     {else}
                         {if $rec.b64}
                         <span id="{$rec.b64|sha1}">

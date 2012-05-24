@@ -13,5 +13,6 @@ $lL["__click_for_debug__"] = "Clique para obter informações estatísticas e de
 $lL["__close_tab__"] = "Fechar Tab";
 $lL["__error_loading_tab_content__"] = "Erro, não poderia carregar o conteúdo guia.";
 $lL["__grid_debug_information__"] = "Informação da Grade";
+$lL["__export_grid_data__"] = "Export Grid Data";
 
 ?>

@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <rss version='2.0'>
 <channel>
-    <title>GxTend's Ticket : {$ticketData.ttsabv}</title>
-    <description>Related Milestone : {$mistData.mistabv} due to {$InProve_Smarty->ts2str($mistData.mistduets, "date")}</description>
+    <title>__LNG__GxTend's Ticket__LNG__ : {$ticketData.ttsabv}</title>
+    <description>__LNG__Related Milestone__LNG__ : {$mistData.mistabv} due to {$InProve_Smarty->ts2str($mistData.mistduets, "date")}</description>
     <link>http://gxtend.in-prove.com</link>
     <lastBuildDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</lastBuildDate>
     <pubDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</pubDate>
-    <copyright>&copy; 2005-{$smarty.now|date_format:'%Y'} InProve</copyright>
+    <copyright>&copy; 2005-{$smarty.now|date_format:'%Y'}</copyright>
     <image>
         <title>GxTend - Rss Feed</title>
         <url>../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png</url>
@@ -21,16 +21,16 @@
         <description>
             <![CDATA[
             {if $titem.itmtyp=="attch"}
-                <img src="{$smarty.const._IMG_MAIL_ATTCH_SM_}" alt="Attachment" title="Attachment">&nbsp;
+                <img src="{$smarty.const._IMG_MAIL_ATTCH_SM_}" alt="Attachment" title="__LNG__Attachment__LNG__">&nbsp;
             {elseif $titem.itmtyp=="comment"}
-                <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;
+                <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="__LNG__Comment__LNG__">&nbsp;
             {/if}
 
             {$titem.itmtxt}
 
             <p align="right">
             {foreach from=$titem.atchs key=fi item=file}
-            <br><img src="../img/icons/16/mail-attachment.png">&nbsp;<a href="javascript:;" title="Download not available from RSS feed">{$file.file_name} [{$InProve_Smarty->bytes2str($file.file_size)}]</a>
+            <br><img src="../img/icons/16/mail-attachment.png">&nbsp;<a href="javascript:;" title="__LNG__Download not available from RSS feed__LNG__">{$file.file_name} [{$InProve_Smarty->bytes2str($file.file_size)}]</a>
             {/foreach}
             </p>
             ]]>

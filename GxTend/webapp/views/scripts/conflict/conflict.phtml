@@ -37,12 +37,12 @@ $(document).ready(function(){
 
     <table align="center" width="100%">
     <tr><td align="left"><img src="../img/gx/objclass/{$gx_objcls[$smarty.get.OBJCLS].small}.png" title="{$gx_objcls[$smarty.get.OBJCLS].long}">&nbsp;{$smarty.get.OBJNAM}</td><td align="left">{$smarty.get.OBJDSC}</td></tr>
-    <tr><td align="left"><b>Local</b> {$local_visualid}</td><td align="left">Updated on {$InProve_Smarty->ts2str($smarty.get.OBJUPDTS)}</td></tr>
-    <tr><td align="left"><b>Remote</b> {$remote_visualid}</td><td align="left">Updated on {$InProve_Smarty->ts2str($smarty.get.COMPREF)}</td></tr>
-    <tr><td align="left"><b>Modification Status</b></td><td align="left">{$smarty.get.CHKINSTS}</td></tr>
+    <tr><td align="left"><b>__LNG__Local__LNG__</b> {$local_visualid}</td><td align="left">Updated on {$InProve_Smarty->ts2str($smarty.get.OBJUPDTS)}</td></tr>
+    <tr><td align="left"><b>__LNG__Remote__LNG__</b> {$remote_visualid}</td><td align="left">Updated on {$InProve_Smarty->ts2str($smarty.get.COMPREF)}</td></tr>
+    <tr><td align="left"><b>__LNG__Modification Status__LNG__</b></td><td align="left">{$smarty.get.CHKINSTS}</td></tr>
     <tr><td align="left" colspan="2">
             <p>
-            <fieldset><legend>Catchup with server's version</legend>
+            <fieldset><legend>__LNG__Catchup with server's version__LNG__</legend>
             <form id="form_catchup" action="../catchup/catchup" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="lkbguid" value="{$smarty.request.lkbguid}">
             <input type="hidden" name="lmdlid" value="{$smarty.request.lmdlid}">
@@ -50,14 +50,14 @@ $(document).ready(function(){
             <input type="hidden" name="rkbguid" value="{$smarty.request.rkbguid}">
             <input type="hidden" name="rmdlid" value="{$smarty.request.rmdlid}">
             <input type=checkbox name='checked_objs[]' value='{$smarty.get.MDLID},{$smarty.get.OBJCLS},{$smarty.get.OBJNAM}' onclick='setsubmitsts("#form_catchup > :checkbox:checked", "#submit_catchup");'>
-            Discard my changes, update my working copy with server's version.
+            __LNG__Discard my changes, update my working copy with server's version.__LNG__
             <input type=submit id="submit_catchup" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">&nbsp;
             </form>
             </fieldset>
         </td></tr>
     <tr><td align="left" colspan="2">
             <p>
-            <fieldset><legend>Conflict resolution help options</legend>
+            <fieldset><legend>__LNG__Conflict resolution help options__LNG__</legend>
             <form id="form_compare" action="compare" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="lkbguid" value="{$smarty.request.lkbguid}">
             <input type="hidden" name="lmdlid" value="{$smarty.request.lmdlid}">
@@ -65,7 +65,7 @@ $(document).ready(function(){
             <input type="hidden" name="rkbguid" value="{$smarty.request.rkbguid}">
             <input type="hidden" name="rmdlid" value="{$smarty.request.rmdlid}">
             <input type="hidden" name="checked_objs[]" value="{$smarty.get.MDLID},{$smarty.get.OBJCLS},{$smarty.get.OBJNAM}">
-            &nbsp;Code compare using {$comparer}&nbsp;
+            &nbsp;__LNG__Code compare using__LNG__ {$comparer}&nbsp;
             <input type=submit id="submit_list" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">&nbsp;
             </form>
             <hr>
@@ -76,8 +76,8 @@ $(document).ready(function(){
             <input type="hidden" name="rkbguid" value="{$smarty.request.rkbguid}">
             <input type="hidden" name="rmdlid" value="{$smarty.request.rmdlid}">
             <input type="hidden" name="checked_objs[]" value="{$smarty.get.MDLID},{$smarty.get.OBJCLS},{$smarty.get.OBJNAM}">
-            <input type=radio name="ResOpt" value="Local_Merge_My" onclick='setsubmitsts("#form_confr > :radio:checked", "#submit_confr");'> Local manual merge using my copy as base.<br>
-            <input type=radio name="ResOpt" value="Local_Merge_Server" onclick='setsubmitsts("#form_confr > :radio:checked", "#submit_confr");'> Local manual merge using server's copy as base.
+            <input type=radio name="ResOpt" value="Local_Merge_My" onclick='setsubmitsts("#form_confr > :radio:checked", "#submit_confr");'> __LNG__Local manual merge using my copy as base__LNG__.<br>
+            <input type=radio name="ResOpt" value="Local_Merge_Server" onclick='setsubmitsts("#form_confr > :radio:checked", "#submit_confr");'> __LNG__Local manual merge using server's copy as base__LNG__.
             <div align="right">
             <input type=submit id="submit_confr" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">&nbsp;
             </div>
@@ -86,7 +86,7 @@ $(document).ready(function(){
         </td></tr>
     <tr><td align="left" colspan="2">
             <p>
-            <fieldset><legend>Ready to Check-In [conflicts solved or no need to]</legend>
+            <fieldset><legend>__LNG__Ready to Check-In [conflicts solved or no need to]__LNG__</legend>
             <form id="form_checkin" action="../chkin/chkin" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="lkbguid" value="{$smarty.request.lkbguid}">
             <input type="hidden" name="lmdlid" value="{$smarty.request.lmdlid}">
@@ -95,20 +95,20 @@ $(document).ready(function(){
             <input type="hidden" name="rmdlid" value="{$smarty.request.rmdlid}">
             {if $commit_status.sts}
                 <input type=checkbox name='checked_objs[]' value='{$smarty.get.MDLID},{$smarty.get.OBJCLS},{$smarty.get.OBJNAM}' onclick='setsubmitsts("#form_checkin > :checkbox:checked", "#submit_chkin");'>
-                Use my current working copy to update server's version
+                __LNG__Use my current working copy to update server's version__LNG__
                 <input type=submit id="submit_chkin" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">&nbsp;
                 <br>
                 <div style="font-size:.8em">
                 <!-- Release Lock-->
-                &nbsp;[Release lock on successful commit <input type=checkbox name='relcommlcks' value='1' checked>]&nbsp;
+                &nbsp;[__LNG__Release lock on successful commit__LNG__ <input type=checkbox name='relcommlcks' value='1' checked>]&nbsp;
                 <!-- Add Comment-->
-                &nbsp;<a href="#" id="show_hide_lnk">[Add Comment <img id="show_hide_img" src="{$smarty.const._IMG_SHOW_SM_}" title="{$smarty.const._TITLE_SHOW_}">]</a>
+                &nbsp;<a href="#" id="show_hide_lnk">[__LNG__Add Comment__LNG__ <img id="show_hide_img" src="{$smarty.const._IMG_SHOW_SM_}" title="{$smarty.const._TITLE_SHOW_}">]</a>
                 <div style="display:none;text-align:center;" id="show_hide_div">
                     <textarea name="message" rows="5" cols="70"></textarea>
                 </div>
                 </div>
             {else}
-                <span class="red">Check-In not available at this time [{$commit_status.msg}]</span>&nbsp;
+                <span class="red">__LNG__Check-In not available at this time__LNG__ [{$commit_status.msg}]</span>&nbsp;
             {/if}
             </form>
             </fieldset>

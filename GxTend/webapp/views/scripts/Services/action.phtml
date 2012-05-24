@@ -34,29 +34,29 @@ function getServicesStatus(hldid) {
 </script>
 <div id="service_action" style="font-size:1.10em;">
     <ul style="padding-left:1em;list-style-type:square;">
-        <li style="margin:5px;"><strong>Name :</strong> {$service.Caption}</li>
-        <li style="margin:5px;"><strong>Description :</strong> {$service.Description}</li>
-        <li style="margin:5px;"><strong>Status :</strong>
+        <li style="margin:5px;"><strong>__LNG__Name__LNG__ :</strong> {$service.Caption}</li>
+        <li style="margin:5px;"><strong>__LNG__Description__LNG__ :</strong> {$service.Description}</li>
+        <li style="margin:5px;"><strong>__LNG__Status__LNG__ :</strong>
         {if $service.State != "Running"}
             <span class="red">{$service.State}</span>
         {else}
             <span class="green">{$service.State}</span>
         {/if}
         </li>
-        <li style="margin:5px;"><strong>Process Id :</strong> {$service.ProcessId}</li>
-        <li style="margin:5px;"><strong>Startup Type :</strong> {$service.StartMode}</li>
-        <li style="margin:5px;"><strong>Log On As :</strong> {$service.StartName}</li>
+        <li style="margin:5px;"><strong>__LNG__Process Id__LNG__ :</strong> {$service.ProcessId}</li>
+        <li style="margin:5px;"><strong>__LNG__Startup Type__LNG__ :</strong> {$service.StartMode}</li>
+        <li style="margin:5px;"><strong>__LNG__Log On As__LNG__ :</strong> {$service.StartName}</li>
     </ul>
     <div class="left">
     </div>
     <div class="right">
         {if $service.State != "Running"}
-        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Start Service" onclick="applyAction('start');"><span class="ui-icon ui-icon-play"></span></div>
+        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="__LNG__Start Service__LNG__" onclick="applyAction('start');"><span class="ui-icon ui-icon-play"></span></div>
         {else}
-        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Stop Service" onclick="if (confirm('Are you sure you want to STOP this Service ?')) { applyAction('stop'); }"><span class="ui-icon ui-icon-stop"></span></div>
-        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Restart Service" onclick="if (confirm('Are you sure you want to RESTART this Service ?')) { applyAction('restart'); }"><span class="ui-icon ui-icon-arrowrefresh-1-n"></span></div>
+        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="__LNG__Stop Service__LNG__" onclick="if (confirm('__LNG__Are you sure you want to STOP this Service__LNG__ ?')) { applyAction('stop'); }"><span class="ui-icon ui-icon-stop"></span></div>
+        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="__LNG__Restart Service__LNG__" onclick="if (confirm('__LNG__Are you sure you want to RESTART this Service__LNG__ ?')) { applyAction('restart'); }"><span class="ui-icon ui-icon-arrowrefresh-1-n"></span></div>
         {/if}
-        <!--div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Pause Service" onclick="if (confirm('Are you sure you want to PAUSE this Service ?')) { applyAction('pause'); }"><span class="ui-icon ui-icon-pause"></span></div>
-        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="Continue Service" onclick="if (confirm('Are you sure you want to CONTINUE this Service ?')) { applyAction('continue'); }"><span class="ui-icon ui-icon-play"></span></div-->
+        <!--div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="__LNG__Pause Service__LNG__" onclick="if (confirm('__LNG__Are you sure you want to PAUSE this Service__LNG__ ?')) { applyAction('pause'); }"><span class="ui-icon ui-icon-pause"></span></div>
+        <div style="float:left;margin:5px;cursor:pointer;" class="ui-state-default ui-corner-all" title="__LNG__Continue Service__LNG__" onclick="if (confirm('__LNG__Are you sure you want to CONTINUE this Service__LNG__ ?')) { applyAction('continue'); }"><span class="ui-icon ui-icon-play"></span></div-->
     </div>
 </div>

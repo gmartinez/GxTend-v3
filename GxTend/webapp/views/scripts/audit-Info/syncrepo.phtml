@@ -1,17 +1,17 @@
 <div id="log_push">
     <div class="column left">
-        <strong>Project : </strong> {$InProve_Smarty->guid2name('gxt_projects', $logData.projguid)}
+        <strong>__LNG__Project__LNG__ : </strong> {$InProve_Smarty->guid2name('gxt_projects', $logData.projguid)}
     </div>
     <div class="column right">
-        <strong>TTP : </strong> {$InProve_Smarty->sec2str($logData.end - $logData.start)}
+        <strong>__LNG__TTP__LNG__ : </strong> {$InProve_Smarty->sec2str($logData.end - $logData.start)}
     </div>
     <br clear="all">
     <div class="myhr"></div>
 
     <div class="column left">
-        <p><strong>Command : </strong> {$logData.stdout.env.command}</p>
-        <p><strong>Outsts : </strong> {$logData.stdout.sts}</p>
-        <p><strong>Output : </strong> {$logData.stdout.out}</p>
+        <p><strong>__LNG__Command__LNG__ : </strong> {$logData.stdout.env.command}</p>
+        <p><strong>__LNG__Outsts__LNG__ : </strong> {$logData.stdout.sts}</p>
+        <p><strong>__LNG__Output__LNG__ : </strong> {$logData.stdout.out}</p>
     </div>
     <br clear="all">    
 </div>

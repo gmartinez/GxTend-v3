@@ -11,6 +11,7 @@ $lL["__email__"] = "Email";
 $lL["__user_groups__"] = "User Groups";
 $lL["__use_ctrl_click_for_multiple_selection__"] = "Use Ctrl+Click for multiple selection";
 $lL["__active__"] = "Active";
-$lL["__user_security_token__"] = "User Security Token";
+$lL["__user_security_token__"] = "User's Security Token";
+$lL["__add_entry__"] = "Add Entry";
 
 ?>

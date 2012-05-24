@@ -15,14 +15,24 @@ $(document).ready(function(){
             return false;            
         },
         success: function (r) {
-            notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
+            notify("{$lL.__notification__}",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
             if (r.sts) {
                 $("#GenericDialog").dialog("close");
                 $.each(r.newEntry, function (index, entry) {
-                    if ($("#"+entry.lang+entry.key).text() != entry.val) {
-                        $("#"+entry.lang+entry.key).html(entry.val + " <img src='../img/icons/16/tick.png' alt='ok' title='Modified'>").effect("highlight",{ },5000);
+                    if ($("#delete_key:checked").val()) {
+                        $("#"+entry.lang+entry.key).html("<s>" + entry.val + "</s>").effect("highlight",{ },5000);
+                    } else {
+                        if ($("#"+entry.lang+entry.key).text() != entry.val) {
+                            $("#"+entry.lang+entry.key).html(entry.val + " <img src='../img/icons/16/tick.png' alt='ok' title='Modified'>").effect("highlight",{ },5000);
+                        }
                     }
                 });
+                var newKey = $("#form_translate #key").val();
+                if (newKey != "{$labelData.en.key}") {
+                $("#{$labelData.en.key}-keyCell").html(newKey).css("color","red");
+                $("#{$labelData.en.key}-stsCell").html("<span style='font-weight:bold;' title='{$lL.__key_was_changed__reload_to_get_new_one__}' onclick='window.reload();'>&orarr;</span>").css("color","red");
+                
+                }
             } else {
                 $("#form_translate .submit_btn_holder").toggle();
             }
@@ -34,30 +44,50 @@ $(document).ready(function(){
 
 });
 
+function deleteKey() {
+
+    $("#form_translate input:text:visible,textarea:visible").prop("readonly", false);
+    if ($("#delete_key:checked").val()) {
+        $("#form_translate input:text:visible,textarea:visible").prop("readonly", true);
+    }
+
+}
+
 </script>
 
-<h3>Label Edition</h3>
+<h3>{$lL.__label_edition__}</h3>
 <form id="form_translate" action="/Translation/postentry" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="entry" value="{$smarty.request.entry}">
+
+    <p>
+        <strong>{$lL.__key_id__}</strong> <input type="text" id="key" name="key" style="width:85%;" value="{$labelData.en.key}">
+    </p>
 
     {foreach $labelData as $lng => $label}
     <p>
         <strong>{$lng}</strong><br />
-        <textarea id="{$lng}" name="translations[{$lng}]" style="width:100%;height:50px;">{$label.val}</textarea>
+        <textarea id="{$lng}" name="translations[{$lng}]" style="width:95%;height:50px;">{$label.val}</textarea><br>
         {foreach $glossarieData.$lng as $glng => $glabel name=glosslist}
         <a href="javascript:;" onclick="$('#{$lng}').val('{$glabel.val}')">{$glabel.val}</a>{if !$smarty.foreach.glosslist.last}&nbsp;|&nbsp;{/if}
         {/foreach}
     </p>
     {/foreach}        
-
+    
     <div class="myhr"></div>
-    <div class="buttons right">
-    <div class="submit_btn_holder">
-    {$smarty.const._FORM_BTN_UPDATE_}
-    &nbsp;{$lL.__or__}&nbsp;
-    <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>cancel</a>&nbsp;
+
+    <div class="left">
+        <input type="checkbox" id="delete_key" name="delete_key" value="delete_key" onchange="deleteKey();">&nbsp;Delete Key
     </div>
-    <div class="submit_btn_holder" style="display:none;">
-    {$smarty.const._BAR_WAIT_}
+
+    <div class="buttons right">
+        <div class="submit_btn_holder">
+            {$smarty.const._FORM_BTN_UPDATE_}
+            &nbsp;{$lL.__or__}&nbsp;
+            <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>{$lL.__cancel__}</a>&nbsp;
+        </div>
+        <div class="submit_btn_holder" style="display:none;">
+            {$smarty.const._BAR_WAIT_}
+        </div>
     </div>
 </form>
+<br clear="both">

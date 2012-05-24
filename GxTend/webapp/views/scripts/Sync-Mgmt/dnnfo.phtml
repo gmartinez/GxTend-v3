@@ -1,8 +1,8 @@
 <div id="dnqueue">
-    <h2>Server Changes (<a href="javascript:;" onclick="dataSync('down');">↓ Sync</a>)</h2>
+    <h2>__LNG__Server Changes__LNG__ (<a href="javascript:;" onclick="dataSync('down');">&darr; __LNG__Sync__LNG__</a>)</h2>
     <table width="100%" align="center" class="list">
     <thead>
-        <tr><th>Table</th><th>Size</th><th>Last Updated</th></tr>
+        <tr><th>__LNG__Table__LNG__</th><th>__LNG__Size__LNG__</th><th>__LNG__Last Updated__LNG__</th></tr>
     </thead>
     <tbody>
         {foreach from=$dnqueue.tables key=k item=rec}
@@ -16,7 +16,7 @@
         {/foreach}
     </tbody>
     <tfoot>
-        <tr><td colspan="3" style="font-size:.75em;">Last Dn Sync Datetime {$InProve_Smarty->ts2str($dnqueue.last_dnsync_ts)}&nbsp;</td></tr>
+        <tr><td colspan="3" style="font-size:.75em;">__LNG__Last Dn Sync Datetime__LNG__ {$InProve_Smarty->ts2str($dnqueue.last_dnsync_ts)}&nbsp;</td></tr>
     </tfoot>
     </table>
 </div>

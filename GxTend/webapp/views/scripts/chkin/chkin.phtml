@@ -18,14 +18,14 @@ $(document).ready(function(){
             }
 
             if (r.commit.sts == "ok") {
-                $("#div_checkin #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Successful Commit "+r.commit.msg);
+                $("#div_checkin #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Successful Commit__LNG__ "+r.commit.msg);
                 if ($("#pushAcommit:checked").val()) {
                     pushAcommit(r.iframe_url)
                 } else {
                     $("#diffs").unblock();
                 }
             } else {
-                $("#div_checkin #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Error in Commit "+r.commit.msg);
+                $("#div_checkin #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Error in Commit__LNG__ "+r.commit.msg);
                 $("#diffs").unblock();
             }
 
@@ -66,13 +66,13 @@ function pushAcommit(iframe_url) {
             { projguid:"{$smarty.request.projguid}" },
             function (r, textStatus) {
                 if (r.sts == "ok") {
-                    $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/tick.png' alt='ok' title='ok'> Successful Push "+r.msg);
+                    $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Successful Push__LNG__ "+r.msg);
                 } else {
-                    $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/error.png' alt='err' title='err'> Pushing Data Error "+r.msg);
+                    $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Pushing Data Error__LNG__ "+r.msg);
                 }
                 $("#diffs").unblock();
                 if (r.sts == "ok" && $("#impApush:checked").val()) {
-                    mDialog(iframe_url, 'Commits Data & Promotion Status', 600, 900);
+                    mDialog(iframe_url, '__LNG__Commits Data & Promotion Status__LNG__', 600, 900);
                 }
             }
     );
@@ -80,7 +80,7 @@ function pushAcommit(iframe_url) {
 
 function hardReset() {
 
-    if (confirm("Uncommitted changes will be Lost.\n\nAre you Sure ?")) {
+    if (confirm("__LNG__Uncommitted changes will be Lost__LNG__.\n\n__LNG__Are you Sure__LNG__ ?")) {
 
         $("#diffs").block({ message: '{$smarty.const._BAR_WAIT_}' });
         $("#div_checkin #bottom_left").html("");
@@ -90,10 +90,10 @@ function hardReset() {
                 { projguid:'{$smarty.request.projguid}',kbguid:'{$smarty.request.kbguid}' },
                 function (r, textStatus) {
                     if (r.sts == 0) {
-                        $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/tick.png' alt='ok' title='ok'> Repository Reset Successful");
+                        $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Repository Reset Successful__LNG__");
                         setTimeout("$('#checkinlnk').click()",2500);
                     } else {
-                        $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/error.png' alt='err' title='err'> Repository Reset Error "+r.msg);
+                        $("#div_checkin #bottom_left").append("<p><img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Repository Reset Error__LNG__ "+r.msg);
                         $("#diffs").unblock();
                     }
 
@@ -144,7 +144,7 @@ function go_for_lock(type) {
         $("#qrystr").val($str4srch);
         $("#gobtn").click();
     } else {
-        alert("Could not get objects list.");
+        alert("__LNG__Could not get objects list__LNG__.");
     }
 
 }
@@ -153,8 +153,8 @@ function go_for_lock(type) {
 
     {if $smarty.request.mergebefore}
     <div class="ui-corner-all ui-state-active" style="padding:1em;">
-        <img src="{$smarty.const._IMG_CATCHUP_SM_}" alt="{$smarty.const._LBL_CATCHUP_}" title="{$smarty.const._LBL_CATCHUP_}"> Merge from main codeline performed
-        <p>Status : {if $merge_FromGxTendCL.sts==0}<img src="../img/icons/16/tick.png" alt="ok" title="ok"> Success {else} <img src="../img/icons/16/error.png" alt="err" title="err"> Error{/if}</p>
+        <img src="{$smarty.const._IMG_CATCHUP_SM_}" alt="{$smarty.const._LBL_CATCHUP_}" title="{$smarty.const._LBL_CATCHUP_}"> __LNG__Merge from main codeline performed__LNG__
+        <p>__LNG__Status__LNG__ : {if $merge_FromGxTendCL.sts==0}<img src="../img/icons/16/tick.png" alt="ok" title="ok"> __LNG__Success__LNG__ {else} <img src="../img/icons/16/error.png" alt="err" title="err"> __LNG__Error__LNG__{/if}</p>
         <p>{$merge_FromGxTendCL.out}</p>
     </div>
     {/if}
@@ -162,18 +162,18 @@ function go_for_lock(type) {
     <div class="myhr"></div>
     <div class="column left" style="width:50%;">
         {if $have_locks && !$smarty.request.forcecompare}
-        List below is <strong>restricted</strong> to your current locked set, <a href="javascript:;" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 1));'>click here</a> for full list of differences.&nbsp;
+        __LNG__List below is <strong>restricted</strong> to your current locked set__LNG__, <a href="javascript:;" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 1));'>__LNG__click here__LNG__</a> __LNG__for full list of differences__LNG__.&nbsp;
         {elseif $have_locks && $smarty.request.forcecompare}
-        List below contains <strong>full set</strong> of differences, <a href="javascript:;" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 0));'>click here</a> to restrict it to your current locked set.&nbsp;
+        __LNG__List below contains <strong>full set</strong> of differences__LNG__, <a href="javascript:;" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 0));'>__LNG__click here__LNG__</a> __LNG__to restrict it to your current locked set__LNG__.&nbsp;
         {else}
-        List below contains <strong>full set</strong> of differences, you have no active locks.&nbsp;
+        __LNG__List below contains__LNG__ <strong>__LNG__full set__LNG__</strong> __LNG__of differences, you have no active locks__LNG__.&nbsp;
         {/if}
     </div>
     <div class="column right">
         {if $kbdata.kbclass>=7500}
-        <span id="click2lck" class="file" style="display:none;" onclick='go_for_lock("lst2lck");'><img alt="info" src="../img/icons/16/info.png" title="Search &amp; Lock"> Click to search &amp; lock ALL modified objects</span>
+        <span id="click2lck" class="file" style="display:none;" onclick='go_for_lock("lst2lck");'><img alt="info" src="../img/icons/16/info.png" title="__LNG__Search & Lock__LNG__"> __LNG__Click to search & lock ALL modified objects__LNG__</span>
         <br>
-        <span id="click2add" class="file" style="display:none;" onclick='go_for_lock("lst2add");'><img alt="new" src="../img/icons/16/new.png" title="Search &amp; Lock"> Click to add &amp; lock ALL new objects</span>
+        <span id="click2add" class="file" style="display:none;" onclick='go_for_lock("lst2add");'><img alt="new" src="../img/icons/16/new.png" title="__LNG__Search & Lock__LNG__"> __LNG__Click to add & lock ALL new objects__LNG__</span>
         {/if}
     </div>
     <br clear="all">
@@ -184,13 +184,13 @@ function go_for_lock(type) {
     {else}
 
         <div class="column left">
-            <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="{$smarty.const._LBL_COMMIT_}" title="{$smarty.const._LBL_COMMIT_}"> Commit changes into "Local History Repo"
+            <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="{$smarty.const._LBL_COMMIT_}" title="{$smarty.const._LBL_COMMIT_}"> __LNG__Commit changes into "Local History Repo"__LNG__
             &nbsp;|&nbsp;{$periods_filter}
             <span id="filterctrls" style="display:none;">
             &nbsp;|&nbsp;
-            <input type="checkbox" id="gen1chk" name="gen1chk" onchange="filter_by_objsts();"> <img class="tip" alt="gen1" src="../img/icons/16/lightning_green.png" title="Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance).">&nbsp;
-            <input type="checkbox" id="gen2chk" name="gen2chk" onchange="filter_by_objsts();" checked> <img class="tip" alt="gen2" src="../img/icons/16/lightning_red.png" title="Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance) BUT some of it has been modified by a user.">&nbsp;
-            <input type="checkbox" id="olderchk" name="olderchk" onchange="filter_by_objsts();"> <img class="tip" alt="older" src="../img/icons/16/warning.png" title="Visual Tag Information|Objects tagged with this icon were detected as being OLDER than its target">
+            <input type="checkbox" id="gen1chk" name="gen1chk" onchange="filter_by_objsts();"> <img class="tip" alt="gen1" src="../img/icons/16/lightning_green.png" title="__LNG__Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance)__LNG__.">&nbsp;
+            <input type="checkbox" id="gen2chk" name="gen2chk" onchange="filter_by_objsts();" checked> <img class="tip" alt="gen2" src="../img/icons/16/lightning_red.png" title="__LNG__Visual Tag Information|Objects tagged with this icon were detected as being automatically generated by some GeneXus process (eg. from a Pattern instance) BUT some of it has been modified by a user__LNG__.">&nbsp;
+            <input type="checkbox" id="olderchk" name="olderchk" onchange="filter_by_objsts();"> <img class="tip" alt="older" src="../img/icons/16/warning.png" title="__LNG__Visual Tag Information|Objects tagged with this icon were detected as being OLDER than its target__LNG__.">
             </span>
         </div>
         <div class="column right">
@@ -204,7 +204,7 @@ function go_for_lock(type) {
         <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
             <table width="100%" align="center" class="list">
             <thead>
-                <tr><th>Object</th><th>{if $kbdata.kbclass<7500}Folder{else}Description{/if}</th><th>Modified @ Local &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_checkin .objlst");setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+                <tr><th>__LNG__Object__LNG__</th><th>{if $kbdata.kbclass<7500}Folder{else}Description{/if}</th><th>__LNG__Modified @ Local__LNG__ &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_checkin .objlst");setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
             </thead>
             <tbody>
                 {foreach $local_changes as $k => $rec}
@@ -222,40 +222,40 @@ function go_for_lock(type) {
                 <td>
                     &nbsp;{$rec.gxinfo.objdsc|utf8_encode}
                     {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid == $InProve_Smarty->getSessVar("MyProfile.userdata.userguid")}
-                    &nbsp;<img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="Object's Lock Status|You have an active lock on this object since '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                    &nbsp;<img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_OWN_SM_}" title="__LNG__Object's Lock Status|You have an active lock on this object since__LNG__ '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
                     {/if}
                 </td>
                 <td align="center">
                     &nbsp;{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
                     {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
-                    &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+                    &nbsp;<img alt="new" src="../img/icons/16/new.png" title="__LNG__Does not exist in target__LNG__.">
                     {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
-                    &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
+                    &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="__LNG__Object detected as deleted in source__LNG__.">
                     {elseif $rec.gxinfo.COMP=="OLDER"}
-                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+                    &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="__LNG__Target modified on__LNG__ {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
                     {/if}
                     {if $rec.gxinfo.generated==1}
-                    &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
+                    &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="__LNG__Automatically generated__LNG__.">
                     {else if $rec.gxinfo.generated==2}
-                    &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="Automatically generated BUT modified.">
+                    &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="__LNG__Automatically generated BUT modified__LNG__.">
                     {/if}
                 </td>
                 <td align="center">
                     {if $rec.gxinfo.lock && $rec.gxinfo.lock.setuserguid != $InProve_Smarty->getSessVar("MyProfile.userdata.userguid")}
-                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="Object's Lock Status|'{$InProve_Smarty->guid2name('gxt_users', $rec.gxinfo.lock.setuserguid)}' has an active lock on this object since '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
+                        <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="__LNG__Object's Lock Status__LNG__|'{$InProve_Smarty->guid2name('gxt_users', $rec.gxinfo.lock.setuserguid)}' __LNG__has an active lock on this object since__LNG__ '{$InProve_Smarty->ts2str($rec.gxinfo.lock.setts)}'">
                     {else}
                         {if $rec.b64}
                         <span id="{$rec.b64|sha1}">
                             {if !$rec.gxinfo.lock && $kbdata.kbclass>=7500}
                                 {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
-                                    <img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+                                    <img alt="new" src="../img/icons/16/new.png" title="__LNG__Does not exist in target__LNG__.">
                                     {if $rec.gxinfo.objcls!=111}
                                     <span class="lst2add" style="display:none;">{$gx_objcls[$rec.gxinfo.objcls].small}:{$rec.gxinfo.objnam}</span>
                                     {else}
                                     <span class="lst2add" style="display:none;">{str_ireplace($smarty.request.kbguid|cat:'/','',$gx_objcls[$rec.gxinfo.objcls].small|cat:':'|cat:$rec.gxinfo.objnam)}</span>
                                     {/if}
                                 {else}
-                                    <img alt="info" src="../img/icons/16/info.png" title="No active lock on this object.">
+                                    <img alt="info" src="../img/icons/16/info.png" title="__LNG__No active lock on this object__LNG__.">
                                     {if $rec.gxinfo.objcls!=111}
                                     <span class="lst2lck" style="display:none;">{$gx_objcls[$rec.gxinfo.objcls].small}:{$rec.gxinfo.objnam}</span>
                                     {else}
@@ -264,7 +264,7 @@ function go_for_lock(type) {
                                 {/if}
                             {else}
                                 {if $rec.gxinfo.chkin}
-                                <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Pending" title="Consolidation Pending">
+                                <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="__LNG__Pending__LNG__" title="__LNG__Consolidation Pending__LNG__">
                                 {else}
                                 <input class="objlst" type=checkbox name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>
                                 {/if}
@@ -281,38 +281,38 @@ function go_for_lock(type) {
             <div class="myhr"></div>
 
             <div id="addcomm" class="newitm" style="padding:10px 0;">
-                <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="My Image">
+                <img style="float:left; margin:0 0 5px;" width="48" height="48" src="/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="__LNG__My Image__LNG__">
                 <div style="margin-left:60px;">
                     <div style="float:left;">
-                        <strong>Commenting on your commits is usually a good idea...</strong>
+                        <strong>__LNG__Commenting on your commits is usually a good idea__LNG__...</strong>
                         <p><textarea rows="10" cols="90" id="comment" name="comment"></textarea></p>
                     </div>
                     <div style="float:right;">
-                        <strong>Tickets you can associate this commit to...</strong>
+                        <strong>__LNG__Tickets you can associate this commit to__LNG__...</strong>
                         <div id="assoc_tickets">
                         </div>
                     <div class="myhr"></div>
                     {if $InProve_Smarty->getSessVar("LoginStatus.server.status")}
                         {if $project.remo_repo_stats.ava == "open"}
                             {if $project.repo_stats.ava == "open"}
-                                <img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title='Select to Push after commit.'>
-                                &nbsp;Push after commit
+                                <img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title='__LNG__Select to Push after commit__LNG__.'>
+                                &nbsp;__LNG__Push after commit__LNG__
                                 &nbsp;<input type="checkbox" id="pushAcommit" value="1" {if $commit_PandI}checked{/if}>
 
                                 <div id="impApush_holder" style="{if !$commit_PandI}display:none;{/if}">
                                 {if $iframe_url}
-                                &nbsp;&nbsp;&nbsp;&nbsp;&raquo;&nbsp;<img src='{$smarty.const._IMG_PROMOTE_SM_}' alt='Push' title='Select to open promotion dialog after successful push.'>
-                                &nbsp;Promote after push
+                                &nbsp;&nbsp;&nbsp;&nbsp;&raquo;&nbsp;<img src='{$smarty.const._IMG_PROMOTE_SM_}' alt='Push' title='__LNG__Select to open promotion dialog after successful push__LNG__.'>
+                                &nbsp;__LNG__Promote after push__LNG__
                                 &nbsp;<input type="checkbox" id="impApush" value="1" {if $commit_PandI==2}checked{/if}>
                                 {/if}
                                 </div>
 
                             {/if}
                         {else}
-                            &nbsp;{$InProve_Smarty->msg("ui-icon-info","Push after commit not available as remote repository is not open")}
+                            &nbsp;{$InProve_Smarty->msg("ui-icon-info","__LNG__Push after commit not available as remote repository is not open__LNG__")}
                         {/if}
                     {else}
-                        &nbsp;{$InProve_Smarty->msg("ui-icon-info","Push after commit not available as server is not online")}
+                        &nbsp;{$InProve_Smarty->msg("ui-icon-info","__LNG__Push after commit not available as server is not online__LNG__")}
                     {/if}
                     </div>
                 </div>
@@ -326,7 +326,7 @@ function go_for_lock(type) {
             </div>
             <div  id="bottom_right" class="buttons right">
                 {if $kbdata.kbclass<7500}
-                    <button type='button' id='reset_btn' name='reset_btn' value='{$smarty.const._LBL_RESET_}"' title='Click to reset all non-commited changes"' onclick="hardReset();">
+                    <button type='button' id='reset_btn' name='reset_btn' value='{$smarty.const._LBL_RESET_}"' title='__LNG__Click to reset all non-commited changes__LNG__"' onclick="hardReset();">
                     <img src='{$smarty.const._IMG_RESET_SM_}'> {$smarty.const._LBL_RESET_}
                     </button>
                 {/if}

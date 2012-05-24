@@ -13,7 +13,7 @@ $(document).ready(function(){
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
         <h3>
             {$lL.__client_this_user__} {if $form_mode != $smarty.const._LBL_ADD_}{$lL.__is__}{else}{$lL.__will_be__}{/if} {$lL.__related_to__} {$cliid}
-            &nbsp;[<a href="javascript:;" title="Add Entry" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_clients' }, null, '$(\'#addNew\').click();');">+</a>]
+            &nbsp;[<a href="javascript:;" title="{$lL.__add_entry__}" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_clients' }, null, '$(\'#addNew\').click();');">+</a>]
         </h3>        
         <div class="myhr"></div>
 		<table align="center" width="100%">
@@ -47,7 +47,7 @@ $(document).ready(function(){
 			<b>{$lL.__user_groups__}</b>
             </td>
 			<td align="left">
-			{$othergroups}&nbsp;[{$lL.__use_ctrl_click_for_multiple_selection__} | <a href="javascript:;" title="Add Entry" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">+</a>]
+			{$othergroups}&nbsp;[{$lL.__use_ctrl_click_for_multiple_selection__} | <a href="javascript:;" title="{$lL.__add_entry__}" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">+</a>]
             </td>
         </tr>
 		<tr><td align="left">

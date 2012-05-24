@@ -1,0 +1,22 @@
+<?php
+
+$lL["__related_milestone__"] = "Marco Relacionado";
+$lL["__due_date__"] = "Data Devida";
+$lL["__no_milestone_is_related_to_this_list__"] = "Nenhum marco está relacionado a esta lista";
+$lL["__click_to_view_edit__"] = "Clique para Ver/Editar";
+$lL["__there_has_been_changes__"] = "Houve mudanças desde a última vez que você viu este ticket";
+$lL["__no_changes_since__"] = "Não ocorreram alterações desde a última vez que você verifico este ticket";
+$lL["__add_ticket__"] = "Adicionar Ticket";
+$lL["__read_only_access__"] = "Acesso Apenas para Leitura";
+$lL["__view_all__"] = "Ver todo";
+$lL["__completed_tickets__"] = "tickets completados";
+$lL["__add_list__"] = "Adicionar Lista";
+$lL["__show_to_dos_on_project__"] = "Mostrar tickets no projeto";
+$lL["__show_to_dos_assigned_to__"] = "Mostrar tickets atribuídos para";
+$lL["__show_to_dos_that_are_due__"] = "Mostrar tickets que são devidos";
+$lL["__show_to_dos_in_specific_status__"] = "Mostrar tickets no determinado estado";
+$lL["__return_to_full_to_dos_list__"] = "Voltar ao lista completa";
+$lL["__current_to_do_lists__"] = "Listas Atuais";
+$lL["__completed_to_do_lists__"] = "Listas Concluídas";
+
+?>

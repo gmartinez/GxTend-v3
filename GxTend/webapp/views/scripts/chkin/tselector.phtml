@@ -1,10 +1,10 @@
 <p style="height: 8em; overflow: auto;">
 {foreach from=$assoc_tickets key=k item=ticket}
-    <input type="checkbox" name="assoc_tickets[]" value="{$ticket.ttsguid}">&nbsp;<span onclick='mDialog("/Ticket-Mgmt/edit?ttsguid={$ticket.ttsguid}&origfrom=commit", "Edit Ticket", 600, 900);' class='file'>{$InProve_Smarty->cutstr($ticket.ttsabv,0,50)}</span><br>
+    <input type="checkbox" name="assoc_tickets[]" value="{$ticket.ttsguid}">&nbsp;<span onclick='mDialog("/Ticket-Mgmt/edit?ttsguid={$ticket.ttsguid}&origfrom=commit", "__LNG__Edit Ticket__LNG__", 600, 900);' class='file'>{$InProve_Smarty->cutstr($ticket.ttsabv,0,50)}</span><br>
 {/foreach}
 </p>
 <p>
-<div onclick='mDialog("/Ticket-Mgmt/edit?origfrom=commit&projguid={$smarty.request.projguid}", "Add Ticket", 600, 900);' class='file' style="text-align:right;font-size:0.8em;">
-    {$InProve_Smarty->msg("ui-icon-circle-plus", "Add Ticket")}
+<div onclick='mDialog("/Ticket-Mgmt/edit?origfrom=commit&projguid={$smarty.request.projguid}", "__LNG__Add Ticket__LNG__", 600, 900);' class='file' style="text-align:right;font-size:0.8em;">
+    {$InProve_Smarty->msg("ui-icon-circle-plus", "__LNG__Add Ticket__LNG__")}
 </div>
 </p>

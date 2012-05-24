@@ -25,18 +25,18 @@ $(document).ready(function(){
     {if $smarty.server.REQUEST_URI=='/tools/kbquery'}
     <h1>Query GxKb</h1><br>
 	<form id="qryfrm" action="tools/gokbqry" method="POST" enctype="multipart/form-data">
-        <h3>GeneXus Kb {$gxkbs}</h3>
-        <h3><b>GxKb Query</h3>
+        <h3>__LNG__GeneXus KB__LNG__ {$gxkbs}</h3>
+        <h3><b>__LNG__GxKb Query__LNG__</h3>
         <textarea name="gkbsentence" rows="2" cols="80"></textarea>
-        <h3><b>SQL Query</h3>
+        <h3><b>__LNG__SQL Query__LNG__</h3>
         <textarea name="sqlsentence" rows="2" cols="80"></textarea>
         <br><br>
         <button type="submit" class="button-circle" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>
 	</form>
     {elseif $smarty.server.REQUEST_URI=='/tools/dbquery'}
-    <h1>Query Metadata</h1><br>
+    <h1>__LNG__Query Metadata__LNG__</h1><br>
 	<form id="qryfrm" action="tools/godbqry" method="POST" enctype="multipart/form-data">
-        <h3>SQL Query</h3>
+        <h3>__LNG__SQL Query__LNG__</h3>
         <textarea name="sqlsentence" rows="4" cols="80"></textarea><br><br>
         <button type="submit" class="button-circle" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>
 	</form>

@@ -1,4 +1,4 @@
-<div class="myhr">Metadata Initial Properties</div>
+<div class="myhr">__LNG__Metadata Initial Properties__LNG__</div>
 <table id="envproptbl" align="center" width="95%">
 {foreach $entriesLst as $prop_name => $prop_value}
 <tr>
@@ -11,14 +11,14 @@
         {if $entriesDef.$prop_name.defvalue}
         &nbsp;&laquo;&nbsp;
         {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
-        <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">Default</a>&nbsp;|&nbsp;
+        <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">__LNG__Default__LNG__</a>&nbsp;|&nbsp;
         {/if}
-        <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">Unset</a>
+        <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">__LNG__Unset__LNG__</a>
         {/if}
     </td>
 </tr>
 {/foreach}  
 </table>
 {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
-<p>You can <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">click here</a> to get all the above boxes populated by GxTend.</p>
+<p>__LNG__You can__LNG__ <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">__LNG__click here__LNG__</a> __LNG__to get all the above boxes populated by GxTend__LNG__.</p>
 {/if}

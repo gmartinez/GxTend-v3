@@ -22,7 +22,7 @@
 <div id="my_data">
     <div style="vertical-align:middle;text-align:right;float:right;">
         <div style="text-align:center;">
-        <img id="my_image" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="{$lL.__my_visual_id__}">
+        <img id="my_image" width="48" height="48" src="/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="{$lL.__my_visual_id__}">
         <br>
         <a href="javascript:;" style="font-size:0.8em;" onclick="if(confirm('{$lL.__confirm_reset_visual_id__} ?')) { changeImg('reset'); }">{$lL.__reset_visual_id__}</a>
         </div>
@@ -34,7 +34,7 @@
 			<div>
 			<label for="f|username"><strong>{$lL.__username__}</strong></label>
 			<input type="text" id="fusername" name="f|username" value="{$username}" readonly="readonly">
-            <img class="file" src="../img/icons/16/password.png" title="{$lL.__change_password__}" alt="{$lL.__change_password__}" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=mine', '{$lL.__change_my_password__}', 250, 500);">
+            <img class="file" src="../img/icons/16/password.png" title="{$lL.__change_my_password__}" alt="{$lL.__change_my_password__}" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=mine', '{$lL.__change_my_password__}', 250, 500);">
 			</div>
 			<div>
 			<label for="f|name"><strong>{$lL.__full_name__}</strong></label>		
@@ -86,7 +86,7 @@
             <div class="myhr"></div>
 			<div>
 			<label for="userprof|visualid"><strong>{$lL.__visual_id__}</strong></label>
-            <span style="text-align:left;">{include file='../Upload/widget.phtml'}</span>
+            <span style="text-align:left;">{include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}</span>
 			</div>
             <div class="myhr"></div>
 			<div class="buttons right">

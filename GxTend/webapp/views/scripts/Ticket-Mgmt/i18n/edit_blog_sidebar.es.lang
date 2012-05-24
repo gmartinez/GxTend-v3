@@ -1,0 +1,9 @@
+<?php
+
+$lL["__subscribed__"] = "Suscrito";
+$lL["__notifications__"] = "Notificaciones";
+$lL["__unsubscribe__"] = "Desuscribirse";
+$lL["__commented__"] = "Comentado";
+$lL["__comments_by__"] = "Comentarios de";
+
+?>

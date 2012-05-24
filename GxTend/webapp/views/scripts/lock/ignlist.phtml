@@ -18,10 +18,10 @@ $(document).ready(function(){
             }
 
             if (r.unflaglist.sts == "ok") {
-                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Entries were Successfully removed from list");
+                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Entries were Successfully removed from list__LNG__");
                 $("#diffs").unblock();
             } else {
-                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Some entries could not be removed from list");
+                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Some entries could not be removed from list__LNG__");
                 $("#diffs").unblock();
             }
 
@@ -45,13 +45,13 @@ $(document).ready(function(){
     <div class="myhr"></div>
 
     <div class="column left">
-    &nbsp;<img src="{$smarty.const._IMG_IGNORE_SM_}" alt="{$smarty.const._LBL_IGNORE_}" title="{$smarty.const._LBL_IGNORE_}"> List of entries in ignore list.
+    &nbsp;<img src="{$smarty.const._IMG_IGNORE_SM_}" alt="{$smarty.const._LBL_IGNORE_}" title="{$smarty.const._LBL_IGNORE_}"> __LNG__List of entries in ignore list__LNG__.
     {if $setilist}
-    &nbsp;[ <a href="javascript:;" onclick="mDialog('/Lock/addrule?projguid={$smarty.request.projguid}&kbguid={$smarty.request.kbguid}&mdlid={$smarty.request.mdlid}', 'Add a new matching rule to ignore list.', 480, 640);" class="file">Add matching rule</a> ]
+    &nbsp;[ <a href="javascript:;" onclick="mDialog('/Lock/addrule?projguid={$smarty.request.projguid}&kbguid={$smarty.request.kbguid}&mdlid={$smarty.request.mdlid}', '__LNG__Add a new matching rule to ignore list__LNG__.', 480, 640);" class="file">__LNG__Add matching rule__LNG__</a> ]
     {/if}
     </div>
     <div class="column right">
-    {$resultset|@count} row(s)&nbsp;
+    {$resultset|@count} __LNG__row(s)__LNG__&nbsp;
     </div>
     <br clear="all">
 
@@ -63,7 +63,7 @@ $(document).ready(function(){
 
         <table width="100%" align="center" class="list">
         <thead>
-            <tr><th>Object</th><th>Username</th><th>Set in List Since</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#form_unlock .objlst");setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+            <tr><th>__LNG__Object__LNG__</th><th>__LNG__Username__LNG__</th><th>__LNG__Set in List Since__LNG__</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#form_unlock .objlst");setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
         </thead>
         <tbody>
             {foreach from=$resultset key=k item=rec}
@@ -79,7 +79,7 @@ $(document).ready(function(){
                 </span>
                 {/if}
             {else}
-                <img class="tip" alt="listed" src="{$smarty.const._IMG_IGNORE_SM_}" title="Object's Ignore List Status|'{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}' set this entry so matching objects are ignored on '{$InProve_Smarty->ts2str($rec.setts)}'">
+                <img class="tip" alt="listed" src="{$smarty.const._IMG_IGNORE_SM_}" title="__LNG__Object's Ignore List Status__LNG__|'{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}' __LNG__set this entry so matching objects are ignored on__LNG__ '{$InProve_Smarty->ts2str($rec.setts)}'">
             {/if}
             </td>
             </tr>

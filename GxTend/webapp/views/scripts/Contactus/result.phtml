@@ -1,0 +1,9 @@
+{if $result.sts}
+    <p>Dear <strong>{$smarty.request.fullname}</strong>,</p>
+    <p>We have received your contact.</p>
+    <p>We will be processing your message and getting in touch with you soon.</p>
+    <p>Best Regards,<br>The GxTend Team</p>
+{elseif !$result.sts}
+    <p><strong>We are really sorry but it looks like there has been an error while processing your request.</strong></p>
+    <p>Please contact us directly at directly at <a href="mailto:support@in-prove.com">support@in-prove.com</a>.</p>
+{/if}

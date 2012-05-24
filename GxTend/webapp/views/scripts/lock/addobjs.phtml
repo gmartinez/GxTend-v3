@@ -17,10 +17,10 @@
             }
 
             if (r.flag.sts == "ok") {
-                $("#div_newobjs #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> Objects were Successfully Created & Locked");
+                $("#div_newobjs #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Objects were Successfully Created & Locked__LNG__");
                 $("#diffs").unblock();
             } else {
-                $("#div_newobjs #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> Some Objects could not be Created & Locked");
+                $("#div_newobjs #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Some Objects could not be Created & Locked__LNG__");
                 $("#diffs").unblock();
             }
 
@@ -45,7 +45,7 @@
     <div class="myhr"></div>
 
     <div class="column left">
-    &nbsp;<img src="{$smarty.const._IMG_WAND_SM_}" alt="{$smarty.const._LBL_WAND_}" title="{$smarty.const._LBL_WAND_}"> Logically create and set locks on objects.
+    &nbsp;<img src="{$smarty.const._IMG_WAND_SM_}" alt="{$smarty.const._LBL_WAND_}" title="{$smarty.const._LBL_WAND_}"> __LNG__Logically create and set locks on objects__LNG__.
     </div>
     <div class="column right">
     &nbsp;
@@ -58,7 +58,7 @@
     <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
         <table width="100%" align="center" class="list">
         <thead>
-            <tr><th>Class</th><th>Name</th><th>Description</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_newobjs .objlst");setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+            <tr><th>__LNG__Class__LNG__</th><th>__LNG__Name__LNG__</th><th>__LNG__Description__LNG__</th><th><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#form_newobjs .objlst");setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
         </thead>
         <tbody>
             {foreach from=$resultset key=k item=rec}
@@ -75,7 +75,7 @@
             {/foreach}
         </tbody>
         <tfoot>
-            <tr><td colspan="4"><span id="addrow" style="cursor:pointer;">&nbsp; <img id="show_hide_img" src="{$smarty.const._IMG_ADD_SM_}" title="{$smarty.const._TITLE_ADD_}"> Add Row</span></td></tr>
+            <tr><td colspan="4"><span id="addrow" style="cursor:pointer;">&nbsp; <img id="show_hide_img" src="{$smarty.const._IMG_ADD_SM_}" title="{$smarty.const._TITLE_ADD_}"> __LNG__Add Row__LNG__</span></td></tr>
         </tfoot>
         </table>
         <br clear="all">

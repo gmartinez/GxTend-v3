@@ -123,29 +123,29 @@ $(document).ready(function(){
     {if $data.form_mode != $smarty.const._LBL_ADD_}
     <div class="header_data" style="border:1px solid #D4CCB0;border-radius:5px;padding:.5em;overflow:hidden;">
         <div style="float:left;width:65%;">
-            <span class="projmisttodo" onclick="$('.projmisttodo').toggle();" style="display:none;cursor:pointer;" title="Click to Toggle Hierarchy">
-            <b>Project</b> : {$data.projData.projabv}<br>
-            &nbsp;&rdsh; <b>Milestone</b> : {$data.mistData.mistabv}<br>
+            <span class="projmisttodo" onclick="$('.projmisttodo').toggle();" style="display:none;cursor:pointer;" title="{$lL.__click_to_toggle_hierarchy__}">
+            <b>{$lL.__project__}</b> : {$data.projData.projabv}<br>
+            &nbsp;&rdsh; <b>{$lL.__milestone__}</b> : {$data.mistData.mistabv}<br>
             &nbsp;&nbsp;&nbsp;&rdsh; 
             </span>
-            <a  class="projmisttodo" href="javascript:;" title="Click to Toggle Hierarchy" onclick="$('.projmisttodo').toggle();">
+            <a  class="projmisttodo" href="javascript:;" title="{$lL.__click_to_toggle_hierarchy__}" onclick="$('.projmisttodo').toggle();">
             ...&rdsh; 
             </a>            
-            <b>To-Do</b> : <span id="read_todoguid"></span><br>
+            <b>{$lL.__to_do__}</b> : <span id="read_todoguid"></span><br>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&rdsh; <b>Summary</b> : <span>{$data.ttsabv}</span><br>
-            <button class="button-history" type="button" onclick="mDialog('/Ticket-Mgmt/chglog?ttsguid={$smarty.request.ttsguid}', 'Ticket Changelog', 600, 900);" style="font-size:.7em;">&nbsp;&nbsp;Changelog</button>
+            &nbsp;&rdsh; <b>{$lL.__summary__}</b> : <span>{$data.ttsabv}</span><br>
+            <button class="button-history" type="button" onclick="mDialog('/Ticket-Mgmt/chglog?ttsguid={$smarty.request.ttsguid}', '{$lL.__ticket_changelog__}', 600, 900);" style="font-size:.7em;">&nbsp;&nbsp;{$lL.__changelog__}</button>
         </div>
         <div style="float:right;">
-            <b>Severity</b> : <span id="read_ttspri"></span>
-            <b>Due Date</b> : {$InProve_Smarty->ts2str($data.ttsduets,'date')}&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>{$lL.__severity__}</b> : <span id="read_ttspri"></span>
+            <b>{$lL.__due_date__}</b> : {$InProve_Smarty->ts2str($data.ttsduets,'date')}&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="button-rss" type="button" onclick="window.open('/Rss/?ttsguid={$smarty.request.ttsguid}&token={$InProve_Smarty->userToken()}', '_blank');" style="float:right;font-size:.7em;">&nbsp;&nbsp;RSS</button>
             <br>
-            <b>Assigned To</b> : <span id="read_assigned_to"></span><br>
-            <b>Status</b> : <span id="read_ttssts"></span>&nbsp;|&nbsp;<span id="read_ttspercent"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>{$lL.__assigned_to__}</b> : <span id="read_assigned_to"></span><br>
+            <b>{$lL.__status__}</b> : <span id="read_ttssts"></span>&nbsp;|&nbsp;<span id="read_ttspercent"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                 <span style="float:right;">
-                <button class="button-tag" type="button" onclick="mDialog('/Ticket-Mgmt/settag?ttsguid={$smarty.request.ttsguid}', 'Ticket Tags', 480, 640);" style="font-size:.7em;">&nbsp;&nbsp;Tag</button>
-                <button class="button-edit" type="button" onclick="$('.header_data').toggle();" style="font-size:.7em;">&nbsp;&nbsp;Edit</button>
+                <button class="button-tag" type="button" onclick="mDialog('/Ticket-Mgmt/settag?ttsguid={$smarty.request.ttsguid}', '{$lL.__ticket_tags__}', 480, 640);" style="font-size:.7em;">&nbsp;&nbsp;{$lL.__tag__}</button>
+                <button class="button-edit" type="button" onclick="$('.header_data').toggle();" style="font-size:.7em;">&nbsp;&nbsp;{$lL.__edit__}</button>
                 </span>
         </div>
     </div>
@@ -160,24 +160,24 @@ $(document).ready(function(){
     <table align="center" width="100%" border="0">
 		<tr>
             <td style="text-align:left;vertical-align:top;width:55%;">
-                <b>To-Do</b>&nbsp;{$data.todoguid}
+                <b>{$lL.__to_do__}</b>&nbsp;{$data.todoguid}
                 <p>
-                <b>Summary</b><br>
+                <b>{$lL.__summary__}</b><br>
                 <textarea rows="3" cols="70" id="ttsabv" name="ttsabv" class="string required">{$data.ttsabv}</textarea>
                 </p>
 			</td>
             <td style="text-align:left;vertical-align:top;">
-                <b>Severity</b>&nbsp;{$data.ttspri}&nbsp;
-                <b>Due Date</b>&nbsp;<input type="text" size="12" id="ttsduets" name="ttsduets" value="{$InProve_Smarty->ts2str($data.ttsduets,'date')}" readonly="readonly">
+                <b>{$lL.__severity__}</b>&nbsp;{$data.ttspri}&nbsp;
+                <b>{$lL.__due_date__}</b>&nbsp;<input type="text" size="12" id="ttsduets" name="ttsduets" value="{$InProve_Smarty->ts2str($data.ttsduets,'date')}" readonly="readonly">
                 <p>
-                <b>Assigned To</b>&nbsp;{$data.assigned_to}
+                <b>{$lL.__assigned_to__}</b>&nbsp;{$data.assigned_to}
                 <span id="notify_resp_area" style="display:none;">
-                <input type="checkbox" name="notify_responsible" id="notify_responsible" value="1">&nbsp;Notify assignee via email ?
+                <input type="checkbox" name="notify_responsible" id="notify_responsible" value="1">&nbsp;{$lL.__notify_assignee__} ?
                 </span>
                 </p>
                 <p>
-                <b>Status</b>&nbsp;{$data.ttssts}&nbsp;
-                <b>Progress</b>&nbsp;{$data.ttspercent} %
+                <b>{$lL.__status__}</b>&nbsp;{$data.ttssts}&nbsp;
+                <b>{$lL.__progress__}</b>&nbsp;{$data.ttspercent} %
                 <div id="ttspercent_slider"></div>
                 </p>
 			</td>
@@ -185,12 +185,12 @@ $(document).ready(function(){
         {if $data.form_mode == $smarty.const._LBL_ADD_}
 		<tr>
             <td style="text-align:left;vertical-align:top;width:60%;">
-                <b>Detailed Description</b><br>
+                <b>{$lL.__detailed_description__}</b><br>
                 <textarea rows="8" cols="80" id="ttstxt" name="ttstxt">{$data.ttstxt}</textarea>
 			</td>
             <td style="text-align:left;vertical-align:top;">
                 <br>
-                {include file='../Upload/widget.phtml'}
+                {include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}
 			</td>
         </tr>
         {/if}
@@ -201,7 +201,7 @@ $(document).ready(function(){
 			<td align="right">
                 <div class="buttons right">
                 {if $data.form_mode != $smarty.const._LBL_ADD_}
-                    {$smarty.const._FORM_BTN_UPDATE_}&nbsp;{$lL.__or__}&nbsp;<a href="javascript:;" onclick="$('.header_data').toggle();" style="">cancel</a>
+                    {$smarty.const._FORM_BTN_UPDATE_}&nbsp;{$lL.__or__}&nbsp;<a href="javascript:;" onclick="$('.header_data').toggle();" style="">{$lL.__cancel__}</a>
                 {else}
                     {$smarty.const._FORM_BTN_INSERT_}
                 {/if}
@@ -219,9 +219,9 @@ $(document).ready(function(){
         <td width="75%" valign="top">
             <div id="tabber">
             <ul>
-            <li><a href="/Ticket-Mgmt/blog?ttsguid={$smarty.request.ttsguid}">Comments Blog</a></li>
-            <li><a href="/Ticket-Mgmt/code?ttsguid={$smarty.request.ttsguid}">Code Changes</a></li>
-            <li><a href="/Ticket-Mgmt/time?ttsguid={$smarty.request.ttsguid}">Time Tracking</a></li>
+            <li><a href="/Ticket-Mgmt/blog?ttsguid={$smarty.request.ttsguid}">{$lL.__comments_blog__}</a></li>
+            <li><a href="/Ticket-Mgmt/code?ttsguid={$smarty.request.ttsguid}">{$lL.__code_changes__}</a></li>
+            <li><a href="/Ticket-Mgmt/time?ttsguid={$smarty.request.ttsguid}">{$lL.__time_tracking__}</a></li>
             </ul>
             </div>
         </td>

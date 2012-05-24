@@ -1,0 +1,9 @@
+<?php
+
+$lL["__labels_translation__"] = "Labels Translation";
+$lL["__translation_description__"] = "This allows for easy maintenance of application's internationalization";
+$lL["__edit_template__"] = "Edit Template";
+$lL["__key_not_found_in_template__"] = "Key NOT found in template";
+$lL["__key_found_in_template__"] = "Key found in Template";
+
+?>

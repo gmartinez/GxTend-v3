@@ -16,7 +16,7 @@ $(document).ready(function(){
     <table align="center" width="100%" class="list-horizontal">
     <tr>
 		<td align="left" class="header first" scope="row">
-			Internal Id
+			__LNG__Internal Id__LNG__
 		</td>
 		<td align="left" class="first">
 			{$record.kbguid}
@@ -24,7 +24,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Visual Id
+			__LNG__Visual Id__LNG__
 		</td>
 		<td align="left">
 			{$visualid}
@@ -32,7 +32,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Description
+			__LNG__Description__LNG__
 		</td>
 		<td align="left">
 			{$record.kbdsc}
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Source
+			__LNG__Source__LNG__
 		</td>
 		<td align="left">
 			{$record.kbdir}
@@ -48,7 +48,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Vers./Sync. Status
+			__LNG__Vers./Sync. Status__LNG__
 		</td>
         <td align="left">
         {if $versyncsts.status == "not_finished"}
@@ -64,11 +64,11 @@ $(document).ready(function(){
     <p>
     <div id="tabs">
     <ul>
-        <li><a href="position?kbguid={$record.kbguid}"><span>Kb Position</span></a></li>
-        {if $record.kbclass >= 7500}<li><a href="envs?kbguid={$record.kbguid}"><span>Environments</span></a></li>{/if}
-        <li><a href="/Fsys-Brw/?data2browse={$kbfiles2browse}"><span>Kb Files</span></a></li>
-        <li><a href="/Fsys-Brw/?data2browse={$staged2browse}"><span>Stag Files</span></a></li>
-        <li><a href="locks?kbguid={$record.kbguid}"><span>Locking</span></a></li>
+        <li><a href="position?kbguid={$record.kbguid}"><span>__LNG__Kb Position__LNG__</span></a></li>
+        {if $record.kbclass >= 7500}<li><a href="envs?kbguid={$record.kbguid}"><span>__LNG__Environments__LNG__</span></a></li>{/if}
+        <li><a href="/Fsys-Brw/?data2browse={$kbfiles2browse}"><span>__LNG__KB Files__LNG__</span></a></li>
+        <li><a href="/Fsys-Brw/?data2browse={$staged2browse}"><span>__LNG__Stag Files__LNG__</span></a></li>
+        <li><a href="locks?kbguid={$record.kbguid}"><span>__LNG__Locking__LNG__</span></a></li>
     </ul>
     </div>
 

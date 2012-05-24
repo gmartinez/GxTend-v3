@@ -50,10 +50,10 @@ $(document).ready(function(){
 <table width="100%">
 <tr>
 <td align="left" valign="top">
-    <p style="font-weight:bold;font-size:1.5em;">Last Team Actions</p>
+    <p style="font-weight:bold;font-size:1.5em;">__LNG__Last Team Actions__LNG__</p>
     {foreach $commits_list as $commitId => $commiterTs name=foo}
     <div id="{$commitId}" class="{if $smarty.foreach.foo.iteration>3}older_commits{/if}" style="padding:10px 0; border-bottom:1px solid #DDDDDD; {if $smarty.foreach.foo.iteration>3}display:none;{/if}">
-        <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$commits_info.$commitId.userguid}&v={$smarty.now}" alt="User Image">
+        <img style="float:left; margin:0 0 5px;" width="48" height="48" src="/Ajax/getimg?userguid={$commits_info.$commitId.userguid}&v={$smarty.now}" alt="__LNG__User Image__LNG__">
         <div style="margin-left:60px;">
         <div style="margin:0 0 5px;">
             <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;
@@ -61,7 +61,7 @@ $(document).ready(function(){
         </div>
         <div style="margin:0 0 5px; font-size:1.1em;">
             <p>
-            <a class="pointer" title="Click to see commit's content" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', 'Commit Data & Promotion Status', 600, 900);">
+            <a class="pointer" title="__LNG__Click to see commit's content__LNG__" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', '__LNG__Commit Data & Promotion Status__LNG__', 600, 900);">
             {$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}
             </a>
             &nbsp;{$commits_info.$commitId.subject}
@@ -70,16 +70,16 @@ $(document).ready(function(){
         </div>
     </div>
     {/foreach}
-    <div class="left" style="margin-top:5px;font-size:.8em">Info gathered at {$gather.layer} layer on {$InProve_Smarty->ts2str($gather.start)}</div>
+    <div class="left" style="margin-top:5px;font-size:.8em">__LNG__Info gathered at__LNG__ {$gather.layer} __LNG__layer, on__LNG__ {$InProve_Smarty->ts2str($gather.start)}</div>
     {if count($commits_list)>3}
     <div class="right" style="margin-top:5px;font-size:.8em">
-    <a href="javascript:;" class="older_commits" style="float:right;display:none;" onclick="$('.older_commits').toggle();">See only last 3 commits</a>
-    <a href="javascript:;" class="older_commits" style="float:right;" onclick="$('.older_commits').toggle();">See all {count($commits_list)} commits</a>
+    <a href="javascript:;" class="older_commits" style="float:right;display:none;" onclick="$('.older_commits').toggle();">__LNG__See only last 3 commits__LNG__</a>
+    <a href="javascript:;" class="older_commits" style="float:right;" onclick="$('.older_commits').toggle();">__LNG__See all__LNG__ {count($commits_list)} commits</a>
     </div>
     {/if}
 </td>
 <td align="right" valign="top">
-    <p style="font-weight:bold;font-size:1.5em;">Graphic Stats</p>
+    <p style="font-weight:bold;font-size:1.5em;">__LNG__Graphic Stats__LNG__</p>
     <div id="Commits_vs_Time" style="height:300px;width:500px;margin-top:.75em;"></div>
 </td>
 </tr>

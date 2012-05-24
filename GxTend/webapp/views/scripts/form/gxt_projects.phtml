@@ -26,7 +26,7 @@
 		<table align="center" width="100%">
         {if $form_mode != $smarty.const._LBL_ADD_}
 		<tr><td align="left">
-			<b>__LNG__Project Id__LNG__</b>
+			<b>{$lL.__project_id__}</b>
             </td>
 			<td align="left">
             {$InProve_Smarty->cutstr($projguid,0,$smarty.const._GUID_LEN_)}
@@ -35,7 +35,7 @@
 		</tr>
         {/if}
 		<tr><td align="left">
-			<b>__LNG__Description__LNG__</b>
+			<b>{$lL.__description__}</b>
             </td>
 			<td align="left">
 			<input type="text" size="60" name="f|projabv|unique" value="{$projabv}" class="string required"><p>
@@ -43,22 +43,22 @@
 		</tr>
 		<tr><td align="left">
             {if $form_mode != $smarty.const._LBL_ADD_}
-                <b>__LNG__Project Repository__LNG__</b>
+                <b>{$lL.__project_repository__}</b>
                 <td align="left">
                 <span id="nfoDialog"></span>
                 <span id="repo_E" style="display:{if $repo_stats.ava == '!exist'}none{else}block{/if};">
-                    <span style="text-decoration:underline;color:blue;cursor:pointer;" onclick="mDialog('/Browse-Repos/rinfo?repopath={$repo_stats.path|base64_encode}&projguid={$projguid}', '__LNG__Repository Detailed Stats__LNG__', 480, 640);">__LNG__Available__LNG__</span>
-                    , __LNG__with status__LNG__ {$repostatus}
+                    <span style="text-decoration:underline;color:blue;cursor:pointer;" onclick="mDialog('/Browse-Repos/rinfo?repopath={$repo_stats.path|base64_encode}&projguid={$projguid}', '{$lL.__repository_detailed_stats__}', 480, 640);">{$lL.__available__}</span>
+                    , {$lL.__with_status__} {$repostatus}
                 </span>
                 <span id="repo_NE" style="display:{if $repo_stats.ava == '!exist'}block{else}none{/if};">
                     {$InProve_Smarty->msg("ui-icon-alert","Not Available")}
-                    &nbsp;<span onclick='if(confirm("__LNG__Confirm repository creation__LNG__ ?")) { buildSR("{$projguid}","newbare"); }' class="pointer"><img src="{$smarty.const._IMG_WAND_SM_}" title="__LNG__Click to create repository__LNG__"></span>
+                    &nbsp;<span onclick='if(confirm("{$lL.__confirm_repository_creation__} ?")) { buildSR("{$projguid}","newbare"); }' class="pointer"><img src="{$smarty.const._IMG_WAND_SM_}" title="{$lL.__click_to_create_repository__}"></span>
                 </span>
                 </td>
             {else}
-                <b>__LNG__Project Repository__LNG__</b>
+                <b>{$lL.__project_repository__}</b>
                 <td align="left">
-                <input type="checkbox" name="create_repo" value="1" checked> __LNG__create, with status__LNG__ {$repostatus}
+                <input type="checkbox" name="create_repo" value="1" checked> {$lL.__create__with_status__} {$repostatus}
                 </td>
             {/if}
 		</tr>
@@ -67,7 +67,7 @@
         <div class="buttons right">
         {if $form_mode != $smarty.const._LBL_ADD_}
             <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
-            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('__LNG__This action will CASCADE delete ALL information under the project (Tickets, To-Dos, Kbs, etc.)__LNG__\n\n __LNG__Are you sure__LNG__ ?'));">{$smarty.const._LBL_DELETE_}</button>
+            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('{$lL.__this_action_will_cascade_delete__}\n\n {$lL.__are_you_sure__} ?'));">{$smarty.const._LBL_DELETE_}</button>
         {else}
             <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
         {/if}

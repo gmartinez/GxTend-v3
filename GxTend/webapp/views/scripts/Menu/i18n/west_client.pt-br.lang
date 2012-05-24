@@ -2,7 +2,7 @@
 
 $lL["__my_options__"] = "My Options";
 $lL["__my_profile__"] = "My Profile";
-$lL["__logging__"] = "Logging";
+$lL["__app_logs__"] = "App Logs";
 $lL["__queued_events__"] = "Queued Events";
 $lL["__audited_ops__"] = "Audited Ops";
 $lL["__sync_status__"] = "Sync Status";

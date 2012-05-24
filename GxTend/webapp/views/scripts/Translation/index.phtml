@@ -1,34 +1,37 @@
-{include file="../skel/header.phtml"}
-<script type="text/javascript">
-$(document).ready(function(){
-
-});
-</script>
-
-    <h2>&nbsp;Labels Translation</h2>
-    <p>
-        &nbsp;&nbsp;&nbsp;This is an application internal tool for easy maintenance of application's internationalization.
-        <a href="javascript:;" onclick="mDialog('/Translation/edttmpl?i18nfile={$smarty.request.i18nfile}', '...', 480, 640);" style="float:right;">Edit Template&nbsp;&nbsp;&nbsp;</a>
-    </p>
-    <table class="table list" style="width:95%;">
+{include file="../skel/header.phtml" class="popup"}
+ <h1>{$lL.__labels_translation__}</h1>
+    <h6>{$lL.__translation_description__}.</h6>
+    <p><a href="javascript:;" onclick="mDialog('/Translation/edttmpl?i18nfile={$smarty.request.i18nfile}', '...', 480, 640);">{$lL.__edit_template__}</a></p>
+    <table class="table list">
         <thead>
             <tr>
                 <th>Key</th>
                 {foreach $avalangs as $langCode}
                 <th>{$langCode}</th>
                 {/foreach}        
+                <th>?</th>
             </tr>        
         </thead>
         <tbody>
         {foreach $labelsData as $key => $labelData}
         <tr class="{if $i%2}odd{else}even{/if}">
-            <td><a href="javascript:;" id="{$key}" onclick="edtLang(this);" entry="{$labelData.entry}">{$key}</a></td>
+            <td id="{$key}-keyCell">
+                <a href="javascript:;" id="{$key}" onclick="edtLang(this);" entry="{$labelData.entry}">{$key}</a>
+            </td>
             {foreach $labelData.langs as $lang => $lbl}
-            <td id="{$lang}{$key}">{$lbl.val}</td>
+            <td id="{$lang}{$key}">
+                {$lbl.val}
+            </td>
             {/foreach}
+            <td id="{$key}-stsCell">
+                {if !$labelData.exist}
+                <span style="font-weight:bold;" title="{$lL.__key_not_found_in_template__}">&NotExists;</span>
+                {else}
+                <span style="font-weight:bold;" title="{$lL.__key_found_in_template__}">&check;</span>
+                {/if}
+            </td>
         </tr>
         {/foreach}        
         </tbody>
     </table>
-
 {include file="../skel/footer.phtml"}

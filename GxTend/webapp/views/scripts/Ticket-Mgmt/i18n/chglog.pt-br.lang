@@ -1,0 +1,27 @@
+<?php
+
+$lL["__ticket_changes__"] = "Mudanças em Ticket";
+$lL["__ticket_views__"] = "Vistas do Ticket";
+$lL["__email_notifications__"] = "Notificações via Email";
+$lL["__user_image__"] = "Id Visual do Usuário";
+$lL["__description__"] = "Descrição";
+$lL["__enter_ticket__"] = "Enter ticket";
+$lL["__initial_status__"] = "Estado Inicial";
+$lL["__added_entry_to_ticket__"] = "Added entry to ticket";
+$lL["__entry_type__"] = "Tipo de Entrada";
+$lL["__comment__"] = "Comment";
+$lL["__commit__"] = "Commit";
+$lL["__commit_of_code_changes__"] = "Commit of code changes";
+$lL["__promote__"] = "Promote";
+$lL["__promotion_of_code_changes__"] = "Promotion of code changes";
+$lL["__time__"] = "Tempo";
+$lL["__time_trace__"] = "Traço do Tempo";
+$lL["__time_log_entry__"] = "Entrada do traço de tempo";
+$lL["__change_ticket_property__"] = "Change ticket property";
+$lL["__from__rarr__to__"] = "From &rarr; To";
+$lL["__void__"] = "void";
+$lL["__open_view_ticket__"] = "Abrir/Ver ticket";
+$lL["__email_notification_issued__"] = "Email de notificação emitida";
+$lL["__click_to_open__"] = "Clique para Abrir";
+
+?>

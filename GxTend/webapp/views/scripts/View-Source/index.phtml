@@ -25,7 +25,7 @@ $(document).ready(function(){
     {if $smarty.request.projguid}
     <tr>
 		<td align="left" class="header first" scope="row">
-			Project
+			__LNG__Project__LNG__
 		</td>
 		<td align="left" class="first">
 			{$project.projabv}
@@ -35,19 +35,19 @@ $(document).ready(function(){
     <tr>
 		<td align="left" class="header" scope="row" width="20%">
         {if $smarty.request.filename}
-            File Name
+            __LNG__File Name__LNG__
         {else}
-            Content Description
+            __LNG__Content Description__LNG__
         {/if}
 		</td>
 		<td align="left">
         {if $smarty.request.filehash}
             {$smarty.request.filename}
-            <a class="pointer" style="float:right;" title="Click to Download File" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$smarty.request.filehash}&filename={$smarty.request.filename}"><span class="ui-icon ui-icon-arrowstop-1-s"></span></a>
+            <a class="pointer" style="float:right;" title="__LNG__Click to Download File__LNG__" href="/Http/gitfile?projguid={$smarty.request.projguid}&filehash={$smarty.request.filehash}&filename={$smarty.request.filename}"><span class="ui-icon ui-icon-arrowstop-1-s"></span></a>
         {/if}
         {if $smarty.request.send_as}
             {$smarty.request.send_as}
-            <a class="pointer" style="float:right;" title="Click to Download File ({$InProve_Smarty->bytes2str({filesize(base64_decode($smarty.request.filename))})})" href="/Http/getfile?filename={$smarty.request.filename}&send_as={$smarty.request.send_as}"><span class="ui-icon ui-icon-arrowstop-1-s"></span></a>
+            <a class="pointer" style="float:right;" title="__LNG__Click to Download File__LNG__ ({$InProve_Smarty->bytes2str({filesize(base64_decode($smarty.request.filename))})})" href="/Http/getfile?filename={$smarty.request.filename}&send_as={$smarty.request.send_as}"><span class="ui-icon ui-icon-arrowstop-1-s"></span></a>
         {/if}
 		</td>
 	</tr>

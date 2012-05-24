@@ -1,0 +1,12 @@
+<?php
+
+$lL["__milestone_this_to_do__"] = "Hito al que esta lista";
+$lL["__is__"] = "está";
+$lL["__will_be__"] = "estará";
+$lL["__related_to__"] = "relacionado con";
+$lL["__todo_id__"] = "Id de la Lista";
+$lL["__description__"] = "Descripción";
+$lL["__time_tracking__"] = "Seguimiento de tiempo";
+$lL["__enable_track_time_feature_for_items_in_this_to_do_list__"] = "Habilitar el seguimiento en tiempo para los elementos de esta lista";
+
+?>
