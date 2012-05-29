@@ -10,10 +10,10 @@ $(document).ready(function(){
 		},
 		success: function (r) {
             if (r.flag.sts == "ok") {
-                $("#div_regexp #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Matching rule successfully added to list__LNG__");
+                $("#div_regexp #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__matching_rule_successfully_added_to_list__}");
                 $("#gobtn").click();
             } else {
-                $("#div_regexp #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Could not add matching rule successfully to list__LNG__");
+                $("#div_regexp #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__could_not_add_matching_rule_successfully_to_list__}");
                 $("#div_regexp").unblock();
             }
         },
@@ -33,19 +33,19 @@ $(document).ready(function(){
     <input type="hidden" name="mdlid" value="{$smarty.request.mdlid}">
     <input type="hidden" name="flagtype" value="ignore">
         <p>
-        &nbsp;<strong>__LNG__Matching Class__LNG__ {$classType}</strong>
-        &nbsp;<span style="font-size:0.8em;">{$InProve_Smarty->msg("ui-icon-info","__LNG__Object class the 'Matching Expression' will be used on__LNG__")}</span>
+        &nbsp;<strong>{$lL.__matching_class__} {$classType}</strong>
+        &nbsp;<span style="font-size:0.8em;">{$InProve_Smarty->msg("ui-icon-info","{$lL.__object_class_the__matching_expression__will_be_used_on__}")}</span>
         </p>
         <p>
-        &nbsp;<strong>__LNG__Matching Expression__LNG__</strong>
+        &nbsp;<strong>{$lL.__matching_expression__}</strong>
         <br><textarea id="regExpCode" name="regExpCode" cols="80" rows="3"></textarea>
         </p>
         <p>
-        &nbsp;<strong>__LNG__Matching Expression Examples__LNG__;</strong>
+        &nbsp;<strong>{$lL.__matching_expression_examples__};</strong>
             <ul>
-            <li style="padding:.5em;">__LNG__Normal regular expression (RegExp) : eg. <strong><a href="javascript:;" onclick="$('#regExpCode').val('/gx/i');">/gx/i</a></strong> will match all objects whose name start with "gx", while "i" will makes the matching case insensitive.__LNG__</li>
-            <li style="padding:.5em;">__LNG__Special case for GeneXus X Kbs : <strong><a href="javascript:;" onclick="$('#regExpCode').val('/Generated/');">/Generated/</a></strong> will match all objects that GxTend detects as being automatically generated. It matches both "generated and not modified" and also "generated but modified".__LNG__</li>
-            <li style="padding:.5em;">__LNG__Special case for GeneXus X Kbs : <strong><a href="javascript:;" onclick="$('#regExpCode').val('/Generated_and_not_Modified/');">/Generated_and_not_Modified/</a></strong> will match all objects that GxTend detects as being automatically generated. It only matches "generated and not modified".__LNG__</li>
+            <li style="padding:.5em;">{$lL.__normal_regular_expression__regexp____eg___strong__a_href__javascript____onclick______regexpcode___val___gx_i______gx_i__a___strong__will_match_all_objects_whose_name_start_with__gx___while__i__will_makes_the_matching_case_insensitive___}</li>
+            <li style="padding:.5em;">{$lL.__special_case_for_genexus_x_kbs____strong__a_href__javascript____onclick______regexpcode___val___generated_______generated___a___strong__will_match_all_objects_that_gxtend_detects_as_being_automatically_generated__it_matches_both__generated_and_not_modified__and_also__generated_but_modified____}</li>
+            <li style="padding:.5em;">{$lL.__special_case_for_genexus_x_kbs____strong__a_href__javascript____onclick______regexpcode___val___generated_and_not_modified_______generated_and_not_modified___a___strong__will_match_all_objects_that_gxtend_detects_as_being_automatically_generated__it_only_matches__generated_and_not_modified____}</li>
             </ul>
         </p>
 

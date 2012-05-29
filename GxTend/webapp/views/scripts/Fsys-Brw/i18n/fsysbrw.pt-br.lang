@@ -1,0 +1,8 @@
+<?php
+
+$lL["__name__"] = "Nome";
+$lL["__date_modified__"] = "Data Modificação";
+$lL["__size__"] = "Tamanho";
+$lL["__object_s___"] = "Objecto(s)";
+
+?>

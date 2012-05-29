@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 function oponEntry(type,sqlid) {
 
-    if (confirm('__LNG__Confirm Data Deletion__LNG__ ?')) {
+    if (confirm('{$lL.__confirm_data_deletion__} ?')) {
         jQuery.getJSON(
                 "/Sync-Mgmt/opon?type="+type+"&sqlid="+sqlid,
                 null,
@@ -58,7 +58,7 @@ function oponEntry(type,sqlid) {
                     if (data.affrows) {
                         $("#upnfo #upqueue #row_"+data.sqlid+", "+"#nfo_"+data.sqlid).hide();
                     } else {
-                        alert("__LNG__Could not delete record__LNG__.");
+                        alert("{$lL.__could_not_delete_record__}.");
                     }
 
                 }

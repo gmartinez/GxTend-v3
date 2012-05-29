@@ -18,10 +18,10 @@ $(document).ready(function(){
             }
 
             if (r.unflaglist.sts == "ok") {
-                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Entries were Successfully removed from list__LNG__");
+                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__entries_were_successfully_removed_from_list__}");
                 $("#diffs").unblock();
             } else {
-                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Some entries could not be removed from list__LNG__");
+                $("#div_ignlst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__some_entries_could_not_be_removed_from_list__}");
                 $("#diffs").unblock();
             }
 
@@ -45,13 +45,13 @@ $(document).ready(function(){
     <div class="myhr"></div>
 
     <div class="column left">
-    &nbsp;<img src="{$smarty.const._IMG_IGNORE_SM_}" alt="{$smarty.const._LBL_IGNORE_}" title="{$smarty.const._LBL_IGNORE_}"> __LNG__List of entries in ignore list__LNG__.
+    &nbsp;<img src="{$smarty.const._IMG_IGNORE_SM_}" alt="{$smarty.const._LBL_IGNORE_}" title="{$smarty.const._LBL_IGNORE_}"> {$lL.__list_of_entries_in_ignore_list__}.
     {if $setilist}
-    &nbsp;[ <a href="javascript:;" onclick="mDialog('/Lock/addrule?projguid={$smarty.request.projguid}&kbguid={$smarty.request.kbguid}&mdlid={$smarty.request.mdlid}', '__LNG__Add a new matching rule to ignore list__LNG__.', 480, 640);" class="file">__LNG__Add matching rule__LNG__</a> ]
+    &nbsp;[ <a href="javascript:;" onclick="mDialog('/Lock/addrule?projguid={$smarty.request.projguid}&kbguid={$smarty.request.kbguid}&mdlid={$smarty.request.mdlid}', '{$lL.__add_a_new_matching_rule_to_ignore_list__}.', 480, 640);" class="file">{$lL.__add_matching_rule__}</a> ]
     {/if}
     </div>
     <div class="column right">
-    {$resultset|@count} __LNG__row(s)__LNG__&nbsp;
+    {$resultset|@count} {$lL.__row_s___}&nbsp;
     </div>
     <br clear="all">
 
@@ -63,7 +63,7 @@ $(document).ready(function(){
 
         <table width="100%" align="center" class="list">
         <thead>
-            <tr><th>__LNG__Object__LNG__</th><th>__LNG__Username__LNG__</th><th>__LNG__Set in List Since__LNG__</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#form_unlock .objlst");setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+            <tr><th>{$lL.__object__}</th><th>{$lL.__username__}</th><th>{$lL.__set_in_list_since__}</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#form_unlock .objlst");setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
         </thead>
         <tbody>
             {foreach from=$resultset key=k item=rec}
@@ -79,7 +79,7 @@ $(document).ready(function(){
                 </span>
                 {/if}
             {else}
-                <img class="tip" alt="listed" src="{$smarty.const._IMG_IGNORE_SM_}" title="__LNG__Object's Ignore List Status__LNG__|'{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}' __LNG__set this entry so matching objects are ignored on__LNG__ '{$InProve_Smarty->ts2str($rec.setts)}'">
+                <img class="tip" alt="listed" src="{$smarty.const._IMG_IGNORE_SM_}" title="{$lL.__object_s_ignore_list_status__}|'{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}' {$lL.__set_this_entry_so_matching_objects_are_ignored_on__} '{$InProve_Smarty->ts2str($rec.setts)}'">
             {/if}
             </td>
             </tr>
@@ -90,7 +90,7 @@ $(document).ready(function(){
         <div class="myhr"></div>
 
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml'}
+            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
         </div>
         <div  id="bottom_right" class="buttons right">
             <button class="button-circle" type="submit" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>

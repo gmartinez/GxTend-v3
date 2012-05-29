@@ -1,0 +1,6 @@
+<?php
+
+$lL["__project_discovered_kbs_will_be_under__"] = "Project discovered KBs will be under";
+$lL["__discover_new_kbs_starting_at__"] = "Discover new Kbs starting at";
+
+?>

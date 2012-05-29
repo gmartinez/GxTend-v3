@@ -1,8 +1,8 @@
 <div id="upqueue">
-    <h2>__LNG__Queued__LNG__ (<a href="javascript:;" onclick="dataSync('up');">&uarr; __LNG__Sync__LNG__</a>)</h2>
+    <h2>{$lL.__queued__} (<a href="javascript:;" onclick="dataSync('up');">&uarr; {$lL.__sync__}</a>)</h2>
     <table width="100%" align="center" class="list">
     <thead>
-        <tr><th>Id</th><th>__LNG__Description__LNG__</th><th>__LNG__Performed__LNG__ &darr;</th><th>__LNG__Ops__LNG__</th></tr>
+        <tr><th>Id</th><th>{$lL.__description__}</th><th>{$lL.__performed__} &darr;</th><th>{$lL.__ops__}</th></tr>
     </thead>
     <tbody>
         {foreach from=$upqueue.entries key=k item=rec}
@@ -11,7 +11,7 @@
             <td align="center">{$rec.sqldesc}</td>
             <td align="center">{$InProve_Smarty->ts2str($rec.setts)}</td>
             <td align="center">
-            <span style="cursor:pointer;" onclick="oponEntry('del',{$rec.sqlid});"><img src="{$smarty.const._IMG_REMOVE_SM_}" title="__LNG__Delete__LNG__"></span>
+            <span style="cursor:pointer;" onclick="oponEntry('del',{$rec.sqlid});"><img src="{$smarty.const._IMG_REMOVE_SM_}" title="{$lL.__delete__}"></span>
             </td>
         </tr>
         <tr id="nfo_{$rec.sqlid}" style="display:none;">
@@ -25,7 +25,7 @@
         {/foreach}
     </tbody>
     <tfoot>
-        <tr><td colspan="4" style="font-size:.75em;">__LNG__Last Up Sync Datetime__LNG__ {$InProve_Smarty->ts2str($upqueue.last_upsync_ts)}&nbsp;</td></tr>
+        <tr><td colspan="4" style="font-size:.75em;">{$lL.__last_up_sync_datetime__} {$InProve_Smarty->ts2str($upqueue.last_upsync_ts)}&nbsp;</td></tr>
     </tfoot>
     </table>
 </div>

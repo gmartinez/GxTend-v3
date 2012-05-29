@@ -547,7 +547,7 @@ function handleXHRerror(xhr) {
     } else if (!xhr.responseText && xhr.statusText) {
         amsg = amsg + "\r\n\r\n" + xhr.status + " " + xhr.statusText;
     }
-    alert(amsg);
+    alert(amsg.replace(/<br \/>/gm,""));
 
     $.unblockUI();
 

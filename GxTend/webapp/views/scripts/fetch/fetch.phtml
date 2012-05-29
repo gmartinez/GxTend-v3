@@ -17,7 +17,7 @@ $(document).ready(function(){
             }
 
             if (r.sts == "ok") {
-                $("#div_fetch #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Successful Fetch__LNG__ "+r.msg);
+                $("#div_fetch #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__successful_fetch__} "+r.msg);
                 $("#form_fetch button").attr("disabled", "disabled");
                 if ($("#mergeAfetch:checked").val()) {
                     mergeAfetch()
@@ -25,10 +25,10 @@ $(document).ready(function(){
                     $("#synch").unblock();
                 }
             } else if (r.sts == "wrn") {
-                $("#div_fetch #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='err'> __LNG__Fetching Data Warning__LNG__ "+r.msg);
+                $("#div_fetch #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='err'> {$lL.__fetching_data_warning__} "+r.msg);
                 $("#synch").unblock();
             } else {
-                $("#div_fetch #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Fetching Data Error__LNG__ "+r.msg);
+                $("#div_fetch #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__fetching_data_error__} "+r.msg);
                 $("#synch").unblock();
             }
         },
@@ -46,9 +46,9 @@ function mergeAfetch() {
             null,
             function (r, textStatus) {
                 if (r.sts == "ok") {
-                    $("#div_fetch #bottom_left").append("<p><img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Successful Merge__LNG__ "+r.msg);
+                    $("#div_fetch #bottom_left").append("<p><img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__successful_merge__} "+r.msg);
                 } else {
-                    $("#div_fetch #bottom_left").append("<p><img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Error in Merge__LNG__ "+r.msg);
+                    $("#div_fetch #bottom_left").append("<p><img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__error_in_merge__} "+r.msg);
                 }
                 $("#synch").unblock();
             }
@@ -59,17 +59,17 @@ function mergeAfetch() {
 
 <fieldset>
     <legend>
-        <img src='{$smarty.const._IMG_FETCH_SM_}' alt='Fetch' title=''>&nbsp;__LNG__Fetch from Server__LNG__.
+        <img src='{$smarty.const._IMG_FETCH_SM_}' alt='Fetch' title=''>&nbsp;{$lL.__fetch_from_server__}.
         [&nbsp;
         <span class='file' title='{$smarty.const._TITLE_HIDE_}' onclick='$("#synch").hide("slow");'>&laquo;</span>
         &nbsp;]
     </legend>
     {if !is_array($remote_changes)}
         <br clear="all">
-        {$InProve_Smarty->msg("ui-icon-info","__LNG__None Found__LNG__")}
+        {$InProve_Smarty->msg("ui-icon-info","{$lL.__none_found__}")}
         <div class="myhr"></div>
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml'}
+            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
         </div>
         <div  id="bottom_right" class="right">
             &nbsp;
@@ -82,11 +82,11 @@ function mergeAfetch() {
         <span class="column left">
             <b>Id :</b> {$InProve_Smarty->cutstr($commit_id,0,$smarty.const._GUID_LEN_)}
             {if $commit_data.codeline == $InProve_Smarty->getSessVar("MyProfile.userdata.username")}
-                &nbsp;<img class="tip" alt="merge" src="../img/icons/16/warning.png" title="__LNG__Commit's Compare Status|Commit in remote personal codeline not present in local personal codeline__LNG__.">
+                &nbsp;<img class="tip" alt="merge" src="../img/icons/16/warning.png" title="{$lL.__commit_s_compare_status_commit_in_remote_personal_codeline_not_present_in_local_personal_codeline__}.">
                 {assign var=commitsToMerge value=$commitsToMerge+1}
             {/if}
             <br>
-            <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='__LNG__Comment__LNG__' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commit_data.subject,0,80)}
+            <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='{$lL.__comment__}' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commit_data.subject,0,80)}
         </span>
         <span class="column right" id="{$commit_id}">
             <b>Commited on :</b> {$InProve_Smarty->ts2str($commit_data.commiterTs)}<br>
@@ -96,7 +96,7 @@ function mergeAfetch() {
         <br clear="all">
         <table width="100%" align="center" class="list">
         <thead>
-            <tr><th>Kb<br>&nbsp;# Env.</th><th>__LNG__Object__LNG__</th><th>__LNG__STS__LNG__</th></tr>
+            <tr><th>Kb<br>&nbsp;# Env.</th><th>{$lL.__object__}</th><th>{$lL.__sts__}</th></tr>
         </thead>
         <tbody>
             {foreach from=$commit_data.changes key=kbguid item=kb_commit_data}
@@ -111,17 +111,17 @@ function mergeAfetch() {
                         {if $rec.gxinfo.objcls!=111}
                         <img src="../img/gx/objclass/{$gx_objcls[$rec.gxinfo.objcls].small}.png" title="{$gx_objcls[$rec.gxinfo.objcls].long}">
                         {else}
-                        <img src="../img/icons/16/file.png" title="__LNG__File__LNG__">
+                        <img src="../img/icons/16/file.png" title="{$lL.__file__}">
                         {/if}
                         &nbsp;{$rec.gxinfo.objnam}
                     </td>
                     <td align="center">
                         {if $rec.gitnfo.status=="A"}
-                            <img class="tip" alt="new" src="../img/icons/16/new.png" title="__LNG__Change Description__LNG__ [{$rec.gitnfo.status}]|__LNG__Object created in this commit__LNG__.">
+                            <img class="tip" alt="new" src="../img/icons/16/new.png" title="{$lL.__change_description__} [{$rec.gitnfo.status}]|{$lL.__object_created_in_this_commit__}.">
                         {elseif $rec.gitnfo.status=="M"}
-                            <img class="tip" alt="new" src="../img/icons/16/edit.png" title="__LNG__Change Description__LNG__ [{$rec.gitnfo.status}]|__LNG__Object was modified in this commit__LNG__.">
+                            <img class="tip" alt="new" src="../img/icons/16/edit.png" title="{$lL.__change_description__} [{$rec.gitnfo.status}]|{$lL.__object_was_modified_in_this_commit__}.">
                         {elseif $rec.gitnfo.status=="D"}
-                            <img class="tip" alt="new" src="../img/icons/16/cleanup.png" title="__LNG__Change Description__LNG__ [{$rec.gitnfo.status}]|__LNG__Object was deleted in this commit__LNG__.">
+                            <img class="tip" alt="new" src="../img/icons/16/cleanup.png" title="{$lL.__change_description__} [{$rec.gitnfo.status}]|{$lL.__object_was_deleted_in_this_commit__}.">
                         {/if}
                     </td>
                 </tr>
@@ -130,9 +130,9 @@ function mergeAfetch() {
                     {assign var=totrecs value=$k+1}
                     <tr class='{cycle values="odd,even"}'>
                     {if $k>3}
-                        <td colspan="3" style="text-align:right;font-size:.90em;">__LNG__3 out of__LNG__ {$totrecs} __LNG__objects in this commit__LNG__.&nbsp;</td>
+                        <td colspan="3" style="text-align:right;font-size:.90em;">{$lL.__3_out_of__} {$totrecs} {$lL.__objects_in_this_commit__}.&nbsp;</td>
                     {else}
-                        <td colspan="3" style="text-align:right;font-size:.90em;">{$totrecs} __LNG__object(s) in this commit__LNG__.&nbsp;</td>
+                        <td colspan="3" style="text-align:right;font-size:.90em;">{$totrecs} {$lL.__object_s__in_this_commit__}.&nbsp;</td>
                     {/if}
                     </tr>
             {/foreach}
@@ -144,15 +144,15 @@ function mergeAfetch() {
 
         <div style="float:right;">
             {if $commitsToMerge}
-                <img alt="merge" src="../img/icons/16/repo-join.png" title="__LNG__Merge remote PCL codeline into local PCL__LNG__">
-                &nbsp;__LNG__Merge PCL after fetch__LNG__
+                <img alt="merge" src="../img/icons/16/repo-join.png" title="{$lL.__merge_remote_pcl_codeline_into_local_pcl__}">
+                &nbsp;{$lL.__merge_pcl_after_fetch__}
                 &nbsp;<input type="checkbox" id="mergeAfetch" value="1" checked>&nbsp;
             {/if}
         </div>        
         <br clear="all">
         <br clear="all">
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml'}
+            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
         </div>
         <div  id="bottom_right" class="buttons right">
             {$smarty.const._FORM_BTN_FETCH_}

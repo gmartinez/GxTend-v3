@@ -8,10 +8,10 @@ $(document).ready(function(){
 <table class="table list" style="width:100%;">
     <thead>
         <tr>
-            <th>__LNG__Name__LNG__</th>
-            <th>__LNG__Size__LNG__</th>
-            <th>__LNG__Modified__LNG__</th>
-            <th>__LNG__Actions__LNG__</th>
+            <th>{$lL.__name__}</th>
+            <th>{$lL.__size__}</th>
+            <th>{$lL.__modified__}</th>
+            <th>{$lL.__actions__}</th>
         </tr>        
     </thead>
     <tbody>
@@ -21,9 +21,9 @@ $(document).ready(function(){
             <td>{$fdata.filesize}</td>
             <td>{$fdata.updated}</td>
             <td>
-                {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode({$fdata.fullname})}&send_as={$fdata.basename}&brushas=xml",null,null,"800x600","<span class='ui-icon ui-icon-extlink' style='display:inline-block;' title='__LNG__Click to View__LNG__'></span>")}
+                {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode({$fdata.fullname})}&send_as={$fdata.basename}&brushas=xml",null,null,"800x600","<span class='ui-icon ui-icon-extlink' style='display:inline-block;' title='{$lL.__click_to_view__}'></span>")}
                 &nbsp;
-                <a class="pointer" href="/Http/getfile?filename={base64_encode({$fdata.fullname})}&send_as={$fdata.basename}"><span class="ui-icon ui-icon-arrowstop-1-s" style='display:inline-block;' title='__LNG__Click to Download__LNG__'></span></a>
+                <a class="pointer" href="/Http/getfile?filename={base64_encode({$fdata.fullname})}&send_as={$fdata.basename}"><span class="ui-icon ui-icon-arrowstop-1-s" style='display:inline-block;' title='{$lL.__click_to_download__}'></span></a>
             </td>
         </tr>
         {/foreach}

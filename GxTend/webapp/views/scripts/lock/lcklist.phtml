@@ -17,10 +17,10 @@ $(document).ready(function(){
             }
 
             if (r.unflaglist.sts == "ok") {
-                $("#div_lcklst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Objects were Successfully UnLocked__LNG__");
+                $("#div_lcklst #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__objects_were_successfully_unlocked__}");
                 $("#diffs").unblock();
             } else {
-                $("#div_lcklst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Some Objects could not be UnLocked__LNG__");
+                $("#div_lcklst #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__some_objects_could_not_be_unlocked__}");
                 $("#diffs").unblock();
             }
 
@@ -42,10 +42,10 @@ $(document).ready(function(){
     <div class="myhr"></div>
 
     <div class="column left">
-    &nbsp;<img src="{$smarty.const._IMG_LOCK_SM_}" alt="{$smarty.const._LBL_LOCK_}" title="{$smarty.const._LBL_LOCK_}"> __LNG__List active locks on objects__LNG__.
+    &nbsp;<img src="{$smarty.const._IMG_LOCK_SM_}" alt="{$smarty.const._LBL_LOCK_}" title="{$smarty.const._LBL_LOCK_}"> {$lL.__list_active_locks_on_objects__}.
     </div>
     <div class="column right">
-    {$resultset|@count} __LNG__row(s)__LNG__&nbsp;
+    {$resultset|@count} {$lL.__row_s___}&nbsp;
     </div>
     <br clear="all">
 
@@ -57,7 +57,7 @@ $(document).ready(function(){
 
         <table width="100%" align="center" class="list">
         <thead>
-            <tr><th>__LNG__Object__LNG__</th><th>__LNG__Username__LNG__</th><th>__LNG__Locked Since__LNG__ &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#form_unlock .objlst");setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
+            <tr><th>{$lL.__object__}</th><th>{$lL.__username__}</th><th>{$lL.__locked_since__} &darr;</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#form_unlock .objlst");setsubmitsts("#form_unlock .objlst", "#form_unlock button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th></tr>
         </thead>
         <tbody>
             {foreach from=$resultset key=k item=rec}
@@ -67,7 +67,7 @@ $(document).ready(function(){
                 <img src="../img/gx/objclass/{$gx_objcls[$rec.objcls].small}.png" title="{$gx_objcls[$rec.objcls].long}">
                 &nbsp;{$rec.objnam}
                 {else}
-                <img src="../img/icons/16/file.png" title="__LNG__File__LNG__">
+                <img src="../img/icons/16/file.png" title="{$lL.__file__}">
                 &nbsp;{$rec.objnam}
                 {/if}
             </td>
@@ -81,7 +81,7 @@ $(document).ready(function(){
                 </span>
                 {/if}
                 {else}
-                <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="__LNG__Object's Lock Status__LNG__|'{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}' __LNG__has an active lock on this object since__LNG__ '{$InProve_Smarty->ts2str($rec.setts)}'">
+                <img class="tip" alt="locked" src="{$smarty.const._IMG_LOCK_SM_}" title="{$lL.__object_s_lock_status__}|'{$InProve_Smarty->guid2name('gxt_users', $rec.setuserguid)}' {$lL.__has_an_active_lock_on_this_object_since__} '{$InProve_Smarty->ts2str($rec.setts)}'">
                 {/if}
             </td>
             </tr>
@@ -92,7 +92,7 @@ $(document).ready(function(){
         <div class="myhr"></div>
 
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml'}
+            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
         </div>
         <div  id="bottom_right" class="buttons right">
             {$smarty.const._FORM_BTN_UNLOCK_}

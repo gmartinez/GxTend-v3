@@ -1,0 +1,15 @@
+<?php
+
+$lL["__kb_path__"] = "KB Path";
+$lL["__genexus_base_directory__"] = "GeneXus Base Directory";
+$lL["__from_system__"] = "From system";
+$lL["__unset__"] = "Unset";
+$lL["__connection_driver__"] = "Connection Driver";
+$lL["__connection_type__"] = "Connection Type";
+$lL["__server_name__"] = "Server Name";
+$lL["__host___port__"] = "Host : Port";
+$lL["__username___password__"] = "Username / Password";
+$lL["__for__"] = "For";
+$lL["__set_both_empty__"] = "set both empty";
+
+?>

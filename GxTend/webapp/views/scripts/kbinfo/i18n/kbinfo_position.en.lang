@@ -1,0 +1,11 @@
+<?php
+
+$lL["__project__"] = "Project";
+$lL["__repository__"] = "Repository";
+$lL["__repository_detailed_stats__"] = "Repository Detailed Stats";
+$lL["__available__"] = "Available";
+$lL["__not_available__"] = "Not Available";
+$lL["__parent_kb__"] = "Parent Kb";
+$lL["__children_kb_s___"] = "Children KB(s)";
+
+?>

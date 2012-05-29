@@ -1,0 +1,14 @@
+<?php
+
+$lL["__internal_id__"] = "Internal Id";
+$lL["__visual_id__"] = "Visual Id";
+$lL["__description__"] = "Description";
+$lL["__source__"] = "Source";
+$lL["__vers__sync__status__"] = "Vers./Sync. Status";
+$lL["__kb_position__"] = "Kb Position";
+$lL["__environments__"] = "Environments";
+$lL["__kb_files__"] = "KB Files";
+$lL["__stag_files__"] = "Stag Files";
+$lL["__locking__"] = "Locking";
+
+?>

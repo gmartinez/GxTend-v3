@@ -1,0 +1,6 @@
+<?php
+
+$lL["__edit_ticket__"] = "Editar Ticket";
+$lL["__add_ticket__"] = "Adicionar Ticket";
+
+?>

@@ -1,0 +1,13 @@
+<?php
+
+$lL["__matching_rule_successfully_added_to_list__"] = "Matching rule successfully added to list";
+$lL["__could_not_add_matching_rule_successfully_to_list__"] = "Could not add matching rule successfully to list";
+$lL["__matching_class__"] = "Matching Class";
+$lL["__object_class_the__matching_expression__will_be_used_on__"] = "Object class the 'Matching Expression' will be used on";
+$lL["__matching_expression__"] = "Matching Expression";
+$lL["__matching_expression_examples__"] = "Matching Expression Examples";
+$lL["__normal_regular_expression__regexp____eg___strong__a_href__javascript____onclick______regexpcode___val___gx_i______gx_i__a___strong__will_match_all_objects_whose_name_start_with__gx___while__i__will_makes_the_matching_case_insensitive___"] = "Normal regular expression (RegExp) : eg. <strong><a href=\"javascript:;\" onclick=\"$('#regExpCode').val('/gx/i');\">/gx/i</a></strong> will match all objects whose name start with \"gx\", while \"i\" will makes the matching case insensitive.";
+$lL["__special_case_for_genexus_x_kbs____strong__a_href__javascript____onclick______regexpcode___val___generated_______generated___a___strong__will_match_all_objects_that_gxtend_detects_as_being_automatically_generated__it_matches_both__generated_and_not_modified__and_also__generated_but_modified____"] = "Special case for GeneXus X Kbs : <strong><a href=\"javascript:;\" onclick=\"$('#regExpCode').val('/Generated/');\">/Generated/</a></strong> will match all objects that GxTend detects as being automatically generated. It matches both \"generated and not modified\" and also \"generated but modified\".";
+$lL["__special_case_for_genexus_x_kbs____strong__a_href__javascript____onclick______regexpcode___val___generated_and_not_modified_______generated_and_not_modified___a___strong__will_match_all_objects_that_gxtend_detects_as_being_automatically_generated__it_only_matches__generated_and_not_modified____"] = "Special case for GeneXus X Kbs : <strong><a href=\"javascript:;\" onclick=\"$('#regExpCode').val('/Generated_and_not_Modified/');\">/Generated_and_not_Modified/</a></strong> will match all objects that GxTend detects as being automatically generated. It only matches \"generated and not modified\".";
+
+?>

@@ -1,0 +1,14 @@
+<?php
+
+$lL["__objects_were_successfully_unlocked__"] = "Objects were Successfully UnLocked";
+$lL["__some_objects_could_not_be_unlocked__"] = "Some Objects could not be UnLocked";
+$lL["__list_active_locks_on_objects__"] = "List active locks on objects";
+$lL["__row_s___"] = "row(s)";
+$lL["__object__"] = "Object";
+$lL["__username__"] = "Username";
+$lL["__locked_since__"] = "Locked Since";
+$lL["__file__"] = "File";
+$lL["__object_s_lock_status__"] = "Object's Lock Status";
+$lL["__has_an_active_lock_on_this_object_since__"] = "has an active lock on this object since";
+
+?>

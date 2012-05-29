@@ -1,7 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-     toggleLangs("{$smarty.cookies['gxtend_login_language']}");
+     toggleLangs("{$smarty.cookies['gxtend_login_language']|default:'en'}");
 
 });
 
@@ -22,7 +22,7 @@ function toggleLangs(lang) {
         {$title}
     </span>
     <span id="langs" style="float:right;font-size:0.85em;">
-        <span id="langopt_en" class="file ui-state-highlight ui-corner-all" onclick="toggleLangs('en');">&nbsp;English&nbsp;</span>&nbsp;
+        <span id="langopt_en" class="file" onclick="toggleLangs('en');">&nbsp;English&nbsp;</span>&nbsp;
         <span id="langopt_es" class="file" onclick="toggleLangs('es');">&nbsp;Español&nbsp;</span>&nbsp;
         <span id="langopt_pt-br" class="file" onclick="toggleLangs('pt-br');">&nbsp;Português&nbsp;</span>
     </span>

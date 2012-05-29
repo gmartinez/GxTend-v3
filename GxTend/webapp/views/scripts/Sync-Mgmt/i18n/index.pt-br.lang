@@ -1,0 +1,6 @@
+<?php
+
+$lL["__confirm_data_deletion__"] = "Confirm Data Deletion";
+$lL["__could_not_delete_record__"] = "Could not delete record";
+
+?>

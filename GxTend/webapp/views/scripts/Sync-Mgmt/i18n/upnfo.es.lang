@@ -1,0 +1,11 @@
+<?php
+
+$lL["__queued__"] = "Queued";
+$lL["__sync__"] = "Sinc";
+$lL["__description__"] = "Descripción";
+$lL["__performed__"] = "Performed";
+$lL["__ops__"] = "Ops";
+$lL["__delete__"] = "Delete";
+$lL["__last_up_sync_datetime__"] = "Last Up Sync Datetime";
+
+?>

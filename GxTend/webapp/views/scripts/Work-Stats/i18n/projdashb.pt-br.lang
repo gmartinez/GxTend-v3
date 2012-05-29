@@ -1,0 +1,13 @@
+<?php
+
+$lL["__last_team_actions__"] = "Ultima Ações da equipe";
+$lL["__user_image__"] = "Id Visual do Usuário";
+$lL["__click_to_see_commit_s_content__"] = "Clique para ver o conteúdo do commit";
+$lL["__commit_data___promotion_status__"] = "Dados do Commit e de Status de Promoção";
+$lL["__info_gathered_at__"] = "Informações recolhidas em";
+$lL["__layer__on__"] = "layer, no";
+$lL["__see_only_last_3_commits__"] = "Ver apenas 3 última commits";
+$lL["__see_all__"] = "Ver todos";
+$lL["__graphic_stats__"] = "Gráfico do Estatísticas";
+
+?>

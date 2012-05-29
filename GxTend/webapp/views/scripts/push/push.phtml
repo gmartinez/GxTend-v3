@@ -17,14 +17,14 @@ $(document).ready(function(){
             }
 
             if (r.sts == "ok") {
-                $("#div_push #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> __LNG__Successful Push__LNG__ "+r.msg);
+                $("#div_push #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__successful_push__} "+r.msg);
                 $("#form_push button").attr("disabled", "disabled");
                 $("#synch").unblock();
             } else if (r.sts == "wrn") {
-                $("#div_push #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='err'> __LNG__Pushing Data Warning__LNG__ "+r.msg);
+                $("#div_push #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='err'> {$lL.__pushing_data_warning__} "+r.msg);
                 $("#synch").unblock();
             } else {
-                $("#div_push #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> __LNG__Pushing Data Error__LNG__ "+r.msg);
+                $("#div_push #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__pushing_data_error__} "+r.msg);
                 $("#synch").unblock();
             }
         },
@@ -40,17 +40,17 @@ $(document).ready(function(){
 
 <fieldset>
     <legend>
-        <img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title=''>&nbsp;__LNG__Push to Server__LNG__.
+        <img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title=''>&nbsp;{$lL.__push_to_server__}.
         [&nbsp;
         <span class='file' title='{$smarty.const._TITLE_HIDE_}' onclick='$("#synch").hide("slow");'>&laquo;</span>
         &nbsp;]
     </legend>
     {if !is_array($local_changes)}
         <br clear="all">
-        {$InProve_Smarty->msg("ui-icon-info","__LNG__None Found__LNG__")}
+        {$InProve_Smarty->msg("ui-icon-info","{$lL.__none_found__}")}
         <div class="myhr"></div>
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml'}
+            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
         </div>
         <div  id="bottom_right" class="right">
             &nbsp;
@@ -72,14 +72,14 @@ $(document).ready(function(){
             <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='Comment' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commit_data.subject,0,80)}
         </div>
         <div class="column right" id="{$commit_id}">
-            <b>__LNG__Commited on__LNG__ :</b> {$InProve_Smarty->ts2str($commit_data.commiterTs)}<br>
-            <b>__LNG__Commited by__LNG__ :</b> {$commit_data.commiter}
+            <b>{$lL.__commited_on__} :</b> {$InProve_Smarty->ts2str($commit_data.commiterTs)}<br>
+            <b>{$lL.__commited_by__} :</b> {$commit_data.commiter}
             <input type="hidden" name="commits[]" value="{$commit_id}">
         </div>
         <br clear="all">
         <table width="100%" align="center" class="list">
         <thead>
-            <tr><th>KB<br>&nbsp;# __LNG__Env.__LNG__</th><th>__LNG__Object__LNG__</th><th>__LNG__Sts__LNG__</th></tr>
+            <tr><th>KB<br>&nbsp;# {$lL.__env___}</th><th>{$lL.__object__}</th><th>{$lL.__sts__}</th></tr>
         </thead>
         <tbody>
             {foreach from=$commit_data.changes key=kbguid item=kb_commit_data}
@@ -100,11 +100,11 @@ $(document).ready(function(){
                     </td>
                     <td align="center">
                         {if $rec.gitnfo.status=="A"}
-                            <img class="tip" alt="new" src="../img/icons/16/new.png" title="__LNG__Change Description__LNG__ [{$rec.gitnfo.status}]|__LNG__Object created in this commit__LNG__.">
+                            <img class="tip" alt="new" src="../img/icons/16/new.png" title="{$lL.__change_description__} [{$rec.gitnfo.status}]|{$lL.__object_created_in_this_commit__}.">
                         {elseif $rec.gitnfo.status=="M"}
-                            <img class="tip" alt="new" src="../img/icons/16/edit.png" title="__LNG__Change Description__LNG__ [{$rec.gitnfo.status}]|__LNG__Object was modified in this commit__LNG__.">
+                            <img class="tip" alt="new" src="../img/icons/16/edit.png" title="{$lL.__change_description__} [{$rec.gitnfo.status}]|{$lL.__object_was_modified_in_this_commit__}.">
                         {elseif $rec.gitnfo.status=="D"}
-                            <img class="tip" alt="new" src="../img/icons/16/cleanup.png" title="__LNG__Change Description__LNG__ [{$rec.gitnfo.status}]|__LNG__Object was deleted in this commit__LNG__.">
+                            <img class="tip" alt="new" src="../img/icons/16/cleanup.png" title="{$lL.__change_description__} [{$rec.gitnfo.status}]|{$lL.__object_was_deleted_in_this_commit__}.">
                         {/if}
                     </td>
                 </tr>
@@ -114,9 +114,9 @@ $(document).ready(function(){
                 {assign var=totrecs value=$k+1}
                 <tr class='{cycle values="odd,even"}'>
                 {if $k>3}
-                    <td colspan="3" style="text-align:right;font-size:.90em;">__LNG__3 out of__LNG__ {$totrecs} __LNG__objects in this commit__LNG__.&nbsp;</td>
+                    <td colspan="3" style="text-align:right;font-size:.90em;">{$lL.__3_out_of__} {$totrecs} {$lL.__objects_in_this_commit__}.&nbsp;</td>
                 {else}
-                    <td colspan="3" style="text-align:right;font-size:.90em;">{$totrecs} __LNG__object(s) in this commit__LNG__.&nbsp;</td>
+                    <td colspan="3" style="text-align:right;font-size:.90em;">{$totrecs} {$lL.__object_s__in_this_commit__}.&nbsp;</td>
                 {/if}
                 </tr>
         </tbody>
@@ -125,12 +125,12 @@ $(document).ready(function(){
         {/foreach}
         <div class="myhr"></div>
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml'}
+            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
         </div>
         <div  id="bottom_right" class="right buttons">
-            <span class="file" onclick="$('.othersCommits').hide('slow');$('.myCommits').show('slow');"><strong>__LNG__My Own__LNG__ :</strong> {$myCommits|default:0}</span>
+            <span class="file" onclick="$('.othersCommits').hide('slow');$('.myCommits').show('slow');"><strong>{$lL.__my_own__} :</strong> {$myCommits|default:0}</span>
             <br clear="all">
-            <span class="file" onclick="$('.myCommits').hide('slow');$('.othersCommits').show('slow');"><strong>__LNG__Others__LNG__ :</strong> {$othersCommits|default:0}</span>
+            <span class="file" onclick="$('.myCommits').hide('slow');$('.othersCommits').show('slow');"><strong>{$lL.__others__} :</strong> {$othersCommits|default:0}</span>
             <br clear="all">
             <br clear="all">
             {$smarty.const._FORM_BTN_PUSH_}

@@ -1,0 +1,21 @@
+<?php
+
+$lL["__target__"] = "Target";
+$lL["__path__"] = "Path";
+$lL["__ttp__"] = "TTP";
+$lL["__average__"] = "Average";
+$lL["__objects_are_listed_in_the_order_they_were_processed__"] = "Objects are listed in the order they were processed";
+$lL["__import_status_objects_tagged_with_this_icon_were_successfully_imported_into_target_kb__"] = "Import Status|Objects tagged with this icon were successfully imported into target KB";
+$lL["__import_status_objects_tagged_with_this_icon_reported_errors_when_imported_into_target_kb__"] = "Import Status|Objects tagged with this icon reported errors when imported into target KB";
+$lL["__row_s___"] = "row(s)";
+$lL["__object__"] = "Object";
+$lL["__overwritten_version__"] = "Overwritten Version";
+$lL["__imported_version__"] = "Imported Version";
+$lL["__sts__"] = "Sts";
+$lL["__does_not_exist_in_target__"] = "Does not exist in target";
+$lL["__object_detected_as_deleted_in_source__"] = "Object detected as deleted in source";
+$lL["__target_modified_on__"] = "Target modified on";
+$lL["__automatically_generated__"] = "Automatically generated";
+$lL["__automatically_generated_but_modified__"] = "Automatically generated BUT modified";
+
+?>

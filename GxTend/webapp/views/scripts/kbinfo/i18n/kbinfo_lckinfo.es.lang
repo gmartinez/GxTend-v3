@@ -1,0 +1,14 @@
+<?php
+
+$lL["__list_of_active_locks__"] = "List of active locks";
+$lL["__object_s_locking_history__"] = "Object's locking history";
+$lL["__row_s___"] = "row(s)";
+$lL["__object__"] = "Object";
+$lL["__username__"] = "Username";
+$lL["__locked_since__"] = "Locked Since";
+$lL["__locked_on__"] = "Locked On";
+$lL["__by_user__"] = "by User";
+$lL["__released_on__"] = "Released On";
+$lL["__click_to_see_all_locking_history__"] = "Click to see all locking history";
+
+?>

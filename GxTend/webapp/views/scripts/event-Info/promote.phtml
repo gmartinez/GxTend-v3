@@ -1,27 +1,27 @@
 <div id="log_promote">
     <div class="column left">
-        <strong>__LNG__Target__LNG__ : </strong> {$InProve_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
+        <strong>{$lL.__target__} : </strong> {$InProve_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
         <br>
-        <strong>__LNG__Unlock After Import__LNG__ : </strong> {($logData.unlockAimport) ? "__LNG__Yes__LNG__" : "__LNG__No__LNG__"}
+        <strong>{$lL.__unlock_after_import__} : </strong> {($logData.unlockAimport) ? "{$lL.__yes__}" : "{$lL.__no__}"}
     </div>
     <div class="column right">
-        <strong>__LNG__Queued for Batch Processing__LNG__ : </strong> {($logData.queue4exec) ? "__LNG__Yes__LNG__" : "__LNG__No__LNG__"}
+        <strong>{$lL.__queued_for_batch_processing__} : </strong> {($logData.queue4exec) ? "{$lL.__yes__}" : "{$lL.__no__}"}
         <br>
-        <strong>__LNG__Process Result Audit Entry__LNG__ : </strong> {$logData.output}
+        <strong>{$lL.__process_result_audit_entry__} : </strong> {$logData.output}
     </div>
     <br clear="all">
     <div class="myhr"></div>
     
     <div class="column left">
-        __LNG__Objects are listed in the order they were submitted__LNG__.
+        {$lL.__objects_are_listed_in_the_order_they_were_submitted__}.
     </div>
     <div class="column right">
-        {count($logData.checked_objs)} __LNG__row(s)__LNG__
+        {count($logData.checked_objs)} {$lL.__row_s___}
     </div>
     <br clear="all">
     <table width="100%" align="center" class="list">
     <thead>
-        <tr><th>__LNG__Object__LNG__</th><th>__LNG__Modified__LNG__ &darr;</th></tr>
+        <tr><th>{$lL.__object__}</th><th>{$lL.__modified__} &darr;</th></tr>
     </thead>
     <tbody>
         {foreach from=$logData.checked_objs key=k item=rec}
@@ -38,16 +38,16 @@
         <td align="center">
             &nbsp;{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
             {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
-            &nbsp;<img alt="new" src="../img/icons/16/new.png" title="__LNG__Does not exist in target__LNG__.">
+            &nbsp;<img alt="new" src="../img/icons/16/new.png" title="{$lL.__does_not_exist_in_target__}.">
             {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
-            &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="__LNG__Object detected as deleted in source__LNG__.">
+            &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="{$lL.__object_detected_as_deleted_in_source__}.">
             {elseif $rec.gxinfo.COMP=="OLDER"}
-            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="__LNG__Target modified on__LNG__ {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="{$lL.__target_modified_on__} {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
             {/if}
             {if $rec.gxinfo.generated==1}
-            &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="__LNG__Automatically generated__LNG__.">
+            &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="{$lL.__automatically_generated__}.">
             {else if $rec.gxinfo.generated==2}
-            &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="__LNG__Automatically generated BUT modified__LNG__.">
+            &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="{$lL.__automatically_generated_but_modified__}.">
             {/if}
         </td>
         </tr>
