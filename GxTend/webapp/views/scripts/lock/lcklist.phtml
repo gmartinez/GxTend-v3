@@ -92,7 +92,7 @@ $(document).ready(function(){
         <div class="myhr"></div>
 
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
+            {include file='../skel/ttp.phtml' ttpLabel={$lL.__ttp__} secLabel={$lL.__second__} topLabel={$lL.__top__}}
         </div>
         <div  id="bottom_right" class="buttons right">
             {$smarty.const._FORM_BTN_UNLOCK_}

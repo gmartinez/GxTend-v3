@@ -19,5 +19,8 @@ $lL["__objects_in_this_commit__"] = "objects in this commit";
 $lL["__object_s__in_this_commit__"] = "object(s) in this commit";
 $lL["__my_own__"] = "My Own";
 $lL["__others__"] = "Others";
+$lL["__ttp__"] = "TTP";
+$lL["__second__"] = "second";
+$lL["__top__"] = "Top";
 
 ?>

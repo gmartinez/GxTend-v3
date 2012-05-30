@@ -7,5 +7,8 @@ $lL["__class__"] = "Class";
 $lL["__name__"] = "Name";
 $lL["__description__"] = "Description";
 $lL["__add_row__"] = "Add Row";
+$lL["__ttp__"] = "TTP";
+$lL["__second__"] = "second";
+$lL["__top__"] = "Top";
 
 ?>

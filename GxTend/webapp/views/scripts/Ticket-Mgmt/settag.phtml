@@ -13,9 +13,9 @@ $(document).ready(function(){
 		},
 		success: function (r) {
             if (r.sts) {
-                mDialog('/Ticket-Mgmt/settag?ttsguid={$smarty.request.ttsguid}', '__LNG__Ticket Tags__LNG__', 480, 640);
+                mDialog('/Ticket-Mgmt/settag?ttsguid={$smarty.request.ttsguid}', '{$lL.__ticket_tags__}', 480, 640);
             } else {
-                notify("__LNG__Notification__LNG__",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 5000));
+                notify("{$lL.__notification__}",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 5000));
                 $("#GenericDialog").unblock();
             }
         },
@@ -48,8 +48,8 @@ function goChgPrm(mode,k,v) {
     <table align="center" width="100%" class="list-horizontal">
     <thead>
         <tr>
-            <td class="header">__LNG__Name__LNG__</td>
-            <td class="header">__LNG__Value__LNG__</td>
+            <td class="header">{$lL.__name__}</td>
+            <td class="header">{$lL.__value__}</td>
         </tr>
     </thead>
     <body>
@@ -60,13 +60,13 @@ function goChgPrm(mode,k,v) {
         </td>
         <td align="left">
             {$InProve_Smarty->cutstr($row.val,0,50)}
-            <span id="{$row.key|sha1}" style="display:none;" onclick='goChgPrm("edt","{$row.key}","{$row.val}");' class='pointer right'><img src="{$smarty.const._IMG_EDIT_SM_}" title="__LNG__Edit entry__LNG__."></span>
+            <span id="{$row.key|sha1}" style="display:none;" onclick='goChgPrm("edt","{$row.key}","{$row.val}");' class='pointer right'><img src="{$smarty.const._IMG_EDIT_SM_}" title="{$lL.__edit_entry__}."></span>
         </td>
     </tr>
     {/foreach}
     <tr class="config_entries">
         <td align="left" class="header" scope="row" colspan="2">
-            <span style="cursor:pointer;float:right;font-size:.8em;" onclick='goChgPrm("add","","");'>__LNG__Add Entry__LNG__</span>
+            <span style="cursor:pointer;float:right;font-size:.8em;" onclick='goChgPrm("add","","");'>{$lL.__add_entry__}</span>
         </td>
     </tr>
     </body>
@@ -76,20 +76,20 @@ function goChgPrm(mode,k,v) {
     <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
     <input type="hidden" name="itmtyp" value="tag">
         <p>
-            {$InProve_Smarty->msg("ui-icon-info","__LNG__Add/Edit Tag__LNG__")}
+            {$InProve_Smarty->msg("ui-icon-info","{$lL.__add_edit_tag__}")}
         </p>
         <div>
-        <label for="key"><strong>__LNG__Key__LNG__</strong></label>
+        <label for="key"><strong>{$lL.__key__}</strong></label>
         <input type="input" id="key" name="key" size="30" value="" class="required">
         </div>
         <div>
-        <label for="val"><strong>__LNG__Value__LNG__</strong></label>
+        <label for="val"><strong>{$lL.__value__}</strong></label>
         <input type="input" id="val" name="val" size="75" value="" class="required" style="width:80%;">
         </div>
         <div id="bottom_right" class="buttons right">
             {$smarty.const._FORM_BTN_INSERT_}
-            &nbsp;__LNG__or__LNG__&nbsp;
-            <a href="javascript:;" onclick='$("#form_settag").hide();'>__LNG__cancel__LNG__</a>&nbsp;
+            &nbsp;{$lL.__or__}&nbsp;
+            <a href="javascript:;" onclick='$("#form_settag").hide();'>{$lL.__cancel__}</a>&nbsp;
         </div>
     </form>                
     

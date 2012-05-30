@@ -30,5 +30,8 @@ $lL["__object_s_status_object_was_added_during_commit__br_if_marked_it_will_be_p
 $lL["__queue_for_asynchronous_execution__"] = "Queue for asynchronous execution";
 $lL["__release_locks_after_successful_import__"] = "Release locks after successful import";
 $lL["__promotion_of_objects_is_only_available_in_server_layer__"] = "Promotion of objects is only available in Server layer";
+$lL["__ttp__"] = "TPP";
+$lL["__second__"] = "segundo";
+$lL["__top__"] = "Tope";
 
 ?>

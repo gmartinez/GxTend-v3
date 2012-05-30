@@ -1,0 +1,7 @@
+<?php
+
+$lL["__error_retrieving_folders_tree__"] = "Error al recuperar el árbol de carpetas";
+$lL["__error_retrieving_folder_content__"] = "Error al recuperar el contenido de la carpeta";
+$lL["__browse_kbs__"] = "Navegar KBs";
+
+?>

@@ -162,7 +162,7 @@ function filter_by_objsts() {
         <div class="myhr"></div>
 
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
+            {include file='../skel/ttp.phtml' ttpLabel={$lL.__ttp__} secLabel={$lL.__second__} topLabel={$lL.__top__}}
         </div>
         <div  id="bottom_right" class="buttons right">
             <input type="radio" name='catchuptype' value='import' checked>&nbsp;<img src='{$smarty.const._IMG_CATCHUP_SM_}'> {$smarty.const._LBL_CATCHUP_}&nbsp;&nbsp;

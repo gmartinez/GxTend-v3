@@ -150,7 +150,7 @@ function update_object(b64,src_path,objupdts,atlkbupdts) {
         <div class="myhr"></div>
 
         <div id="bottom_left" class="left">
-            {include file='../skel/ttp.phtml' ttpLabel=__LNG__TTP__LNG__ secLabel=__LNG__second__LNG__ topLabel=__LNG__Top__LNG__}
+            {include file='../skel/ttp.phtml' ttpLabel={$lL.__ttp__} secLabel={$lL.__second__} topLabel={$lL.__top__}}
         </div>
         <div  id="bottom_right" class="buttons right">
             <input type="radio" name='flagtype' value='lock' checked>&nbsp;<img src='{$smarty.const._IMG_LOCK_SM_}'> {$smarty.const._LBL_LOCK_}&nbsp;&nbsp;

@@ -1,11 +1,12 @@
+{*LNG@index.phtml*}
 <script type="text/javascript">
 $(document).ready(function(){
     $('body > #container').layout({
     defaults: {
         //size:					"auto",
-        togglerTip_open:		"__LNG__Close This Pane__LNG__",
-        togglerTip_closed:		"__LNG__Open This Pane__LNG__",
-        resizerTip:				"__LNG__Resize This Pane__LNG__",
+        togglerTip_open:		"{$lL.__close_this_pane__}",
+        togglerTip_closed:		"{$lL.__open_this_pane__}",
+        resizerTip:				"{$lL.__resize_this_pane__}",
         //	effect defaults - overridden on some panes
         fxName:					"slide",		// none, slide, drop, scale
         fxSpeed_open:			750,
@@ -114,7 +115,7 @@ function loadWestPanel() {
                                 {/if}
                                 });
                             } else {
-                                alert("__LNG__Error retrieving west-menu options__LNG__.");
+                                alert("{$lL.__error_retrieving_west_menu_options__}.");
                             }
                         }
     );
@@ -179,12 +180,12 @@ function bkgSync() {
     <div id="footer-inner">
     <div id="footerlog">
         <div id="srvidname" style="float:left;">
-        <img src="../img/icons/16/server.png" alt="__LNG__GxTend Server__LNG__" title="{$lL.__server_you_are_working_with__}"> {$InProve_Smarty->getSessVar("MetaData.desc")}
+        <img src="../img/icons/16/server.png" alt="{$lL.__gxtend_server__}" title="{$lL.__server_you_are_working_with__}"> {$InProve_Smarty->getSessVar("MetaData.desc")}
         </div>
         {if $smarty.const.__LAYER_ROLE__=="Client"}
         <div id="srvstatus" style="float:left;"></div>
         <div id="autosync" style="float:left;display:none;">
-        &nbsp;|&nbsp; <img src="../img/loading_16-Client.gif" alt="__LNG__GxTend Server__LNG__" title="{$lL.__server_you_are_working_with__}"> __LNG__Auto Syncing__LNG__...
+        &nbsp;|&nbsp; <img src="../img/loading_16-Client.gif" alt="{$lL.__gxtend_server__}" title="{$lL.__server_you_are_working_with__}"> {$lL.__auto_syncing__}...
         </div>
         {/if}
     </div>

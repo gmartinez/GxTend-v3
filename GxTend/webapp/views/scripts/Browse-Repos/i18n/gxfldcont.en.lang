@@ -1,0 +1,7 @@
+<?php
+
+$lL["__name__"] = "Name";
+$lL["__description__"] = "Description";
+$lL["__date_modified__"] = "Date Modified";
+
+?>

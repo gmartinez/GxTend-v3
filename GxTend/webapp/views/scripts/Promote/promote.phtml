@@ -232,7 +232,7 @@ function setChkCell(cellid,kb,obj,islast) {
     {/foreach}
 
     <div id="bottom_left" class="left">
-        {include file='../index/ttp.phtml' bck2top='no'}
+        {include file='../skel/ttp.phtml' bck2top='no' ttpLabel={$lL.__ttp__} secLabel={$lL.__second__} topLabel={$lL.__top__}}
     </div>
     <div class="right">
         {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}

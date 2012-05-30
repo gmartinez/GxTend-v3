@@ -6,7 +6,13 @@ $lL["__username__"] = "Nome de Usuário";
 $lL["__password__"] = "Senha";
 $lL["__gxtsrv__"] = "Servidor GxTend";
 $lL["__mdialog_config_title__"] = "Clique para ver/definir entradas de configuração";
-$lL["__mdialog_title__"] = "Configurações";
+$lL["__mdialog_title__"] = "Propriedades de Configuração";
 $lL["__server_you_are_working_with__"] = "Servidor GxTend você está trabalhando com";
+$lL["__close_this_pane__"] = "Fechar este painel";
+$lL["__open_this_pane__"] = "Abrir este painel";
+$lL["__resize_this_pane__"] = "Redimensionar este painel";
+$lL["__error_retrieving_west_menu_options__"] = "Erro ao recuperar menu de opções";
+$lL["__gxtend_server__"] = "Servidor GxTend";
+$lL["__auto_syncing__"] = "Sincronização Automática";
 
 ?>

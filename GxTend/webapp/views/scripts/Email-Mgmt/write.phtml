@@ -35,14 +35,14 @@ $(document).ready(function(){
 });
 </script>
 
-    <h2 style="float:right;">__LNG__Write Email__LNG__&nbsp;</h2>
+    <h2 style="float:right;">{$lL.__write_email__}&nbsp;</h2>
     <br clear="all">
     <form id="write_email_form" class="toValidate" action="/Email-Mgmt/send" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="options" value="{$b64options}">
     <table align="center" width="100%" class="list-horizontal">
     <tr id="toRow">
 		<td align="left" width="15%" class="header first" scope="row">
-			__LNG__To__LNG__
+			{$lL.__to__}
 		</td>
 		<td align="left" class="first">
             {if $smarty.request.op=='Re'}
@@ -51,19 +51,19 @@ $(document).ready(function(){
             <input type="text" name="to" value="" class="required email" style="width:50%;" >
             {/if}
             <span style="font-size:.8em;">
-            <a href="javascript:;" id="add_cc_lnk" onclick="javascript:$('#ccRow').show();$('#add_cc_lnk,#add_sepa').hide();">__LNG__Add Cc__LNG__</a>
+            <a href="javascript:;" id="add_cc_lnk" onclick="javascript:$('#ccRow').show();$('#add_cc_lnk,#add_sepa').hide();">{$lL.__add_cc__}</a>
             <span id="add_sepa">|</span>
-            <a href="javascript:;" id="add_bcc_lnk" onclick="javascript:$('#bccRow').show();$('#add_bcc_lnk,#add_sepa').hide();">__LNG__Add Bcc__LNG__</a>
+            <a href="javascript:;" id="add_bcc_lnk" onclick="javascript:$('#bccRow').show();$('#add_bcc_lnk,#add_sepa').hide();">{$lL.__add_bcc__}</a>
             </span>
             <span style="float:right;">
-            <label for="priority"><strong>__LNG__Priority__LNG__</strong></label>
+            <label for="priority"><strong>{$lL.__priority__}</strong></label>
             {$priority}
             </span>
 		</td>
 	</tr>
     <tr id="ccRow" style="display:none;">
 		<td align="left" class="header" scope="row">
-			__LNG__Cc__LNG__
+			{$lL.__cc__}
 		</td>
 		<td align="left">
             <input type="text" name="cc" value="{$cc}" class="email" style="width:50%;">
@@ -71,7 +71,7 @@ $(document).ready(function(){
     </tr>
     <tr id="bccRow" style="display:none;">
 		<td align="left" class="header" scope="row">
-			__LNG__Bcc__LNG__
+			{$lL.__bcc__}
 		</td>
 		<td align="left">
             <input type="text" name="bcc" value="{$bcc}" class="email" style="width:50%;">
@@ -79,7 +79,7 @@ $(document).ready(function(){
     </tr>
     <tr id="subjectRow" >
 		<td align="left" class="header" scope="row">
-			__LNG__Subject__LNG__
+			{$lL.__subject__}
 		</td>
 		<td align="left">
             {if $smarty.request.op=='Re'}
@@ -93,7 +93,7 @@ $(document).ready(function(){
 	</tr>
     <tr id="attchsRow" style="display:none;">
 		<td align="left" class="header" scope="row">
-			__LNG__Attachments__LNG__
+			{$lL.__attachments__}
 		</td>
 		<td align="left">
             <span id="attchsHolder"></span>
@@ -101,8 +101,8 @@ $(document).ready(function(){
     </tr>
     </table>
     <div>
-        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:.8em;float:right;cursor:pointer;">__LNG__Toggle to Full Toolbar__LNG__</span>
-        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:.8em;float:right;cursor:pointer;">__LNG__Toggle to Basic Toolbar__LNG__</span>
+        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:.8em;float:right;cursor:pointer;">{$lL.__toggle_to_full_toolbar__}</span>
+        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:.8em;float:right;cursor:pointer;">{$lL.__toggle_to_basic_toolbar__}</span>
     </div>
     <br clear="all">
     <div>
@@ -110,13 +110,13 @@ $(document).ready(function(){
     </div>
     <br clear="all">
     <div class="buttons left">
-        {include file='../Upload/widget.phtml' dlgTitle=__LNG__File Upload Dialog__LNG__ btnLabel=__LNG__Attach File(s)__LNG__}
+        {include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}
     </div>
     <div class="buttons right">
         <div class="submit_btn_holder">
         {$smarty.const._FORM_BTN_SUBMIT_}
-        &nbsp;__LNG__or__LNG__&nbsp;
-        <a href="javascript:;" onclick="window.close();">__LNG__cancel__LNG__</a>&nbsp;
+        &nbsp;{$lL.__or__}&nbsp;
+        <a href="javascript:;" onclick="window.close();">{$lL.__cancel__}</a>&nbsp;
         </div>
         <div class="submit_btn_holder" style="display:none;">
         {$smarty.const._BAR_WAIT_}

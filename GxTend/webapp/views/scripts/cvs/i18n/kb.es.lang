@@ -11,7 +11,7 @@ $lL["__list__"] = "Listar";
 $lL["__my__"] = "mis";
 $lL["__all__"] = "todos";
 $lL["__active_locks__"] = "bloqueos activos";
-$lL["__add_new_object_s___"] = "Nuevo(s) objecto(s)";
+$lL["__add_new_object_s___"] = "Nuevo(s) objeto(s)";
 $lL["__ignore_list__"] = "Ignorados";
 
 ?>

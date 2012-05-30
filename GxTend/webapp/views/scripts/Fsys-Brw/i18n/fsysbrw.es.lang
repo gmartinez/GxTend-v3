@@ -3,6 +3,6 @@
 $lL["__name__"] = "Nombre";
 $lL["__date_modified__"] = "Fecha Modificado";
 $lL["__size__"] = "Tamaño";
-$lL["__object_s___"] = "Objecto(s)";
+$lL["__object_s___"] = "Objeto(s)";
 
 ?>

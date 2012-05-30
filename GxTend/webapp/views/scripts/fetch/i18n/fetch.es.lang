@@ -21,5 +21,8 @@ $lL["__objects_in_this_commit__"] = "objects in this commit";
 $lL["__object_s__in_this_commit__"] = "object(s) in this commit";
 $lL["__merge_remote_pcl_codeline_into_local_pcl__"] = "Merge remote PCL codeline into local PCL";
 $lL["__merge_pcl_after_fetch__"] = "Merge PCL after fetch";
+$lL["__ttp__"] = "TPP";
+$lL["__second__"] = "segundo";
+$lL["__top__"] = "Tope";
 
 ?>

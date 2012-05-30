@@ -2,16 +2,16 @@
     <table align="center" width="100%" class="list">
     <thead>
     <tr>
-        <th>__LNG__Id__LNG__</th>
-        <th>__LNG__Model Name__LNG__</th>
-        <th>__LNG__Model Path__LNG__</th>
-        <th>__LNG__Last Update__LNG__</th>
+        <th>{$lL.__id__}</th>
+        <th>{$lL.__model_name__}</th>
+        <th>{$lL.__model_path__}</th>
+        <th>{$lL.__last_update__}</th>
     </tr>
     </thead>
     <tbody>
     {foreach from=$models key=k item=rec}
     <tr class='{cycle values="odd,even"}'>
-        <td align="left"><a href="javascript:;" onclick="loadappdiv('stats', { kbguid:'{$smarty.request.kbguid}', mdlid:'{$rec.mdlid}' }, '#div_{$rec.mdlid}')"><strong>__LNG__Model__LNG__ {$rec.mdlid}</strong></a></td>
+        <td align="left"><a href="javascript:;" onclick="loadappdiv('stats', { kbguid:'{$smarty.request.kbguid}', mdlid:'{$rec.mdlid}' }, '#div_{$rec.mdlid}')"><strong>{$lL.__model__} {$rec.mdlid}</strong></a></td>
         <td align="left">{$rec.mdlname}</td>
         <td align="left">{$rec.mdlpath}</td>
         <td align="center">{$InProve_Smarty->ts2str($rec.mdlupdts)}</td>

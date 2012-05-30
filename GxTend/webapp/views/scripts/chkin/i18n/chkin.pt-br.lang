@@ -52,5 +52,8 @@ $lL["__promote_after_push__"] = "Promote after push";
 $lL["__push_after_commit_not_available_as_remote_repository_is_not_open__"] = "Push after commit not available as remote repository is not open";
 $lL["__push_after_commit_not_available_as_server_is_not_online__"] = "Push after commit not available as server is not online";
 $lL["__click_to_reset_all_non_commited_changes__"] = "Click to reset all non-commited changes";
+$lL["__ttp__"] = "TPP";
+$lL["__second__"] = "segundo";
+$lL["__top__"] = "Topo";
 
 ?>

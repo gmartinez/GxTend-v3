@@ -1,0 +1,7 @@
+<?php
+
+$lL["__gxtend_s_to_do_list_named__"] = "GxTend's To-Do List Named";
+$lL["__related_milestone__"] = "Related Milestone";
+$lL["__status__"] = "Status";
+
+?>

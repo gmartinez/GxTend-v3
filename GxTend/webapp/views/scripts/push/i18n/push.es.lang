@@ -8,7 +8,7 @@ $lL["__none_found__"] = "None Found";
 $lL["__commited_on__"] = "Commited on";
 $lL["__commited_by__"] = "Commited by";
 $lL["__env___"] = "Env.";
-$lL["__object__"] = "Object";
+$lL["__object__"] = "Objeto";
 $lL["__sts__"] = "Sts";
 $lL["__change_description__"] = "Change Description";
 $lL["__object_created_in_this_commit__"] = "Object created in this commit";
@@ -19,5 +19,8 @@ $lL["__objects_in_this_commit__"] = "objects in this commit";
 $lL["__object_s__in_this_commit__"] = "object(s) in this commit";
 $lL["__my_own__"] = "My Own";
 $lL["__others__"] = "Others";
+$lL["__ttp__"] = "TPP";
+$lL["__second__"] = "segundo";
+$lL["__top__"] = "Tope";
 
 ?>

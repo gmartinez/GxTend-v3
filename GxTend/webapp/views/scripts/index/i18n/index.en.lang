@@ -8,5 +8,11 @@ $lL["__gxtsrv__"] = "GxTend Server";
 $lL["__mdialog_config_title__"] = "Click to view/set configuration entries";
 $lL["__mdialog_title__"] = "Configuration Settings";
 $lL["__server_you_are_working_with__"] = "GxTend server you are working with";
+$lL["__close_this_pane__"] = "Close this pane";
+$lL["__open_this_pane__"] = "Open this pane";
+$lL["__resize_this_pane__"] = "Resize this pane";
+$lL["__error_retrieving_west_menu_options__"] = "Error retrieving west-menu options";
+$lL["__gxtend_server__"] = "GxTend Server";
+$lL["__auto_syncing__"] = "Auto Syncing";
 
 ?>

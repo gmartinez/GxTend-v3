@@ -1,0 +1,14 @@
+<?php
+
+$lL["__ticket_tags__"] = "Ticket Tags";
+$lL["__notification__"] = "Notification";
+$lL["__name__"] = "Name";
+$lL["__value__"] = "Value";
+$lL["__edit_entry__"] = "Edit entry";
+$lL["__add_entry__"] = "Add Entry";
+$lL["__add_edit_tag__"] = "Add/Edit Tag";
+$lL["__key__"] = "Key";
+$lL["__or__"] = "or";
+$lL["__cancel__"] = "cancel";
+
+?>

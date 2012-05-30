@@ -1,0 +1,9 @@
+<?php
+
+$lL["__id__"] = "Id";
+$lL["__model_name__"] = "Model Name";
+$lL["__model_path__"] = "Model Path";
+$lL["__last_update__"] = "Last Update";
+$lL["__model__"] = "Model";
+
+?>

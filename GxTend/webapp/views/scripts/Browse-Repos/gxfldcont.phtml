@@ -1,7 +1,7 @@
 <img src="{$smarty.const._IMG_FOLDER_OPEN_SM_}" alt=""> <span style="color:green;">{$folder_relative_name}</span>
 <table width="100%" align="center" class="list">
 <thead>
-    <tr><th>__LNG__Name__LNG__</th><th>__LNG__Description__LNG__</th><th>__LNG__Date Modified__LNG__</th></tr>
+    <tr><th>{$lL.__name__}</th><th>{$lL.__description__}</th><th>{$lL.__date_modified__}</th></tr>
 </thead>
 <tbody>
     {foreach from=$fld_cont key=k item=rec}

@@ -11,24 +11,24 @@ $(document).ready(function(){
 });
 </script>
 
-    <h2 style="float:right;">__LNG__Read Email__LNG__&nbsp;</h2>
+    <h2 style="float:right;">{$lL.__read_email__}&nbsp;</h2>
     <br clear="all">
     <table align="center" width="100%" class="list-horizontal">
     <tr>
 		<td align="left" width="15%" class="header first" scope="row">
-			__LNG__Id / Type__LNG__
+			{$lL.__id___type__}
 		</td>
 		<td align="left" class="first">
-			{$InProve_Smarty->cutstr($email.emguid,0,$smarty.const._GUID_LEN_)} / {if $email.emsentts>-1}__LNG__Outbound__LNG__{else}__LNG__Inbound__LNG__{/if}
-            <span style="float:right;">{$reply}  __LNG__Reply__LNG__ | {$forward} __LNG__Forward__LNG__</span>
+			{$InProve_Smarty->cutstr($email.emguid,0,$smarty.const._GUID_LEN_)} / {if $email.emsentts>-1}{$lL.__outbound__}{else}{$lL.__inbound__}{/if}
+            <span style="float:right;">{$reply}  {$lL.__reply__} | {$forward} {$lL.__forward__}</span>
 		</td>
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
 			{if $email.emsentts>-1}
-                __LNG__Date / Status__LNG__
+                {$lL.__date___status__}
             {else}
-                __LNG__Date__LNG__
+                {$lL.__date__}
             {/if}			
 		</td>
 		<td align="left">
@@ -49,7 +49,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			__LNG__From__LNG__
+			{$lL.__from__}
 		</td>
 		<td align="left">
 			{$email.emheader.from.name} &lt;{$email.emheader.from.mail}&gt;
@@ -57,7 +57,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			__LNG__To__LNG__
+			{$lL.__to__}
 		</td>
 		<td align="left">
 			{$email.emheader.to.name} &lt;{$email.emheader.to.mail}&gt;
@@ -66,7 +66,7 @@ $(document).ready(function(){
     {if $email.emheader.cc.mail}
     <tr>
         <td align="left" class="header" scope="row">
-            __LNG__Cc__LNG__
+            {$lL.__cc__}
         </td>
         <td align="left">
             {$email.emheader.cc.name} &lt;{$email.emheader.cc.mail}&gt;
@@ -76,7 +76,7 @@ $(document).ready(function(){
     {if $email.emheader.bcc.mail}
     <tr>
         <td align="left" class="header" scope="row">
-            __LNG__Bcc__LNG__
+            {$lL.__bcc__}
         </td>
         <td align="left">
             {$email.emheader.bcc.name} &lt;{$email.emheader.bcc.mail}&gt;
@@ -85,7 +85,7 @@ $(document).ready(function(){
     {/if}
     <tr>
 		<td align="left" class="header" scope="row">
-			__LNG__Subject__LNG__
+			{$lL.__subject__}
 		</td>
 		<td align="left">
 			{$email.emheader.subject}
@@ -95,10 +95,10 @@ $(document).ready(function(){
 
     <div id="tabs">
         <ul>
-            <li><a href="#emailTab0"><span>__LNG__Body__LNG__</span></a></li>
-            <li><a href="#emailTab1"><span>__LNG__Attachments__LNG__</span></a></li>
-            <li><a href="#emailTab2"><span>__LNG__Headers__LNG__</span></a></li>
-            <li><a href="#emailTab3"><span>__LNG__Log__LNG__</span></a></li>
+            <li><a href="#emailTab0"><span>{$lL.__body__}</span></a></li>
+            <li><a href="#emailTab1"><span>{$lL.__attachments__}</span></a></li>
+            <li><a href="#emailTab2"><span>{$lL.__headers__}</span></a></li>
+            <li><a href="#emailTab3"><span>{$lL.__log__}</span></a></li>
         </ul>
         <div id="emailTab0">
             {$email.embody}
@@ -109,8 +109,8 @@ $(document).ready(function(){
             </div>
             {if $atchs}
             <div style="font-size:0.8em;float:right;cursor:pointer;">
-            <span class="togglePreview" onclick="$('#emailTab1 .atchs').load('/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=on');$('#emailTab1 .togglePreview').toggle();" style="display:inline;">__LNG__Enable Preview__LNG__</span>
-            <span class="togglePreview" onclick="$('#emailTab1 .atchs').load('/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=off');$('#emailTab1 .togglePreview').toggle();" style="display:none;">__LNG__Disable Preview__LNG__</span>
+            <span class="togglePreview" onclick="$('#emailTab1 .atchs').load('/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=on');$('#emailTab1 .togglePreview').toggle();" style="display:inline;">{$lL.__enable_preview__}</span>
+            <span class="togglePreview" onclick="$('#emailTab1 .atchs').load('/Ticket-Mgmt/atchs?emguid={$smarty.request.emguid}&preview=off');$('#emailTab1 .togglePreview').toggle();" style="display:none;">{$lL.__disable_preview__}</span>
             </div>
             <br clear="both">
             {/if}

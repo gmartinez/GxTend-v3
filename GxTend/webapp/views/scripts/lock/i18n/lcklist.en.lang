@@ -10,5 +10,8 @@ $lL["__locked_since__"] = "Locked Since";
 $lL["__file__"] = "File";
 $lL["__object_s_lock_status__"] = "Object's Lock Status";
 $lL["__has_an_active_lock_on_this_object_since__"] = "has an active lock on this object since";
+$lL["__ttp__"] = "TTP";
+$lL["__second__"] = "second";
+$lL["__top__"] = "Top";
 
 ?>

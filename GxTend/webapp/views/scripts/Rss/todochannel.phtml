@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <rss version='2.0'>
 <channel>
-    <title>__LNG__GxTend's To-Do List Named__LNG__ : {$todoData.todoabv}</title>
-    <description>__LNG__Related Milestone__LNG__ : {$mistData.mistabv} due to {$InProve_Smarty->ts2str($mistData.mistduets, "date")}</description>
+    <title>{$lL.__gxtend_s_to_do_list_named__} : {$todoData.todoabv}</title>
+    <description>{$lL.__related_milestone__} : {$mistData.mistabv} due to {$InProve_Smarty->ts2str($mistData.mistduets, "date")}</description>
     <link>http://gxtend.in-prove.com</link>
     <lastBuildDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</lastBuildDate>
     <pubDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</pubDate>
@@ -22,7 +22,7 @@
             <![CDATA[
             {$ticket.ttstxt}
             <p align="right">
-                __LNG__Status__LNG__ : <font color="{if !$ticket.open}gray{else}green{/if}">{$ticket.ttsstsdsc}</font><br>
+                {$lL.__status__} : <font color="{if !$ticket.open}gray{else}green{/if}">{$ticket.ttsstsdsc}</font><br>
                 <a href="/Rss/?ttsguid={$ticket.ttsguid}&token={$InProve_Smarty->userToken()}" target="_blank">RSS Feed</a>
             </p>
             ]]>

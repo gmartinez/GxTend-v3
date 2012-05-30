@@ -3,9 +3,12 @@
 $lL["__objects_were_successfully_created___locked__"] = "Objects were Successfully Created & Locked";
 $lL["__some_objects_could_not_be_created___locked__"] = "Some Objects could not be Created & Locked";
 $lL["__logically_create_and_set_locks_on_objects__"] = "Logically create and set locks on objects";
-$lL["__class__"] = "Class";
-$lL["__name__"] = "Name";
-$lL["__description__"] = "Description";
+$lL["__class__"] = "Classe";
+$lL["__name__"] = "Nome";
+$lL["__description__"] = "Descrição";
 $lL["__add_row__"] = "Add Row";
+$lL["__ttp__"] = "TPP";
+$lL["__second__"] = "segundo";
+$lL["__top__"] = "Topo";
 
 ?>

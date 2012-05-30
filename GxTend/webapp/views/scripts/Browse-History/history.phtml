@@ -22,14 +22,14 @@
         {foreach from=$local_changes[$tperiod] key=commitId item=commitData}
         <tr id="{$commitId}" class='{cycle values="odd,even"}'>
             <td>
-            <h3>{$commitData.changes|count} __LNG__change(s) commited from__LNG__ {$commitData.VisualId}</h3>
+            <h3>{$commitData.changes|count} {$lL.__change_s__commited_from__} {$commitData.VisualId}</h3>
             <div class="column left" style="padding:1em;">
-                <b>Id :</b> <a class="pointer" title="__LNG__Click to see commit's content__LNG__" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', '__LNG__Commit Data & Promotion Status__LNG__', 600, 900);">{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}</a><br>
-                <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='__LNG__Comment__LNG__' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commitData.subject,0,80)}
+                <b>Id :</b> <a class="pointer" title="{$lL.__click_to_see_commit_s_content__}" href="javascript:;" onclick="mDialog('/Promote/?projguid={$smarty.request.projguid}&commits={$commitId}', '{$lL.__commit_data___promotion_status__}', 600, 900);">{$InProve_Smarty->cutstr($commitId,0,$smarty.const._GUID_LEN_)}</a><br>
+                <img src='{$smarty.const._IMG_COMMENT_BLUE_SM_}' alt="comment" title='{$lL.__comment__}' style="vertical-align:text-top;"> {$InProve_Smarty->cutstr($commitData.subject,0,80)}
             </div>
             <div class="column right" style="padding:1em;">
-                <b>__LNG__Commited on__LNG__ :</b> {$InProve_Smarty->ts2str($commitData.commiterTs)}<br>
-                <b>__LNG__Commited by__LNG__ :</b>
+                <b>{$lL.__commited_on__} :</b> {$InProve_Smarty->ts2str($commitData.commiterTs)}<br>
+                <b>{$lL.__commited_by__} :</b>
                                     {if $commitData.commiter==$InProve_Smarty->getSessVar('MyProfile.userdata.username')}
                                         <span class="green">{$commitData.commiter}</span> / {$InProve_Smarty->guid2name("gxt_users",$commitData.commiter_guid)}
                                     {else}
