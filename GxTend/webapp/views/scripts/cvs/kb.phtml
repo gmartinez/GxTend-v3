@@ -40,7 +40,7 @@
 
     <div style="float:right;">
         {if $kbdata.local_kbdir && $kbdata.kbclass>=7500}
-        <input type="text" title="{$smarty.const._LBL_SEARCH_}" id="qrystr" name="qrystr" value="{$smarty.request.qrystr}" maxlength="2048" size="37">
+        <input type="text" title="{$smarty.const._LBL_SEARCH_}" id="qrystr" name="qrystr" value="{$smarty.request.qrystr}" maxlength="2048" size="40">
         <input type="button" title="{$smarty.const._TITLE_SUBMIT_}" id="gobtn" name="gobtn" value="Go" onclick='$("#diffs").show("slow", show_srchres("{$projdata.projguid}", "{$kbdata.kbguid}", 1));'>
         {$InProve_Smarty->msg("HandT","Search_and_Lock.phtml")}
         &nbsp;

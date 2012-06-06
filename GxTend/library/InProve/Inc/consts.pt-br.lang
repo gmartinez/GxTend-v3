@@ -101,7 +101,7 @@ define("_TITLE_TRUCATE_", "Clique para excluir todos os registros");
 define("_TITLE_HIDE_", "Clique para Ocultar");
 define("_TITLE_SHOW_", "Clique para Exibir");
 define("_TITLE_HIDE_SHOW_", "Clique para Ocultar/Exibir");
-define("_TITLE_ADD_", "Clique to adicionar");
+define("_TITLE_ADD_", "Clique para adicionar");
 
 #
 define("_LBL_ADD_RECORD_", "Adicionar");
@@ -150,7 +150,7 @@ define("_MSG_WRN_", "Aviso");
 
 #
 define("_IDX_FOUND_", "Indice consultado com êxito");
-define("_IDX_NOT_FOUND_", "Indidce não encontrado");
+define("_IDX_NOT_FOUND_", "Indice não encontrado");
 
 #
 define("_FORM_MSG_OK_COMMIT_", "Dados salvos com sucesso");
@@ -179,7 +179,7 @@ define("_FORM_BTN_UPDATE_", "
                             </button>
                             ");
 define("_FORM_BTN_DELETE_", "
-                            <button class='button-delete' type='submit' id='submit_delete_btn' name='submit_btn' value='"._LBL_DELETE_."' title='"._TITLE_DELETE_."' onClique=\"return(confirm('Confirmar Exclusão de Dados ?'))\">
+                            <button class='button-delete' type='submit' id='submit_delete_btn' name='submit_btn' value='"._LBL_DELETE_."' title='"._TITLE_DELETE_."' onclick=\"return(confirm('Confirmar Exclusão de Dados ?'))\">
                             "._LBL_DELETE_."
                             </button>
                             ");
@@ -265,8 +265,8 @@ define("0600", "Chave NÃO Encontrada.");
 define("0601", "Chave NÃO Encontrada, Não foi possível gerar arquivo de solicitação.");
 define("0602", "Chave Encontrada, Arquivo de solicitação gerado não é válido.");
 define("0603", "Chave Encontrada, Chegou ao seu vencimento.");
-define("0604", "Key Found, Não é válido para este host.");
-define("0605", "Key Found, Limite de usuários ultrapassado.");
-define("0606", "Key Found, Limite de KBs ultrapassado.");
+define("0604", "Chave Encontrada, Não é válido para este host.");
+define("0605", "Chave Encontrada, Limite de usuários ultrapassado.");
+define("0606", "Chave Encontrada, Limite de KBs ultrapassado.");
 
 ?>

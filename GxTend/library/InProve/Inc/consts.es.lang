@@ -3,10 +3,10 @@
 #
 define("__AUDIT_METADATA_CHANGE__", "Cambio en metadata.");
 define("__AUDIT_MSG2USR_INFO__", "Mensaje informativo para usuario.");
-define("__AUDIT_MSG2USR_WARN__", "Mensaje de atencionn para usuario.");
-define("__AUDIT_MSG2USR_ERRO__", "Mensaje de error para usaurio.");
-define("__AUDIT_TCSYNC_DN__", "Sincronizacion de datos, bajada.");
-define("__AUDIT_TCSYNC_UP__", "Sincronizacion de datos, subida.");
+define("__AUDIT_MSG2USR_WARN__", "Mensaje de atención para usuario.");
+define("__AUDIT_MSG2USR_ERRO__", "Mensaje de error para usuario.");
+define("__AUDIT_TCSYNC_DN__", "Sincronización de datos, bajada.");
+define("__AUDIT_TCSYNC_UP__", "Sincronización de datos, subida.");
 define("__AUDIT_FETCH_OP__", "Repositorio de código, Fetch.");
 define("__AUDIT_PUSH_OP__", "Repositorio de código, Push.");
 define("__AUDIT_COMMIT_OP__", "Cambio de código, Commit.");
@@ -67,7 +67,7 @@ define("_LBL_FLAG_", "Definir Bandera en Objetos");
 define("_IMG_CLEANUP_SM_", "../img/icons/16/cleanup.png");
 define("_LBL_CLEANUP_", "Limpieza");
 define("_IMG_UPDSRVNFO_SM_", "../img/icons/16/updsrvnfo.png");
-define("_LBL_UPDSRVNFO_", "Actualizar informacion del servidor");
+define("_LBL_UPDSRVNFO_", "Actualizar información del servidor");
 define("_IMG_WAND_SM_", "../img/icons/16/wand.png");
 define("_LBL_WAND_", "Crear Nuevo");
 define("_IMG_CHKOUT_SM_", "../img/cvs/menucheckout.ico");
@@ -126,12 +126,12 @@ define("_LBL_PUSH_", "Push");
 define("_LBL_FETCH_", "Fetch");
 define("_LBL_CHKALL_", "&radic;");
 define("_TITLE_CHKALL_", "Alternar checks para todo el grupo");
-define("_LBL_CANCEL_", "Cancel");
+define("_LBL_CANCEL_", "Cancelar");
 define("_TITLE_CANCEL_", "Clic para cancelar");
-define("_LBL_NEXT_", "Proximo");
-define("_TITLE_NEXT_", "Clic para ir a la proxima seccion");
+define("_LBL_NEXT_", "Próximo");
+define("_TITLE_NEXT_", "Clic para ir a la próxima sección");
 define("_LBL_PREV_", "Previo");
-define("_TITLE_PREV_", "Clic para ir a la seccion anterior");
+define("_TITLE_PREV_", "Clic para ir a la sección anterior");
 
 #
 define("_LBL_NOT_AVAILABLE_", "No Disponible");
@@ -146,7 +146,7 @@ define("_MSG_WAIT_", "<span class=\"msg_wait medium\"> Un momento...</span>");
 define("_MSG_WAIT_SM_", "<span class=\"msg_wait small\"> Un momento...</span>");
 define("_MSG_SUC_", "Exito");
 define("_MSG_ERR_", "Error");
-define("_MSG_WRN_", "Atencion");
+define("_MSG_WRN_", "Atención");
 
 #
 define("_IDX_FOUND_", "Indice consultado exitosamente");
@@ -154,10 +154,10 @@ define("_IDX_NOT_FOUND_", "Indice no encontrado");
 
 #
 define("_FORM_MSG_OK_COMMIT_", "Datos salvados exitosamente");
-define("_FORM_MSG_WRN_COMMIT_", "Ninguna accion de cambio valida fue enviada");
+define("_FORM_MSG_WRN_COMMIT_", "Ninguna acción de cambio valida fue enviada");
 define("_FORM_MSG_ERR_COMMIT_", "Error al guardar datos");
 define("_FORM_MSG_NO_CHANGE_", "Ninguno de datos se ha cambiado");
-define("_FORM_MSG_ERR_UNIQUE_", "Unique constraint violation");
+define("_FORM_MSG_ERR_UNIQUE_", "Violación de restricción de unicidad");
 define("_FORM_BTN_INSERT_", "
                             <button class='button-insert' type='submit' id='submit_insert_btn' name='submit_btn' value='"._LBL_INSERT_."' title='"._TITLE_INSERT_."'>
                             "._LBL_INSERT_."
@@ -257,7 +257,7 @@ define("_DELIVERY_PENDING_", "<font color=green>Pendiente</font>");
 define("_DELIVERY_ERROR_", "<font color=red>Pendiente (err)</font>");
 
 #
-define("__FLAG_SET_ERR_GX_NAME_CONSTRAINT_VIOLATED__", "Error en la definicion del nombre del objeto GeneXus.");
+define("__FLAG_SET_ERR_GX_NAME_CONSTRAINT_VIOLATED__", "Error en la definición del nombre del objeto GeneXus.");
 define("__FLAG_SET_ERR_ALREADY_EXISTS__", "Ya existe una bandera/bloqueo activo sobre este objeto.");
 
 #
