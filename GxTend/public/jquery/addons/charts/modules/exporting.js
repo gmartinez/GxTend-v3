@@ -1,5 +1,5 @@
 /*
- Highcharts JS v2.2.2 (2012-04-26)
+ Highcharts JS v2.2.4 (2012-05-31)
  Exporting module
 
  (c) 2010-2011 Torstein H?nsi

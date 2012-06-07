@@ -1,0 +1,7 @@
+<?php
+
+$lL["__objects_class_distribution_map__"] = "Objects Class Distribution Map";
+$lL["__class_distribution__"] = "Class Distribution";
+$lL["__database_related__"] = "Related to Database";
+
+?>

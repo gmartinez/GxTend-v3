@@ -11,12 +11,12 @@ $lL["__knowledge__"] = "Conocimiento";
 $lL["__tasks_definition__"] = "Definición de Tareas";
 $lL["__projects__"] = "Proyectos";
 $lL["__milestones__"] = "Hitos";
-$lL["__to_do_lists__"] = "Listas de Tickets";
+$lL["__to_do_lists__"] = "Listas de Tareas";
 $lL["__tickets__"] = "Tickets";
 $lL["__code__"] = "Código";
-$lL["__kbs_mgmt___"] = "Gestion de KBs";
+$lL["__kbs_mgmt___"] = "Gestión de KBs";
 $lL["__browse_kbs__"] = "Navegar KBs";
-$lL["__browse_history__"] = "Browse Historia";
+$lL["__browse_history__"] = "Navegar Historia";
 $lL["__compare___promote__"] = "Comparar & Promover";
 $lL["__settings___monitoring__"] = "Configuración y Monitoreo";
 $lL["__parameters__"] = "Parámetros";
@@ -32,6 +32,6 @@ $lL["__about__"] = "Acerca de";
 $lL["__debugging_tools__"] = "Debugging Tools";
 $lL["__query_metadata__"] = "Query Metadata";
 $lL["__query_gxkb__"] = "Query GxKb";
-$lL["__logout__"] = "Cerrar Sesión";
+$lL["__logout__"] = "Salir";
 
 ?>

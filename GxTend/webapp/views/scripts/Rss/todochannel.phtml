@@ -3,14 +3,14 @@
 <channel>
     <title>{$lL.__gxtend_s_to_do_list_named__} : {$todoData.todoabv}</title>
     <description>{$lL.__related_milestone__} : {$mistData.mistabv} due to {$InProve_Smarty->ts2str($mistData.mistduets, "date")}</description>
-    <link>http://gxtend.in-prove.com</link>
+    <link>{$smarty.const.__GXTEND_SITE_URL__}</link>
     <lastBuildDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</lastBuildDate>
     <pubDate>{$smarty.now|date_format:$smarty.const.DATE_RSS}</pubDate>
     <copyright>&copy; 2005-{$smarty.now|date_format:'%Y'}</copyright>
     <image>
         <title>GxTend - Rss Feed</title>
         <url>../img/gxtend_logo_{$smarty.const.__LAYER_ROLE__}.png</url>
-        <link>http://gxtend.in-prove.com</link>
+        <link>{$smarty.const.__GXTEND_SITE_URL__}</link>
     </image>
 
     {foreach from=$ticketsData key=tk item=ticket}

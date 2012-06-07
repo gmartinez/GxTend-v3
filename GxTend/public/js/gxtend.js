@@ -105,7 +105,7 @@ function mDialog(url, title, height, width, position, onload, onclose, dialdiv) 
     
     // Load content...
     if (url.substring(0,5)=="http:") {
-        $(dialdiv).html('<iframe src ="'+url+'" width="99%" height="99%" frameborder="0"><p>'+labels["_IFRAMES_NOT_SUPPORTED_"]+'</p></iframe>');        
+        $(dialdiv).html('<iframe src ="'+url+'" width="99%" height="99%" frameborder="0"><p>'+labels["_IFRAMES_NOT_SUPPORTED_"]+'</p></iframe>');
     } else if (url.substring(0,5)=="text:") {
         $(dialdiv).html(url.substring(5));
     } else if (url.substring(0,1)=="#") {

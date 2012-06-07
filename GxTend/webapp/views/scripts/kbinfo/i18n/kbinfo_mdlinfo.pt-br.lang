@@ -1,9 +1,9 @@
 <?php
 
 $lL["__id__"] = "Id";
-$lL["__model_name__"] = "Model Name";
-$lL["__model_path__"] = "Model Path";
-$lL["__last_update__"] = "Last Update";
-$lL["__model__"] = "Model";
+$lL["__model_name__"] = "Nome do Modelo";
+$lL["__model_path__"] = "Caminho de Modelo";
+$lL["__last_update__"] = "Ultima Atualização";
+$lL["__model__"] = "Modelo";
 
 ?>

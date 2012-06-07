@@ -1,0 +1,7 @@
+<?php
+
+$lL["__objects_class_distribution_map__"] = "Mapa de Objetos Distribuídos por Classe";
+$lL["__class_distribution__"] = "Distribuição por Classe";
+$lL["__database_related__"] = "Relacionado ao Banco de Dados";
+
+?>
