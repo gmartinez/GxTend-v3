@@ -26,8 +26,8 @@ class InProve_Git {
             #
             putenv("GIT_DIR=$repopath");
             if ($worktree!==null) { putenv("GIT_WORK_TREE=$worktree"); }
-            putenv("TEMP=".InProve_Session::getSessVar("MyProfile.tmpdir"));
-            putenv("TMP=".InProve_Session::getSessVar("MyProfile.tmpdir"));
+            putenv("TEMP=".InProve_System::get_prm("basedir_temp"));
+            putenv("TMP=".InProve_System::get_prm("basedir_temp"));
             #
             putenv("GIT_AUTHOR_NAME=Unknown");
             putenv("GIT_AUTHOR_EMAIL=Unknown");

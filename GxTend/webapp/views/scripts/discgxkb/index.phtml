@@ -6,7 +6,14 @@ $(document).ready(function(){
 		dataType: 'json',
         async: true,
 		beforeSubmit: function() {
-            $("#tabber_{$smarty.get.grid_ctrlid} #form_discover button").attr("disabled", "disabled");
+            $('.toValidate').validate({
+               ignore: ":hidden"
+            });
+            if ( $('.toValidate').valid() ) {
+                 $("#form_discover button").attr("disabled", "disabled").addClass("ui-state-disabled");
+                return true;
+            }
+            return false;
 		},
 		success: function (r) {
             showlogmsg();       // Display user message...
@@ -29,7 +36,7 @@ $(document).ready(function(){
 </script>
 
 	<br>
-	<form id="form_discover" action="discgxkb/autodisc" method="POST" enctype="multipart/form-data">
+	<form id="form_discover" action="discgxkb/autodisc" method="POST" enctype="multipart/form-data" class="toValidate">
         <h3>{$lL.__project_discovered_kbs_will_be_under__} {$projguid}</h3>
         <div class="myhr"></div>
 		<table align="center" width="100%">
