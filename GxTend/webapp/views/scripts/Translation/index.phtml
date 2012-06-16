@@ -1,0 +1,47 @@
+{include file="../skel/header.phtml" class="popup"}
+ <h1>{$lL.__labels_translation__}</h1>
+    <h6>{$lL.__translation_description__}.</h6>
+    <p><a href="javascript:;" onclick="mDialog('/Translation/edttmpl?i18nfile={$smarty.request.i18nfile}', '...', 480, 640);">{$lL.__edit_template__}</a></p>
+    <table class="table list">
+        <thead>
+            <tr>
+                <th>Key</th>
+                {foreach $avalangs as $langCode}
+                <th>{$langCode}</th>
+                {/foreach}        
+                <th>?</th>
+            </tr>        
+        </thead>
+        <tbody>
+        {foreach $labelsData as $key => $labelData}
+        <tr class="{if $i%2}odd{else}even{/if}">
+            <td id="{$key}-keyCell">
+                <a href="javascript:;" id="{$key}" onclick="edtLang(this);" entry="{$labelData.entry}">{$key}</a>
+            </td>
+            {foreach $labelData.langs as $lang => $lbl}
+            <td id="{$lang}{$key}">
+                {$lbl.val}
+            </td>
+            {/foreach}
+            <td id="{$key}-stsCell">
+                {if !$labelData.exist}
+                <span style="font-weight:bold;" title="{$lL.__key_not_found_in_template__}">&NotExists;</span>
+                {else}
+                <span style="font-weight:bold;" title="{$lL.__key_found_in_template__}">&check;</span>
+                {/if}
+            </td>
+        </tr>
+        {/foreach}        
+        </tbody>
+    </table>
+    <p>
+        {if $relatedTemplates}
+        {$lL.__other_related_templates__}
+        <ul>
+        {foreach $relatedTemplates as $filename => $i18nfile}
+            <li><a href="javascript:;" onclick="mDialog('/Translation/edttmpl?i18nfile={$i18nfile}', '...', 480, 640);">{$filename}</a></li>
+        {/foreach}
+        </ul>
+        {/if}
+    </p>
+{include file="../skel/footer.phtml"}

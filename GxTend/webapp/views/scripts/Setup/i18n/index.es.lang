@@ -1,0 +1,15 @@
+<?php
+
+$lL["__notification__"] = "Notificación";
+$lL["__about__"] = "Acerca de";
+$lL["__this_process_will__"] = "Este proceso se encargará de la creación de metadatos GxTend, por favor tome un momento para comprobar visualmente los valores están bien, y luego proceder a enviar";
+$lL["__or__"] = "o";
+$lL["__cancel__"] = "cancelar";
+$lL["__metadata_initial_properties__"] = "Propiedades Iniciales de la Metadata";
+$lL["__default__"] = "Default";
+$lL["__unset__"] = "Borrar";
+$lL["__you_can__"] = "Ud. puede";
+$lL["__click_here__"] = "hacer clic aquí";
+$lL["__to_get_all_the_above_boxes_populated_by_gxtend__"] = "para obtener todas las casillas de arriba pobladas por GxTend";
+
+?>

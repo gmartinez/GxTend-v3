@@ -1,0 +1,9 @@
+<?php
+
+$lL["__gxtend_server_data__"] = "Dados do Servidor GxTend";
+$lL["__server_status_is__"] = "O Estado do Servidor é";
+$lL["__available__"] = "Disponível";
+$lL["__unavailable__"] = "Não Disponível";
+$lL["__undetermined__"] = "Indeterminado";
+
+?>

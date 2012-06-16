@@ -1,0 +1,17 @@
+<?php
+
+$lL["__client_this_user__"] = "Client this User";
+$lL["__is__"] = "is";
+$lL["__will_be__"] = "will be";
+$lL["__related_to__"] = "related to";
+$lL["__username__"] = "Username";
+$lL["__change_user_password__"] = "Change User Password";
+$lL["__full_name__"] = "Full Name";
+$lL["__email__"] = "Email";
+$lL["__user_groups__"] = "User Groups";
+$lL["__use_ctrl_click_for_multiple_selection__"] = "Use Ctrl+Click for multiple selection";
+$lL["__active__"] = "Active";
+$lL["__user_security_token__"] = "User's Security Token";
+$lL["__add_entry__"] = "Add Entry";
+
+?>

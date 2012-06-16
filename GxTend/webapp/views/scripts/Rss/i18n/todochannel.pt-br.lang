@@ -1,0 +1,7 @@
+<?php
+
+$lL["__gxtend_s_to_do_list_named__"] = "Lista de Tarefas do GxTend Chamada";
+$lL["__related_milestone__"] = "Marco Relacionado";
+$lL["__status__"] = "Estado";
+
+?>

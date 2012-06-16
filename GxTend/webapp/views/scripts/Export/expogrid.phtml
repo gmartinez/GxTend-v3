@@ -1,3 +1,5 @@
+<script type="text/javascript" src="../jquery/addons/singlef/jquery.printElement.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){
     
@@ -5,12 +7,17 @@ $(document).ready(function(){
 		dataType: 'json',
         async: true,
 		beforeSubmit: function() {
-            $("#GenericDialog").block({ message: '{$smarty.const._BAR_WAIT_}' });
+            $("#GenericDialog").block({ message: '{$smarty.const._MSG_WAIT_}' });
 		},
 		success: function (r) {
             $("#GenericDialog").block({ message: r.msg });
             if (r.sts) {
-                setTimeout('$("#GenericDialog").dialog("close");location.href="'+r.url+'";', 1500);
+                if (r.action=="Export") {
+                    setTimeout('$("#GenericDialog").dialog("close");location.href="'+r.url+'";', 1500);
+                }
+                if (r.action=="Print") {
+                    setTimeout('$("#GenericDialog").dialog("close");$("#UploadDialog").load("'+r.url+'", function() { $(this).find("table").printElement(); });', 1500);
+                }
             } else {
                 setTimeout('$("#GenericDialog").unblock();', 3000);
             }
@@ -25,22 +32,22 @@ $(document).ready(function(){
 });
 </script>
 <div id="expdata">
-    <h3>Select export options and then submit</h3>
+    <h3>{$lL.__select_export_options_and_then_submit__}</h3>
     <div class="myhr"></div>
     <form action="/Export/grid2excel" method="POST" enctype="multipart/form-data">
     <input type="hidden" id="deffile" name="deffile" value="{$smarty.request.deffile}">
         <table>
 		<tr>
             <td align="left">
-                <strong>Range</strong>
+                <strong>{$lL.__range__}</strong>
             </td>
 			<td align="left">
-                <input type="radio" id="range_all" class="radio" name="range" value="ALL" checked="checked">&nbsp;All
-                <input type="radio" id="range_cur" class="radio" name="range" value="Current" disabled="disabled">&nbsp;Grid's Current Set
+                <input type="radio" id="range_all" class="radio" name="range" value="ALL" checked="checked">&nbsp;{$lL.__all__}
+                <input type="radio" id="range_cur" class="radio" name="range" value="Current" disabled="disabled">&nbsp;{$lL.__grid_s_current_set__}
             </td>
         </tr>
         <tr><td colspan="2">&nbsp;</td></tr>
-        <tr><td colspan="2"><strong>Available Export Sets</strong></td></tr>
+        <tr><td colspan="2"><strong>{$lL.__available_export_sets__}</strong></td></tr>
 		<tr>
             <td align="left">
                 &nbsp;
@@ -54,20 +61,27 @@ $(document).ready(function(){
         <tr><td colspan="2">&nbsp;</td></tr>
 		<tr>
             <td align="left">
-                <strong>File Name</strong>
+                <strong>{$lL.__file_name__}</strong>
             </td>
 			<td align="left">
-                <input type="text" id="fname" name="fname" value="Grid_Export_{$smarty.now}.xls" title="Name for the resulting dumped file" style="width:30em;">
+                <input type="text" id="fname" name="fname" value="Grid_Export_{$smarty.now}.xls" title="{$lL.__name_for_the_resulting_dumped_file__}" style="width:30em;">
             </td>
         </tr>
         </table>
         <hr style="margin:1em 0;">
         <div class="left">
-            <small>Exporting data might take a few minutes, once you submit please <strong>be patient</strong>.</small>
+            <small>{$lL.__exporting_data_might_take_a_few_minutes__once_you_submit_please__strong_be_patient__strong___}.</small>
         </div>
         <div class="right">
             <div class="buttons">
-                <button type="submit" name="submit_btn" class="button-circle" value="Export" title="Export">Export</button>
+                {if $smarty.request.action=="print"}
+                <button type="submit" name="submit_btn" class="button-circle" value="Print" title="{$lL.__print__}">{$lL.__print__}</button>
+                {elseif $smarty.request.action=="export"}
+                <button type="submit" name="submit_btn" class="button-circle" value="Export" title="{$lL.__export__}">{$lL.__export__}</button>
+                {else}
+                <button type="submit" name="submit_btn" class="button-circle" value="Print" title="{$lL.__print__}">{$lL.__print__}</button>
+                <button type="submit" name="submit_btn" class="button-circle" value="Export" title="{$lL.__export__}">{$lL.__export__}</button>
+                {/if}
             </div>
         </div>
     </form>

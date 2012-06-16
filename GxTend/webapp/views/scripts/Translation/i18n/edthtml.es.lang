@@ -1,0 +1,7 @@
+<?php
+
+$lL["__template_edition__"] = "Template Edition";
+$lL["__or__"] = "or";
+$lL["__cancel__"] = "cancel";
+
+?>

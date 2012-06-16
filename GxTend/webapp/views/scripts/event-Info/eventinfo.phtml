@@ -5,7 +5,7 @@ $(document).ready(function(){
 });
 </script>
 
-    <h2 style="float:right;">Event Entry Details&nbsp;</h2>
+    <h2 style="float:right;">{$lL.__event_entry_details__}&nbsp;</h2>
     <br clear="all">
     <table align="center" width="100%" class="list-horizontal">
     <tr>
@@ -18,7 +18,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Code / Desc.
+			{$lL.__code___desc___}
 		</td>
 		<td align="left">
 			{$record.evtname} / {$record.evtdsc}
@@ -26,7 +26,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			User
+			{$lL.__user__}
 		</td>
 		<td align="left">
 			{$InProve_Smarty->guid2name("gxt_users",$record.userguid)}
@@ -34,7 +34,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Event Type
+			{$lL.__event_type__}
 		</td>
 		<td align="left">
 			{ucfirst($record.evttype)}
@@ -42,7 +42,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Queue -> Start -> Finish
+			{$lL.__queue____start____finish__}
 		</td>
 		<td align="left">
 			{$InProve_Smarty->ts2str($record.queue_time)} -> {$InProve_Smarty->ts2str($record.ini_time)} -> {$InProve_Smarty->ts2str($record.end_time)}
@@ -50,7 +50,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Current Status / TTP
+			{$lL.__current_status___ttp__}
 		</td>
 		<td align="left">
 			{$record.status} / {$InProve_Smarty->sec2str($record.end_time - $record.ini_time)}
@@ -61,10 +61,10 @@ $(document).ready(function(){
     <div class="inoutlog" id="tabs">
     <ul>
         {if $record.masklog}
-        <li><a href="#tab-1"><span>Log</span></a></li>
+        <li><a href="#tab-1"><span>{$lL.__log__}</span></a></li>
         {/if}
-        <li><a href="#tab-2"><span>Raw Input</span></a></li>
-        <li><a href="#tab-3"><span>Raw Output</span></a></li>
+        <li><a href="#tab-2"><span>{$lL.__raw_input__}</span></a></li>
+        <li><a href="#tab-3"><span>{$lL.__raw_output__}</span></a></li>
     </ul>
         {if $record.masklog}
         <div id="tab-1">

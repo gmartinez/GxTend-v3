@@ -5,12 +5,12 @@ $(document).ready(function(){
 });
 </script>
 
-    <h2 style="float:right;">Log Entry Details&nbsp;</h2>
+    <h2 style="float:right;">{$lL.__log_entry_details__}&nbsp;</h2>
     <br clear="all">
     <table align="center" width="100%" class="list-horizontal">
     <tr>
 		<td align="left" class="header first" scope="row">
-			Id #
+			{$lL.__id__}
 		</td>
 		<td align="left" class="first">
 			{$record.audguid}
@@ -18,7 +18,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Code / Desc.
+			{$lL.__code___desc___}
 		</td>
 		<td align="left">
 			{$record.code} / {$record.code2desc|default:"Not Found"}
@@ -26,7 +26,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			User
+			{$lL.__user__}
 		</td>
 		<td align="left">
 			{$InProve_Smarty->guid2name("gxt_users",$record.userguid)}
@@ -34,7 +34,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			Datetime
+			{$lL.__datetime__}
 		</td>
 		<td align="left">
 			{$InProve_Smarty->ts2str($record.timestamp)}
@@ -42,7 +42,7 @@ $(document).ready(function(){
 	</tr>
     <tr>
 		<td align="left" class="header" scope="row">
-			GxTend Version/Build
+			{$lL.__gxtend_version_build__}
 		</td>
 		<td align="left">
 			{$record.gxtver}
@@ -53,10 +53,10 @@ $(document).ready(function(){
     <div id="tabs">
     <ul>
         {if $record.masklog}
-        <li><a href="#tab-1"><span>Log</span></a></li>
+        <li><a href="#tab-1"><span>{$lL.__log__}</span></a></li>
         {/if}
-        <li><a href="#tab-2"><span>Raw Log</span></a></li>
-        <li><a href="#tab-3"><span>Process</span></a></li>
+        <li><a href="#tab-2"><span>{$lL.__raw_log__}</span></a></li>
+        <li><a href="#tab-3"><span>{$lL.__process__}</span></a></li>
     </ul>
         {if $record.masklog}
         <div id="tab-1">

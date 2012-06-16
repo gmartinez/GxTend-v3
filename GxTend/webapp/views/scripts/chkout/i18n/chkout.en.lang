@@ -1,0 +1,6 @@
+<?php
+
+$lL["__create_pws_in__"] = "Create PWS in";
+$lL["__check_out_not_available_at_this_time__"] = "Check-Out not available at this time";
+
+?>

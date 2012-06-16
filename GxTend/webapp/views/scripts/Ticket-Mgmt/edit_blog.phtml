@@ -11,7 +11,7 @@ $(document).ready(function(){
             if (r.sts) {
                 $("#tabber").tabs("load", 0);
             }
-            notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 5000));
+            notify("{$lL.__notification__}",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 5000));
             $("#tabber").unblock();
         },
         error: function (jqXHR) {
@@ -30,10 +30,10 @@ $(document).ready(function(){
 
 {foreach $ticket_items as $ti => $item}
 <div id="{$item.data.itmguid}" class="comment_detail" style="padding:10px 0; border-bottom:1px solid #DDDDDD; display: none;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$item.data.added_by}&v={$smarty.now}" alt="User Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="/Ajax/getimg?userguid={$item.data.added_by}&v={$smarty.now}" alt="{$lL.__user_image__}">
     <div style="margin-left:60px;">
     <div style="margin:0 0 5px;">
-        <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;
+        <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="{$lL.__comment__}" title="{$lL.__comment__}">&nbsp;
         <strong>{$InProve_Smarty->guid2name("gxt_users",$item.data.added_by)}</strong>, {$InProve_Smarty->ts2str($item.data.added_on)}
     </div>
     <div class="text" style="margin:0 0 5px; font-size:1.1em;">
@@ -46,8 +46,8 @@ $(document).ready(function(){
     </div>
     {if count($item.atchs)}
     <div style="font-size:0.8em;float:right;cursor:pointer;">
-    <span class="togglePreview" onclick="$('#{$item.data.itmguid} .atchs').load('/Ticket-Mgmt/atchs?itmguid={$item.data.itmguid}&preview=on');$('#{$item.data.itmguid} .togglePreview').toggle();" style="display:inline;">Enable Preview</span>
-    <span class="togglePreview" onclick="$('#{$item.data.itmguid} .atchs').load('/Ticket-Mgmt/atchs?itmguid={$item.data.itmguid}&preview=off');$('#{$item.data.itmguid} .togglePreview').toggle();" style="display:none;">Disable Preview</span>
+    <span class="togglePreview" onclick="$('#{$item.data.itmguid} .atchs').load('/Ticket-Mgmt/atchs?itmguid={$item.data.itmguid}&preview=on');$('#{$item.data.itmguid} .togglePreview').toggle();" style="display:inline;">{$lL.__enable_preview__}</span>
+    <span class="togglePreview" onclick="$('#{$item.data.itmguid} .atchs').load('/Ticket-Mgmt/atchs?itmguid={$item.data.itmguid}&preview=off');$('#{$item.data.itmguid} .togglePreview').toggle();" style="display:none;">{$lL.__disable_preview__}</span>
     </div>
     <br clear="both">
     {/if}
@@ -57,11 +57,11 @@ $(document).ready(function(){
 
 {if $data.grants.rw}
 <div id="addcomm" style="padding:10px 0;">
-    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="My Image">
+    <img style="float:left; margin:0 0 5px;" width="48" height="48" src="/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="{$lL.__my_image__}">
     <div style="font-size:0.8em;float:right;">
         {if count($ticket_items)}
-        <a href="javascript:;" class="toggleBlogDet" onclick="$('.comment_detail').toggle();$('.toggleBlogDet').toggle();" style="display:inline;">Toggle to View Entries</a>
-        <a href="javascript:;" class="toggleBlogDet" onclick="$('.comment_detail').toggle();$('.toggleBlogDet').toggle();" style="display:none;">Toggle to Edit View</a>
+        <a href="javascript:;" class="toggleBlogDet" onclick="$('.comment_detail').toggle();$('.toggleBlogDet').toggle();" style="display:inline;">{$lL.__toggle_to_see_all_entries__}</a>
+        <a href="javascript:;" class="toggleBlogDet" onclick="$('.comment_detail').toggle();$('.toggleBlogDet').toggle();" style="display:none;">{$lL.__toggle_to_hide_all_entries__}</a>
         {/if}
     </div>
     <div style="margin-left:60px;">
@@ -69,20 +69,20 @@ $(document).ready(function(){
         <input type="hidden" name="ttsguid" value="{$smarty.request.ttsguid}">
         <input type="hidden" name="itmtyp" value="comment">
         <input type="hidden" name="options" value="{$b64options}">
-            <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Add a comment & files...")}
+            <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="{$lL.__comment__}" title="{$lL.__comment__}">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "{$lL.__add_a_comment___files__}...")}
             <p>
             <textarea rows="10" cols="100" id="itmtxt" name="itmtxt"></textarea>
             </p>
             <div>
-            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:0.8em;float:right;cursor:pointer;">Toggle to Full Toolbar</span>
-            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:0.8em;float:right;cursor:pointer;">Toggle to Basic Toolbar</span>
+            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:0.8em;float:right;cursor:pointer;">{$lL.__toggle_to_full_toolbar__}</span>
+            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:0.8em;float:right;cursor:pointer;">{$lL.__toggle_to_basic_toolbar__}</span>
             </div>
             <p style="text-align:left;">
-                {include file='../Upload/widget.phtml'}
+                {include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}
             </p>
             <br>
             <p>
-            <img src="{$smarty.const._IMG_MAIL_NEW_SM_}" alt="Subscribe" title="Subscribe">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Subscribe people to receive email notifications")}
+            <img src="{$smarty.const._IMG_MAIL_NEW_SM_}" alt="{$lL.__subscribe__}" title="{$lL.__subscribe__}">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "{$lL.__subscribe_people_to_receive_email_notifications__}")}
             &nbsp;{$InProve_Smarty->msg("HandT","TTS_Ticket_Blog.phtml|subscribe")}
             </p>
             {foreach from=$data.grpusr key=groupguid item=notify}

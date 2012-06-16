@@ -1,0 +1,7 @@
+<?php
+
+$lL["__action_on_service__"] = "Ação em Serviço";
+$lL["__is__"] = "é";
+$lL["__service_s__not_available_installed__"] = "Serviço (s) não Disponível / Instalado";
+
+?>

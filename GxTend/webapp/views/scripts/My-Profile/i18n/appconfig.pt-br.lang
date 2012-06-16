@@ -1,0 +1,6 @@
+<?php
+
+$lL["__parameters_user_can_customize__"] = "Parâmetros usuário pode personalizar";
+$lL["__click_to_add_parameter_to_your_customized_list__"] = "Clique para adicionar o parâmetro para a sua lista personalizada";
+
+?>

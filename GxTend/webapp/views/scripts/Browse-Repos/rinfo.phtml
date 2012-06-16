@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$("#rinfo form").ajaxForm({
 		dataType:  'json',
 		beforeSubmit: function() {
-            if (confirm("Please confirm you want to continue with the submission of the selected operation ?")) {
+            if (confirm("{$lL.__please_confirm_submission_of_operation__} ?")) {
                 $("#rinfo").block({ message: '{$smarty.const._BAR_WAIT_}' });
             } else {
                 return false;
@@ -15,7 +15,7 @@ $(document).ready(function(){
 		success: function (r) {
             showlogmsg();
             if (!r.err) {
-                mDialog('/Browse-Repos/rinfo?repopath={$smarty.request.repopath}&projguid={$smarty.request.projguid}', 'Repository Detailed Stats', 480, 640);
+                mDialog('/Browse-Repos/rinfo?repopath={$smarty.request.repopath}&projguid={$smarty.request.projguid}', '{$lL.__repository_detailed_stats__}', 480, 640);
             } else {
                 $("#rinfo").unblock();
             }
@@ -48,16 +48,16 @@ function goChgPrm(mode,k,v) {
 <div id="rinfo" class="profile">
     <div id="tabber_repnfo">
         <ul>
-            <li><a href="#tab-1">Repository</a></li>
-            <li><a href="#tab-2">Codelines</a></li>
-            <li><a href="/Fsys-Brw/?data2browse={$meta2browse}"><span>Meta Files</span></a></li>
+            <li><a href="#tab-1">{$lL.__repository__}</a></li>
+            <li><a href="#tab-2">{$lL.__codelines__}</a></li>
+            <li><a href="/Fsys-Brw/?data2browse={$meta2browse}"><span>{$lL.__meta_files__}</span></a></li>
         </ul>
 
         <div id="tab-1">
             <table align="center" width="100%" class="list-horizontal">
             <tr>
                 <td align="left" class="header first" scope="row">
-                    Path
+                    {$lL.__path__}
                 </td>
                 <td align="left" class="first">
                     {$InProve_Smarty->cutstr($repo_stats.path,0,50)}
@@ -65,18 +65,18 @@ function goChgPrm(mode,k,v) {
             </tr>
             <tr>
                 <td align="left" class="header" scope="row">
-                    Size
+                    {$lL.__size__}
                 </td>
                 <td align="left">
                     {$InProve_Smarty->bytes2str($repo_stats.fsysSize)}
                     {if $repo_stats.fsysSize}                    
-                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_cleanup").show();' class='pointer'><img src="{$smarty.const._IMG_CLEANUP_SM_}" title="Cleanup repository."></span>
-                    {if $smarty.const.__LAYER_ROLE__ == "Server"}
-                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_updsrvnfo").show();' class='pointer'><img src="{$smarty.const._IMG_UPDSRVNFO_SM_}" title="Update server's repository metadata info."></span>
+                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_cleanup").show();' class='pointer'><img src="{$smarty.const._IMG_CLEANUP_SM_}" title="{$lL.__cleanup_repository__}."></span>
+                    {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
+                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_updsrvnfo").show();' class='pointer'><img src="{$smarty.const._IMG_UPDSRVNFO_SM_}" title="{$lL.__update_repository_metadata_info__}."></span>
                     {/if}
                     {if $smarty.const.__LAYER_ROLE__ == "Client"}
-                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_mergerpcl").show();' class='pointer'><img src="{$smarty.const._IMG_JOIN_SM_}" title="Merge remote and local Personal Code Lines."></span>
-                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_setbaseline").show();' class='pointer'><img src="{$smarty.const._IMG_MERGE_SM_}" title="Rebase your Personal Code Line."></span>
+                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_mergerpcl").show();' class='pointer'><img src="{$smarty.const._IMG_JOIN_SM_}" title="{$lL.__merge_remote_and_local_personal_code_lines__}."></span>
+                    &nbsp;<span onclick='$("#rinfo form, .config_entries").hide();$("#form_setbaseline").show();' class='pointer'><img src="{$smarty.const._IMG_MERGE_SM_}" title="{$lL.__rebase_your_personal_code_line__}."></span>
                     {/if}
                     {/if}
                 </td>
@@ -84,7 +84,7 @@ function goChgPrm(mode,k,v) {
             {if $smarty.const.__LAYER_ROLE__ == "Client"}
             <tr>
                 <td align="left" class="header" scope="row">
-                    Working Tree Size
+                    {$lL.__working_tree_size__}
                 </td>
                 <td align="left">
                     {$InProve_Smarty->bytes2str($repo_stats.fsysSizeOfWrkTree)}
@@ -93,7 +93,7 @@ function goChgPrm(mode,k,v) {
             {/if}
             <tr>
                 <td align="left" class="header" scope="row">
-                    Number of Codelines
+                    {$lL.__number_of_codelines__}
                 </td>
                 <td align="left">
                     {$repo_stats.branchInfo|@count}
@@ -101,7 +101,7 @@ function goChgPrm(mode,k,v) {
             </tr>
             <tr>
                 <td align="left" class="header" scope="row">
-                    Current Codeline
+                    {$lL.__current_codeline__}
                 </td>
                 <td align="left">
                     {$repo_stats.head}
@@ -109,7 +109,7 @@ function goChgPrm(mode,k,v) {
             </tr>
             <tr>
                 <td align="left" class="header" scope="row" colspan="2">
-                    <span style="cursor:pointer;float:right;font-size:.8em;" onclick="$('#rinfo form').hide();$('.config_entries').toggle();">Click to View/Edit repository config entries</span>
+                    <span style="cursor:pointer;float:right;font-size:.8em;" onclick="$('#rinfo form').hide();$('.config_entries').toggle();">{$lL.__click_to_view_edit_repository_config_entries__}</span>
                 </td>
             </tr>
             {foreach $repo_stats.config as $k => $v}
@@ -119,13 +119,13 @@ function goChgPrm(mode,k,v) {
                 </td>
                 <td align="left">
                     {$InProve_Smarty->cutstr($v,0,50)}
-                    <span id="{$k|sha1}" style="display:none;" onclick='goChgPrm("edt","{$k}","{$v}");' class='pointer right'><img src="{$smarty.const._IMG_EDIT_SM_}" title="Edit entry."></span>
+                    <span id="{$k|sha1}" style="display:none;" onclick='goChgPrm("edt","{$k}","{$v}");' class='pointer right'><img src="{$smarty.const._IMG_EDIT_SM_}" title="{$lL.__edit_entry__}."></span>
                 </td>
             </tr>
             {/foreach}
             <tr class="config_entries" style="display:none;">
                 <td align="left" class="header" scope="row" colspan="2">
-                    <span style="cursor:pointer;float:right;font-size:.8em;" onclick='goChgPrm("add","","");'>Add Entry</span>
+                    <span style="cursor:pointer;float:right;font-size:.8em;" onclick='goChgPrm("add","","");'>{$lL.__add_entry__}</span>
                 </td>
             </tr>
             </table>
@@ -134,25 +134,25 @@ function goChgPrm(mode,k,v) {
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="cleanup">
                     <p>
-                        {$InProve_Smarty->msg("ui-icon-info","Aggessive cleanup of the repository might take several minutes to complete.")}
+                        {$InProve_Smarty->msg("ui-icon-info","{$lL.__aggressive_cleanup_might_take_to_complete__}.")}
                     </p>                
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
-                        &nbsp;or&nbsp;
-                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                        &nbsp;{$lL.__or__}&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>{$lL.__cancel__}</a>&nbsp;
                     </div>
                 </form>
-                {if $smarty.const.__LAYER_ROLE__ == "Server"}
+                {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
                 <form id="form_updsrvnfo" action="/Browse-Repos/ropts" method="POST" enctype="multipart/form-data" style="display:none;">
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="updsrvnfo">
                     <p>
-                        {$InProve_Smarty->msg("ui-icon-info","Update server's repository metadata info might take a few minutes to complete.")}
+                        {$InProve_Smarty->msg("ui-icon-info","{$lL.__update_server_s_repository_metadata_info_might__}.")}
                     </p>                
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
-                        &nbsp;or&nbsp;
-                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                        &nbsp;{$lL.__or__}&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>{$lL.__cancel__}</a>&nbsp;
                     </div>
                 </form>
                 {else}
@@ -160,31 +160,31 @@ function goChgPrm(mode,k,v) {
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="mergerpcl">
                     <p>
-                        {$InProve_Smarty->msg("ui-icon-info","Merge remote PCL into local PCL will align both.")}
+                        {$InProve_Smarty->msg("ui-icon-info","{$lL.__merge_local_and_remote_pcl_will_align_both__}.")}
                     </p>                
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
-                        &nbsp;or&nbsp;
-                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                        &nbsp;{$lL.__or__}&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>{$lL.__cancel__}</a>&nbsp;
                     </div>
                 </form>
                 <form id="form_setbaseline" action="/Browse-Repos/setbaseline" method="POST" enctype="multipart/form-data" style="display:none;">
                 <input type="hidden" name="projguid" value="{$projguid}">
                     {if $repo_stats.personalBranch == "not found"}
-                        {$InProve_Smarty->msg("ui-icon-alert","Personal Baseline Code Not Found")}
+                        {$InProve_Smarty->msg("ui-icon-alert","{$lL.__personal_baseline_code_not_found__}")}
                         <p>
-                        Set it using {$start_point} as starting point.
+                        {$lL.__set_it_using___start_point__as_starting_point__}.
                         </p>
                     {else}
-                        {$InProve_Smarty->msg("ui-icon-info","By Re-Basing your PCL you will loose any local uncommited changes you might have.")}
+                        {$InProve_Smarty->msg("ui-icon-info","{$lL.__by_re_basing_your_pcl_you_will_loose_any_local__}.")}
                         <p>
-                         Re-base using {$start_point} as starting point.
+                         {$lL.__re_base_using__} {$start_point} {$lL.__as_starting_point__}.
                         </p>
                     {/if}
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
-                        &nbsp;or&nbsp;
-                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                        &nbsp;{$lL.__or__}&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>{$lL.__cancel__}</a>&nbsp;
                     </div>
                 </form>
                 {/if}
@@ -192,20 +192,20 @@ function goChgPrm(mode,k,v) {
                 <input type="hidden" name="projguid" value="{$projguid}">
                 <input type="hidden" name="opt" value="chgprm">
                     <p>
-                        {$InProve_Smarty->msg("ui-icon-info","Add/Edit Config Property")}
+                        {$InProve_Smarty->msg("ui-icon-info","{$lL.__add_edit_config_property__}")}
                     </p>
                     <div>
-                    <label for="key"><strong>Key</strong></label>
+                    <label for="key"><strong>{$lL.__key__}</strong></label>
                     <input type="input" id="prmkey" name="prmkey" size="30" value="">
                     </div>
                     <div>
-                    <label for="val"><strong>Value</strong></label>
+                    <label for="val"><strong>{$lL.__value__}</strong></label>
                     <input type="input" id="prmval" name="prmval" size="75" value="" style="width:80%;">
                     </div>
                     <div id="bottom_right" class="buttons right">
                         {$smarty.const._FORM_BTN_SUBMIT_}
-                        &nbsp;or&nbsp;
-                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>cancel</a>&nbsp;
+                        &nbsp;{$lL.__or__}&nbsp;
+                        <a href="javascript:;" onclick='$("#rinfo form").hide();'>{$lL.__cancel__}</a>&nbsp;
                     </div>
                 </form>                
             </div>
@@ -213,23 +213,23 @@ function goChgPrm(mode,k,v) {
         </div>
 
         <div id="tab-2">
-            <fieldset><legend>Locals</legend>
+            <fieldset><legend>{$lL.__locals__}</legend>
             {foreach from=$repo_stats.branchInfo key=k item=rec}
                 {if $rec.type == "local"}
                     <p>
-                    Named '<b>{$rec.name}</b>' has <b>{$rec.commits}</b> commits.
-                    <br>Last performed by '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' on '<b>{$InProve_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> entries.
+                    '<b>{$rec.name}</b>' {$lL.__has__} <b>{$rec.commits}</b> commits.
+                    <br>{$lL.__last_performed_by__} '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' {$lL.__on__} '<b>{$InProve_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' {$lL.__with__} <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> {$lL.__entries__}.
                     </p>
                 {/if}
             {/foreach}
             </fieldset>
             <br style="clear:both;">
-            <fieldset><legend>Remotes</legend>
+            <fieldset><legend>{$lL.__remotes__}</legend>
             {foreach from=$repo_stats.branchInfo key=k item=rec}
                 {if $rec.type == "remote"}
                     <p>
-                    Named '<b>{$rec.name}</b>' has <b>{$rec.commits}</b> commits.
-                    <br>Last performed by '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' on '<b>{$InProve_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> entries.
+                    '<b>{$rec.name}</b>' {$lL.__has__} <b>{$rec.commits}</b> commits.
+                    <br>{$lL.__last_performed_by__} '<b>{$rec.commitsdata[$rec.lastcommit].commiter}</b>' {$lL.__on__} '<b>{$InProve_Smarty->ts2str($rec.commitsdata[$rec.lastcommit].commiterTs)}</b>' with <b>{$rec.commitsdata[$rec.lastcommit].changes|@count}</b> {$lL.__entries__}.
                     </p>
                 {/if}
             {/foreach}

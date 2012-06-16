@@ -1,0 +1,22 @@
+<?php
+
+$lL["__related_milestone__"] = "Related milestone";
+$lL["__due_date__"] = "due date";
+$lL["__no_milestone_is_related_to_this_list__"] = "No milestone is related to this list";
+$lL["__click_to_view_edit__"] = "Click to View/Edit";
+$lL["__there_has_been_changes__"] = "There has been changes since the last time you view this ticket";
+$lL["__no_changes_since__"] = "No changes since last time you checked on this ticket";
+$lL["__add_ticket__"] = "Add Ticket";
+$lL["__read_only_access__"] = "Read Only Access";
+$lL["__view_all__"] = "View all";
+$lL["__completed_tickets__"] = "completed tickets";
+$lL["__add_list__"] = "Add List";
+$lL["__show_to_dos_on_project__"] = "Show To-Dos on project";
+$lL["__show_to_dos_assigned_to__"] = "Show To-Dos assigned to";
+$lL["__show_to_dos_that_are_due__"] = "Show To-Dos that are due";
+$lL["__show_to_dos_in_specific_status__"] = "Show To-Dos in specific status";
+$lL["__return_to_full_to_dos_list__"] = "Return to full list";
+$lL["__current_to_do_lists__"] = "Current To-Do Lists";
+$lL["__completed_to_do_lists__"] = "Completed To-Do Lists";
+
+?>

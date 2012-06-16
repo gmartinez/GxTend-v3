@@ -26,13 +26,13 @@ $(document).ready(function(){
 	<form id="form_checkout" action="chkout/chkout" method="POST" enctype="multipart/form-data">
     {foreach from=$smarty.get key=k item=rec}
     <input type="hidden" name="{$k}" value="{$rec}">
-    {/foreach}
-        <b>Create PWS in</b> <input type="text" size="100" name="pws_target" value="{$pws_target}">
+    {/foreach}    
+        <b>{$lL.__create_pws_in__}</b> <input type="text" size="100" name="pws_target" value="{$pws_target}">
         <p align="right">
         {if $commit_status.sts}
         <input type=submit id="submit_btn" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">&nbsp;
         {else}
-        <span class="red">Check-Out not available at this time [{$commit_status.msg}]</span>&nbsp;
+        <span class="red">{$Ll.__check_out_not_available_at_this_time__} [{$commit_status.msg}]</span>&nbsp;
         {/if}
         </p>
 	</form>

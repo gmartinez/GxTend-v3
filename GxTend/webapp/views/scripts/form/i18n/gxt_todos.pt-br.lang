@@ -1,0 +1,12 @@
+<?php
+
+$lL["__milestone_this_to_do__"] = "Marco esta lista";
+$lL["__is__"] = "está";
+$lL["__will_be__"] = "estará";
+$lL["__related_to__"] = "relacionado com";
+$lL["__todo_id__"] = "Id da Lista";
+$lL["__description__"] = "Descrição";
+$lL["__time_tracking__"] = "Controle de tempo";
+$lL["__enable_track_time_feature_for_items_in_this_to_do_list__"] = "Habilitar controle de tempo para itens desta lista";
+
+?>

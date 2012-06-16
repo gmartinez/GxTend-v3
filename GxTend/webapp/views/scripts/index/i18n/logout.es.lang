@@ -1,0 +1,7 @@
+<?php
+
+$lL["__confirm_gxtend_logout__"] = "Confirma Salir de GxTend";
+$lL["__yes__"] = "Si";
+$lL["__no__"] = "No";
+
+?>

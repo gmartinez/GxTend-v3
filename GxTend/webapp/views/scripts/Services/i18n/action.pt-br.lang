@@ -1,0 +1,19 @@
+<?php
+
+$lL["__name__"] = "Nome";
+$lL["__description__"] = "Descrição";
+$lL["__status__"] = "Estado";
+$lL["__process_id__"] = "Id do Processo";
+$lL["__startup_type__"] = "Tipo de Inicialização";
+$lL["__log_on_as__"] = "Iniciar Como";
+$lL["__start_service__"] = "Iniciar Serviço";
+$lL["__stop_service__"] = "Parar Serviço";
+$lL["__are_you_sure_you_want_to_stop_this_service__"] = "Tem certeza de que quer PARAR este serviço";
+$lL["__restart_service__"] = "Reiniciar Serviço";
+$lL["__are_you_sure_you_want_to_restart_this_service__"] = "Tem certeza de que quer REINICIAR este serviço";
+$lL["__pause_service__"] = "Quebra Serviço";
+$lL["__are_you_sure_you_want_to_pause_this_service__"] = "Tem certeza de que quer PAUSAR este serviço";
+$lL["__continue_service__"] = "Continuar Serviço";
+$lL["__are_you_sure_you_want_to_continue_this_service__"] = "Tem certeza que quer CONTINUAR com este serviço";
+
+?>

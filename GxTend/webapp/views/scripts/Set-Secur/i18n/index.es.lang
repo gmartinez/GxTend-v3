@@ -1,0 +1,13 @@
+<?php
+
+$lL["__current_grants_on__"] = "Permisos actuales sobre";
+$lL["__user_s_group__"] = "Grupo de Usuarios";
+$lL["__grant_type__"] = "Tipo de Permiso";
+$lL["__individual_user__"] = "Usuario Individual";
+$lL["__users_group__"] = "Grupo de Usuarios";
+$lL["__define_user_s_group_grants_on__"] = "Definir permisos del grupo de usuarios sobre";
+$lL["__for_user_s_group__"] = "Para el Grupo de Usuarios";
+$lL["__grant__"] = "permiso";
+$lL["__on_current__"] = "sobre el presente";
+
+?>

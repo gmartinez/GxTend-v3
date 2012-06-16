@@ -28,22 +28,22 @@ $(document).ready(function(){
 
 </script>
 
-<strong>Current Grants on : </strong> {$visualId}
+<strong>{$lL.__current_grants_on__} : </strong> {$visualId}
 
 <form id="unsetperms" action="Set-Secur/unset" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="guid" value="{$guid}">
     <table width="100%" align="center" class="list">
     <thead>
-        <tr><th>User's Group</th><th>Grant Type</th><th width="5%"><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#unsetperms .objlst");setsubmitsts("#unsetperms .objlst", "#unsetperms button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th>
+        <tr><th>{$lL.__user_s_group__}</th><th>{$lL.__grant_type__}</th><th width="5%"><span style='cursor:pointer;' title='{$smarty.const._TITLE_CHKALL_}' onclick='setcheck("#unsetperms .objlst");setsubmitsts("#unsetperms .objlst", "#unsetperms button");'>&nbsp;{$smarty.const._LBL_CHKALL_}</span></th>
     </thead>
     <tbody id="setPermissions">
         {foreach from=$active_permissions key=k item=rec}
             <tr>
             <td>
                 {if $rec.isuser}
-                <img src="../img/icons/16/user.png" title="Individual User">
+                <img src="../img/icons/16/user.png" title="{$lL.__individual_user__}">
                 {else}
-                <img src="../img/icons/16/users.png" title="Users Group">
+                <img src="../img/icons/16/users.png" title="{$lL.__users_group__}">
                 {/if}
                 &nbsp;{$rec.groupabv}
             </td>
@@ -65,10 +65,10 @@ $(document).ready(function(){
 
 <form id="setperms" action="Set-Secur/set" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="guid" value="{$guid}">
-    <fieldset><legend>Define user's group grants on...</legend>
+    <fieldset><legend>{$lL.__define_user_s_group_grants_on__}...</legend>
     <br clear="all">
     <div id="bottom_left" class="left">
-        For User's Group {$groupguid} grant {$access} on current {$type}
+        {$lL.__for_user_s_group__} {$groupguid} {$lL.__grant__} {$access} {$lL.__on_current__} {$type}
     </div>
     <div  id="bottom_right" class="buttons right">
         {$smarty.const._FORM_BTN_ADD_}

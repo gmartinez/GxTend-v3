@@ -1,8 +1,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
     
-    {if $smarty.const.__LAYER_ROLE__ == "Server"}
     getVersionStatus();
+    {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
     $("#servicessts").load("/Services/?match=gxtend");
     {/if}
 
@@ -15,13 +15,18 @@ function getVersionStatus() {
     $.getJSON(
         "/Help/chknewver",
         function (data, textStatus, jqXHR) {
+            var lst_version = "";
+            var upd_dialog = "";
+            var chg_channel = "";
             if (data.sts) {
-            var last_version = data.__BUILD_VERSION__;
+                lst_version = data.__BUILD_VERSION__;
+                chg_channel = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"{$lL.__click_to_launch_gxtend_update_process__}\" onclick=\"mDialog('/Update/', '{$lL.__update_dialog__}', 600, 900);\">"+data.channel+"</a>";
+                label = lst_version;
             } else {
-            var last_version = data.msg;
+                label = data.msg;
             }
-            $("#chknewver").text(last_version + " ( @ " + data.channel + " update channel )");
-            if ($("#currentver").text() != last_version) {
+            $("#chknewver").html(label + " ( @ " + chg_channel + " channel )");
+            if ($("#currentver").text() != lst_version) {
                 $("#chknewver").attr("style", "color:red;");
             } else {
                 $("#chknewver").attr("style", "color:green;");
@@ -33,95 +38,96 @@ function getVersionStatus() {
 </script>
 
 <div class="heading-block">
-    <h1>About GxTend</h1>
+    <h1>{$lL.__about_gxtend__}</h1>
 </div>
 
 <div class="infoset">
-<span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">Product Information</span>
+<span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">{$lL.__setup_information__}</span>
     <ul>
-        <li><strong>Layer :</strong> {$smarty.const.__LAYER_ROLE__}</li>
-        <li><strong>Built On :</strong> {$InProve_Smarty->ts2str($smarty.const.__TIMESTAMP__)}</li>
-        <li><strong>Current Installed Version :</strong> <span id="currentver">{$smarty.const.__BUILD_VERSION__}</span></li>
-        {if $smarty.const.__LAYER_ROLE__ == "Server"}
-        <li><strong>Metadata Status :</strong> 
+        <li><strong>{$lL.__layer__} :</strong> {$smarty.const.__LAYER_ROLE__}</li>
+        <li><strong>{$lL.__built_on__} :</strong> {$InProve_Smarty->ts2str($smarty.const.__BUILD_TIMESTAMP__)}</li>
+        <li><strong>{$lL.__current_installed_version__} :</strong> <span id="currentver">{$smarty.const.__BUILD_VERSION__}</span></li>
+        <li><strong>{$lL.__latest_available_version__} :</strong> <span id="chknewver"></span></li>
+        {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
+        <li><strong>{$lL.__metadata_status__} :</strong> 
             {if $InProve_Smarty->getSessVar("MetaData.checksts.sts")!="ok"}            
                 <span style="color:red;">{$InProve_Smarty->getSessVar("MetaData.checksts.msg")}</span>
-                &nbsp;<span class="pointer" onclick="mDialog('/Setup/reorg', 'View/Perform Pending Metadata Changes', 600, 900);">Click here to review/perform changes</span>
+                &nbsp;<span class="pointer" onclick="mDialog('/Setup/reorg', '{$lL.__view_perform_pending_metadata_changes__}', 600, 900);">{$lL.__click_here_to_review_perform_changes__}</span>
             {else}
                 <span style="color:green;">{$InProve_Smarty->getSessVar("MetaData.checksts.msg")}</span>
             {/if}
         </li>
-        <li><strong>Latest Available Build :</strong> <span id="chknewver"></span></li>
-        <li><strong>Status of Related Services :</strong> <span id="servicessts">{$smarty.const._MSG_WAIT_SM_}</span></li>
+        <li><strong>{$lL.__status_of_related_services__} :</strong> <span id="servicessts">{$smarty.const._MSG_WAIT_SM_}</span></li>
         {/if}
     </ul>    
 </div>
 
 <div class="infoset">
-<span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">License Information</span>
+<span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">{$lL.__license_information__}</span>
     <ul>
         <li><strong>Host GUID :</strong> {$gxtguid}</li>
+        {if in_array($smarty.const.__LAYER_ROLE__,array("Server"))}
         <li>
-            <strong>Status :</strong>
+            <strong>{$lL.__status__} :</strong>
             {if $licsts!="__VALID_KEY__"}
                 &nbsp;<span class="red">{$licsts} - {constant($licsts)}</span>
-                {if $iframesrc != "0601"}
-                &nbsp;<span class="pointer" onclick="mDialog('{$iframesrc}', 'Request GxTend License', 480, 640);">Click here to request key</span>
-                {else}
-                &nbsp;Could not generate key request file.
-                {/if}
             {else}
-                &nbsp;<span class="green">Valid license installed, no issues detected.</span>
+                &nbsp;<span class="green">{$lL.__valid_license_installed__no_issues_detected__}.</span>
+            {/if}
+            {if $iframesrc != "0601"}
+                &nbsp;|&nbsp;<span class="pointer" onclick="mDialog('{$iframesrc}', '{$lL.__gxtend_license_request__}', 480, 640);">{$lL.__request_new_license__}</span>
+            {else}
+                &nbsp;{$lL.__could_not_generate_license_request_file__}.
             {/if}
         </li>
-        {if $licnfo}
-        <li class="moreS2" style="display:none;"><strong>Requested :</strong> {$InProve_Smarty->ts2str($licnfo.key_data.requested)}</li>
-        <li class="moreS2" style="display:none;"><strong>Generated :</strong> {$InProve_Smarty->ts2str($licnfo.key_data.generated)}</li>
-        <li class="moreS2" style="display:none;"><strong>Type :</strong> {ucfirst($licnfo.license.lictype)}</li>
-        <li class="moreS2" style="display:none;"><strong>Due Date :</strong> {$InProve_Smarty->ts2str(strtotime($licnfo.license.duedate),"date")}</li>
-        <li class="moreS2" style="display:none;"><strong>Maximum Users :</strong> {$licnfo.license.maxusers}</li>
-        <li class="moreS2" style="display:none;"><strong>Maximum KBs :</strong> {$licnfo.license.maxgxkbs}</li>
+        <li class="moreS2" style="display:none;"><strong>{$lL.__requested__} :</strong> {$InProve_Smarty->ts2str($licnfo.key_data.requested)}</li>
+        <li class="moreS2" style="display:none;"><strong>{$lL.__generated__} :</strong> {$InProve_Smarty->ts2str($licnfo.key_data.generated)}</li>
+        <li class="moreS2" style="display:none;"><strong>{$lL.__type__} :</strong> {ucfirst($licnfo.license.lictype)}</li>
+        <li class="moreS2" style="display:none;"><strong>{$lL.__due_date__} :</strong> {$InProve_Smarty->ts2str(strtotime($licnfo.license.duedate),"date")}</li>
+        <li class="moreS2" style="display:none;"><strong>{$lL.__maximum_users__} :</strong> {$licnfo.license.maxusers}</li>
+        <li class="moreS2" style="display:none;"><strong>{$lL.__maximum_kbs__} :</strong> {$licnfo.license.maxgxkbs}</li>
         <li style="list-style-type:none;font-size:.85em;">
-            <a class="lblS2" style="display:block;" href="javascript:;" onclick="$('.moreS2,.lblS2').toggle();">See More...</a>
-            <a class="lblS2" style="display:none;" href="javascript:;" onclick="$('.moreS2,.lblS2').toggle();">See Less...</a>
+            <a class="lblS2" style="display:block;" href="javascript:;" onclick="$('.moreS2,.lblS2').toggle();">{$lL.__see_more__}...</a>
+            <a class="lblS2" style="display:none;" href="javascript:;" onclick="$('.moreS2,.lblS2').toggle();">{$lL.__see_less__}...</a>
         </li>
         {/if}
     </ul>
 </div>
 
 <div class="infoset">
-<span class="ui-state-active ui-corner-all left" style="padding:0 5px 0 5px;">Environment Information</span><span class="ui-icon ui-icon-gear pointer left" title="Click to view/set configuration entries" onclick="mDialog('/Config/?secti=4', 'Configuration Settings', 600, 900);"></span><br clear="all">
+<span class="ui-state-active ui-corner-all left" style="padding:0 5px 0 5px;">{$lL.__environment_information__}</span>
+<span class="ui-icon ui-icon-wrench pointer left" title="{$lL.__click_to_view_set_configuration_entries__}" onclick="mDialog('/Config/?secti=4', '{$lL.__configuration_settings__}', 600, 900);"></span>
+<br clear="all">
     <ul>
-        <li><strong>Computer Name :</strong> {$osinfo.host}</li>
-        <li><strong>OS Name :</strong> {$osinfo.name}</li>
-        <li><strong>OS Architecture :</strong> {$osinfo.architecture}</li>
-        <li class="moreS3" style="display:none;"><strong>OS Version :</strong> {$osinfo.version}</li>
-        <li class="moreS3" style="display:none;"><strong>OS Level :</strong> {$osinfo.level}</li>
-        <li class="moreS3" style="display:none;"><strong>OS Current Time :</strong> {$InProve_Smarty->ts2str($osinfo.time)}</li>
-        <li class="moreS3" style="display:none;"><strong>OS Time Zone Offset :</strong> {$InProve_Smarty->sec2str($osinfo.timezone.offset)}</li>
+        <li><strong>{$lL.__computer_name__} :</strong> {$osinfo.host}</li>
+        <li><strong>{$lL.__os_name__} :</strong> {$osinfo.name}</li>
+        <li><strong>{$lL.__os_architecture__} :</strong> {$osinfo.architecture|default:"Not Available"}</li>
+        <li class="moreS3" style="display:none;"><strong>{$lL.__os_version__} :</strong> {$osinfo.version}</li>
+        <li class="moreS3" style="display:none;"><strong>{$lL.__os_level__} :</strong> {$osinfo.level}</li>
+        <li class="moreS3" style="display:none;"><strong>{$lL.__os_current_time__} :</strong> {$InProve_Smarty->ts2str($osinfo.time)}</li>
+        <li class="moreS3" style="display:none;"><strong>{$lL.__os_time_zone_offset__} :</strong> {$InProve_Smarty->sec2str($osinfo.timezone.offset)}</li>
         <li style="list-style-type:none;font-size:.85em;">
-            <a class="lblS3" style="display:block;" href="javascript:;" onclick="$('.moreS3,.lblS3').toggle();">See More...</a>
-            <a class="lblS3" style="display:none;" href="javascript:;" onclick="$('.moreS3,.lblS3').toggle();">See Less...</a>
+            <a class="lblS3" style="display:block;" href="javascript:;" onclick="$('.moreS3,.lblS3').toggle();">{$lL.__see_more__}...</a>
+            <a class="lblS3" style="display:none;" href="javascript:;" onclick="$('.moreS3,.lblS3').toggle();">{$lL.__see_less__}...</a>
         </li>
     </ul>
 </div>
 
 <div class="infoset">
-<span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">Backend Information</span>
+<span class="ui-state-active ui-corner-all" style="padding:0 5px 0 5px;">{$lL.__backend_information__}</span>
     <ul>
-        <li><strong>Backend Version :</strong> {$beinfo.version}</li>
-        <li class="moreS4" style="display:none;"><strong>PHP Max.Execution Time :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->get_prm("php.max_execution_time"))}</li>
-        <li class="moreS4" style="display:none;"><strong>PHP Max.Input Time :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->get_prm("php.max_input_time"))}</li>
-        <li class="moreS4" style="display:none;"><strong>PHP Memory Limit :</strong> {$InProve_Smarty->get_prm("php.memory_limit")}</li>
-        <li class="moreS4" style="display:none;"><strong>PHP Time Zone Offset :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("MyProfile.tz.gmtoffset"))}</li>
+        <li><strong>{$lL.__backend_version__} :</strong> {$beinfo.version}</li>
+        <li class="moreS4" style="display:none;"><strong>{$lL.__php_max_execution_time__} :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->get_prm("php.max_execution_time"))}</li>
+        <li class="moreS4" style="display:none;"><strong>{$lL.__php_max_input_time__} :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->get_prm("php.max_input_time"))}</li>
+        <li class="moreS4" style="display:none;"><strong>{$lL.__php_memory_limit__} :</strong> {$InProve_Smarty->get_prm("php.memory_limit")}</li>
+        <li class="moreS4" style="display:none;"><strong>{$lL.__php_time_zone_offset__} :</strong> {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("MyProfile.tz.gmtoffset"))}</li>
         
         <li style="list-style-type:none;font-size:.85em;">
-            <a class="lblS4" style="display:block;" href="javascript:;" onclick="$('.moreS4,.lblS4').toggle();">See More...</a>
-            <a class="lblS4" style="display:none;" href="javascript:;" onclick="$('.moreS4,.lblS4').toggle();">See Less...</a>
+            <a class="lblS4" style="display:block;" href="javascript:;" onclick="$('.moreS4,.lblS4').toggle();">{$lL.__see_more__}...</a>
+            <a class="lblS4" style="display:none;" href="javascript:;" onclick="$('.moreS4,.lblS4').toggle();">{$lL.__see_less__}...</a>
         </li>
     </ul>
 </div>
 
 <div class="myhr"></div>
-<p>GxTend is a complete SCM (Software Configuration Management) tool that specifically target GeneXus projects.</p>
-<p>Having an issue ? Please report to <a href="mailto:support@in-prove.com">support@in-prove.com</a> enclosing yours and your company name.</p>
+<p>{$lL.__on_feedback__}.</p>

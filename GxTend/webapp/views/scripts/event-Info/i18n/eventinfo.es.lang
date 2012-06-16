@@ -1,0 +1,13 @@
+<?php
+
+$lL["__event_entry_details__"] = "Detalles de Entrada de Evento";
+$lL["__code___desc___"] = "Código / Desc.";
+$lL["__user__"] = "Usuario";
+$lL["__event_type__"] = "Tipo de Evento";
+$lL["__queue____start____finish__"] = "Cola -> Inicio -> Fin";
+$lL["__current_status___ttp__"] = "Estado Actual / TTP";
+$lL["__log__"] = "Log";
+$lL["__raw_input__"] = "Entrada sin Procesar";
+$lL["__raw_output__"] = "Salida sin Procesar";
+
+?>

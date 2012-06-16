@@ -1,0 +1,6 @@
+<?php
+
+$lL["__attachment__"] = "Attachment";
+$lL["__click_to_download__"] = "Click to Download";
+
+?>

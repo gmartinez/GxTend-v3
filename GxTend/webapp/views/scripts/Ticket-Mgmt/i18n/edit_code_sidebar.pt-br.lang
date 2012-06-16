@@ -1,0 +1,8 @@
+<?php
+
+$lL["__commit__"] = "Commit";
+$lL["__commits_by__"] = "Commits de";
+$lL["__promote__"] = "Promover";
+$lL["__promotions_by__"] = "Promoções de";
+
+?>

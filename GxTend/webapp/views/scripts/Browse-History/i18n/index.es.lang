@@ -1,0 +1,7 @@
+<?php
+
+$lL["__browse_history__"] = "Browse History";
+$lL["__projects__"] = "Projects";
+$lL["__select_commit__"] = "Select Commit";
+
+?>

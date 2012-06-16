@@ -1,39 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    {include file='common_head.phtml'}
-    {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
+{include file="../skel/header.phtml"}
+{if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
     <script type="text/javascript">
     $(document).ready(function(){
-
-        $("#GenericDialog").dialog({
-            bgiframe: true,
-            autoOpen: false,
-            modal: true,
-            position: 'center',
-            open: function(event, ui) { $("#GenericDialog").html('{$smarty.const._MSG_WAIT_SM_}'); }
-        });
-
-        loadappdiv('{$url}');
-		
+        loadappdiv("{$url}",null,"#winforcli");
     });
     </script>
-    {/if}
-</head>
-<body>
-<div id="container" style="background:url('../img/main_bkg_{$smarty.const.__LAYER_ROLE__}.png') no-repeat right bottom;">
-    {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
-	<div id="east_panel" class="ui-layout-center">
-        &nbsp;
-	</div>
-	{else}
-		Session not logged in.
-	{/if}
 
-</div>
+    <div id="winforcli">
 
-<div id="GenericDialog" title="Generic Dialog"></div>
-
-</body>
-</html>
+    </div>
+{else}
+    <h3>__LNG__Session not logged in__LNG__.</h3>
+{/if}
+{include file="../skel/footer.phtml"}

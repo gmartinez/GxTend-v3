@@ -1,0 +1,14 @@
+<?php
+
+$lL["__confirm_execution_of_changeset__"] = "Confirmar a execução do conjunto de mudanças";
+$lL["__status__"] = "Estado";
+$lL["__current_db_structure_version_reports__"] = "Versão atual do estrutura de banco de dados reporta a ser a mesma que versão é definida para";
+$lL["__changes_to_get_from__"] = "Alterações para ir desde";
+$lL["__authentication_information__"] = "Informações de Autenticação";
+$lL["__username__"] = "Nome de Usuário";
+$lL["__password__"] = "Senha";
+$lL["__the_execution_of__"] = "A execução del conjunto de alterações pode tomar <span style=\"color:red;font-weight:bold;\">vários minutos</span>";
+$lL["__you_can_monitor_progress__"] = "Você pode <span style=\"color:red;font-weight:bold;\">monitorar o progresso</span>, verificando os processos em execução no banco de dados (\"processlist show 'por exemplo, no MySQL)";
+$lL["__in_some_cases_it_might__"] = "Em alguns casos, pode ser uma escolha melhor para realizar as alterações acima manualmente usando sempre presente MySql shell interface ou algum aplicativo stateful visual (ex; MySql Workbench)";
+
+?>

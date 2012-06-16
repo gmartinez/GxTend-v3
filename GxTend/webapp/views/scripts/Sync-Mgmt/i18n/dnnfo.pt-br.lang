@@ -1,0 +1,10 @@
+<?php
+
+$lL["__server_changes__"] = "Alterações no Servidor";
+$lL["__sync__"] = "Sinc";
+$lL["__table__"] = "Tabela";
+$lL["__size__"] = "Tamanho";
+$lL["__last_updated__"] = "Ultima Atualização";
+$lL["__last_dn_sync_datetime__"] = "Last Dn Sync Datetime";
+
+?>

@@ -1,0 +1,18 @@
+<?php
+
+$lL["__there_is_active_filters__"] = "Existe filtro(s) activo(s) no grade";
+$lL["__there_is_not_active_filters__"] = "Não há filtro activo (s) em grade";
+$lL["__currently_set_filters__"] = "Filtros atualmente definidas";
+$lL["__search__"] = "Pesquisar";
+$lL["__grid_not_searcheable__"] = "Grade Não Pesquisável";
+$lL["__reset__"] = "Redefinir";
+$lL["__by_prefixing__"] = "Prefixando o texto da pesquisa você pode pesquisar em colunas específicas.";
+$lL["__available_columns_are__"] = "Colunas disponíveis são";
+$lL["__data_export__"] = "Exportação de Dados";
+$lL["__click_for_debug__"] = "Clique para obter informações estatísticas e de depuração.";
+$lL["__close_tab__"] = "Fechar Tab";
+$lL["__error_loading_tab_content__"] = "Erro, não poderia carregar o conteúdo guia.";
+$lL["__grid_debug_information__"] = "Informação da Grade";
+$lL["__export_grid_data__"] = "Export Grid Data";
+
+?>

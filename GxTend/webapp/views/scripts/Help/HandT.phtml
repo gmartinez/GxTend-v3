@@ -1,7 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-     toggleLangs("{$InProve_Smarty->getSessVar('LoginStatus.language')}");
+     toggleLangs("{$smarty.cookies['gxtend_login_language']|default:'en'}");
 
 });
 
@@ -19,12 +19,14 @@ function toggleLangs(lang) {
 
 <div id="HandT">
     <span id="title" style="float:left;font-size:1.25em;font-weight:bold;">
-        {$title}
+        {if $type=="prmhlp"}
+        {$lL.__parameter_information__}
+        {/if}
     </span>
     <span id="langs" style="float:right;font-size:0.85em;">
-        <span id="langopt_en" class="file ui-state-highlight ui-corner-all" onclick="toggleLangs('en');">&nbsp;English&nbsp;</span>&nbsp;
-        <span id="langopt_sp" class="file" onclick="toggleLangs('sp');">&nbsp;Spanish&nbsp;</span>&nbsp;
-        <span id="langopt_pt" class="file" onclick="toggleLangs('pt');">&nbsp;Portuguese&nbsp;</span>
+        {foreach $avaLangs as $k => $v}
+        <span id="langopt_{$k}" class="file" onclick="toggleLangs('{$k}');">&nbsp;{$v}&nbsp;</span>&nbsp;
+        {/foreach}
     </span>
     <br clear="all">
     <div class="myhr"></div>

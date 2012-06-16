@@ -1,0 +1,17 @@
+<?php
+
+$lL["__set_local_working_copy_properties__"] = "Set local working copy properties";
+$lL["__click_to_edit_path__"] = "Click to Edit Path";
+$lL["__path__"] = "Path";
+$lL["__click_to_see_commit_kb_changes_into__local_history_repo___"] = "Click to See/Commit KB changes into \"Local History Repo\"";
+$lL["__click_to_see_import_other_people_changes_into_my_kb__"] = "Click to See/Import other people changes into my KB";
+$lL["__commits_data___promotion_status__"] = "Commits Data & Promotion Status";
+$lL["__click_to_promote_my_changes_into_consolidated_kb__"] = "Click to promote my changes into consolidated KB";
+$lL["__list__"] = "List";
+$lL["__my__"] = "my";
+$lL["__all__"] = "all";
+$lL["__active_locks__"] = "active locks";
+$lL["__add_new_object_s___"] = "Add new object(s)";
+$lL["__ignore_list__"] = "Ignore list";
+
+?>

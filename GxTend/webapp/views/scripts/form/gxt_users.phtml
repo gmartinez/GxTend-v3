@@ -12,46 +12,46 @@ $(document).ready(function(){
 	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
         <h3>
-            Client this User {if $form_mode != $smarty.const._LBL_ADD_}is{else}will be{/if} related to {$cliid}
-            &nbsp;[<a href="javascript:;" title="Add Entry" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_clients' }, null, '$(\'#addNew\').click();');">+</a>]
+            {$lL.__client_this_user__} {if $form_mode != $smarty.const._LBL_ADD_}{$lL.__is__}{else}{$lL.__will_be__}{/if} {$lL.__related_to__} {$cliid}
+            &nbsp;[<a href="javascript:;" title="{$lL.__add_entry__}" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_clients' }, null, '$(\'#addNew\').click();');">+</a>]
         </h3>        
         <div class="myhr"></div>
 		<table align="center" width="100%">
 		<tr><td align="left">
-			<b>Username</b>
+			<b>{$lL.__username__}</b>
             </td>
 			<td align="left">
             {if $form_mode == $smarty.const._LBL_ADD_}
 			<input type="text" size="20" name="f|username|unique" value="{$username}" class="string required">
             {else}
 			<input type="text" size="20" name="f|username|unique" value="{$username}" readonly="readonly">
-            <img class="pointer" src="../img/icons/16/password.png" title="Change Password" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=users', 'Change User\'s Password', 250, 500);">
+            <img class="pointer" src="../img/icons/16/password.png" title="Change Password" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=users', '{$lL.__change_user_password__}', 250, 500);">
             {/if}
             </td>
         </tr>        
 		<tr><td align="left">
-			<b>Full Name</b>
+			<b>{$lL.__full_name__}</b>
             </td>
 			<td align="left">
 			<input type="text" size="50" name="f|name" value="{$name}" class="string required">
             </td>
         </tr>
 		<tr><td align="left">
-			<b>Email</b>
+			<b>{$lL.__email__}</b>
             </td>
 			<td align="left">
-			<input type="text" size="50" name="f|email" value="{$email}" class="string required email">
+			<input type="text" size="50" name="f|email|unique" value="{$email}" class="string required email">
             </td>
         </tr>
 		<tr><td align="left">
-			<b>User Groups</b>
+			<b>{$lL.__user_groups__}</b>
             </td>
 			<td align="left">
-			{$othergroups}&nbsp;[Use Ctrl+Click for multiple selection | <a href="javascript:;" title="Add Entry" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">+</a>]
+			{$othergroups}&nbsp;[{$lL.__use_ctrl_click_for_multiple_selection__} | <a href="javascript:;" title="{$lL.__add_entry__}" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">+</a>]
             </td>
         </tr>
 		<tr><td align="left">
-			<b>Active</b>
+			<b>{$lL.__active__}</b>
 			<td align="left">
 			{$active}
             </td>
@@ -70,7 +70,7 @@ $(document).ready(function(){
         <br clear="all">
         {if $form_mode != $smarty.const._LBL_ADD_}
         <div>
-        <label style="width:10em;"><strong>User Security Token : </strong></label>
+        <label style="width:10em;"><strong>{$lL.__user_security_token__} : </strong></label>
         {$userToken}
         </div>
         {/if}

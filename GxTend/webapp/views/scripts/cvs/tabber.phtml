@@ -15,7 +15,7 @@ $(document).ready(function(){
 </script>
 <div id="tabber">
     <ul>
-        <li><a href="/cvs/proj?projguid={$project.projguid}">Project Data/Stats</a></li>
+        <li><a href="/cvs/proj?projguid={$project.projguid}">{$lL.__project_data_stats__}</a></li>
         {foreach from=$projkbs key=kbguid item=kbrec}
         <li><a href="/cvs/kb?projguid={$project.projguid}&kbguid={$kbguid}">{$kbrec.visualid}</a></li>
         {/foreach}

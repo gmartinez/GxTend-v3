@@ -33,38 +33,38 @@ function buildLR(projguid) {
 <div id="prjnfo">
 
     <div style="float:left;">
-    <strong>&nbsp;Local Repo.:&nbsp;</strong>
+    <strong>&nbsp;{$lL.__local_repo___}:&nbsp;</strong>
     {if $project.repo_stats.ava == "!exist"}
-        {$InProve_Smarty->msg("ui-icon-alert","Not Found")}
+        {$InProve_Smarty->msg("ui-icon-alert","{$lL.__not_found__}")}
         {if $project.remo_repo_stats.ava == "open" || $project.remo_repo_stats.ava == "read"}
-        &nbsp;<span onclick='if(confirm("Confirm repository creation ?")) { buildLR("{$project.projguid}"); }' class='pointer'><img src="{$smarty.const._IMG_DOWNLOAD_SM_}" title="Click to build project repository local instance"></span>
+        &nbsp;<span onclick='if(confirm("{$lL.__confirm_repository_creation__} ?")) { buildLR("{$project.projguid}"); }' class='pointer'><img src="{$smarty.const._IMG_DOWNLOAD_SM_}" title="{$lL.__click_to_build_project_repository_local_instance__}"></span>
         {/if}
     {else}
-        <span style="text-decoration:underline;color:blue;cursor:pointer;" onclick="mDialog('/Browse-Repos/rinfo?repopath={$project.repo_stats.path|base64_encode}&projguid={$project.projguid}', 'Repository Detailed Stats', 480, 640);">Available</span>
+        <span style="text-decoration:underline;color:blue;cursor:pointer;" onclick="mDialog('/Browse-Repos/rinfo?repopath={$project.repo_stats.path|base64_encode}&projguid={$project.projguid}', '{$lL.__repository_detailed_stats__}', 480, 640);">{$lL.__available__}</span>
     {/if}
     </div>
 
     <div style="float:right;">
-    <strong style="float:left;">&nbsp;Remote Repo.:&nbsp;</strong>
+    <strong style="float:left;">&nbsp;{$lL.__remote_repo___}:&nbsp;</strong>
     {if !$project.remo_repo_stats}
-        &nbsp;Unavailable
+        &nbsp;{$lL.__unavailable__}
     {else}
         {if $project.remo_repo_stats.ava == "!exist"}
-            &nbsp;Not Found
+            &nbsp;{$lL.__not_found__}
         {else}
             {if $project.remo_repo_stats.ava == "open"}
-            &nbsp;Available for Reading and Writing
+            &nbsp;{$lL.__available_for_reading_and_writing__}
                 {if $project.repo_stats.ava == "open"}
-                &nbsp;<span id="pushlnk" onclick='$("#synch").show("slow", show_synch("push","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title='Click to See/Push local history into server repo'></span>
-                &nbsp;<span id="fetchlnk" onclick='$("#synch").show("slow", show_synch("fetch","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_FETCH_SM_}' alt='Fetch' title='Click to See/Fetch remote history into local repo'></span>
+                &nbsp;<span id="pushlnk" onclick='$("#synch").show("slow", show_synch("push","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_PUSH_SM_}' alt='Push' title='{$lL.__click_to_see_push__}'></span>
+                &nbsp;<span id="fetchlnk" onclick='$("#synch").show("slow", show_synch("fetch","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_FETCH_SM_}' alt='Fetch' title='{$lL.__click_to_see_fetch__}'></span>
                 {/if}
             {elseif $project.remo_repo_stats.ava == "read"}
             &nbsp;Available for Reading (not Writing)
                 {if $project.repo_stats.ava == "open"}
-                &nbsp;<span id="fetchlnk" onclick='$("#synch").show("slow", show_synch("fetch","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_FETCH_SM_}' alt='Fetch' title='Click to See/Fetch remote history into local repo'></span>
+                &nbsp;<span id="fetchlnk" onclick='$("#synch").show("slow", show_synch("fetch","{$project.projguid}"));' class='pointer'><img src='{$smarty.const._IMG_FETCH_SM_}' alt='Fetch' title='{$lL.__click_to_see_fetch__}'></span>
                 {/if}
             {elseif $project.remo_repo_stats.ava == "close"}
-                &nbsp;Not Available for Reading or Writing
+                &nbsp;{$lL.__not_available_for_reading_or_writing__}
             {/if}
         {/if}
     {/if}

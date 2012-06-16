@@ -1,0 +1,11 @@
+<?php
+
+$lL["__session_entry_details__"] = "Session Entry Details";
+$lL["__user__"] = "User";
+$lL["__start_datetime__"] = "Start Datetime";
+$lL["__last_request__"] = "Last Request";
+$lL["__log__"] = "Log";
+$lL["__raw_log__"] = "Raw Log";
+$lL["__process__"] = "Process";
+
+?>

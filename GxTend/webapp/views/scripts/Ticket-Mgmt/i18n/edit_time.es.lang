@@ -1,0 +1,20 @@
+<?php
+
+$lL["__user_image__"] = "Id Visual del Usuario";
+$lL["__time__"] = "Tiempo";
+$lL["__time_trace__"] = "Traza de tiempo";
+$lL["__hour_s__of__"] = "hora(s) de";
+$lL["__on__"] = "en";
+$lL["__notes__"] = "Notas";
+$lL["__my_image__"] = "Mi Id Visual";
+$lL["__toggle_to_see_all_entries__"] = "Clic para ver todas las entradas";
+$lL["__toggle_to_hide_all_entries__"] = "Clic para ocultar todas las entradas";
+$lL["__add_time_entry__"] = "Añadir entrada de tiempo";
+$lL["__date__"] = "Fecha";
+$lL["__type__"] = "Tipo";
+$lL["__hours__"] = "Horas";
+$lL["__read_only_access__"] = "Read only access";
+$lL["__total_on__"] = "Total en";
+$lL["__hour_s___"] = "hora(s)";
+
+?>

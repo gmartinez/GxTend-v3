@@ -1,0 +1,18 @@
+<?php
+
+$lL["__source__"] = "Source";
+$lL["__path__"] = "Path";
+$lL["__ttp__"] = "TTP";
+$lL["__average__"] = "Average";
+$lL["__objects_are_listed_in_the_order_they_were_submitted__"] = "Objects are listed in the order they were submitted";
+$lL["__row_s___"] = "row(s)";
+$lL["__object__"] = "Object";
+$lL["__modified__"] = "Modified";
+$lL["__sts__"] = "Sts";
+$lL["__does_not_exist_in_target__"] = "Does not exist in target";
+$lL["__object_detected_as_deleted_in_source__"] = "Object detected as deleted in source";
+$lL["__target_modified_on__"] = "Target modified on";
+$lL["__automatically_generated__"] = "Automatically generated";
+$lL["__automatically_generated_but_modified__"] = "Automatically generated BUT modified";
+
+?>

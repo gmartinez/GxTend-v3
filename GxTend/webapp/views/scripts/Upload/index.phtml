@@ -8,26 +8,26 @@ $(document).ready(function(){
         dataType: "json",
         url: "/Upload/upload",
         formData: { options:"{$smarty.request.b64options}" },
-        dropZone: "#GenericDialog #dropZone",
+        dropZone: "#UploadDialog #dropZone",
         limitConcurrentUploads: {$InProve_Smarty->get_prm("upload_maxsimu")},
         add: function (e, data) {
             $("#fileupload-selection-holder").show();
             $.each(data.files, function (index, file) {
                 var errmsg = "";
                 if (file.size > {$appmaxfsize}) {
-                    errmsg = "Error, size is greater than max allowed";
+                    errmsg = "{$lL.__error__size_is_greater_than_max_allowed__}";
                 }
 
                 var re = new RegExp({$options.allowtype});
                 if (!file.name.match(re)) {
-                    errmsg = "Error, file type is not within allowed types";
+                    errmsg = "{$lL.__error__file_type_is_not_within_allowed_types__}";
                 }
 
                 if (errmsg!="") {
                     data.files.splice(index,1);
                     $("#fileupload-selection").append("&nbsp;" + file.name + " [" + bytes2str(file.size) + "] -&gt; <font color='red'>" + errmsg + "</font><br>");
                 } else {
-                    $("#fileupload-selection").append("&nbsp;" + file.name + " [" + bytes2str(file.size) + "] -&gt; <font color='green'>File successfully queued for upload</font><br>");
+                    $("#fileupload-selection").append("&nbsp;" + file.name + " [" + bytes2str(file.size) + "] -&gt; <font color='green'>{$lL.__file_successfully_queued_for_upload__}</font><br>");
                 }                
             });
             if (data.files.length) {
@@ -40,10 +40,10 @@ $(document).ready(function(){
                 if (file.size) {
                 $("#fileupload-result").append("<input class='fileupload-file' type='checkbox' name='atchs[]' value='" + file.name + "' checked> " + file.name + " [" + bytes2str(file.size) + "]<br>");
                 } else {
-                $("#fileupload-result").append("<input class='fileupload-file' type='checkbox' name='atchs[]' value='' disabled='disabled'> " + file.name + " -&gt; <font color='red'>Error, rejected by server</font><br>");
+                $("#fileupload-result").append("<input class='fileupload-file' type='checkbox' name='atchs[]' value='' disabled='disabled'> " + file.name + " -&gt; <font color='red'>{$lL.__error__rejected_by_server__}</font><br>");
                 }
             });
-            $("#GenericDialog").dialog("close");
+            $("#UploadDialog").dialog("close");
         },
         stop : function (e) {
             {if $options.onstop=="updMyVisualId"}
@@ -53,7 +53,7 @@ $(document).ready(function(){
             changeImg(uploadedfilename);
             }
             {else}
-            setTimeout("$('#fileupload-progress').append(\"or <a href='javascript:;' onclick='resetTempFiles();'>Remove Uploaded Files</a>\").show();", 2500);
+            setTimeout("$('#fileupload-progress').append(\"or <a href='javascript:;' onclick='resetTempFiles();'>{$lL.__remove_uploaded_files__}</a>\").show();", 2500);
             {/if}
         }
     });    
@@ -152,24 +152,21 @@ function resetTempFiles() {
 </script>
 
 <input id="fileInput" type="file" name="files[]" style="display:none;" {if $options.multiple=='yes'}multiple{/if}>
-<div id="dropZone" style="background-color:#d4ccb0;margin:5px;height:80px;line-height:80px;text-align:center;font-size:1.5em;cursor:pointer;" onclick="clickOnDropZone();">Click or Drop File{if $options.multiple=='yes'}(s){/if} Here</div>
+<div id="dropZone" style="background-color:#d4ccb0;margin:5px;height:80px;line-height:80px;text-align:center;font-size:1.5em;cursor:pointer;" onclick="clickOnDropZone();">{$lL.__click_or_drop_file__}{if $options.multiple=='yes'}(s){/if} {$lL.__here__}</div>
 
 <div id="fileupload-selection-holder" style="display:none;">
-<div class="myhr">Selected files</div>
+<div class="myhr">{$lL.__selected_files__}</div>
 <p id="fileupload-selection">
 </p>
 </div>
 
-<div class="myhr">Instructions</div>
-<p>
-&nbsp;You can either drag and drop files in the area above or click on it to open the select file dialog, dropped or selected files will be sent to the application.
-</p>
-<p>
-&nbsp;The following policies apply for the current files upload instance:
+<div class="myhr">{$lL.__instructions__}</div>
+<p>{$lL.__instructions_details__}.</p>
+<p>{$lL.__the_following_policies__}:
 <ul>
-    <li>Allowed File Types : {$options.allowtype}</li>
-    <li>Multiple File Selection : {$options.multiple|ucfirst}</li>
-    <li>Maximum File Size : {$InProve_Smarty->bytes2str($appmaxfsize)} (@ server {$InProve_Smarty->bytes2str($sysmaxfsize)})</li>
-    <li>Concurrent Uploads : {$InProve_Smarty->get_prm("upload_maxsimu")}</li>
+    <li>{$lL.__allowed_file_types__} : {$options.allowtype}</li>
+    <li>{$lL.__multiple_file_selection__} : {$options.multiple|ucfirst}</li>
+    <li>{$lL.__maximum_file_size__} : {$InProve_Smarty->bytes2str($appmaxfsize)} (@ server {$InProve_Smarty->bytes2str($sysmaxfsize)})</li>
+    <li>{$lL.__concurrent_uploads__} : {$InProve_Smarty->get_prm("upload_maxsimu")}</li>
 </ul>
 </p>

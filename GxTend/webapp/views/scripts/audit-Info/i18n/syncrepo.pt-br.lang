@@ -1,0 +1,9 @@
+<?php
+
+$lL["__project__"] = "Project";
+$lL["__ttp__"] = "TTP";
+$lL["__command__"] = "Command";
+$lL["__outsts__"] = "Outsts";
+$lL["__output__"] = "Output";
+
+?>

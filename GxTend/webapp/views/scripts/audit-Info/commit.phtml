@@ -1,27 +1,27 @@
 <div id="log_commit">
     <div class="column left">
-        <strong>Source : </strong> {$InProve_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
+        <strong>{$lL.__source__} : </strong> {$InProve_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
         <br>
-        <strong>Path : </strong> {$logData.kbpath}
+        <strong>{$lL.__path__} : </strong> {$logData.kbpath}
     </div>
     <div class="column right">
-        <strong>TTP : </strong> {$InProve_Smarty->sec2str($logData.end - $logData.start)}
+        <strong>{$lL.__ttp__} : </strong> {$InProve_Smarty->sec2str($logData.end - $logData.start)}
         <br>
-        <strong>Average : </strong> {$InProve_Smarty->sec2str($logData.ttpavg)}
+        <strong>{$lL.__average__} : </strong> {$InProve_Smarty->sec2str($logData.ttpavg)}
     </div>
     <br clear="all">
     <div class="myhr"></div>
 
     <div class="column left">
-        Objects are listed in the order they were submitted.
+        {$lL.__objects_are_listed_in_the_order_they_were_submitted__}.
     </div>
     <div class="column right">
-        {count($logData.checked_objs)} row(s)
+        {count($logData.checked_objs)} {$lL.__row_s___}
     </div>
     <br clear="all">    
     <table width="100%" align="center" class="list">
     <thead>
-        <tr><th>Object</th><th>Modified &darr;</th><th>TTP</th><th>Sts</th></tr>
+        <tr><th>{$lL.__object__}</th><th>{$lL.__modified__} &darr;</th><th>{$lL.__ttp__}</th><th>{$lL.__sts__}</th></tr>
     </thead>
     <tbody>
         {foreach $logData.checked_objs as $k => $rec}
@@ -38,16 +38,16 @@
         <td align="center">
             &nbsp;{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
             {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
-            &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+            &nbsp;<img alt="new" src="../img/icons/16/new.png" title="{$lL.__does_not_exist_in_target__}.">
             {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
-            &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
+            &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="{$lL.__object_detected_as_deleted_in_source__}.">
             {elseif $rec.gxinfo.COMP=="OLDER"}
-            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="{$lL.__target_modified_on__} {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
             {/if}
             {if $rec.gxinfo.generated==1}
-            &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
+            &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="{$lL.__automatically_generated__}.">
             {else if $rec.gxinfo.generated==2}
-            &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="Automatically generated BUT modified.">
+            &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="{$lL.__automatically_generated_but_modified__}.">
             {/if}
         </td>
         <td align="center">            

@@ -1,0 +1,56 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#form_template").ajaxForm({
+        dataType: 'json',
+        async: false,
+        beforeSubmit: function() {
+            $("#form_template").validate({
+               ignore: ":hidden"
+            });
+            if ( $("#form_template").valid() ) {
+                 $("#form_template .submit_btn_holder").toggle();
+                return true;
+            }
+            return false;            
+        },
+        success: function (r) {
+            notify("Notification",r.msg,(r.sts ? "info" : "error"),(r.sts ? 2500 : 7500));
+            if (r.sts) {
+                $("#GenericDialog").dialog("close");
+                window.location.reload();
+            } else {
+                $("#form_template .submit_btn_holder").toggle();
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+    });
+
+});
+
+</script>
+
+<h3>{$lL.__template_edition__}</h3>
+<p>{$filename}</p>
+<form id="form_template" action="/Translation/posthtml" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="i18nfile" value="{$smarty.request.i18nfile}">
+    <p>
+    <textarea name="tmplContent" style="width:95%;height:310px;">{$tmplContent}</textarea>
+    </p>
+
+    <div class="myhr"></div>
+
+    <div class="buttons right">
+        <div class="submit_btn_holder">
+            {$smarty.const._FORM_BTN_UPDATE_}
+            &nbsp;{$lL.__or__}&nbsp;
+            <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>{$lL.__cancel__}</a>&nbsp;
+        </div>
+        <div class="submit_btn_holder" style="display:none;">
+            {$smarty.const._BAR_WAIT_}
+        </div>
+    </div>
+</form>
+<br clear="both">

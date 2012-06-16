@@ -5,7 +5,7 @@
             add: function(event, ui) {
                 // append close thingy
                 $(ui.tab).parents('li:first')
-                    .append('<span class="ui-tabs-close ui-icon ui-icon-close" title="Close Tab"></span>')
+                    .append('<span class="ui-tabs-close ui-icon ui-icon-close" title="{$lL.__close_tab__}"></span>')
                     .find('span.ui-tabs-close')
                     .click(function() {
                         $tabs.tabs('remove', $('li', $tabs).index($(this).parents('li:first')[0]));
@@ -26,7 +26,7 @@
             ajaxOptions: { 
                 cache: false,
                 error: function(xhr, status, index, anchor) {
-                    $(anchor.hash).html("Error, could not load tab content.");
+                    $(anchor.hash).html("{$lL.__error_loading_tab_content__}");
                 }
             }
         });
@@ -66,7 +66,7 @@
             },
 			loadComplete: function(r){
                 if (r.dbgnfo) {
-                mDialog("text:"+r.dbgnfo, "Grid Debug Information", 480, 640);
+                mDialog("text:"+r.dbgnfo, "{$lL.__grid_debug_information__}", 480, 640);
                 }
 			},
             loadError: function(jqXHR) {

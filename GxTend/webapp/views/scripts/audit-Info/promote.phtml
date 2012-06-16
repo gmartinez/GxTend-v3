@@ -21,31 +21,31 @@ function filter_by_objsts() {
 </script>
 <div id="log_integrate">
     <div class="column left">
-        <strong>Target : </strong> {$InProve_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
+        <strong>{$lL.__target__} : </strong> {$InProve_Smarty->guid2name('gxt_kbs', $logData.kbguid)}
         <br>
-        <strong>Path : </strong> {$logData.kbpath}
+        <strong>{$lL.__path__} : </strong> {$logData.kbpath}
     </div>
     <div class="column right">
-        <strong>TTP : </strong> {$InProve_Smarty->sec2str($logData.end - $logData.start)}
+        <strong>{$lL.__ttp__} : </strong> {$InProve_Smarty->sec2str($logData.end - $logData.start)}
         <br>
-        <strong>Average : </strong> {if $logData.ttpavg}{$InProve_Smarty->sec2str($logData.ttpavg)}{else}---{/if}
+        <strong>{$lL.__average__} : </strong> {if $logData.ttpavg}{$InProve_Smarty->sec2str($logData.ttpavg)}{else}---{/if}
     </div>
     <br clear="all">
     <div class="myhr"></div>
 
     <div class="column left">
-        Objects are listed in the order they were processed.
+        {$lL.__objects_are_listed_in_the_order_they_were_processed__}.
         &nbsp;|&nbsp;
-        <input type="checkbox" id="okists" name="okists" onchange="filter_by_objsts();" checked> <img class="tip" alt="ok" src="../img/icons/16/tick.png" title="Import Status|Objects tagged with this icon were successfully imported into target KB.">&nbsp;
-        <input type="checkbox" id="errsts" name="errsts" onchange="filter_by_objsts();" checked> <img class="tip" alt="err" src="../img/icons/16/error.png" title="Import Status|Objects tagged with this icon reported errors when imported into target KB.">&nbsp;
+        <input type="checkbox" id="okists" name="okists" onchange="filter_by_objsts();" checked> <img class="tip" alt="ok" src="../img/icons/16/tick.png" title="{$lL.__import_status_objects_tagged_with_this_icon_were_successfully_imported_into_target_kb__}.">&nbsp;
+        <input type="checkbox" id="errsts" name="errsts" onchange="filter_by_objsts();" checked> <img class="tip" alt="err" src="../img/icons/16/error.png" title="{$lL.__import_status_objects_tagged_with_this_icon_reported_errors_when_imported_into_target_kb__}.">&nbsp;
     </div>
     <div class="column right">
-        <span id="resultrows"></span> row(s)
+        <span id="resultrows"></span> {$lL.__row_s___}
     </div>
     <br clear="all">
     <table width="100%" align="center" class="list">
     <thead>
-        <tr><th>Object</th><th>Overwritten Version</th><th>Imported Version</th><th>TTP</th><th>Sts</th></tr>
+        <tr><th>{$lL.__object__}</th><th>{$lL.__overwritten_version__}</th><th>{$lL.__imported_version__}</th><th>{$lL.__ttp__}</th><th>{$lL.__sts__}</th></tr>
     </thead>
     <tbody>
         {foreach $logData.checked_objs as $k => $rec}
@@ -65,24 +65,24 @@ function filter_by_objsts() {
         <td align="center">
             &nbsp;{$InProve_Smarty->ts2str($rec.gxinfo.objupdts)}
             {if $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF!="DELETED_FROM_GXKB"}
-            &nbsp;<img alt="new" src="../img/icons/16/new.png" title="Does not exist in target.">
+            &nbsp;<img alt="new" src="../img/icons/16/new.png" title="{$lL.__does_not_exist_in_target__}.">
             {elseif $rec.gxinfo.COMP=="NEW" && $rec.gxinfo.COMPREF=="DELETED_FROM_GXKB"}
-            &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="Object detected as deleted in source.">
+            &nbsp;<img alt="del" src="../img/icons/16/cleanup.png" title="{$lL.__object_detected_as_deleted_in_source__}.">
             {elseif $rec.gxinfo.COMP=="OLDER"}
-            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="Target modified on {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+            &nbsp;<img alt="older" src="../img/icons/16/warning.png" title="{$lL.__target_modified_on__} {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
             {/if}
             {if $rec.gxinfo.generated==1}
-            &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="Automatically generated.">
+            &nbsp;<img alt="gen1" src="../img/icons/16/lightning_green.png" title="{$lL.__automatically_generated__}.">
             {else if $rec.gxinfo.generated==2}
-            &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="Automatically generated BUT modified.">
+            &nbsp;<img alt="gen2" src="../img/icons/16/lightning_red.png" title="{$lL.__automatically_generated_but_modified__}.">
             {/if}
         </td>
-        <td align="center">            
+        <td align="center">
             {if $logData.ttpavg}{$InProve_Smarty->sec2str($rec.end - $rec.start)}{else}---{/if}
         </td>
         <td align="center">            
             {if $rec.sts=="ok"}
-            {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/tick.png' alt='{$rec.sts}' title='{$rec.sts}'>")}            
+            {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/tick.png' alt='{$rec.sts}' title='{$rec.sts}'>")}
             {else}
             {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/error.png' alt='{$rec.sts}' title='{$rec.sts}'>")}
             {/if}

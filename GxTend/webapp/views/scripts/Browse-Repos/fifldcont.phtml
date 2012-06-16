@@ -57,7 +57,7 @@
 <input type="hidden" id="options" name="options" value="{$options}">
 <table width="100%" align="center" class="list">
 <thead>
-    <tr><th>Name</th><th>Date Modified</th><th>Size</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#files_form .objlst");setsubmitsts("#files_form .objlst", "#submit_delete_btn");'>Ops</span></th></tr>
+    <tr><th>{$lL.__name__}</th><th>{$lL.__date_modified__}</th><th>{$lL.__size__}</th><th><span style='cursor:pointer;' title='{$smarty.const._LBL_CHKALL_}' onclick='setcheck("#files_form .objlst");setsubmitsts("#files_form .objlst", "#submit_delete_btn");'>{$lL.__actions__}</span></th></tr>
 </thead>
 <tbody>
     {foreach from=$fld_cont key=k item=rec}
@@ -79,14 +79,14 @@
 </table>
 <fieldset id="fsetopts">
     <legend>
-        Available operations
+        {$lL.__available_operations__}
         <img src="../img/icons/16/edit.png" onclick="$('.avops').hide();$('#op_newfld').show()">&nbsp;&nbsp;
         <img src="../img/icons/16/remove.png" onclick="$('.avops').hide();$('#op_delfil').show()">&nbsp;&nbsp;
         <img src="../img/icons/16/add.png" onclick="$('.avops').hide();$('#op_uplfil').show()">&nbsp;&nbsp;
     </legend>
     <br clear="both">
     <div id="op_newfld" class="avops" style="display:show;">
-        Create folder with name <input type="text" id="new_fld_name" name="new_fld_name" size="50">
+        {$lL.__create_folder_with_name__} <input type="text" id="new_fld_name" name="new_fld_name" size="50">
         <div class="buttons right">
             {$smarty.const._FORM_BTN_ADD_}
         </div>

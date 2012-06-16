@@ -14,21 +14,21 @@
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
 		<table align="center" width="100%">
 		<tr><td align="left">
-			<b>Parameter Unique Identifier</b>
+			<b>{$lL.__parameter_unique_identifier__}</b>
             </td>
 			<td align="left">
             <input type="text" size="30" name="f|prmid" value="{$prmid}" class="string required">
             &nbsp;
             {if !$userParam}
-            <span class="green" style="font-size:1.25em;">System Level</span>
+            <span class="green" style="font-size:1.25em;">{$lL.__system_level__}</span>
             {else}
-            <span class="red" style="font-size:1.25em;">User Level ({$userParam})</span>
+            <span class="red" style="font-size:1.25em;">{$lL.__user_level__} ({$userParam})</span>
             {/if}
             </td>
 		</tr>
         {if !$userParam}
 		<tr><td align="left">
-			<b>Customization Level</b>
+			<b>{$lL.__customization_level__}</b>
             </td>
 			<td align="left">
 			{$editlvl}
@@ -36,7 +36,7 @@
 		</tr>
         {/if}
 		<tr><td align="left">
-			<b>Description</b>
+			<b>{$lL.__description__}</b>
             </td>
 			<td align="left">
 			<input type="text" size="80" name="f|prmdsc" value="{$prmdsc}">
@@ -44,7 +44,7 @@
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Current Parameter Value <span class="file" title="Click to View {if !$userParam}Default{else}System{/if} Value" onclick="mDialog('text:'+$('#form_{$form_ctrlid} #prmdefvalue').html(), 'Current {if !$userParam}Default{else}System{/if} Value', 360, 480);">(*)</span></b>
+			<b>{$lL.__current_parameter_value__} <span class="file" title="Click to View {if !$userParam}Default{else}System{/if} Value" onclick="mDialog('text:'+$('#form_{$form_ctrlid} #prmdefvalue').html(), '{$lL.__current__} {if !$userParam}Default{else}System{/if} {$lL.__value__}', 360, 480);">(*)</span></b>
             </td>
 			<td align="left" class="nb">
             <textarea name="f|prmval" rows="5" cols="80">{$prmval}</textarea>
@@ -57,15 +57,15 @@
 		<tr><td align="left" colspan="2">
             <div class="tabs">
             <ul>
-                <li><a href="#{$form_ctrlid}_tab-2"><span>Customizations</span></a></li>
+                <li><a href="#{$form_ctrlid}_tab-2"><span>{$lL.__customizations__}</span></a></li>
             </ul>
                 <div id="{$form_ctrlid}_tab-2">
                     <table align="center" width="100%" class="list">
                     <thead>
                     <tr>
-                        <th width="20%">User</th>
-                        <th width="70%">Value</th>
-                        <th width="10%">Ops</th>
+                        <th width="20%">{$lL.__user__}</th>
+                        <th width="70%">{$lL.__value__}</th>
+                        <th width="10%">{$lL.__actions__}</th>
                     </tr>
                     </thead>
                     <tbody>

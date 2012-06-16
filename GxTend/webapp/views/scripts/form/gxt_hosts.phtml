@@ -6,24 +6,24 @@
     <input type="hidden" name="parms" value="{$smarty.get.parms}">
         <table align="center" width="100%">
         <tr><td align="left">
-            <b>Host Name</b>
+            <b>{$lL.__host_name__}</b>
             </td>
             <td align="left">
             <input type="text" size="50" name="f|hostname" value="{$hostname}" class="string required">
             </td>
         </tr>
         <tr><td align="left">
-            <b>Host Description</b>
+            <b>{$lL.__host_description__}</b>
             </td>
             <td align="left">
             <textarea name="f|hostabv" rows="3" cols="60">{$hostabv}</textarea>
             </td>
         </tr>
         <tr><td align="left">
-            <b>Username</b>
+            <b>{$lL.__username__}</b>
             </td>
             <td align="left">
-            {$userguid} (User this Host belongs to)
+            {$userguid} ({$lL.__user_this_host_belongs_to__})
             </td>
        </tr>
         </table>

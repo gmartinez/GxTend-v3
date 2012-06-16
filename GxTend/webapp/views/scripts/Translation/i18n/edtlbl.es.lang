@@ -1,0 +1,10 @@
+<?php
+
+$lL["__notification__"] = "Notificación";
+$lL["__label_edition__"] = "Edición de Etiqueta";
+$lL["__or__"] = "o";
+$lL["__cancel__"] = "cancelar";
+$lL["__key_id__"] = "Id del Key";
+$lL["__key_was_changed__reload_to_get_new_one__"] = "Key was changed, reload to get new one";
+
+?>

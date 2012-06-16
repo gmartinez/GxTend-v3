@@ -1,0 +1,21 @@
+<?php
+
+$lL["__my_options__"] = "Minhas Opções";
+$lL["__my_profile__"] = "Configurações";
+$lL["__app_logs__"] = "Logs de Aplicação";
+$lL["__queued_events__"] = "Fila de Eventos";
+$lL["__audited_ops__"] = "Informações de Auditoria";
+$lL["__sync_status__"] = "Estado de Sincronização";
+$lL["__tasks_definition__"] = "Definição de Tarefas";
+$lL["__milestones__"] = "Metas";
+$lL["__to_do_lists__"] = "Listas de Tarefas";
+
+$lL["__tickets__"] = "Tickets";
+$lL["__help__"] = "Ajuda";
+$lL["__about__"] = "Sobre";
+$lL["__debugging_tools__"] = "Debugging Tools";
+$lL["__query_metadata__"] = "Query Metadata";
+$lL["__query_gxkb__"] = "Query GxKb";
+$lL["__logout__"] = "Sair";
+
+?>

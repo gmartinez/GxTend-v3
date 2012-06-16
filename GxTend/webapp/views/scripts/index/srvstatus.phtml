@@ -1,9 +1,9 @@
-<div class="file" onclick="mDialog('/index/srvdata', 'GxTend Server Data', 384, 512);$('#container #footer #footer-inner #footerlog #srvstatus').load('/index/srvstatus');">
+<div class="file" onclick="mDialog('/index/srvdata', '{$lL.__gxtend_server_data__}', 384, 512);$('#container #footer #footer-inner #footerlog #srvstatus').load('/index/srvstatus');">
 {if $InProve_Smarty->getSessVar("LoginStatus.server.status")}
-    &nbsp;|&nbsp; <img src='{$smarty.const._IMG_CONNECT_SM_}' alt='available' title='Server Status is Available'> <span class="green">Available</span>
+    &nbsp;|&nbsp; <img src='{$smarty.const._IMG_CONNECT_SM_}' alt='available' title='{$lL.__server_status_is__}'> <span class="green">{$lL.__available__}</span>
 {elseif !$InProve_Smarty->getSessVar("LoginStatus.server.status")}
-    &nbsp;|&nbsp; <img src='{$smarty.const._IMG_DISCONNECT_SM_}' alt='unavailable' title='Server Status is Unavailable'> <span class="red">Unavailable</span>
+    &nbsp;|&nbsp; <img src='{$smarty.const._IMG_DISCONNECT_SM_}' alt='unavailable' title='{$lL.__server_status_is__}'> <span class="red">{$lL.__unavailable__}</span>
 {else}
-    &nbsp;|&nbsp; <img src='{$smarty.const._IMG_WARN_SM_}' alt='undetermined' title='Server Status is Undetermined'> <span class="gray">Undetermined</span>
+    &nbsp;|&nbsp; <img src='{$smarty.const._IMG_WARN_SM_}' alt='undetermined' title='{$lL.__server_status_is__}'> <span class="gray">{$lL.__undetermined__}</span>
 {/if}
 </div>

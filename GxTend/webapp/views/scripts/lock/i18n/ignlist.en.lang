@@ -1,0 +1,15 @@
+<?php
+
+$lL["__entries_were_successfully_removed_from_list__"] = "Entries were Successfully removed from list";
+$lL["__some_entries_could_not_be_removed_from_list__"] = "Some entries could not be removed from list";
+$lL["__list_of_entries_in_ignore_list__"] = "List of entries in ignore list";
+$lL["__add_a_new_matching_rule_to_ignore_list__"] = "Add a new matching rule to ignore list";
+$lL["__add_matching_rule__"] = "Add matching rule";
+$lL["__set_in_list_since__"] = "Set in List Since";
+$lL["__object_s_ignore_list_status__"] = "Object's Ignore List Status";
+$lL["__set_this_entry_so_matching_objects_are_ignored_on__"] = "set this entry so matching objects are ignored on";
+$lL["__ttp__"] = "TTP";
+$lL["__second__"] = "second";
+$lL["__top__"] = "Top";
+
+?>

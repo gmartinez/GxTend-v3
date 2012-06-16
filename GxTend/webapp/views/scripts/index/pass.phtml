@@ -1,3 +1,4 @@
+{*LNG@index.phtml*}
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -19,14 +20,6 @@
             }
         });
 
-        $("#GenericDialog").dialog({
-            bgiframe: true,
-            autoOpen: false,
-            modal: true,
-            position: 'center',
-            open: function(event, ui) { $("#GenericDialog").html('{$smarty.const._MSG_WAIT_SM_}'); }
-        });
-
         CheckRepository();
 
     });
@@ -45,7 +38,7 @@
 
         jQuery.getJSON(
                 "/index/passopts",
-                { repository:$("#repository").val() },
+                { repository:$("#repository").val(), language:$("#language").val() },
                 function (data, textStatus) {
                     $("#startupopts").html(data.startupopts);
                     $("#submitopts").html(data.submitopts);
@@ -55,47 +48,48 @@
                         $("#configGear").show("slow");
                     }
                 }
-        );
+        ).error(function(jqXHR) {
+            handleXHRerror(jqXHR);
+            $("#submitopts").html('{$smarty.const._MSG_ERR_}');
+        });
 
     }
 </script>
-<div id="login" style="text-align:center;">
-    <div style="width:500px;margin:0px auto;padding-top:50px;text-align:left;">
-        <div id="login-box">
-            <form id="form_pass" action="index/login" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="sts" value="">
-                <h2>Log on to GxTend {$smarty.const.__LAYER_ROLE__}</h2>
-                <br>
-                <div class="login-box-name">Language:</div>
-                <div class="login-box-field">
-                    {$language}
-                </div>
-                <div class="login-box-name">Username:</div>
-                <div class="login-box-field">
-                    <input class="form-login" type="text" maxlength="100" id="username" name="username" value="{$username}" title="Username">
-                </div>
-                <div class="login-box-name">Password:</div>
-                <div class="login-box-field">
-                    <input class="form-login" type="password" maxlength="20" id="password" name="password" value="" title="Password">
-                </div>
-                <div class="login-box-name">GxTend Server:</div>
-                <div class="login-box-field">
-                    {$repository}
-                </div>
-                {if $smarty.const.__LAYER_ROLE__=="Client"}
-                <div class="login-box-name"></div>
-                <div class="login-box-field">
-                    <span id="startupopts" style="float:left;">{$smarty.const._MSG_WAIT_SM_}</span>
-                </div>
-                {/if}
-                <br>
-                <span class="login-box-options left">Ver. {$InProve_Smarty->gxtVersion()}</span>
-                {if $smarty.const.__LAYER_ROLE__=="Client"}
-                <span id="configGear" class="ui-icon ui-icon-gear pointer left" style="margin-left:5px;display:none;" title="Click to view/set configuration entries" onclick="mDialog('/Config/?sects=1,3', 'Configuration Settings', 600, 900);"></span>
-                {/if}
-                <br clear="all">
-                <span id="submitopts" class="right">{$smarty.const._MSG_WAIT_SM_}</span>
-            </form>
-        </div>
-    </div>    
+<div id="login" style="text-align:center;width:500px;margin:0px auto;padding-top:50px;text-align:left;">
+    <div id="login-box">
+        <form id="form_pass" action="index/login" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="sts" value="">
+            <h2>{$lL.__welcome_to_gxtend__} {$smarty.const.__LAYER_ROLE__}</h2>
+            <br>
+            <div class="login-box-name">{$lL.__language__}:</div>
+            <div class="login-box-field">
+                {$language}
+            </div>
+            <div class="login-box-name">{$lL.__username__}:</div>
+            <div class="login-box-field">
+                <input class="form-login" type="text" maxlength="100" id="username" name="username" value="{$username}" title="">
+            </div>
+            <div class="login-box-name">{$lL.__password__}:</div>
+            <div class="login-box-field">
+                <input class="form-login" type="password" maxlength="20" id="password" name="password" value="" title="">
+            </div>
+            <div class="login-box-name">{$lL.__gxtsrv__}:</div>
+            <div class="login-box-field">
+                {$repository}
+            </div>
+            {if $smarty.const.__LAYER_ROLE__=="Client"}
+            <div class="login-box-name"></div>
+            <div class="login-box-field">
+                <span id="startupopts" style="float:left;">{$smarty.const._MSG_WAIT_SM_}</span>
+            </div>
+            {/if}
+            <br>
+            <span class="login-box-options left">Ver. {$InProve_Smarty->gxtVersion()}</span>
+            {if $smarty.const.__LAYER_ROLE__=="Client"}
+            <span id="configGear" class="ui-icon ui-icon-wrench pointer left" style="margin-left:5px;display:none;" title="{$lL.__mdialog_config_title__}" onclick="mDialog('/Config/?sects=1,3', '{$lL.__mdialog_title__}', 600, 900);"></span>
+            {/if}
+            <br clear="all">
+            <span id="submitopts" class="right">{$smarty.const._MSG_WAIT_SM_}</span>
+        </form>
+    </div>
 </div>

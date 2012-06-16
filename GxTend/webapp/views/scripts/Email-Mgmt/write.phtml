@@ -5,25 +5,24 @@ $(document).ready(function(){
     initializeButtons();
 
     // Form submit...
-    $("form").ajaxForm({
+    $("#write_email_form").ajaxForm({
         dataType: 'json',
         async: false,
         beforeSubmit: function() {
-            $('form.toValidate').validate({
+            $('#write_email_form .toValidate').validate({
             ignore: ":hidden"
             });
             if ( $('.toValidate').valid() ) {
-                $("form").block({ message: '{$smarty.const._MSG_WAIT_}' });
+                $("#write_email_form .submit_btn_holder").toggle();
                 return true;
             }
             return false;
         },
         success: function (r) {
-            $("form").block({ message: r.msg });
             if (r.sts) {
                 setTimeout('window.close();', 2500);
             } else {
-                setTimeout('$("form").unblock();', 2500);
+                $("#write_email_form .submit_btn_holder").toggle();
             }
         },
         error: function (jqXHR) {
@@ -31,17 +30,19 @@ $(document).ready(function(){
         }
     });
 
-    initRichTextEditor('body','MyBasicOptions');
+    initRichTextEditor("body","MyBasicOptions");
 
 });
 </script>
 
+    <h2 style="float:right;">{$lL.__write_email__}&nbsp;</h2>
+    <br clear="all">
     <form id="write_email_form" class="toValidate" action="/Email-Mgmt/send" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="options" value="{$b64options}">
     <table align="center" width="100%" class="list-horizontal">
     <tr id="toRow">
 		<td align="left" width="15%" class="header first" scope="row">
-			To
+			{$lL.__to__}
 		</td>
 		<td align="left" class="first">
             {if $smarty.request.op=='Re'}
@@ -50,19 +51,19 @@ $(document).ready(function(){
             <input type="text" name="to" value="" class="required email" style="width:50%;" >
             {/if}
             <span style="font-size:.8em;">
-            <a href="javascript:;" id="add_cc_lnk" onclick="javascript:$('#ccRow').show();$('#add_cc_lnk,#add_sepa').hide();">Add Cc</a>
+            <a href="javascript:;" id="add_cc_lnk" onclick="javascript:$('#ccRow').show();$('#add_cc_lnk,#add_sepa').hide();">{$lL.__add_cc__}</a>
             <span id="add_sepa">|</span>
-            <a href="javascript:;" id="add_bcc_lnk" onclick="javascript:$('#bccRow').show();$('#add_bcc_lnk,#add_sepa').hide();">Add Bcc</a>
+            <a href="javascript:;" id="add_bcc_lnk" onclick="javascript:$('#bccRow').show();$('#add_bcc_lnk,#add_sepa').hide();">{$lL.__add_bcc__}</a>
             </span>
             <span style="float:right;">
-            <label for="priority"><strong>Priority</strong></label>
+            <label for="priority"><strong>{$lL.__priority__}</strong></label>
             {$priority}
             </span>
 		</td>
 	</tr>
     <tr id="ccRow" style="display:none;">
 		<td align="left" class="header" scope="row">
-			Cc
+			{$lL.__cc__}
 		</td>
 		<td align="left">
             <input type="text" name="cc" value="{$cc}" class="email" style="width:50%;">
@@ -70,7 +71,7 @@ $(document).ready(function(){
     </tr>
     <tr id="bccRow" style="display:none;">
 		<td align="left" class="header" scope="row">
-			Bcc
+			{$lL.__bcc__}
 		</td>
 		<td align="left">
             <input type="text" name="bcc" value="{$bcc}" class="email" style="width:50%;">
@@ -78,7 +79,7 @@ $(document).ready(function(){
     </tr>
     <tr id="subjectRow" >
 		<td align="left" class="header" scope="row">
-			Subject
+			{$lL.__subject__}
 		</td>
 		<td align="left">
             {if $smarty.request.op=='Re'}
@@ -92,7 +93,7 @@ $(document).ready(function(){
 	</tr>
     <tr id="attchsRow" style="display:none;">
 		<td align="left" class="header" scope="row">
-			Attachments
+			{$lL.__attachments__}
 		</td>
 		<td align="left">
             <span id="attchsHolder"></span>
@@ -100,8 +101,8 @@ $(document).ready(function(){
     </tr>
     </table>
     <div>
-        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:.8em;float:right;cursor:pointer;">Toggle to Full Toolbar</span>
-        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:.8em;float:right;cursor:pointer;">Toggle to Basic Toolbar</span>
+        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:.8em;float:right;cursor:pointer;">{$lL.__toggle_to_full_toolbar__}</span>
+        <span class="toggleToolbar" onclick="rsetRichTextEditor('body','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:.8em;float:right;cursor:pointer;">{$lL.__toggle_to_basic_toolbar__}</span>
     </div>
     <br clear="all">
     <div>
@@ -109,11 +110,18 @@ $(document).ready(function(){
     </div>
     <br clear="all">
     <div class="buttons left">
-        {include file='../Upload/widget.phtml'}
+        {include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}
     </div>
     <div class="buttons right">
+        <div class="submit_btn_holder">
         {$smarty.const._FORM_BTN_SUBMIT_}
+        &nbsp;{$lL.__or__}&nbsp;
+        <a href="javascript:;" onclick="window.close();">{$lL.__cancel__}</a>&nbsp;
+        </div>
+        <div class="submit_btn_holder" style="display:none;">
+        {$smarty.const._BAR_WAIT_}
+        </div>
     </div>
     </form>
-    
+
 {include file="../skel/footer.phtml"}

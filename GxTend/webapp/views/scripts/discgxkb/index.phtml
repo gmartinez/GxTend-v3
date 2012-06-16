@@ -1,0 +1,56 @@
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("#form_discover").ajaxForm({
+		dataType: 'json',
+        async: true,
+		beforeSubmit: function() {
+            $('.toValidate').validate({
+               ignore: ":hidden"
+            });
+            if ( $('.toValidate').valid() ) {
+                 $("#form_discover button").attr("disabled", "disabled").addClass("ui-state-disabled");
+                return true;
+            }
+            return false;
+		},
+		success: function (r) {
+            showlogmsg();       // Display user message...
+            if (r.sts) {
+                setTimeout('grid_remtab("{$smarty.get.grid_ctrlid}");', 1000);
+            } else {
+                $("#tabber_{$smarty.get.grid_ctrlid} #form_discover button").removeAttr("disabled");
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+	});
+
+    if (!$("#projguid")[0].length) {
+        $("#form_discover button").attr("disabled", "disabled");
+    }
+
+});
+</script>
+
+	<br>
+	<form id="form_discover" action="discgxkb/autodisc" method="POST" enctype="multipart/form-data" class="toValidate">
+        <h3>{$lL.__project_discovered_kbs_will_be_under__} {$projguid}</h3>
+        <div class="myhr"></div>
+		<table align="center" width="100%">
+		<tr><td align="left">
+			<b>{$lL.__discover_new_kbs_starting_at__}</b>
+            </td>
+			<td align="left">
+			<input type="text" size="100" name="autodiscdirs" value="{$autodiscdirs}">
+            </td>
+        </tr>
+		</table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+            {$smarty.const._FORM_BTN_SUBMIT_}
+        </div>
+        <br clear="all">
+	</form>

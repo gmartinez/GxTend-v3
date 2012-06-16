@@ -1,0 +1,9 @@
+<?php
+
+$lL["__compare___promote__"] = "Compare & Promote";
+$lL["__compare_data_in__"] = "Compare data in";
+$lL["__click_to_switch_kbs__"] = "Click to Switch KBs";
+$lL["__apply_filters_set_on_target_kb__"] = "Apply filters set on target KB";
+$lL["__refresh__"] = "Refresh";
+
+?>

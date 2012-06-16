@@ -14,13 +14,13 @@ $(document).ready(function(){
 <div class="column left">
     &nbsp;<img src="{$smarty.const._IMG_LOCK_SM_}" alt="{$smarty.const._LBL_LOCK_}" title="{$smarty.const._LBL_LOCK_}">
     {if $smarty.request.type!="history"}
-    List of active locks.
+    {$lL.__list_of_active_locks__}.
     {else}
-    Object's locking history.
+    {$lL.__object_s_locking_history__}.
     {/if}
 </div>
 <div class="column right">
-    &nbsp;{$resultset|@count} row(s)
+    &nbsp;{$resultset|@count} {$lL.__row_s___}
 </div>
 
 <br clear="all">
@@ -28,9 +28,9 @@ $(document).ready(function(){
 <table width="100%" align="center" class="list">
 <thead>
     {if $smarty.request.type!="history"}
-    <tr><th>Object</th><th>Username</th><th>Locked Since &darr;</th></tr>
+    <tr><th>{$lL.__object__}</th><th>{$lL.__username__}</th><th>{$lL.__locked_since__} &darr;</th></tr>
     {else}
-    <tr><th>Object</th><th>Locked On &darr;<br>by User</th><th>Released On<br>by User</th></tr>
+    <tr><th>{$lL.__object__}</th><th>{$lL.__locked_on__} &darr;<br>{$lL.__by_user__}</th><th>{$lL.__released_on__}<br>{$lL.__by_user__}</th></tr>
     {/if}
 </thead>
 <tbody>
@@ -53,7 +53,7 @@ $(document).ready(function(){
 {if $smarty.request.type!="history"}
 <span id="all_history">
     <span class="file">
-    {$InProve_Smarty->msg("ui-icon-zoomin","Click to see all locking history.")}
+    {$InProve_Smarty->msg("ui-icon-zoomin","{$lL.__click_to_see_all_locking_history__}.")}
     </span>
 </span>
 <br clear="all">

@@ -1,0 +1,19 @@
+<?php
+
+$lL["__notification__"] = "Notificación";
+$lL["__user_image__"] = "Id Visual del Usuario";
+$lL["__comment__"] = "Comentar";
+$lL["__enable_preview__"] = "Activar Vista Previa";
+$lL["__disable_preview__"] = "Desactivar Vista Previa";
+$lL["__my_image__"] = "Mi Id Visual";
+$lL["__toggle_to_see_all_entries__"] = "Clic para ver todas las entradas";
+$lL["__toggle_to_hide_all_entries__"] = "Clic para ocultar todas las entradas";
+$lL["__add_a_comment___files__"] = "Añadir comentarios y archivos";
+$lL["__toggle_to_full_toolbar__"] = "Cambia a Barra de Herramientas Completa";
+$lL["__toggle_to_basic_toolbar__"] = "Cambia a Barra de Herramientas Básica";
+$lL["__file_upload_dialog__"] = "Diálogo para Carga de Archivos";
+$lL["__attach_file_s___"] = "Adjuntar Archivo(s)";
+$lL["__subscribe__"] = "Suscribir";
+$lL["__subscribe_people_to_receive_email_notifications__"] = "Suscribir personas para recibir notificaciones por email";
+
+?>
