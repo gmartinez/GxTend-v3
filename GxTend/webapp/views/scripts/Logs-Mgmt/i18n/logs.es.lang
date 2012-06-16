@@ -1,0 +1,10 @@
+<?php
+
+$lL["__name__"] = "Nombre";
+$lL["__size__"] = "Tamaño";
+$lL["__modified__"] = "Modificado";
+$lL["__actions__"] = "Acciones";
+$lL["__click_to_view__"] = "Clic para Ver";
+$lL["__click_to_download__"] = "Clic para Bajar";
+
+?>

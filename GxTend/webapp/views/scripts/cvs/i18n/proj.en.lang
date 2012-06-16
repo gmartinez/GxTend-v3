@@ -1,0 +1,16 @@
+<?php
+
+$lL["__local_repo___"] = "Local Repo.";
+$lL["__not_found__"] = "Not Found";
+$lL["__confirm_repository_creation__"] = "Confirm repository creation";
+$lL["__click_to_build_project_repository_local_instance__"] = "Click to build project repository local instance";
+$lL["__repository_detailed_stats__"] = "Repository Detailed Stats";
+$lL["__available__"] = "Available";
+$lL["__remote_repo___"] = "Remote Repo.";
+$lL["__unavailable__"] = "Unavailable";
+$lL["__available_for_reading_and_writing__"] = "Available for Reading and Writing";
+$lL["__click_to_see_push__"] = "Click to See/Push local history into server repo";
+$lL["__click_to_see_fetch__"] = "Click to See/Fetch remote history into local repo";
+$lL["__not_available_for_reading_or_writing__"] = "Not Available for Reading or Writing";
+
+?>

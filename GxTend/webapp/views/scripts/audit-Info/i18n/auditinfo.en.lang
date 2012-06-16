@@ -1,0 +1,13 @@
+<?php
+
+$lL["__log_entry_details__"] = "Log Entry Details";
+$lL["__id__"] = "Id";
+$lL["__code___desc___"] = "Code / Desc.";
+$lL["__user__"] = "User";
+$lL["__datetime__"] = "Datetime";
+$lL["__gxtend_version_build__"] = "GxTend Version/Build";
+$lL["__log__"] = "Log";
+$lL["__raw_log__"] = "Raw Log";
+$lL["__process__"] = "Process";
+
+?>

@@ -1,0 +1,6 @@
+<?php
+
+$lL["__parameter_information__"] = "Informações de Parâmetro";
+$lL["__translation_not_available__"] = "Tradução não disponível";
+
+?>

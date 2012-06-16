@@ -1,0 +1,17 @@
+<?php
+
+$lL["__set_local_working_copy_properties__"] = "Definir propiedades de la copia de trabajo local";
+$lL["__click_to_edit_path__"] = "Clic para Editar Directorio";
+$lL["__path__"] = "Directorio";
+$lL["__click_to_see_commit_kb_changes_into__local_history_repo___"] = "Clic para Ver/Commit cambios de la KB en \"Local History Repo\"";
+$lL["__click_to_see_import_other_people_changes_into_my_kb__"] = "Click para Ver/Importar los cambios de otras personas en mi KB";
+$lL["__commits_data___promotion_status__"] = "Datos del Commit y Estado de Promoción";
+$lL["__click_to_promote_my_changes_into_consolidated_kb__"] = "Clic para promover mis cambios en la KB consolidada";
+$lL["__list__"] = "Listar";
+$lL["__my__"] = "mis";
+$lL["__all__"] = "todos";
+$lL["__active_locks__"] = "bloqueos activos";
+$lL["__add_new_object_s___"] = "Nuevo(s) objeto(s)";
+$lL["__ignore_list__"] = "Ignorados";
+
+?>

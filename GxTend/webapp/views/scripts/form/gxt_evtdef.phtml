@@ -20,79 +20,79 @@
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
 		<table align="center" width="100%">
 		<tr><td align="left">
-			<b>Event Name</b>
+			<b>{$lL.__event_name__}</b>
             </td>
 			<td align="left">
             <input type="text" size="10" name="f|evtname|unique" value="{$evtname}" class="string required">
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Description</b>
+			<b>{$lL.__description__}</b>
             </td>
 			<td align="left">
             <textarea name="f|evtdsc" rows="3" cols="60">{$evtdsc}</textarea>
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Processor</b>
+			<b>{$lL.__processor__}</b>
             </td>
 			<td align="left">
 			<input type="text" size="80" name="f|evtproc" value="{$evtproc}">
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Parameters</b>
+			<b>{$lL.__parameters__}</b>
             </td>
 			<td align="left">
 			<input type="text" size="80" name="f|evtparm" value="{$evtparm}">
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Event Type</b>
+			<b>{$lL.__event_type__}</b>
             </td>
 			<td align="left" class="nb">
 			{$evttype}
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>When to execute</b>
+			<b>{$lL.__when_to_execute__}</b>
             </td>
 			<td align="left" class="nb">
             &nbsp;
                 <div class="when2exec" style="display:none" id="periodic">
-                Days of Week
-                <input type="checkbox" name="daysofweek[0]" value="0" {if isset($daysofweek.0)}checked{/if}> Sun&nbsp;
-                <input type="checkbox" name="daysofweek[1]" value="1" {if isset($daysofweek.1)}checked{/if}> Mon&nbsp;
-                <input type="checkbox" name="daysofweek[2]" value="2" {if isset($daysofweek.2)}checked{/if}> Tue&nbsp;
-                <input type="checkbox" name="daysofweek[3]" value="3" {if isset($daysofweek.3)}checked{/if}> Wed&nbsp;
-                <input type="checkbox" name="daysofweek[4]" value="4" {if isset($daysofweek.4)}checked{/if}> Thu&nbsp;
-                <input type="checkbox" name="daysofweek[5]" value="5" {if isset($daysofweek.5)}checked{/if}> Fri&nbsp;
-                <input type="checkbox" name="daysofweek[6]" value="6" {if isset($daysofweek.6)}checked{/if}> Sat&nbsp;
+                {$lL.__days_of_week__}
+                <input type="checkbox" name="daysofweek[0]" value="0" {if isset($daysofweek.0)}checked{/if}> {$lL.__sun__}&nbsp;
+                <input type="checkbox" name="daysofweek[1]" value="1" {if isset($daysofweek.1)}checked{/if}> {$lL.__mon__}&nbsp;
+                <input type="checkbox" name="daysofweek[2]" value="2" {if isset($daysofweek.2)}checked{/if}> {$lL.__tue__}&nbsp;
+                <input type="checkbox" name="daysofweek[3]" value="3" {if isset($daysofweek.3)}checked{/if}> {$lL.__wed__}&nbsp;
+                <input type="checkbox" name="daysofweek[4]" value="4" {if isset($daysofweek.4)}checked{/if}> {$lL.__thu__}&nbsp;
+                <input type="checkbox" name="daysofweek[5]" value="5" {if isset($daysofweek.5)}checked{/if}> {$lL.__fri__}&nbsp;
+                <input type="checkbox" name="daysofweek[6]" value="6" {if isset($daysofweek.6)}checked{/if}> {$lL.__sat__}&nbsp;
                 <br>
-                Start {$start_hh} {$start_mm}
+                {$lL.__start__} {$start_hh} {$start_mm}
                 &nbsp;&nbsp;
-                End {$end_hh} {$end_mm}
+                {$lL.__end__} {$end_hh} {$end_mm}
                 &nbsp;&nbsp;
-                Every <input type="text" size="5" name="every" value="{$every}"> (Minutes)
+                {$lL.__every__} <input type="text" size="5" name="every" value="{$every}"> ({$lL.__minutes__})
                 </div>
                 <div class="when2exec" style="display:none" id="at">
-                Date <input id="spec_date" name="spec_date" value="{$spec_date}" type="text" size=12 maxlength=10 readonly="readonly"> Time {$spec_hh} {$spec_mm}
+                {$lL.__date__} <input id="spec_date" name="spec_date" value="{$spec_date}" type="text" size=12 maxlength=10 readonly="readonly"> {$lL.__time__} {$spec_hh} {$spec_mm}
                 </div>
                 <div class="when2exec" style="display:none" id="triggered">
-                <span class="red">Will not be automatically launched...</span>
+                <span class="red">{$lL.__will_not_be_automatically_launched__}...</span>
                 </div>
             &nbsp;
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Queue Status</b>
+			<b>{$lL.__queue_status__}</b>
             </td>
 			<td align="left" class="nb">
 			{$status}
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Priority</b>
+			<b>{$lL.__priority__}</b>
             </td>
 			<td align="left">
 			<input type="text" size="5" name="f|evtpri" value="{$evtpri}">

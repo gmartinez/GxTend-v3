@@ -1,0 +1,31 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+    
+});
+</script>
+
+<table class="table list" style="width:100%;">
+    <thead>
+        <tr>
+            <th>{$lL.__name__}</th>
+            <th>{$lL.__size__}</th>
+            <th>{$lL.__modified__}</th>
+            <th>{$lL.__actions__}</th>
+        </tr>        
+    </thead>
+    <tbody>
+        {foreach $logfiles as $i => $fdata}
+        <tr class="{if $i%2}odd{else}even{/if}">
+            <td>{$fdata.fullname}</td>
+            <td>{$fdata.filesize}</td>
+            <td>{$fdata.updated}</td>
+            <td>
+                {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode({$fdata.fullname})}&send_as={$fdata.basename}&brushas=xml",null,null,"800x600","<span class='ui-icon ui-icon-extlink' style='display:inline-block;' title='{$lL.__click_to_view__}'></span>")}
+                &nbsp;
+                <a class="pointer" href="/Http/getfile?filename={base64_encode({$fdata.fullname})}&send_as={$fdata.basename}"><span class="ui-icon ui-icon-arrowstop-1-s" style='display:inline-block;' title='{$lL.__click_to_download__}'></span></a>
+            </td>
+        </tr>
+        {/foreach}
+    </tbody>
+</table>

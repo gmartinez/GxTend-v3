@@ -13,7 +13,7 @@
 <div id="kbnfo_{$kbdata.kbguid}">
 
     <div style="float:left;">
-    <span onclick='var offset=$("#editlnk_xypos").offset();mDialog("/cvs/kbconf?kbguid={$kbdata.kbguid}", "Set Local Working Copy Properties", null, null, [offset.left,offset.top]);' class='file' title="Click to Set/Change Path"><strong>Path :</strong></span>
+    <span onclick='var offset=$("#editlnk_xypos").offset();mDialog("/cvs/kbconf?kbguid={$kbdata.kbguid}", "{$lL.__set_local_working_copy_properties__}", null, null, [offset.left,offset.top]);' class='file' title="{$lL.__click_to_edit_path__}"><strong>{$lL.__path__} :</strong></span>
     {if $kbdata.local_kbdir}
         {$InProve_Smarty->cutstr($kbdata.local_kbdir,0,80)}
     {else}
@@ -24,14 +24,14 @@
         {if $projdata.repo_stats.ava == "!exist"}
         &nbsp;{$InProve_Smarty->msg("ui-icon-alert","Local Repository Not Found")}
         {else}
-        &nbsp;<span id="checkinlnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$projdata.projguid}", "{$kbdata.kbguid}", 0));' class='pointer'><img src='{$smarty.const._IMG_COMMIT_SM_}' alt='{$smarty.const._LBL_COMMIT_}' title='Click to See/Commit KB changes into "Local History Repo"'></span>
+        &nbsp;<span id="checkinlnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$projdata.projguid}", "{$kbdata.kbguid}", 0));' class='pointer'><img src='{$smarty.const._IMG_COMMIT_SM_}' alt='{$smarty.const._LBL_COMMIT_}' title='{$lL.__click_to_see_commit_kb_changes_into__local_history_repo___}'></span>
         {if $kbdata.kbclass>=7500}
-        &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$projdata.projguid}", "{$kbdata.kbguid}"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='Click to See/Import other people changes into my KB'></span>
+        &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$projdata.projguid}", "{$kbdata.kbguid}"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='{$lL.__click_to_see_import_other_people_changes_into_my_kb__}'></span>
         {else}
-        &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("merge", "{$projdata.projguid}", "{$kbdata.kbguid}"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='Click to See/Import other people changes into my KB'></span>
+        &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("merge", "{$projdata.projguid}", "{$kbdata.kbguid}"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='{$lL.__click_to_see_import_other_people_changes_into_my_kb__}'></span>
         {/if}
         {if $iframe_url}
-        &nbsp;<span id="integralnk" onclick='mDialog("{$iframe_url}", "Commits Data & Promotion Status", 550, 900);' class='pointer'><img src='{$smarty.const._IMG_PROMOTE_SM_}' alt='{$smarty.const._LBL_PROMOTE_}' title='Click to promote my changes into consolidated KB'></span>
+        &nbsp;<span id="integralnk" onclick='mDialog("{$iframe_url}", "{$lL.__commits_data___promotion_status__}", 600, 900);' class='pointer'><img src='{$smarty.const._IMG_PROMOTE_SM_}' alt='{$smarty.const._LBL_PROMOTE_}' title='{$lL.__click_to_promote_my_changes_into_consolidated_kb__}'></span>
         {/if}
         {/if}
     &nbsp;{$InProve_Smarty->msg("HandT","Path_and_Ops.phtml")}
@@ -40,14 +40,14 @@
 
     <div style="float:right;">
         {if $kbdata.local_kbdir && $kbdata.kbclass>=7500}
-        <input type="text" title="{$smarty.const._LBL_SEARCH_}" id="qrystr" name="qrystr" value="{$smarty.request.qrystr}" maxlength="2048" size="37">
+        <input type="text" title="{$smarty.const._LBL_SEARCH_}" id="qrystr" name="qrystr" value="{$smarty.request.qrystr}" maxlength="2048" size="40">
         <input type="button" title="{$smarty.const._TITLE_SUBMIT_}" id="gobtn" name="gobtn" value="Go" onclick='$("#diffs").show("slow", show_srchres("{$projdata.projguid}", "{$kbdata.kbguid}", 1));'>
         {$InProve_Smarty->msg("HandT","Search_and_Lock.phtml")}
         &nbsp;
         <div style="font-size:0.85em;">
-        [List <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[My_Locks]");$("#gobtn").click();'>my</span> / <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[All_Locks]");$("#gobtn").click();'>all</span> active locks]&nbsp;
-        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Add_New]");$("#gobtn").click();'>Add new object(s)</span>]&nbsp;
-        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Ignore_List]");$("#gobtn").click();'>Ignore list</span>]&nbsp;
+        [{$lL.__list__} <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[My_Locks]");$("#gobtn").click();'>{$lL.__my__}</span> / <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[All_Locks]");$("#gobtn").click();'>{$lL.__all__}</span> {$lL.__active_locks__}]&nbsp;
+        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Add_New]");$("#gobtn").click();'>{$lL.__add_new_object_s___}</span>]&nbsp;
+        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Ignore_List]");$("#gobtn").click();'>{$lL.__ignore_list__}</span>]&nbsp;
         </div>
         {/if}
     </div>

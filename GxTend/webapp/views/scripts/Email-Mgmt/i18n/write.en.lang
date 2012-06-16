@@ -1,0 +1,19 @@
+<?php
+
+$lL["__write_email__"] = "Write Email";
+$lL["__to__"] = "To";
+$lL["__add_cc__"] = "Add Cc";
+$lL["__add_bcc__"] = "Add Bcc";
+$lL["__priority__"] = "Priority";
+$lL["__cc__"] = "Cc";
+$lL["__bcc__"] = "Bcc";
+$lL["__subject__"] = "Subject";
+$lL["__attachments__"] = "Attachments";
+$lL["__toggle_to_full_toolbar__"] = "Toggle to Full Toolbar";
+$lL["__toggle_to_basic_toolbar__"] = "Toggle to Basic Toolbar";
+$lL["__file_upload_dialog__"] = "File Upload Dialog";
+$lL["__attach_file_s___"] = "Attach File(s)";
+$lL["__or__"] = "or";
+$lL["__cancel__"] = "cancel";
+
+?>

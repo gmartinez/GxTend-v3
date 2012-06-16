@@ -1,0 +1,19 @@
+<?php
+
+$lL["__read_email__"] = "Read Email";
+$lL["__id___type__"] = "Id / Type";
+$lL["__outbound__"] = "Outbound";
+$lL["__inbound__"] = "Inbound";
+$lL["__reply__"] = "Reply";
+$lL["__forward__"] = "Forward";
+$lL["__date___status__"] = "Date / Status";
+$lL["__date__"] = "Date";
+$lL["__from__"] = "From";
+$lL["__body__"] = "Body";
+$lL["__attachments__"] = "Attachments";
+$lL["__headers__"] = "Headers";
+$lL["__log__"] = "Log";
+$lL["__enable_preview__"] = "Enable Preview";
+$lL["__disable_preview__"] = "Disable Preview";
+
+?>

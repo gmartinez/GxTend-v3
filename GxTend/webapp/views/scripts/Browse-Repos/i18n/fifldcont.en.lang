@@ -1,0 +1,10 @@
+<?php
+
+$lL["__name__"] = "Name";
+$lL["__date_modified__"] = "Date Modified";
+$lL["__size__"] = "Size";
+$lL["__actions__"] = "Actions";
+$lL["__available_operations__"] = "Available operations";
+$lL["__create_folder_with_name__"] = "Create folder with name";
+
+?>

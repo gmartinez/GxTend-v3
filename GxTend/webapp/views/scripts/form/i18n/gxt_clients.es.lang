@@ -1,0 +1,6 @@
+<?php
+
+$lL["__abv__description__"] = "Descripción Abreviada";
+$lL["__country__"] = "País";
+
+?>

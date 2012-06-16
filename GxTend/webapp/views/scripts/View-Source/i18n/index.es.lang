@@ -1,0 +1,8 @@
+<?php
+
+$lL["__project__"] = "Proyecto";
+$lL["__file_name__"] = "Nombre de Archivo";
+$lL["__content_description__"] = "Descripción del Contenido";
+$lL["__click_to_download_file__"] = "Clic para Descargar el Archivo";
+
+?>

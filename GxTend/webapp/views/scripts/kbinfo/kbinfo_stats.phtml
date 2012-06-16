@@ -11,7 +11,7 @@ $(document).ready(function(){
          plotShadow: false
         },
         title: {
-         text: 'Objects Class Distribution Map'
+         text: '{$lL.__objects_class_distribution_map__}'
         },
         tooltip: {
          formatter: function() {
@@ -30,7 +30,7 @@ $(document).ready(function(){
         },
         series: [{
         type: 'pie',
-        name: 'Class Distribution',
+        name: '{$lL.__class_distribution__}',
         data: [            
             {foreach $pie_data as $key => $val name=data}
             ['{$key}', {$val}]{if !$smarty.foreach.data.last},{/if}
@@ -44,7 +44,7 @@ $(document).ready(function(){
     {$smarty.const._MSG_WAIT_SM_}
 </div>
 <div id="database-data" style="float:left;text-align:left;margin-left:50px;margin-top:.75em;">
-    <strong>Database Related</strong>
+    <strong>{$lL.__database_related__}</strong>
     <p>{$schema.5}</p>
     <p>{$schema.11}</p>
     <p>{$schema.7}</p>

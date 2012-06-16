@@ -1,0 +1,10 @@
+<?php
+
+$lL["__notification__"] = "Notificação";
+$lL["__contact_us__"] = "Fale Conosco";
+$lL["__we_are_here_to__"] = "Estamos aqui para ajudar com quaisquer perguntas ou comentários. Se você quiser apenas para dizer oi, isso é legal também";
+$lL["__full_name__"] = "Nome Completo";
+$lL["__your_email__"] = "Email";
+$lL["__comments__"] = "Comentários / Perguntas";
+
+?>

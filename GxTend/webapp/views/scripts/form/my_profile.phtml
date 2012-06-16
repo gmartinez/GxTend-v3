@@ -22,9 +22,9 @@
 <div id="my_data">
     <div style="vertical-align:middle;text-align:right;float:right;">
         <div style="text-align:center;">
-        <img id="my_image" width="48" height="48" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="My Visual Id">
+        <img id="my_image" width="48" height="48" src="/Ajax/getimg?userguid={$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}&v={$smarty.now}" alt="{$lL.__my_visual_id__}">
         <br>
-        <a href="javascript:;" style="font-size:0.8em;" onclick="if(confirm('Are you sure you want to reset your image ?')) { changeImg('reset'); }">Reset Visual Id</a>
+        <a href="javascript:;" style="font-size:0.8em;" onclick="if(confirm('{$lL.__confirm_reset_visual_id__} ?')) { changeImg('reset'); }">{$lL.__reset_visual_id__}</a>
         </div>
     </div>
     <form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
@@ -32,61 +32,61 @@
 	<input type="hidden" name="parms" value="{$b64parms}">
     <input type="hidden" name="options" value="{$options}">
 			<div>
-			<label for="f|username"><strong>Username</strong></label>
-			<input type="text" id="fusername" name="f|username" value="{$username}" readonly="readonly" style="background-color:#F2F2F2;">
-            <img class="file" src="../img/icons/16/password.png" title="Change Password" alt="Change Password" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=mine', 'Change My Password', 250, 500);">
+			<label for="f|username"><strong>{$lL.__username__}</strong></label>
+			<input type="text" id="fusername" name="f|username" value="{$username}" readonly="readonly">
+            <img class="file" src="../img/icons/16/password.png" title="{$lL.__change_my_password__}" alt="{$lL.__change_my_password__}" onclick="mDialog('/form/render?parms={$PassChgLnkParms}&chgtype=mine', '{$lL.__change_my_password__}', 250, 500);">
 			</div>
 			<div>
-			<label for="f|name"><strong>Full Name</strong></label>		
+			<label for="f|name"><strong>{$lL.__full_name__}</strong></label>		
 			<input type="text" name="f|name" value="{$name}" class="string required">
 			</div>
 			<div>
-			<label for="f|email"><strong>Email</strong></label>		
+			<label for="f|email"><strong>{$lL.__email__}</strong></label>		
 			<input type="text" name="f|email" value="{$email}" class="string required email">
 			</div>
             <div class="myhr"></div>
 			<div>
-			<label for="userprof|title"><strong>Title</strong></label>
+			<label for="userprof|title"><strong>{$lL.__title__}</strong></label>
 			<input type="text" id="userproftitle" name="userprof|title" value="{$userprof_title}">
 			</div>
 			<div>
-			<label for="userprof|office"><strong>Office #</strong></label>
-			<input type="text" id="userprofoffice" name="userprof|office" value="{$userprof_office}"> ext <input type="text" style="width: 50px;" name="userprof|offext" value="{$userprof_offext}">
+			<label for="userprof|office"><strong>{$lL.__office__}</strong></label>
+			<input type="text" id="userprofoffice" name="userprof|office" value="{$userprof_office}"> {$lL.__ext__} <input type="text" style="width: 50px;" name="userprof|offext" value="{$userprof_offext}">
 			</div>
 			<div>
-			<label for="userprof|mobile"><strong>Mobile #</strong></label>
+			<label for="userprof|mobile"><strong>{$lL.__mobile__}</strong></label>
 			<input type="text" id="userprofmobile" name="userprof|mobile" value="{$userprof_mobile}">
 			</div>
 			<div>
-			<label for="userprof|home"><strong>Home #</strong></label>
+			<label for="userprof|home"><strong>{$lL.__home__}</strong></label>
 			<input type="text" id="userprofhome" name="userprof|home" value="{$userprof_home}">
 			</div>
 			<div>
-			<label for="userprof|imname"><strong>IM Name</strong></label>
-			<input type="text" id="userprofimname" name="userprof|imname" value="{$userprof_imname}"> on {$imtype}
+			<label for="userprof|imname"><strong>{$lL.__im_name__}</strong></label>
+			<input type="text" id="userprofimname" name="userprof|imname" value="{$userprof_imname}"> {$lL.__on__} {$imtype}
 			</div>
 			<div>
-			<label for="userprof|sector"><strong>Sector</strong></label>
+			<label for="userprof|sector"><strong>{$lL.__sector__}</strong></label>
 			{$userprof_sector}
 			</div>
 			<div>
-			<label for="userprof|website"><strong>Website</strong></label>
+			<label for="userprof|website"><strong>{$lL.__website__}</strong></label>
 			<input type="text" id="userprofwebsite" name="userprof|website" value="{$userprof_website}">
 			</div>
 			<div>
-			<label for="userprof|comments"><strong>Comments</strong></label>
+			<label for="userprof|comments"><strong>{$lL.__comments__}</strong></label>
 			<textarea rows="5" cols="80" name="userprof|comments">{$userprof_comments}</textarea>
 			</div>
 			<!--div>
 			<label for="userprof|token"><strong>Token</strong></label>
-			<input type="text" id="userproftoken" name="userprof|token" value="{$userprof_token}" readonly="readonly" style="width:250px;background-color:#F2F2F2;">
+			<input type="text" id="userproftoken" name="userprof|token" value="{$userprof_token}" readonly="readonly">
             <span class="file" onclick="genToken();">(Re)Generate</span> |
             <span class="file" onclick="$('#userproftoken').val('');">Delete</span>
 			</div-->
             <div class="myhr"></div>
 			<div>
-			<label for="userprof|visualid"><strong>Visual Id</strong></label>
-            <span style="text-align:left;">{include file='../Upload/widget.phtml'}</span>
+			<label for="userprof|visualid"><strong>{$lL.__visual_id__}</strong></label>
+            <span style="text-align:left;">{include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}</span>
 			</div>
             <div class="myhr"></div>
 			<div class="buttons right">

@@ -1,0 +1,37 @@
+<?php
+
+$lL["__object_to_be_imported_on_event_processing__"] = "Object to be imported on event processing";
+$lL["__object_successfully_promoted__"] = "Object successfully promoted";
+$lL["__object_promoted_with_warning_s___"] = "Object promoted with warning(s)";
+$lL["__object_not_promoted__"] = "Object not promoted";
+$lL["__object_successfully_deleted__"] = "Object successfully deleted";
+$lL["__object_not_deleted__"] = "Object not deleted";
+$lL["__all_objects_were_successfully_promoted__"] = "All objects were successfully promoted";
+$lL["__warning_s__during_object_s__promoted__"] = "Warning(s) during object(s) promoted";
+$lL["__error_s__warning_s__during_object_s__promoted__"] = "Error(s)/Warning(s) during object(s) promoted";
+$lL["__object_s_change_history__"] = "Object's Change History";
+$lL["__commits__content__"] = "Commits' Content";
+$lL["__total___of__"] = "Total # of";
+$lL["__objects__"] = "objects";
+$lL["__versions__"] = "versions";
+$lL["__refresh_promotion_status_cells__"] = "Refresh Promotion Status Cells";
+$lL["__spread_across__"] = "Spread across";
+$lL["__click_to_see_commit_s_content__"] = "Click to see commit's content";
+$lL["__commit_data___promotion_status__"] = "Commit Data & Promotion Status";
+$lL["__commited_on__"] = "Commited on";
+$lL["__commited_by__"] = "Commited by";
+$lL["__click_to_see_object_change_history__"] = "Click to see object change history";
+$lL["__object_change_history___promotion_status__"] = "Object Change History & Promotion Status";
+$lL["__file__"] = "File";
+$lL["__click_to_download_this_object_s_version__"] = "Click to download this object's version";
+$lL["__click_to_view_source__"] = "Click to View Source";
+$lL["__object_s_status_object_was_deleted_during_commit__br_if_marked_it_will_be_deleted_from_target_kb__"] = "Object's Status|Object was deleted during commit.<br>If marked it will be deleted from target Kb";
+$lL["__object_s_status_object_was_added_during_commit__br_if_marked_it_will_be_promoted_into_target_kb__"] = "Object's Status|Object was added during commit.<br>If marked it will be promoted into target Kb";
+$lL["__queue_for_asynchronous_execution__"] = "Queue for asynchronous execution";
+$lL["__release_locks_after_successful_import__"] = "Release locks after successful import";
+$lL["__promotion_of_objects_is_only_available_in_server_layer__"] = "Promotion of objects is only available in Server layer";
+$lL["__ttp__"] = "TTP";
+$lL["__second__"] = "second";
+$lL["__top__"] = "Top";
+
+?>

@@ -1,0 +1,13 @@
+<?php
+
+$lL["__current_grants_on__"] = "Current grants on";
+$lL["__user_s_group__"] = "User's Group";
+$lL["__grant_type__"] = "Grant Type";
+$lL["__individual_user__"] = "Individual User";
+$lL["__users_group__"] = "Users Group";
+$lL["__define_user_s_group_grants_on__"] = "Define user's group grants on";
+$lL["__for_user_s_group__"] = "For User's Group";
+$lL["__grant__"] = "grant";
+$lL["__on_current__"] = "on current";
+
+?>

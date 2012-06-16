@@ -1,0 +1,15 @@
+<?php
+
+$lL["__user_image__"] = "User Visual Id";
+$lL["__commits_data___promotion_status__"] = "Commit's Data & Promotion Status";
+$lL["__report__"] = "Report";
+$lL["__promote_execution_report__"] = "Promote Execution Report";
+$lL["__my_image__"] = "My Visual Id";
+$lL["__toggle_to_see_all_entries__"] = "Click to see all entries";
+$lL["__toggle_to_hide_all_entries__"] = "Click to hide all entries";
+$lL["__relate_commit_promotion_to_this_ticket__"] = "Relate Commit/Promotion to this ticket";
+$lL["__read_only_access__"] = "Read Only Access";
+$lL["__commits_on__"] = "Commits on";
+$lL["__click_to_view_promote_ticket_commits__"] = "Click to view/promote ticket commits";
+
+?>

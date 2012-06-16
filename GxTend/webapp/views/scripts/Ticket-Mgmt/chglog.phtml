@@ -7,38 +7,38 @@ $(document).ready(function(){
 
 <div id="ttschgs_detail">
     <ul>
-        <li><a href="#tabs-1">Ticket Changes</a></li>
-        <li><a href="#tabs-2">Ticket Views</a></li>
-        <li><a href="#tabs-3">Email Notifications</a></li>
+        <li><a href="#tabs-1">{$lL.__ticket_changes__}</a></li>
+        <li><a href="#tabs-2">{$lL.__ticket_views__}</a></li>
+        <li><a href="#tabs-3">{$lL.__email_notifications__}</a></li>
     </ul>
     <div id="tabs-1">
     {foreach $ticket_changes as $chgguid => $change}
     {if $change.change_dsc!="seetts" && $change.change_dsc!="email"}
         <div id="{$chgguid}" style="padding:10px 0; border-bottom:1px solid #DDDDDD;">
-        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="User Image">
+        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="{$lL.__user_image__}">
         <div style="margin-left:50px;">
         <div style="float:right;">
             <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}
         </div>
         <div style="text-align:left;">
             {if $change.change_dsc=="insert"}
-                <strong>Description :</strong> Enter ticket<br>
-                <strong>Initial Status :</strong> {$change.change_new}
+                <strong>{$lL.__description__} :</strong> {$lL.__enter_ticket__}<br>
+                <strong>{$lL.__initial_status__} :</strong> {$change.change_new}
             {elseif $change.change_dsc=="additm"}
-                <strong>Description :</strong> Added entry to ticket.<br>
-                <strong>Entry Type :</strong> 
+                <strong>{$lL.__description__} :</strong> {$lL.__added_entry_to_ticket__}.<br>
+                <strong>{$lL.__entry_type__} :</strong> 
                     {if $change.item_data.itmtyp=="comment"}
-                        <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="Comment" title="Comment">&nbsp;Comment
+                        <img src="{$smarty.const._IMG_COMMENT_BLUE_SM_}" alt="{$lL.__comment__}" title="{$lL.__comment__}">&nbsp;{$lL.__comment__}
                     {elseif $change.item_data.itmtyp=="commit"}
-                        <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;Commit of code changes
+                        <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="{$lL.__commit__}" title="{$lL.__commit__}">&nbsp;{$lL.__commit_of_code_changes__}
                     {elseif $change.item_data.itmtyp=="promote"}
-                        <img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="Promote" title="Promote">&nbsp;Promotion of code changes
+                        <img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="{$lL.__promote__}" title="{$lL.__promote__}">&nbsp;{$lL.__promotion_of_code_changes__}
                     {elseif $change.item_data.itmtyp=="timetrack"}
-                        <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="Time" title="Time Track">&nbsp;Time log entry
+                        <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="{$lL.__time__}" title="{$lL.__time_trace__}">&nbsp;{$lL.__time_log_entry__}
                     {/if}
             {elseif $change.change_dsc=="update"}
-                <strong>Description :</strong> Change ticket property <span class="blue">'{$change.change_update_dsc}'</span>.<br>
-                <strong>From &rarr; To :</strong> {$InProve_Smarty->cutstr($change.change_old)} <strong>&rarr;</strong> {$InProve_Smarty->cutstr($change.change_new)|default:'<span class="red">void</span>'}
+                <strong>{$lL.__description__} :</strong> {$lL.__change_ticket_property__} <span class="blue">'{$change.change_update_dsc}'</span>.<br>
+                <strong>{$lL.__from__rarr__to__} :</strong> {$InProve_Smarty->cutstr($change.change_old)} <strong>&rarr;</strong> {$InProve_Smarty->cutstr($change.change_new)|default:'<span class="red">{$lL.__void__}</span>'}
             {else}
                 {$change.change_dsc} : {$change.change_old} -> {$change.change_new}
             {/if}
@@ -60,13 +60,13 @@ $(document).ready(function(){
     {foreach $ticket_changes as $chgguid => $change}
     {if $change.change_dsc=="seetts"}
         <div id="{$chgguid}" style="padding:10px 0; border-bottom:1px solid #DDDDDD;">
-        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="User Image">
+        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="{$lL.__user_image__}">
         <div style="margin-left:50px;">
         <div style="float:right;">
             <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}
         </div>
         <div style="text-align:left;">
-            <strong>Description :</strong> Open/View ticket.
+            <strong>{$lL.__description__} :</strong> {$lL.__open_view_ticket__}.
         </div>
         </div>
         </div>
@@ -78,15 +78,15 @@ $(document).ready(function(){
     {foreach $ticket_changes as $chgguid => $change}
     {if $change.change_dsc=="email"}
         <div id="{$chgguid}" style="padding:10px 0; border-bottom:1px solid #DDDDDD;">
-        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="{$smarty.server.HTTP_REFERER}/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="User Image">
+        <img style="float:left; margin:0 0 5px;" width="24" height="24" src="/Ajax/getimg?userguid={$change.changed_by}&v={$smarty.now}" alt="{$lL.__user_image__}">
         <div style="margin-left:50px;">
         <div style="float:right;">
             <strong>{$InProve_Smarty->guid2name("gxt_users",$change.changed_by)}</strong>, {$InProve_Smarty->ts2str($change.changed_on)}
         </div>
         <div style="text-align:left;">
-            <strong>Description :</strong> Email notification issued.
-            {if $smarty.const.__LAYER_ROLE__ == "Server"}
-            &nbsp;{$InProve_Smarty->get_popup_link("email_read","/Email-Mgmt/read?emguid={$change.emguid}","uii|ui-icon-extlink","Click to Open","640x480")}
+            <strong>{$lL.__description__} :</strong> {$lL.__email_notification_issued__}.
+            {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
+            &nbsp;{$InProve_Smarty->get_popup_link("email_read","/Email-Mgmt/read?emguid={$change.emguid}","uii|ui-icon-extlink","{$lL.__click_to_open__}","640x480")}
             {/if}
         </div>
         </div>

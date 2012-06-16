@@ -1,29 +1,23 @@
-<div class="myhr">Environment Properties</div>
+{*LNG@index.phtml*}
+<div class="myhr">{$lL.__environment_properties__}</div>
 <table id="envproptbl" align="center" width="95%">
 {foreach $entriesLst.envvars as $prop_name => $prop_value}
 <tr>
     <td style="text-align:left;font-weight:bold;width:30%;">
         <span id="label_{$prop_name|sha1}">{$entriesDef.$prop_name.label|default:$prop_name}</span>
-        {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"><img style="vertical-align:middle; padding:5px;" src="../img/loading_16-{$smarty.const.__LAYER_ROLE__}.gif"></span>{/if}
+        {if $entriesDef.$prop_name.check}<span id="check_{$prop_name|sha1}" class="right"></span>{/if}
     </td>
     <td align="left">
         <input type="{$entriesDef.$prop_name.inputtype|default:'text'}" size="70" id="input_{$prop_name|sha1}" class="{$entriesDef.$prop_name.class}" name="envvars[{$prop_name}]" value="{$prop_value}" {if $entriesDef.$prop_name.readonly}readonly="readonly"{/if} entryname="{$prop_name}" entryvalue="{$prop_value}">
         {if $entriesDef.$prop_name.defvalue}
         &nbsp;&laquo;&nbsp;
         {if $entriesDef.$prop_name.defvalue != "__UNSET__"}
-        <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">Default</a>&nbsp;|&nbsp;
+        <a href="javascript:;" class="setDefVal" style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('{$entriesDef.$prop_name.defvalue}');checkValues('{$prop_name}');">{$lL.__default__}</a>&nbsp;|&nbsp;
         {/if}
-        <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">Unset</a>
+        <a href="javascript:;" {if $entriesDef.$prop_name.defvalue == "__UNSET__"}class="setDefVal"{/if} style="font-size:.8em;" onclick="$('#input_{$prop_name|sha1}').val('');checkValues('{$prop_name}');">{$lL.__unset__}</a>
         {/if}
     </td>
 </tr>
 {/foreach}
-<tr>
-    <td>
-        &nbsp;
-    </td>
-    <td>
-        <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">Set all above with 'Default' values</a>
-    </td>
-</tr>        
 </table>
+<p>{$lL.__you_can__} <a href="javascript:;" onclick="$('#envproptbl .setDefVal').click();">{$lL.__click_here__}</a> {$lL.__to_get_all_the_above_boxes_populated_by_gxtend__}.</p>

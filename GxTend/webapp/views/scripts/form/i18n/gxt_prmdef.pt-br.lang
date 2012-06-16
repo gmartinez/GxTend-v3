@@ -1,0 +1,15 @@
+<?php
+
+$lL["__parameter_unique_identifier__"] = "Parameter Unique Identifier";
+$lL["__system_level__"] = "System Level";
+$lL["__user_level__"] = "User Level";
+$lL["__customization_level__"] = "Customization Level";
+$lL["__description__"] = "Descrição";
+$lL["__current_parameter_value__"] = "Current Parameter Value";
+$lL["__current__"] = "Current";
+$lL["__value__"] = "Value";
+$lL["__customizations__"] = "Customizations";
+$lL["__user__"] = "Usuário";
+$lL["__actions__"] = "Ações";
+
+?>

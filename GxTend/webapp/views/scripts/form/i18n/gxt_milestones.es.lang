@@ -1,0 +1,12 @@
+<?php
+
+$lL["__project_this_milestone__"] = "Proyecto que este Hito";
+$lL["__is__"] = "está";
+$lL["__will_be__"] = "estará";
+$lL["__related_to__"] = "relacionado con";
+$lL["__milestone_id__"] = "Id del Hito";
+$lL["__description__"] = "Descripción";
+$lL["__responsible__"] = "Responsable";
+$lL["__due_date__"] = "Fecha de Entrega";
+
+?>

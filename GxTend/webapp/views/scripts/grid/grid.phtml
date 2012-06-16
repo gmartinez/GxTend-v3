@@ -25,18 +25,18 @@
                 <input id="finput_{$grid_ctrlid}" class="qinput" type="text" name="sfilter" size="70" value="{$filtconf._startup}" readonly="readonly">
             </span>
             <span id="ficonOn_{$grid_ctrlid}" class="pointer" style="display:{($filtconf._startup)?"block":"none"};float:left;">
-                  <img src="/img/filteron.png" alt="Filter On" title="There is active filter(s) on grid's result" onclick="var currFilter = $('#tabber_{$grid_ctrlid} #finput_{$grid_ctrlid}').val();mDialog('text:'+currFilter,'Currently Set Filters on Grid', 250, 500, false, false);">
+                  <img src="/img/icons/16/filteron.png" alt="Filter On" title="{$lL.__there_is_active_filters__}" onclick="var currFilter = $('#tabber_{$grid_ctrlid} #finput_{$grid_ctrlid}').val();mDialog('text:'+currFilter,'{$lL.__currently_set_filters__}', 250, 500);">
             </span>
             <span id="ficonOff_{$grid_ctrlid}" class="pointer" style="display:{($filtconf._startup)?"none":"block"};float:left;">
-                  <img src="/img/filteroff.png" alt="Filter Off" title="There is NOT active filter(s) on grid's result">
+                  <img src="/img/icons/16/filteroff.png" alt="Filter Off" title="{$lL.__there_is_not_active_filters__}">
             </span>
             {/if}
             <!-- Filters Input -->
             <!-- Search Input -->            
             <span id="qinput_holder" style="display:block;float:left;">
-                Search <input id="qinput_{$grid_ctrlid}" class="qinput" type="text" name="squery" size="20" {if !$searcheable}disabled="disabled" value="Grid Not Searcheable"{/if}>
+                {$lL.__search__} <input id="qinput_{$grid_ctrlid}" class="qinput" type="text" name="squery" size="20" {if !$searcheable}disabled="disabled" value="{$lL.__grid_not_searcheable__}"{/if}>
                 {if $srchONflds}<span class="pointer hint" onclick="$('#tabber_{$grid_ctrlid} #{$grid_ctrlid} #tabber_{$grid_ctrlid}_tab-1 #help').toggle();">?</span>{/if}
-                <span class="pointer hint" style="font-size:.8em;vertical-align:top;" onclick="$('#tabber_{$grid_ctrlid} #{$grid_ctrlid} #tabber_{$grid_ctrlid}_tab-1 #help').hide();$('#tabber_{$grid_ctrlid} #qinput_{$grid_ctrlid}:enabled').val('');$('#tabber_{$grid_ctrlid} .filter').val('%');setFilter('{$grid_ctrlid}');">Reset</span>
+                <span class="pointer hint" style="font-size:.8em;vertical-align:top;" onclick="$('#tabber_{$grid_ctrlid} #{$grid_ctrlid} #tabber_{$grid_ctrlid}_tab-1 #help').hide();$('#tabber_{$grid_ctrlid} #qinput_{$grid_ctrlid}:enabled').val('');$('#tabber_{$grid_ctrlid} .filter').val('%');setFilter('{$grid_ctrlid}');">{$lL.__reset__}</span>
             </span>
             <!-- Search Input -->
             </a>
@@ -47,8 +47,8 @@
     <div id="tabber_{$grid_ctrlid}_tab-1">
         <!-- In-Line Help -->
         <span id="help" class="hint" style="display:none;float:right;">
-            By prefixing your search text you can search on specific columns.<br>
-            Available columns are {$srchONflds}
+            {$lL.__by_prefixing__}<br>
+            {$lL.__available_columns_are__} {$srchONflds}
         </span>
         <!-- In-Line Help -->
 
@@ -74,7 +74,7 @@
 
         <!-- Data Export -->
         {if $expoconf}
-        &nbsp;<span class="pointer" onclick="mDialog('/Export/grid?deffile={$deffile}','Export Grid Data', 350, 500, false, false);">Data Export</span>
+        &nbsp;<span class="pointer" onclick="mDialog('/Export/grid?deffile={$deffile}','{$lL.__export_grid_data__}', 350, 500);">{$lL.__data_export__}</span>
         {/if}
         <!-- Data Export -->
 
@@ -84,7 +84,7 @@
         <div id="pager_{$grid_ctrlid}" class="scroll pager"></div>
         {/if}
         {if $InProve_Smarty->getSessVar("MyProfile.userdata.dbgmode")}
-        <div id="dbug_{$grid_ctrlid}" class="grid-debug" onclick="dbugGrid('{$grid_ctrlid}');">Click for debugging info.&nbsp;</div>
+        <div id="dbug_{$grid_ctrlid}" class="grid-debug" onclick="dbugGrid('{$grid_ctrlid}');">{$lL.__click_for_debug__}&nbsp;</div>
         {/if}
         <!-- Grid Control -->
     </div>

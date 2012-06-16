@@ -1,6 +1,6 @@
 <div>
     <p style="margin:0px;">
-    <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="Commit" title="Commit">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Commits by")}
+    <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="{$lL.__commit__}" title="{$lL.__commit__}">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "{$lL.__commits_by__}")}
     <p>
     <ul style="margin-left:-10px;">
     {foreach $data.commitsfrom as $pos => $commenter}
@@ -12,7 +12,7 @@
     {/foreach}
     </ul>
     <p style="margin:25px 0px 0px 0px;">
-    <img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="Promote" title="Promote">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "Promotions by")}
+    <img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="{$lL.__promote__}" title="{$lL.__promote__}">&nbsp;{$InProve_Smarty->msg("#efefef:blue", "{$lL.__promotions_by__}")}
     <p>
     <ul style="margin-left:-10px;">
     {foreach $data.promotesfrom as $pos => $commenter}

@@ -1,0 +1,8 @@
+<?php
+
+$lL["__enter_current_password__"] = "Escriba la Contraseña Actual";
+$lL["__select_new_password__"] = "Escriba Nueva contraseña";
+$lL["__repeat_new_password__"] = "Repita Nueva Contraseña";
+$lL["__issue_user_e_mail_notification__"] = "Notificar al usuario por correo electrónico";
+
+?>

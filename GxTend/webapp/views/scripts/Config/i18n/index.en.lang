@@ -1,0 +1,25 @@
+<?php
+
+$lL["__notification__"] = "Notification";
+$lL["__confirm_file_deletion__"] = "Confirm File Deletion";
+$lL["__about__"] = "About";
+$lL["__about_detail__"] = "This process will take care of setting primary configuration values, please take a moment to visually check that the values are correct before proceeding.";
+$lL["__cancel__"] = "cancel";
+$lL["__or__"] = "or";
+$lL["__environment_properties__"] = "Environment Properties";
+$lL["__default__"] = "Default";
+$lL["__unset__"] = "Unset";
+$lL["__you_can__"] = "You can";
+$lL["__click_here__"] = "click here";
+$lL["__to_get_all_the_above_boxes_populated_by_gxtend__"] = "to get all the above boxes populated by GxTend";
+$lL["__server_properties__"] = "Server Properties";
+$lL["__metadata_connection_s__properties__"] = "Metadata Connection(s) Properties";
+$lL["__for__"] = "for";
+$lL["__unlink__"] = "Unlink";
+$lL["__programs_currently_installed__"] = "Programs Currently Installed";
+$lL["__all__"] = "All";
+$lL["__name__"] = "Name";
+$lL["__publisher__"] = "Publisher";
+$lL["__version__"] = "Version";
+
+?>

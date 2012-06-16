@@ -98,12 +98,13 @@
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailfrom_name','',0,'Mail Sender Name','','GxTend At __CUSTOMER_NAME__','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailfrom_mail','',0,'Mail Sender eMail','','some.account@yourcompany.com','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailsink_mail','',0,'Mail Sink eMail','','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailoutgoing_maxerrs','',0,'The maximum number of failed to deliver emails after the outgoing queue gives up','','3','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('gxmirror_maxproc','',0,'Max time for GeneXus Kb process to consume','','900','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('flmirror_maxproc','',0,'Max time for Non-GeneXus Kb process to consume','','900','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('upload_maxsize','',0,'Max size of files to be uploaded','','1048576','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('upload_maxsimu','',0,'Max of simultaneous files uploads','','2','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('meta_struct_version','',-1,'GxTend server metadata structure version','','8','');
-                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('sectors','',0,'List of Sectors (pipe separated value:description pairs)','','1:SCM|2:Development|3:Testing','');                    
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('sectors','',0,'List of Sectors (pipe separated value:description pairs)','','1:SCM|2:Development|3:Testing','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_force','',0,'Force use of Tickets during Check Out/In','','0','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_close_sts','',0,'Key names for statuses that reflect closed tickets.','','resolved,abandoned','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('tts_status','',0,'Status for TTS System (pipe separated value:description pairs)','','parked:Parked|working:Working|resolved:Resolved|abandoned:Abandoned','');

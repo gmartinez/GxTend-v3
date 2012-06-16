@@ -1,0 +1,24 @@
+<?php
+
+$lL["__my_visual_id__"] = "My Visual Id";
+$lL["__confirm_reset_visual_id__"] = "Esta seguro que desea reinicializar su id visual";
+$lL["__reset_visual_id__"] = "Reinicializar Id Visual";
+$lL["__username__"] = "Nombre de Usuario";
+$lL["__change_my_password__"] = "Cambiar mi Contraseña";
+$lL["__full_name__"] = "Nombre Completo";
+$lL["__email__"] = "Email";
+$lL["__title__"] = "Título";
+$lL["__office__"] = "Oficina #";
+$lL["__mobile__"] = "Móvil #";
+$lL["__home__"] = "Casa #";
+$lL["__im_name__"] = "Nombre de IM";
+$lL["__on__"] = "en";
+$lL["__sector__"] = "Sector";
+$lL["__website__"] = "Sitio Web";
+$lL["__comments__"] = "Comentarios";
+$lL["__visual_id__"] = "Id Visual";
+$lL["__ext__"] = "extensión";
+$lL["__file_upload_dialog__"] = "Diálogo para Carga de Archivos";
+$lL["__attach_file_s___"] = "Adjuntar Archivo(s)";
+
+?>

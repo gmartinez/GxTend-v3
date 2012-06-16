@@ -1,0 +1,17 @@
+<?php
+
+$lL["__event_queueing__"] = "Event Queueing";
+$lL["__event_name__"] = "Event Name";
+$lL["__description__"] = "Description";
+$lL["__processor__"] = "Processor";
+$lL["__parameters__"] = "Parameters";
+$lL["__priority__"] = "Priority";
+$lL["__event_status__"] = "Event Status";
+$lL["__execution__"] = "Execution";
+$lL["__event_will_be_queued_but_not_processed_until_someone_release_it__"] = "Event will be queued but not processed until someone release it";
+$lL["__event_will_be_queued_and_processed__"] = "Event will be queued and processed";
+$lL["__date__"] = "Date";
+$lL["__time__"] = "Time";
+$lL["__queue__"] = "Queue";
+
+?>

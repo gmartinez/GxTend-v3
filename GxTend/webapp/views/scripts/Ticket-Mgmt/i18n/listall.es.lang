@@ -1,0 +1,22 @@
+<?php
+
+$lL["__related_milestone__"] = "Hito Relacionado";
+$lL["__due_date__"] = "Fecha de Entrega";
+$lL["__no_milestone_is_related_to_this_list__"] = "Ningún hito esta relacionado a esta lista";
+$lL["__click_to_view_edit__"] = "Clic para Ver/Editar";
+$lL["__there_has_been_changes__"] = "Han habido cambios desde la última vez que vio este ticket";
+$lL["__no_changes_since__"] = "Sin cambios desde la última vez que vio este ticket";
+$lL["__add_ticket__"] = "Agregar Ticket";
+$lL["__read_only_access__"] = "Acceso de Sólo Lectura";
+$lL["__view_all__"] = "Ver todo";
+$lL["__completed_tickets__"] = "tickets completados";
+$lL["__add_list__"] = "Agregar Lista";
+$lL["__show_to_dos_on_project__"] = "Mostrar tickets en proyecto";
+$lL["__show_to_dos_assigned_to__"] = "Mostrar tickets assignados a";
+$lL["__show_to_dos_that_are_due__"] = "Mostrar tickets que vencen";
+$lL["__show_to_dos_in_specific_status__"] = "Mostrar tickets en estado específico";
+$lL["__return_to_full_to_dos_list__"] = "Retornar a la lista completa";
+$lL["__current_to_do_lists__"] = "Listas Actuales";
+$lL["__completed_to_do_lists__"] = "Listas Completadas";
+
+?>

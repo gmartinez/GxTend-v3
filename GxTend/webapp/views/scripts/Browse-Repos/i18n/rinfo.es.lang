@@ -1,0 +1,41 @@
+<?php
+
+$lL["__please_confirm_submission_of_operation__"] = "Por favor, confirme que desea continuar con el envio de la operación seleccionada";
+$lL["__repository_detailed_stats__"] = "Estadísticas Detalladas del Repositorio";
+$lL["__repository__"] = "Repositorio";
+$lL["__codelines__"] = "Codelines";
+$lL["__meta_files__"] = "Archivos de Metadata";
+$lL["__path__"] = "Directorio";
+$lL["__size__"] = "Tamaño";
+$lL["__cleanup_repository__"] = "Limpieza del repositorio";
+$lL["__update_repository_metadata_info__"] = "Actualizar la información de metadatos del repositorio";
+$lL["__merge_remote_and_local_personal_code_lines__"] = "Fusionar líneas personales de código remoto y local";
+$lL["__rebase_your_personal_code_line__"] = "Rebase su Linea de Codigo Personal";
+$lL["__working_tree_size__"] = "Tamaño del árbol de trabajo";
+$lL["__number_of_codelines__"] = "Número de Codelines";
+$lL["__current_codeline__"] = "Codeline Actual";
+$lL["__click_to_view_edit_repository_config_entries__"] = "Clic para Ver/Editar entradas de configuración del repositorio";
+$lL["__edit_entry__"] = "Editar entrada";
+$lL["__add_entry__"] = "Agregar Entrada";
+$lL["__aggressive_cleanup_might_take_to_complete__"] = "La limpieza agresiva del repositorio puede tomar varios minutos en completarse";
+$lL["__or__"] = "o";
+$lL["__cancel__"] = "cancelar";
+$lL["__update_server_s_repository_metadata_info_might__"] = "Actualización de la información de metadatos del repositorio puede tardar unos minutos en completarse";
+$lL["__merge_local_and_remote_pcl_will_align_both__"] = "Fusionar PCLs local y remota alineará ambas";
+$lL["__personal_baseline_code_not_found__"] = "Linea base personal de codigo no encontrada";
+$lL["__set_it_using___start_point__as_starting_point__"] = "Ajuste utilizando como punto de partida";
+$lL["__by_re_basing_your_pcl_you_will_loose_any_local__"] = "Al realizar un Re-Base de su PCL perderá los cambios que pudiera tener pendientes de push";
+$lL["__re_base_using__"] = "Re-base usando";
+$lL["__as_starting_point__"] = "como punto de partida";
+$lL["__add_edit_config_property__"] = "Agregar/Editar Propiedad de Configuracion";
+$lL["__key__"] = "Key";
+$lL["__value__"] = "Valor";
+$lL["__locals__"] = "Locales";
+$lL["__has__"] = "tiene";
+$lL["__last_performed_by__"] = "Ultimo realizado por";
+$lL["__on__"] = "en";
+$lL["__with__"] = "con";
+$lL["__entries__"] = "entradas";
+$lL["__remotes__"] = "Remotas";
+
+?>

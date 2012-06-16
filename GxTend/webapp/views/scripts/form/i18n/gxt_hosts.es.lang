@@ -1,0 +1,8 @@
+<?php
+
+$lL["__host_name__"] = "Nombre del Host";
+$lL["__host_description__"] = "Descripción del Host";
+$lL["__username__"] = "Nombre de Usuario";
+$lL["__user_this_host_belongs_to__"] = "Usuario al que Pertenece este Host";
+
+?>

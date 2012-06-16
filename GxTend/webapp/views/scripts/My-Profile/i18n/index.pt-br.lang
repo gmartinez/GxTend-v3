@@ -1,0 +1,7 @@
+<?php
+
+$lL["__my_profile__"] = "Minhas Opções";
+$lL["__personal_data__"] = "Dados Pessoais";
+$lL["__personal_settings__"] = "Configurações Pessoais";
+
+?>

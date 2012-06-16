@@ -1,0 +1,9 @@
+<?php
+
+$lL["__gxtend_s_ticket__"] = "GxTend's Ticket";
+$lL["__related_milestone__"] = "Related Milestone";
+$lL["__attachment__"] = "Attachment";
+$lL["__comment__"] = "Comment";
+$lL["__download_not_available_from_rss_feed__"] = "Download not available from RSS feed";
+
+?>

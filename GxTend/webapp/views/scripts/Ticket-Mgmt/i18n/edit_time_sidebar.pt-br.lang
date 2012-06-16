@@ -1,0 +1,7 @@
+<?php
+
+$lL["__time__"] = "Tempo";
+$lL["__time_trace__"] = "Traço de Tempo";
+$lL["__time_tracks_by__"] = "Ingressos de Tempo de";
+
+?>

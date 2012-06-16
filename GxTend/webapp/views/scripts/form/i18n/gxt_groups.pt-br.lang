@@ -1,0 +1,10 @@
+<?php
+
+$lL["__group_id__"] = "Id do Groupo";
+$lL["__abv__description__"] = "Descrição Abreviada";
+$lL["__is_admin__"] = "E Admin";
+$lL["__current_users_in_this_group__"] = "Usuários actuais deste grupo";
+$lL["__user__"] = "Usuário";
+$lL["__actions__"] = "Ações";
+
+?>

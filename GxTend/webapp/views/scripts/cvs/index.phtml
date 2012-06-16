@@ -46,7 +46,7 @@ function show_srchres(projguid, kbguid, mdlid) {
 
 <div id="project">
     <h1>
-        <span id="pselector" onclick='var offset=$("#pselector_xypos").offset();mDialog("/cvs/pselector", "Switch to Project...", null, null, [offset.left,offset.top]);' class='file'>Switch to Project...</span>&nbsp;<span id="pselector_xypos"></span>
+        <span id="pselector" onclick='var offset=$("#pselector_xypos").offset();mDialog("/cvs/pselector", "{$lL.__switch_to_project__}...", null, null, [offset.left,offset.top]);' class='file'>{$lL.__switch_to_project__}...</span>&nbsp;<span id="pselector_xypos"></span>
     </h1>
     <span style="float:right;">
         <p>&nbsp;</p>   

@@ -40,7 +40,7 @@
                     }).removeClass("ui-widget-content");
                     $('#browsearea #flds_panel #'+currdirid).click();   // Will refresh folder content
                 } else {
-                    alert("Error retrieving folders tree.");
+                    alert("{$lL.__error_retrieving_folders_tree__}.");
                 }
             }
         );
@@ -56,7 +56,7 @@
                             function (responseText, textStatus, XMLHttpRequest) {
                                 if (responseText) {
                                 } else {
-                                    alert("Error retrieving folder content.");
+                                    alert("{$lL.__error_retrieving_folder_content__}.");
                                 }
                             }
         );
@@ -65,8 +65,8 @@
 </script>
 
 <div id="browsearea">
-    <div style="float:right;"><h2>Browse KBs</h2></div>
-    Kb(s) {$repositories} <span id="mdlsdbox"></span>
+    <div style="float:right;"><h2>{$lL.__browse_kbs__}</h2></div>
+    KB(s) {$repositories} <span id="mdlsdbox"></span>
     <hr>
 	<div id="flds_panel" style="float: left; width: 30%;"></div>
 	<div id="objs_panel" style="float: left; width: 70%;"></div>

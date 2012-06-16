@@ -1,0 +1,10 @@
+<?php
+
+$lL["__change_s__commited_from__"] = "change(s) commited from";
+$lL["__click_to_see_commit_s_content__"] = "Click to see commit's content";
+$lL["__commit_data___promotion_status__"] = "Commit Data & Promotion Status";
+$lL["__comment__"] = "Comment";
+$lL["__commited_on__"] = "Commited on";
+$lL["__commited_by__"] = "Commited by";
+
+?>

@@ -1,0 +1,12 @@
+<?php
+
+$lL["__project_this_milestone__"] = "Projeto que este Marco";
+$lL["__is__"] = "está";
+$lL["__will_be__"] = "estará";
+$lL["__related_to__"] = "relacionado com";
+$lL["__milestone_id__"] = "Id do Marco Miliário";
+$lL["__description__"] = "Descrição";
+$lL["__responsible__"] = "Responsável";
+$lL["__due_date__"] = "Data Devida";
+
+?>

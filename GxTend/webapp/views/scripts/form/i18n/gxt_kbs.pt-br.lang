@@ -1,0 +1,37 @@
+<?php
+
+$lL["__empty_kb_will_be_initialized__"] = "Empty Kb will be Initialized";
+$lL["__project_kb_belongs_to__"] = "Projecto que Kb pertence à";
+$lL["__description__"] = "Descrição";
+$lL["__kb_class__"] = "Classe de Kb";
+$lL["__no_working_environment_in_server___"] = "Sim ambiente de trabalho no servidor (para uso de KBs use fornão-GeneXus que só vai ser modificada através GxTend)";
+$lL["__host___path__"] = "Host @ Path";
+$lL["__owner_responsible__"] = "Owner/Responsible";
+$lL["__parent_kb__"] = "Kb Pai";
+$lL["__kb_specific_options_properties__"] = "KB Specific Options/Properties";
+$lL["__versioning_properties__"] = "Versioning Properties";
+$lL["__monitoring_status__"] = "Estado de Monitoramento";
+$lL["__inclusions__"] = "Inclusões";
+$lL["__exclusions__"] = "Exclusions";
+$lL["__model_s__to_version__"] = "Model(s) to Version";
+$lL["__comma_separated_values__"] = "Comma separated values";
+$lL["__env_s__to_version__"] = "Ambiente(s) para Versão";
+$lL["__current_progress___state__"] = "Current Progress / State";
+$lL["__last_run__"] = "Ultima execução";
+$lL["__is_versioned__and__"] = "é versionado, e";
+$lL["__was_synchronized__"] = "foi sincronizado";
+$lL["__synchronization_pending__"] = "Synchronization pending";
+$lL["__fully_synchronized__"] = "Totalmente Sincronizado";
+$lL["__genexus_connection_properties__"] = "Propriedades da Conexão GeneXus";
+$lL["__genexus_base_directory__"] = "Diretório Base do GeneXus";
+$lL["__from_system__"] = "A partir do sistema";
+$lL["__unset__"] = "Unset";
+$lL["__connection_driver__"] = "Connection Driver";
+$lL["__connection_type__"] = "Tipo de Conexão";
+$lL["__server_name__"] = "Nome do Servidor";
+$lL["__host___port__"] = "Host : Port";
+$lL["__username___password__"] = "Usuário / Senha";
+$lL["__for__windows_authentication___"] = "Para \"Windows Authentication\"";
+$lL["__set_both_empty__"] = "definir ambos vazios";
+
+?>

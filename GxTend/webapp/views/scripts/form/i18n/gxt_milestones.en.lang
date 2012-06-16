@@ -1,0 +1,12 @@
+<?php
+
+$lL["__project_this_milestone__"] = "Project this Milestone";
+$lL["__is__"] = "is";
+$lL["__will_be__"] = "will be";
+$lL["__related_to__"] = "related to";
+$lL["__milestone_id__"] = "Milestone Id";
+$lL["__description__"] = "Description";
+$lL["__responsible__"] = "Responsible";
+$lL["__due_date__"] = "Due date";
+
+?>

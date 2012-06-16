@@ -1,0 +1,8 @@
+<?php
+
+$lLg["__user_level_parameter__"] = "Parameter's customization";
+$lLg["__system_parameters__"] = "System Parameters";
+$lLg["__colhead_description__"] = "Description";
+$lLg["__colhead_actions__"] = "Actions";
+
+?>

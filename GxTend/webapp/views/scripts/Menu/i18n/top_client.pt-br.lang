@@ -1,0 +1,9 @@
+<?php
+
+$lL["__sync__"] = "Sincronizar";
+$lL["__syncing__"] = "Sincronizando";
+$lL["__my_workspace__"] = "My Workspace";
+$lL["__to_dos__"] = "To-Dos";
+$lL["__logout__"] = "Sair";
+
+?>

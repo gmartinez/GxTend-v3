@@ -40,7 +40,7 @@ $(document).ready(function(){
 function toggleBareKb() {
     
     if ($("#barekb").is(":checked")) {
-        $("#kbdir").val("Empty Kb will be Initialized").prop("disabled",true);
+        $("#kbdir").val("{$lL.__empty_kb_will_be_initialized__}").prop("disabled",true);
         $("#kboptsprops").hide();
     } else {
         $("#kbdir").val("").prop("disabled",false);
@@ -65,82 +65,82 @@ function chgConnType() {
 	<br>
 	<form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
 	<input type="hidden" name="parms" value="{$smarty.get.parms}">
-        <h3>Project Kb belongs to {$projguid}</h3>
+        <h3>{$lL.__project_kb_belongs_to__} {$projguid}</h3>
         <div class="myhr"></div>
 		<table align="center" width="100%">
 		<tr><td align="left">
-			<b>Description</b>
+			<b>{$lL.__description__}</b>
             </td>
 			<td align="left">
 			<input type="text" size="60" id="kbdsc" name="f|kbdsc" value="{$kbdsc}" class="string required">
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Kb Class</b>
+			<b>{$lL.__kb_class__}</b>
             </td>
 			<td align="left">
-			{$kbclass} <span class="options kbver_1111" style="font-size:.8em;"><input type="checkbox" id="barekb" name="barekb" value="1"> No working environment in server (use for non-GeneXus Kbs that will only be modified through GxTend)</span>
+			{$kbclass} <span class="options kbver_1111" style="font-size:.8em;"><input type="checkbox" id="barekb" name="barekb" value="1"> {$lL.__no_working_environment_in_server___}</span>
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Host @ Path</b>
+			<b>{$lL.__host___path__}</b>
             </td>
 			<td align="left">
             {$hostname} @ <input type="text" size="60" id="kbdir" name="f|kbdir|unique" value="{$kbdir}" class="string required">
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Owner/Responsible</b>
+			<b>{$lL.__owner_responsible__}</b>
             </td>
 			<td align="left">
 			{$userguid}
             </td>
 		</tr>
 		<tr><td align="left">
-			<b>Parent Kb</b>
+			<b>{$lL.__parent_kb__}</b>
             </td>
 			<td align="left">
 			{$pkbguid}
             </td>
 		</tr>
-        {if $smarty.const.__LAYER_ROLE__ == "Server"}
+        {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
 		<tr id="kboptsprops"><td align="left" colspan="2">
                 <br>
-                <fieldset><legend>KB Specific Options/Properties</legend>
+                <fieldset><legend>{$lL.__kb_specific_options_properties__}</legend>
 
-                <div class="myhr">Versioning Properties</div>
+                <div class="myhr">{$lL.__versioning_properties__}</div>
                 <table width="100%">
                     <tr style="display:none;" class="options kbver_1111 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200">
-                        <td style="font-weight:bold;width:30%;">Monitoring Status</td>
+                        <td style="font-weight:bold;width:30%;">{$lL.__monitoring_status__}</td>
                         <td>{$kbmirror}&nbsp;&nbsp;{$qevent}</td>
                     </tr>
                     <tr style="display:none;" class="options kbver_1111">
-                        <td style="font-weight:bold;">Inclusions</td>
+                        <td style="font-weight:bold;">{$lL.__inclusions__}</td>
                         <td><input type="text" size="40" name="inclusions" id="inclusions" value="{$options.inclusions}"></td>
                     </tr>
                     <!--tr style="display:none;" class="options kbver_1111">
-                        <td style="font-weight:bold;">Exclusions</td>
+                        <td style="font-weight:bold;">{$lL.__exclusions__}</td>
                         <td><input type="text" size="40" name="exclusions" id="inclusions" value="{$options.exclusions}" disabled="disabled"></td>
                     </tr-->
                     <tr style="display:none;" class="options kbver_7500 kbver_8000 kbver_9000">
-                        <td style="font-weight:bold;">Model(s) to Version</td>
-                        <td><input type="text" size="20" name="mdls2vers" id="mdls2vers" value="{$options.mdls2vers}">&nbsp;<span style="font-size:.8em;">(Comma separated values)</span></td>
+                        <td style="font-weight:bold;">{$lL.__model_s__to_version__}</td>
+                        <td><input type="text" size="20" name="mdls2vers" id="mdls2vers" value="{$options.mdls2vers}">&nbsp;<span style="font-size:.8em;">({$lL.__comma_separated_values__})</span></td>
                     </tr>
                     <tr style="display:none;" class="options kbver_10000 kbver_10100 kbver_10200">
-                        <td style="font-weight:bold;">Env(s) to Version</td>
-                        <td><input type="text" size="20" name="mdls2vers" id="mdls2vers" value="{$options.mdls2vers}">&nbsp;<span style="font-size:.8em;">(Comma separated values)</span></td>
+                        <td style="font-weight:bold;">{$lL.__env_s__to_version__}</td>
+                        <td><input type="text" size="20" name="mdls2vers" id="mdls2vers" value="{$options.mdls2vers}">&nbsp;<span style="font-size:.8em;">({$lL.__comma_separated_values__})</span></td>
                     </tr>
                     {if $form_mode != $smarty.const._LBL_ADD_}
                     <tr style="display:none;" class="options kbver_1111 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200">
-                        <td style="font-weight:bold;width:30%;">Current Progress / State</td>
+                        <td style="font-weight:bold;width:30%;">{$lL.__current_progress___state__}</td>
                         {if $versyncsts.status == "connection_failed"}
                             <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;Error connecting to KB [ {$InProve_Smarty->getSessVar("GxKbCnx.ecod")} : {$InProve_Smarty->getSessVar("GxKbCnx.emsg")} ]
                         {elseif $versyncsts.status == "not_finished"}
-                            <td><img src="{$smarty.const._IMG_CLOCK_SM_}" alt="progress">&nbsp;&nbsp;Last run {$versyncsts.datetime}, {$versyncsts.vers} % is versioned, and {$versyncsts.sync} % was synchronized.
+                            <td><img src="{$smarty.const._IMG_CLOCK_SM_}" alt="progress">&nbsp;&nbsp;{$lL.__last_run__} {$versyncsts.datetime}, {$versyncsts.vers} % {$lL.__is_versioned__and__} {$versyncsts.sync} % {$lL.__was_synchronized__}.
                         {elseif $versyncsts.status == "sync_pending"}
-                            <td><img src="{$smarty.const._IMG_CLOCK_SM_}" alt="pending">&nbsp;&nbsp;Synchronization pending.
+                            <td><img src="{$smarty.const._IMG_CLOCK_SM_}" alt="pending">&nbsp;&nbsp;{$lL.__synchronization_pending__}.
                         {elseif $versyncsts.status == "finished"}
-                            <td class="green"><img src="{$smarty.const._IMG_SAVE_SM_}" alt="fully">&nbsp;&nbsp;Fully Synchronized.
+                            <td class="green"><img src="{$smarty.const._IMG_SAVE_SM_}" alt="fully">&nbsp;&nbsp;{$lL.__fully_synchronized__}.
                         {else}
                             <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;{$versyncsts|print_r} [ {$InProve_Smarty->getSessVar("GxKbCnx.ecod")} : {$InProve_Smarty->getSessVar("GxKbCnx.emsg")} ]
                         {/if}
@@ -149,22 +149,22 @@ function chgConnType() {
                     {/if}
                 </table>
 
-                <div class="myhr options kbver_10000 kbver_10100 kbver_10200" style="display:none;">GeneXus Connection Properties</div>
+                <div class="myhr options kbver_10000 kbver_10100 kbver_10200" style="display:none;">{$lL.__genexus_connection_properties__}</div>
                 <table width="100%" class="options kbver_10000 kbver_10100 kbver_10200" style="display:none;">
                     <tr>
-                        <td style="font-weight:bold;width:30%;">GeneXus Base Directory</td>
+                        <td style="font-weight:bold;width:30%;">{$lL.__genexus_base_directory__}</td>
                         <td>
                             <input type="text" size="60" name="gx_basedir" id="gx_basedir" value="{$options.gx_basedir}" class="string required">&nbsp
                             &nbsp;&laquo;&nbsp;
-                            <a href="javascript:;" style="font-size:.8em;" onclick="$('#gx_basedir').val($('#gx_basedir_'+$('#fkbclass').val()).text());">From system</a>&nbsp;|&nbsp;
-                            <a href="javascript:;" style="font-size:.8em;" onclick="$('#gx_basedir').val('');">Unset</a>
+                            <a href="javascript:;" style="font-size:.8em;" onclick="$('#gx_basedir').val($('#gx_basedir_'+$('#fkbclass').val()).text());">{$lL.__from_system__}</a>&nbsp;|&nbsp;
+                            <a href="javascript:;" style="font-size:.8em;" onclick="$('#gx_basedir').val('');">{$lL.__unset__}</a>
                             <span id="gx_basedir_10000" style="display:none;">{$gx_basedir_10000}</span>
                             <span id="gx_basedir_10100" style="display:none;">{$gx_basedir_10100}</span>
                             <span id="gx_basedir_10200" style="display:none;">{$gx_basedir_10200}</span>
                         </td>
                     </tr>
                     <tr style="display:none;">
-                        <td style="font-weight:bold;">Connection Driver</td>
+                        <td style="font-weight:bold;">{$lL.__connection_driver__}</td>
                         <td>
                             <select name="dbms_driver" id="dbms_driver">
                                 <option value="Sqlsrv">MS Sql Server</option>
@@ -172,7 +172,7 @@ function chgConnType() {
                         </td>
                     </tr>
                     <tr>
-                        <td style="font-weight:bold;">Connection Type</td>
+                        <td style="font-weight:bold;">{$lL.__connection_type__}</td>
                         <td>
                             <select name="conn_type" id="conn_type">
                                 <option value="sqlviamem" {if $conn_type=="sqlviamem"}selected{/if}>Shared Memory</option>
@@ -182,8 +182,8 @@ function chgConnType() {
                     </tr>
                     <tr>
                         <td style="font-weight:bold;">
-                            <span class="sqlviamem" style="display:none;">Server Name</span>
-                            <span class="sqlviatcp" style="display:none;">Host : Port</span>
+                            <span class="sqlviamem" style="display:none;">{$lL.__server_name__}</span>
+                            <span class="sqlviatcp" style="display:none;">{$lL.__host___port__}</span>
                         </td>
                         <td>
                             <input type="text" size="20" name="dbms_host" id="dbms_host" value="{$options.dbms_host}" class="string required">
@@ -198,12 +198,12 @@ function chgConnType() {
                         </td>
                     </tr>
                     <tr>
-                        <td style="font-weight:bold;">Username / Password</td>
+                        <td style="font-weight:bold;">{$lL.__username___password__}</td>
                         <td>
                             <input type="text" size="20" name="dbms_user" id="dbms_user" value="{$options.dbms_user}">
                             &nbsp;/&nbsp;
                             <input type="password" size="20" name="dbms_pass" id="dbms_pass" value="{$options.dbms_pass}">
-                            <span style="font-size:.8em;">&nbsp;For "Windows Authentication" <a href="javascript:;" onclick="$('#dbms_user,#dbms_pass').val('');">set both empty</a></span>
+                            <span style="font-size:.8em;">&nbsp;{$lL.__for__windows_authentication___} <a href="javascript:;" onclick="$('#dbms_user,#dbms_pass').val('');">{$lL.__set_both_empty__}</a></span>
                         </td>
                     </tr>
                     <!--tr>

@@ -1,0 +1,15 @@
+<?php
+
+$lL["__project_id__"] = "Id del Proyecto";
+$lL["__description__"] = "Descripción";
+$lL["__project_repository__"] = "Repositorio del Projecto";
+$lL["__repository_detailed_stats__"] = "Repository Detailed Stats";
+$lL["__available__"] = "Disponible";
+$lL["__with_status__"] = "con estado";
+$lL["__confirm_repository_creation__"] = "Confirme la creación del repositorio";
+$lL["__click_to_create_repository__"] = "Clic para crear repositorio";
+$lL["__create__with_status__"] = "crear, con estado";
+$lL["__this_action_will_cascade_delete__"] = "Esta acción CASCADE eliminará toda la información en el marco del proyecto (Tickets, To-Dos, Kbs, etc.)";
+$lL["__are_you_sure__"] = "Esta seguro";
+
+?>

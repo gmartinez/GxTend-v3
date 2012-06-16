@@ -1,0 +1,28 @@
+<?php
+
+$lL["__successful_fetch__"] = "Successful Fetch";
+$lL["__fetching_data_warning__"] = "Fetching Data Warning";
+$lL["__fetching_data_error__"] = "Fetching Data Error";
+$lL["__successful_merge__"] = "Successful Merge";
+$lL["__error_in_merge__"] = "Error in Merge";
+$lL["__fetch_from_server__"] = "Fetch from Server";
+$lL["__none_found__"] = "None Found";
+$lL["__commit_s_compare_status_commit_in_remote_personal_codeline_not_present_in_local_personal_codeline__"] = "Commit's Compare Status|Commit in remote personal codeline not present in local personal codeline";
+$lL["__comment__"] = "Comment";
+$lL["__object__"] = "Object";
+$lL["__sts__"] = "STS";
+$lL["__file__"] = "File";
+$lL["__change_description__"] = "Change Description";
+$lL["__object_created_in_this_commit__"] = "Object created in this commit";
+$lL["__object_was_modified_in_this_commit__"] = "Object was modified in this commit";
+$lL["__object_was_deleted_in_this_commit__"] = "Object was deleted in this commit";
+$lL["__3_out_of__"] = "3 out of";
+$lL["__objects_in_this_commit__"] = "objects in this commit";
+$lL["__object_s__in_this_commit__"] = "object(s) in this commit";
+$lL["__merge_remote_pcl_codeline_into_local_pcl__"] = "Merge remote PCL codeline into local PCL";
+$lL["__merge_pcl_after_fetch__"] = "Merge PCL after fetch";
+$lL["__ttp__"] = "TPP";
+$lL["__second__"] = "segundo";
+$lL["__top__"] = "Tope";
+
+?>

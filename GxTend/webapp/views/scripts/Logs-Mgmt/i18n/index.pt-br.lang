@@ -1,0 +1,7 @@
+<?php
+
+$lL["__app_logs__"] = "Logs de Aplicação";
+$lL["__audit_entries__"] = "Informações de Auditoría";
+$lL["__system_logs__"] = "Logs de Sistema";
+
+?>

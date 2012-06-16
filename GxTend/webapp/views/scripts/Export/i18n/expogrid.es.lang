@@ -1,0 +1,14 @@
+<?php
+
+$lL["__select_export_options_and_then_submit__"] = "Select export options and then submit";
+$lL["__range__"] = "Alcance";
+$lL["__all__"] = "Todos";
+$lL["__grid_s_current_set__"] = "Grid's Current Set";
+$lL["__available_export_sets__"] = "Available Export Sets";
+$lL["__file_name__"] = "Nombre de Archivo";
+$lL["__name_for_the_resulting_dumped_file__"] = "Name for the resulting dumped file";
+$lL["__exporting_data_might_take_a_few_minutes__once_you_submit_please__strong_be_patient__strong___"] = "Exporting data might take a few minutes, once you submit please <strong>be patient</strong>";
+$lL["__print__"] = "Imprimir";
+$lL["__export__"] = "Exportar";
+
+?>

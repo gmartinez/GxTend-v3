@@ -1,0 +1,59 @@
+{include file='../Wsite/header.phtml'}
+<script>
+    $(function() {
+        $("#contact-us form").ajaxForm({
+		dataType: 'json',
+        async: true,
+		beforeSubmit: function() {
+            $('#contact-us .toValidate').validate({
+               ignore: ":hidden"
+            });
+            if ( $('#contact-us .toValidate').valid() ) {
+                 $("#contact-us button").prop("disabled", true).addClass("ui-state-disabled");
+                return true;
+            }
+            return false;
+		},
+		success: function (r) {
+            if (r.sts) {
+                $("#contact-us").html(r.msg);
+            } else {
+                notify("{$lL.__notification__}",r.msg,(r.sts ? "info":"error"),2500);
+                $("#contact-us button").prop("disabled", false).removeClass("ui-state-disabled");
+            }
+		},
+		error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+		}
+	});
+});
+</script>
+<div id="content">
+    <div class="inner">
+        <div id="contact-us">
+            <h1>{$lL.__contact_us__}</h1>
+            <h6>{$lL.__we_are_here_to__}.</h6>
+            <hr />
+            <form action="/Contactus/post" method="post" class="toValidate">
+            <input type="hidden" name="userguid" value="{$InProve_Smarty->getSessVar('MyProfile.userdata.userguid')}">
+                <div class="row">
+                    <label for="fullname">{$lL.__full_name__}</label>
+                    <input type="text" name="fullname" value="{$InProve_Smarty->getSessVar('MyProfile.userdata.name')}" class="required">
+                </div>
+                <div class="row">
+                    <label for="email">{$lL.__your_email__}</label>
+                    <input type="text" name="email" value="{$InProve_Smarty->getSessVar('MyProfile.userdata.email')}" class="required email">
+                </div>
+                <div class="row">
+                    <label for="comments">{$lL.__comments__}</label>
+                    <textarea name="comments" class="required"></textarea>
+                </div>
+                <div class="row">
+                    {$smarty.const._FORM_BTN_SUBMIT_}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{include file="../Wsite/footer.phtml"}

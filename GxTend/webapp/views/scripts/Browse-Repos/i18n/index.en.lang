@@ -1,0 +1,7 @@
+<?php
+
+$lL["__error_retrieving_folders_tree__"] = "Error retrieving folders tree";
+$lL["__error_retrieving_folder_content__"] = "Error retrieving folder content";
+$lL["__browse_kbs__"] = "Browse KBs";
+
+?>

@@ -25,12 +25,14 @@ class InProve_Git {
         if (file_exists($repopath) && ($worktree===null || $worktree==="null" || file_exists($worktree))) {
             #
             putenv("GIT_DIR=$repopath");
-            if ($worktree!==null) { InProve_System::get_eva("GIT_WORK_TREE", $worktree); }
+            if ($worktree!==null) { putenv("GIT_WORK_TREE=$worktree"); }
+            putenv("TEMP=".InProve_System::get_prm("basedir_temp"));
+            putenv("TMP=".InProve_System::get_prm("basedir_temp"));
             #
-            InProve_System::get_eva("GIT_AUTHOR_NAME", "Unknown");
-            InProve_System::get_eva("GIT_AUTHOR_EMAIL", "Unknown");
-            InProve_System::get_eva("GIT_COMMITTER_NAME", InProve_Session::getSessVar("MyProfile.userdata.username"));
-            InProve_System::get_eva("GIT_COMMITTER_EMAIL", InProve_Session::getSessVar("MyProfile.userdata.email"));
+            putenv("GIT_AUTHOR_NAME=Unknown");
+            putenv("GIT_AUTHOR_EMAIL=Unknown");
+            putenv("GIT_COMMITTER_NAME=".InProve_Session::getSessVar("MyProfile.userdata.username"));
+            putenv("GIT_COMMITTER_EMAIL=".InProve_Session::getSessVar("MyProfile.userdata.email"));
             #
             list($cmdsts, $cmdout) = InProve_System::shell_exec("\"$INPROVE_BE_HOME/Git/bin/git.exe\" $command");
 
@@ -46,6 +48,8 @@ class InProve_Git {
 
         $env = array(
                     "INPROVE_BE_HOME"=>$INPROVE_BE_HOME,
+                    "TEMP"=>getenv("TEMP"),
+                    "TMP"=>getenv("TMP"),
                     "GIT_AUTHOR_NAME"=>getenv("GIT_AUTHOR_NAME"),
                     "GIT_AUTHOR_EMAIL"=>getenv("GIT_AUTHOR_EMAIL"),
                     "GIT_COMMITTER_NAME"=>getenv("GIT_COMMITTER_NAME"),
@@ -57,7 +61,6 @@ class InProve_Git {
 
     return array("env"=>$env, "sts"=>$cmdsts, "out"=>$cmdout);
     }
-
 
 	/**
 	 * Get repository status/info...
@@ -86,8 +89,8 @@ class InProve_Git {
             # Working Tree Size...
             $giticmd = self::issuecommand("name-rev --name-only HEAD", $repopath, $worktree);
             if ($giticmd["sts"]==0) {
-                $repo_stats["head"] = $giticmd["out"];
-            }            
+                $repo_stats["head"] = trim($giticmd["out"]);
+            }
 
             # More in depth repo details...
             if ($commits_per_branch!==0) {
@@ -165,7 +168,6 @@ class InProve_Git {
 
     return $repo_stats;
     }
-
      
      /*
      * Git repository related operations to set the repository in a specific status from the remote client point of view
@@ -173,6 +175,8 @@ class InProve_Git {
      * 2. magic file named 'git-daemon-export-ok' controls wheter the repository will be exported by the git-http-backend
       */
     public function getRepoStatus($repopath) {
+        
+        if (__LAYER_ROLE__=="Client") { return "open"; }
 
         if (file_exists($repopath)) {
             $magicfile = file_exists($repopath."/git-daemon-export-ok");

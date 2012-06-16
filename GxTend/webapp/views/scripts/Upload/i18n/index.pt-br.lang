@@ -1,0 +1,19 @@
+<?php
+
+$lL["__error__size_is_greater_than_max_allowed__"] = "Erro, o tamanho é maior do que máximo permitido";
+$lL["__error__file_type_is_not_within_allowed_types__"] = "Erro, tipo de arquivo não é dentro de tipos permitidos";
+$lL["__file_successfully_queued_for_upload__"] = "Arquivo com êxito na fila para upload";
+$lL["__error__rejected_by_server__"] = "Erro, rejeitado pelo servidor";
+$lL["__remove_uploaded_files__"] = "Remover Arquivos Enviados";
+$lL["__click_or_drop_file__"] = "Clique ou Coloque o Arquivo";
+$lL["__here__"] = "Aqui";
+$lL["__selected_files__"] = "Os arquivos selecionados";
+$lL["__instructions__"] = "Instruções";
+$lL["__instructions_details__"] = "Você pode arrastar e soltar arquivos na área acima ou clique sobre ele para abrir o diálogo de arquivo select, arquivos selecionados serão enviados para o aplicativo";
+$lL["__the_following_policies__"] = "As políticas a seguir se aplicam para a presente instância de upload de arquivos";
+$lL["__allowed_file_types__"] = "Tipos de Arquivo Permitidos";
+$lL["__multiple_file_selection__"] = "Seleção do Múltiplos Arquivos";
+$lL["__maximum_file_size__"] = "Tamanho Máximo de Arquivo";
+$lL["__concurrent_uploads__"] = "Uploads Simultâneos";
+
+?>

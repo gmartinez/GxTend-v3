@@ -1,0 +1,133 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#form_update").ajaxForm({
+        dataType: 'json',
+        async: false,
+        beforeSubmit: function() {
+            $("#form_update").validate({
+               ignore: ":hidden"
+            });
+            if ( $("#form_update").valid() ) {
+                 $("#form_update .submit_btn_holder").toggle();
+                return true;
+            }
+            return false;            
+        },
+        success: function (r) {
+            showlogmsg();       // Display user notification...
+            if (r.sts) {
+                $("#GenericDialog").dialog("close");
+                {if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
+                loadWestPanel();
+                loadappdiv("/Help/about");
+                {else}
+                window.location.reload();
+                {/if}
+            } else {
+                $("#form_update .submit_btn_holder").toggle();
+            }
+        },
+        error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+        }
+    });
+
+    {if $smarty.request.secti}
+    togglebwsections({$smarty.request.secti});
+    {else}
+    $("#secsel > span:first").click();
+    {/if}
+
+    $("#form_update input:text").blur(function() { checkValues(); });
+    
+    checkValues();
+    
+    {if in_array($smarty.const.__LAYER_ROLE__,array("Server","Website"))}
+    $("#evtmgrsts").load("/Services/?match=gxtend_evtmgr",null,function(){ $(this).removeClass("msg_wait small"); });
+    {/if}
+
+
+});
+
+function checkValues(entryspec) {
+                        
+    $("#form_update input:text").each( function(idx,obj) {
+    if (!entryspec || entryspec==$(obj).attr("entryname")) {
+        if ($(obj).val() && $(obj).val() != "__NEED_SETTING__" && $("#check_"+hex_sha1($(obj).attr("entryname"))).attr("id")) {
+            $("#check_"+hex_sha1($(obj).attr("entryname"))).html("").addClass("msg_wait small");
+            $.getJSON(
+                    "/Config/check",
+                    { chkif:"Available" , chkval:$(obj).val(), entryname:$(obj).attr("entryname") },
+                    function(r) {
+                        $("#check_"+hex_sha1($(obj).attr("entryname"))).removeClass("msg_wait small");
+                        if (r.sts=="ok") {
+                            $("#check_"+hex_sha1($(obj).attr("entryname"))).html("<img src='../img/icons/16/tick.png' alt='ok' title='"+r.msg+"'>");
+                        } else if (r.sts=="err") {
+                            $("#check_"+hex_sha1($(obj).attr("entryname"))).html("<img src='../img/icons/16/error.png' alt='ok' title='"+r.msg+"'>");
+                        } else {
+                            $("#check_"+hex_sha1($(obj).attr("entryname"))).html("");
+                        }
+                    }
+            );
+        } else {
+            $("#check_"+hex_sha1($(obj).attr("entryname"))).html("");
+        }
+        
+        if ($(obj).val() == "__NEED_SETTING__") {
+            $("#label_"+hex_sha1($(obj).attr("entryname"))).css("color","red");
+        }
+        if ($(obj).val() != $("#input_"+hex_sha1($(obj).attr("entryname"))).attr("entryvalue")) {
+            $("#label_"+hex_sha1($(obj).attr("entryname"))).css("color","#4581DF");
+        } else {
+            $("#label_"+hex_sha1($(obj).attr("entryname"))).css("color","");
+        }
+    }
+    });
+    
+}
+
+function togglebwsections(id) {
+    
+    if (!$("#section_"+id).is(":visible")) {
+        $('#ttpnfo').hide();
+        if (id==4) {
+            $("#form_config").hide();
+        } else {
+            $("#form_config").show();
+            $(".section").hide();
+        }
+        $("#section_"+id).show();
+    }
+}
+</script>
+
+<div id="secsel" class="right" style="font-size:.8em;">
+    {foreach $sectionLst as $i => $label name=sects}
+        {if $label}
+        <span onclick="togglebwsections({$i});" class="file">{$label}</span>
+        {if !$smarty.foreach.sects.last}&nbsp;|&nbsp;{/if}
+        {/if}
+    {/foreach}
+</div>
+
+<h3>{$lL.__about__}</h3>
+<p>{$lL.__this_process_allows__}.</p>
+<p>{$lL.__as_the_process_will__}.</p>
+<form id="form_update" action="/Update/post" method="POST" enctype="multipart/form-data">
+    <div id="section_1" class="section">
+        {include file="section1.phtml"}
+    </div>
+
+    <div class="myhr"></div>
+    <div class="buttons right">
+        <div class="submit_btn_holder">
+        {$smarty.const._FORM_BTN_SUBMIT_}
+        &nbsp;{$lL.__or__}&nbsp;
+        <a href="javascript:;" onclick='$("#GenericDialog").dialog("close");'>{$lL.__cancel__}</a>&nbsp;
+        </div>
+        <div class="submit_btn_holder" style="display:none;">
+        {$smarty.const._BAR_WAIT_}
+        </div>
+    </div>    
+</form>

@@ -1,0 +1,19 @@
+<?php
+
+$lL["__error__size_is_greater_than_max_allowed__"] = "Error, tamaño excede el maximo permitido";
+$lL["__error__file_type_is_not_within_allowed_types__"] = "Error, el tipo de archivo no esta dentro de los permitidos";
+$lL["__file_successfully_queued_for_upload__"] = "Archivo exitosamente encolado para ser enviado";
+$lL["__error__rejected_by_server__"] = "Error, rechazado por el servidor";
+$lL["__remove_uploaded_files__"] = "Remover Archivos Anexados";
+$lL["__click_or_drop_file__"] = "Clic o Arrastre Archivo";
+$lL["__here__"] = "Aquí";
+$lL["__selected_files__"] = "Archivos seleccionados";
+$lL["__instructions__"] = "Instrucciones";
+$lL["__instructions_details__"] = "Puede arrastrar y soltar los archivos en el área arriba o haga clic en esta para abrir el diálogo de seleccion de archivo, archivos seleccionados serán enviados a la aplicación";
+$lL["__the_following_policies__"] = "Las siguientes políticas se aplican a la presente instancia de carga de archivos";
+$lL["__allowed_file_types__"] = "Typos de Archivo Permitidos";
+$lL["__multiple_file_selection__"] = "Seleccion Multiple de Archivos";
+$lL["__maximum_file_size__"] = "Tamaño Maximo de Archivo";
+$lL["__concurrent_uploads__"] = "Envios Simultáneos";
+
+?>

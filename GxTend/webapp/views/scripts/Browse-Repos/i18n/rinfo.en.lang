@@ -1,0 +1,41 @@
+<?php
+
+$lL["__please_confirm_submission_of_operation__"] = "Please, confirm you want to continue with the submission of the selected operation";
+$lL["__repository_detailed_stats__"] = "Repository Detailed Stats";
+$lL["__repository__"] = "Repository";
+$lL["__codelines__"] = "Codelines";
+$lL["__meta_files__"] = "Meta Files";
+$lL["__path__"] = "Path";
+$lL["__size__"] = "Size";
+$lL["__cleanup_repository__"] = "Cleanup repository";
+$lL["__update_repository_metadata_info__"] = "Update repository metadata info";
+$lL["__merge_remote_and_local_personal_code_lines__"] = "Merge remote and local personal code lines";
+$lL["__rebase_your_personal_code_line__"] = "Rebase your Personal Code Line";
+$lL["__working_tree_size__"] = "Working Tree Size";
+$lL["__number_of_codelines__"] = "Number of Codelines";
+$lL["__current_codeline__"] = "Current Codeline";
+$lL["__click_to_view_edit_repository_config_entries__"] = "Click to View/Edit repository config entries";
+$lL["__edit_entry__"] = "Edit entry";
+$lL["__add_entry__"] = "Add Entry";
+$lL["__aggressive_cleanup_might_take_to_complete__"] = "Aggressive cleanup of the repository might take several minutes to complete";
+$lL["__or__"] = "or";
+$lL["__cancel__"] = "cancel";
+$lL["__update_server_s_repository_metadata_info_might__"] = "Update repository metadata info might take a few minutes to complete";
+$lL["__merge_local_and_remote_pcl_will_align_both__"] = "Merge local and remote PCLs will align both";
+$lL["__personal_baseline_code_not_found__"] = "Personal baseline code not found";
+$lL["__set_it_using___start_point__as_starting_point__"] = "Set it using  as starting point";
+$lL["__by_re_basing_your_pcl_you_will_loose_any_local__"] = "By Re-Basing your PCL you will loose any changes you might have pending of push";
+$lL["__re_base_using__"] = "Re-base using";
+$lL["__as_starting_point__"] = "as starting point";
+$lL["__add_edit_config_property__"] = "Add/Edit Config Property";
+$lL["__key__"] = "Key";
+$lL["__value__"] = "Value";
+$lL["__locals__"] = "Locals";
+$lL["__has__"] = "has";
+$lL["__last_performed_by__"] = "Last performed by";
+$lL["__on__"] = "on";
+$lL["__with__"] = "with";
+$lL["__entries__"] = "entries";
+$lL["__remotes__"] = "Remotes";
+
+?>
