@@ -46,35 +46,40 @@
 			</div>
             <div class="myhr"></div>
 			<div>
-			<label for="userprof|title"><strong>{$lL.__title__}</strong></label>
+			<label for="userprof|visualid"><strong>{$lL.__visual_id__}</strong></label>
+            <span style="text-align:left;">{include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}</span>
+			</div>
+            <div class="myhr"></div>
+			<div>
+			<label for="userprof|title"><strong>{$lL.__userprof_title__}</strong></label>
 			<input type="text" id="userproftitle" name="userprof|title" value="{$userprof_title}">
 			</div>
 			<div>
-			<label for="userprof|office"><strong>{$lL.__office__}</strong></label>
-			<input type="text" id="userprofoffice" name="userprof|office" value="{$userprof_office}"> {$lL.__ext__} <input type="text" style="width: 50px;" name="userprof|offext" value="{$userprof_offext}">
+			<label for="userprof|office"><strong>{$lL.__userprof_office__}</strong></label>
+			<input type="text" id="userprofoffice" name="userprof|office" value="{$userprof_office}"> {$lL.__userprof_offext__} <input type="text" style="width: 50px;" name="userprof|offext" value="{$userprof_offext}">
 			</div>
 			<div>
-			<label for="userprof|mobile"><strong>{$lL.__mobile__}</strong></label>
+			<label for="userprof|mobile"><strong>{$lL.__userprof_mobile__}</strong></label>
 			<input type="text" id="userprofmobile" name="userprof|mobile" value="{$userprof_mobile}">
 			</div>
 			<div>
-			<label for="userprof|home"><strong>{$lL.__home__}</strong></label>
+			<label for="userprof|home"><strong>{$lL.__userprof_home__}</strong></label>
 			<input type="text" id="userprofhome" name="userprof|home" value="{$userprof_home}">
 			</div>
 			<div>
-			<label for="userprof|imname"><strong>{$lL.__im_name__}</strong></label>
-			<input type="text" id="userprofimname" name="userprof|imname" value="{$userprof_imname}"> {$lL.__on__} {$imtype}
+			<label for="userprof|imname"><strong>{$lL.__userprof_imname__}</strong></label>
+			<input type="text" id="userprofimname" name="userprof|imname" value="{$userprof_imname}"> {$lL.__userprof_imtyp__} {$imtype}
 			</div>
 			<div>
-			<label for="userprof|sector"><strong>{$lL.__sector__}</strong></label>
+			<label for="userprof|sector"><strong>{$lL.__userprof_sector__}</strong></label>
 			{$userprof_sector}
 			</div>
 			<div>
-			<label for="userprof|website"><strong>{$lL.__website__}</strong></label>
+			<label for="userprof|website"><strong>{$lL.__userprof_website__}</strong></label>
 			<input type="text" id="userprofwebsite" name="userprof|website" value="{$userprof_website}">
 			</div>
 			<div>
-			<label for="userprof|comments"><strong>{$lL.__comments__}</strong></label>
+			<label for="userprof|comments"><strong>{$lL.__userprof_comments__}</strong></label>
 			<textarea rows="5" cols="80" name="userprof|comments">{$userprof_comments}</textarea>
 			</div>
 			<!--div>
@@ -83,11 +88,6 @@
             <span class="file" onclick="genToken();">(Re)Generate</span> |
             <span class="file" onclick="$('#userproftoken').val('');">Delete</span>
 			</div-->
-            <div class="myhr"></div>
-			<div>
-			<label for="userprof|visualid"><strong>{$lL.__visual_id__}</strong></label>
-            <span style="text-align:left;">{include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}</span>
-			</div>
             <div class="myhr"></div>
 			<div class="buttons right">
                 <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>

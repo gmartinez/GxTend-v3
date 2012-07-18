@@ -28,22 +28,26 @@
 			{$isadmin}
             </td>
 		</tr>
-        {if !$userParam && $form_mode != $smarty.const._LBL_ADD_}
+        {if $form_mode != $smarty.const._LBL_ADD_}
 		<tr><td align="left">
-			<b>{$lL.__current_users_in_this_group__}</b>
+			<b>{$lL.__current_users_for_this__}</b>
             </td>
 			<td align="left">
             <table align="center" width="100%" class="list">
             <thead>
             <tr>
-                <th>{$lL.__user__}</th>
+                <th>{$lL.__username__}</th>
+                <th>{$lL.__full_name__}</th>
+                <th>{$lL.__active__}</th>
                 <th>{$lL.__actions__}</th>
             </tr>
             </thead>
             <tbody>
                 {foreach from=$usersINgroup key=k item=rec}
                 <tr>
+                    <td>{$rec.username}</td>
                     <td>{$InProve_Smarty->guid2name("gxt_users",$rec.userguid)}</td>
+                    <td>{if $rec.active}{$smarty.const.__YES__}{else}{$smarty.const.__NO__}{/if}</td>
                     <td>{$rec.edtlnk}</td>
                 </tr>
                 {/foreach}
