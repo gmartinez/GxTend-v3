@@ -47,7 +47,7 @@ $(document).ready(function(){
 			<b>{$lL.__user_groups__}</b>
             </td>
 			<td align="left">
-			{$othergroups}&nbsp;[{$lL.__use_ctrl_click_for_multiple_selection__} | <a href="javascript:;" title="{$lL.__add_entry__}" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">+</a>]
+			{$othergroups}&nbsp;[{$lL.__use_ctrl_click_for__} | <a href="javascript:;" title="{$lL.__add_entry__}" onclick="loadappdiv('/Tbls-Mgmt/', { tbl:'gxt_groups' }, null, '$(\'#addNew\').click();');">+</a>]
             </td>
         </tr>
 		<tr><td align="left">
@@ -69,10 +69,25 @@ $(document).ready(function(){
         </div>
         <br clear="all">
         {if $form_mode != $smarty.const._LBL_ADD_}
-        <div>
-        <label style="width:10em;"><strong>{$lL.__user_security_token__} : </strong></label>
-        {$userToken}
-        </div>
+		<table align="center" width="100%">
+            <tr><td align="left">
+                <strong>{$lL.__users_token__}</strong>
+                </td>
+                <td align="left">
+                {$userToken}
+                </td>
+            </tr>
+            {foreach $userProps as $k => $v}
+            <tr><td align="left">
+                <strong>{$lL[$k]}</strong>
+                </td>
+                <td align="left">
+                {$v}
+                </td>
+            </tr>
+            {/foreach}
+            
+		</table>
         {/if}
 
 	</form>

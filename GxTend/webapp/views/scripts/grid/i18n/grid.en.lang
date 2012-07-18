@@ -1,7 +1,7 @@
 <?php
 
-$lL["__there_is_active_filters__"] = "There is active filter(s) in grid";
-$lL["__there_is_not_active_filters__"] = "There is NOT active filter(s) in grid";
+$lL["__there_are_active_filters__"] = "There are active filters in grid";
+$lL["__there_are_not_active_filters__"] = "There are NOT active filters in grid";
 $lL["__currently_set_filters__"] = "Currently set filters";
 $lL["__search__"] = "Search";
 $lL["__grid_not_searcheable__"] = "Grid Not Searchable";

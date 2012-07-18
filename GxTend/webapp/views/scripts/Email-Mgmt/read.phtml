@@ -1,4 +1,4 @@
-{include file="../skel/header.phtml"}
+{include file="../skel/header.phtml" class="popup"}
 <script type="text/javascript">
 $(document).ready(function(){
     $("#tabs").tabs({
@@ -88,7 +88,7 @@ $(document).ready(function(){
 			{$lL.__subject__}
 		</td>
 		<td align="left">
-			{$email.emheader.subject|utf8_decode}
+			{$email.emheader.subject}
 		</td>
 	</tr>
     </table>

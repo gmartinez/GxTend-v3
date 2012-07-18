@@ -93,12 +93,14 @@
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailsmtp_auth','',0,'Sets SMTP authentication.','','1','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailsmtp_secure','',0,'Sets SMTP security','Options are void, ssl or tls','','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailstring_mbox','',0,'Mail Account Connection String','Blank _ No inbound mail processing (default)\nEg. IMAP _ {yourcompany.smtpserver.com:143/notls}INBOX\nEg. POP3 _ {yourcompany.smtpserver.com:110/pop3}INBOX','','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailincoming_maxdown','',0,'The maximum number of emails to download on each inbound queue processing.','Integer number indicating the maximum or empty to download all new found','','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailaccount_user','',0,'Mail Account User','','some.account@yourcompany.com','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailaccount_pass','',0,'Mail Account Password','','some.pass','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailfrom_name','',0,'Mail Sender Name','','GxTend At __CUSTOMER_NAME__','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailfrom_mail','',0,'Mail Sender eMail','','some.account@yourcompany.com','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailsink_mail','',0,'Mail Sink eMail','','','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailoutgoing_maxerrs','',0,'The maximum number of failed to deliver emails after the outgoing queue gives up','','3','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('mailoutgoing_maxproc','',0,'The maximum number of emails to download on each outbound queue processing.','Integer number indicating the maximum or empty to download all pending entries','','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('gxmirror_maxproc','',0,'Max time for GeneXus Kb process to consume','','900','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('flmirror_maxproc','',0,'Max time for Non-GeneXus Kb process to consume','','900','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('upload_maxsize','',0,'Max size of files to be uploaded','','1048576','');
@@ -129,6 +131,7 @@
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('evtqueue_email_receipt','',0,'Email receipt policy on event queueing','CSV list of events you want to queue an email receipt upon queueing','','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('evtproc_email_receipt','',0,'Email receipt policy after event execution','Options are never, err_wrn or always','err_wrn','');
                     INSERT IGNORE INTO `gxt_prmdef` VALUES ('import_gx_order','',0,'Import order for GeneXus objects','','11,5,26,34,*','');
+                    INSERT IGNORE INTO `gxt_prmdef` VALUES ('http_proxy_conn','',0,'GxTend Internet connection settings','Set http proxy data as : $host,$port,$user,$pass\nLeave blank for direct internet connection','','');
                     UPDATE `gxt_prmdef` SET prmval=prmdef WHERE prmval='';
                 </string>
                 </var>

@@ -25,10 +25,10 @@
                 <input id="finput_{$grid_ctrlid}" class="qinput" type="text" name="sfilter" size="70" value="{$filtconf._startup}" readonly="readonly">
             </span>
             <span id="ficonOn_{$grid_ctrlid}" class="pointer" style="display:{($filtconf._startup)?"block":"none"};float:left;">
-                  <img src="/img/icons/16/filteron.png" alt="Filter On" title="{$lL.__there_is_active_filters__}" onclick="var currFilter = $('#tabber_{$grid_ctrlid} #finput_{$grid_ctrlid}').val();mDialog('text:'+currFilter,'{$lL.__currently_set_filters__}', 250, 500);">
+                  <img src="/img/icons/16/filteron.png" alt="Filter On" title="{$lL.__there_are_active_filters__}" onclick="var currFilter = $('#tabber_{$grid_ctrlid} #finput_{$grid_ctrlid}').val();mDialog('text:'+currFilter,'{$lL.__currently_set_filters__}', 250, 500);">
             </span>
             <span id="ficonOff_{$grid_ctrlid}" class="pointer" style="display:{($filtconf._startup)?"none":"block"};float:left;">
-                  <img src="/img/icons/16/filteroff.png" alt="Filter Off" title="{$lL.__there_is_not_active_filters__}">
+                  <img src="/img/icons/16/filteroff.png" alt="Filter Off" title="{$lL.__there_are_not_active_filters__}">
             </span>
             {/if}
             <!-- Filters Input -->

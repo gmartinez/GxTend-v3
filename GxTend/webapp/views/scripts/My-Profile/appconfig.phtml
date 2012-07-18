@@ -1,22 +1,26 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-	$("#addprmbtn").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "/ajax/addprm",
-                data: { prmid:$("#prmid").val() },
-                dataType: "json",
-                beforeSend: function() {
-                    $("#my_params").block({ message: '{$smarty.const._MSG_WAIT_}' });
-                },
-                success: function(r){
-                    $("#prmid option:selected").remove();
-                    $("#my_params").unblock();
-                    $("#grid_{$grid_ctrlid}").trigger("reloadGrid");
-                }
-            });
-	});
+    if($("#prmid option").length) {
+        $("#addprmbtn").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax/addprm",
+                    data: { prmid:$("#prmid").val() },
+                    dataType: "json",
+                    beforeSend: function() {
+                        $("#my_params").block({ message: '{$smarty.const._MSG_WAIT_}' });
+                    },
+                    success: function(r){
+                        $("#prmid option:selected").remove();
+                        $("#my_params").unblock();
+                        $("#grid_{$grid_ctrlid}").trigger("reloadGrid");
+                    }
+                });
+        });
+    } else {
+        $("#my_parms").html("{$lL.__there_is_no_parameter_available_for_users_to_customize__}");
+    }
 
 });
 </script>

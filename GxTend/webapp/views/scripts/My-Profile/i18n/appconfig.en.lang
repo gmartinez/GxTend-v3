@@ -2,5 +2,6 @@
 
 $lL["__parameters_user_can_customize__"] = "Parameters user can customize";
 $lL["__click_to_add_parameter_to_your_customized_list__"] = "Click to add parameter to your customized list";
+$lL["__there_is_no_parameter_available_for_users_to_customize__"] = "There is no parameter available for users to customize";
 
 ?>

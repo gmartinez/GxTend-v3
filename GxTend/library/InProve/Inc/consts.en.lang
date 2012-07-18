@@ -1,6 +1,10 @@
 <?php
 
 #
+define("__YES__", "Yes");
+define("__NO__", "No");
+
+#
 define("__AUDIT_METADATA_CHANGE__", "Change in metadata.");
 define("__AUDIT_MSG2USR_INFO__", "Informational message for user.");
 define("__AUDIT_MSG2USR_WARN__", "Warning message for user.");
@@ -268,5 +272,6 @@ define("0603", "Key Found, Reached its due date.");
 define("0604", "Key Found, Not valid for this host.");
 define("0605", "Key Found, Users limit exceeded.");
 define("0606", "Key Found, KBs limit exceeded.");
+define("0607", "Unknown, initiated using .req file");
 
 ?>

@@ -2,5 +2,10 @@
 
 $lL["__abv__description__"] = "Descrição Abreviada";
 $lL["__country__"] = "País";
+$lL["__current_users_for_this__"] = "Usuários Associados";
+$lL["__username__"] = "Nome de Usuário";
+$lL["__full_name__"] = "Nome Completo";
+$lL["__active__"] = "Active";
+$lL["__actions__"] = "Ações";
 
 ?>

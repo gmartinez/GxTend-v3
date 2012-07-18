@@ -1,6 +1,10 @@
 <?php
 
 #
+define("__YES__", "Si");
+define("__NO__", "No");
+
+#
 define("__AUDIT_METADATA_CHANGE__", "Cambio en metadata.");
 define("__AUDIT_MSG2USR_INFO__", "Mensaje informativo para usuario.");
 define("__AUDIT_MSG2USR_WARN__", "Mensaje de atención para usuario.");
@@ -268,5 +272,6 @@ define("0603", "Llave Encontrada, Llego a su vencimiento.");
 define("0604", "Llave Encontrada, No valida para este host.");
 define("0605", "Llave Encontrada, Limite de usuarios excedido.");
 define("0606", "Llave Encontrada, Limite de KBs excedido.");
+define("0607", "Desconocido, iniciado con archivo .req");
 
 ?>

@@ -7,7 +7,7 @@ $(document).ready(function(){
     $("#fileInput").fileupload({
         dataType: "json",
         url: "/Upload/upload",
-        formData: { options:"{$smarty.request.b64options}" },
+        formData: { b64options:"{$smarty.request.b64options}" },
         dropZone: "#UploadDialog #dropZone",
         limitConcurrentUploads: {$InProve_Smarty->get_prm("upload_maxsimu")},
         add: function (e, data) {
@@ -141,7 +141,7 @@ function resetTempFiles() {
 
     $.ajax({
         url: "/Upload/reset",
-        data: { options:"{$smarty.request.b64options}" },
+        data: { b64options:"{$smarty.request.b64options}" },
         cache: false,
         complete: function(jqXHR, textStatus) {
             $("#fileupload-progress, #fileupload-result").html("").hide();
@@ -164,9 +164,9 @@ function resetTempFiles() {
 <p>{$lL.__instructions_details__}.</p>
 <p>{$lL.__the_following_policies__}:
 <ul>
-    <li>{$lL.__allowed_file_types__} : {$options.allowtype}</li>
     <li>{$lL.__multiple_file_selection__} : {$options.multiple|ucfirst}</li>
+    {if $options.multiple=="yes"}<li>{$lL.__concurrent_uploads__} : {$InProve_Smarty->get_prm("upload_maxsimu")}</li>{/if}
+    <li>{$lL.__allowed_file_types__} : {$options.allowtype}</li>
     <li>{$lL.__maximum_file_size__} : {$InProve_Smarty->bytes2str($appmaxfsize)} (@ server {$InProve_Smarty->bytes2str($sysmaxfsize)})</li>
-    <li>{$lL.__concurrent_uploads__} : {$InProve_Smarty->get_prm("upload_maxsimu")}</li>
 </ul>
 </p>
