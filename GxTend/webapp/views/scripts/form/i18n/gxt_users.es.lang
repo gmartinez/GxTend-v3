@@ -9,9 +9,21 @@ $lL["__change_user_password__"] = "Cambiar Contraseña de Usuario";
 $lL["__full_name__"] = "Nombre Completo";
 $lL["__email__"] = "Email";
 $lL["__user_groups__"] = "Grupos de Usuarios";
-$lL["__use_ctrl_click_for_multiple_selection__"] = "Use Ctrl+Clic for multiple selection";
+$lL["__use_ctrl_click_for__"] = "Use Ctrl+Clic for multiple selection";
 $lL["__active__"] = "Activo";
-$lL["__user_security_token__"] = "Token de Seguridad del Usuario";
+$lL["__users_token__"] = "Token de Seguridad del Usuario";
 $lL["__add_entry__"] = "Agregar Entrada";
+$lL["__userprof_title__"] = "Título";
+$lL["__userprof_office__"] = "Oficina #";
+$lL["__userprof_offext__"] = "Extensión #";
+$lL["__userprof_mobile__"] = "Móvil #";
+$lL["__userprof_home__"] = "Casa #";
+$lL["__userprof_imname__"] = "Nombre de IM";
+$lL["__userprof_imtyp__"] = "Tipo de IM";
+$lL["__userprof_sector__"] = "Sector";
+$lL["__userprof_website__"] = "Sitio Web";
+$lL["__userprof_comments__"] = "Comentarios";
+$lL["__userprof_register__"] = "Registrado";
+$lL["__userprof_lastvisit__"] = "Ultima Visita";
 
 ?>

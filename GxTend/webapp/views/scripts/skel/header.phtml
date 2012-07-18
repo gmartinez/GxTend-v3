@@ -7,53 +7,54 @@
 	<link rel="shortcut icon" href="../img/gear_{$smarty.const.__LAYER_ROLE__}.ico" type="image/x-icon">
 
 	<!--External Includes-->
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="../jquery/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="../jquery/jquery-ui-1.8.21.custom.min.js"></script>
     {if $smarty.cookies['gxtend_login_language'] && $smarty.cookies['gxtend_login_language']!="en"}
-	<script type="text/javascript" src="../jquery/i18n/jquery.ui.datepicker-{$smarty.cookies['gxtend_login_language']}.js"></script>
+	<script type="text/javascript" src="../jquery/i18n/jquery.ui.datepicker-{$smarty.cookies['gxtend_login_language']}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     {/if}
 
     <!--External Includes-->
-    <script type="text/javascript" src="../jquery/addons/charts/highcharts.js"></script>
+    <script type="text/javascript" src="../jquery/addons/charts/highcharts.js?v={$smarty.const.__BUILD_VERSION__}"></script>
 
     <!--External Includes-->
-	<link rel="stylesheet" type="text/css" href="../jquery/addons/jqGrid43/css/ui.jqgrid.css">
-	<script type="text/javascript" src="../jquery/addons/jqGrid43/i18n/grid.locale-{$smarty.cookies['gxtend_login_language']|default:'en'}.js"></script>
-	<script type="text/javascript" src="../jquery/addons/jqGrid43/jquery.jqGrid.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../jquery/addons/jqGrid/css/ui.jqgrid.css?v={$smarty.const.__BUILD_VERSION__}">
+	<script type="text/javascript" src="../jquery/addons/jqGrid/i18n/grid.locale-{$smarty.cookies['gxtend_login_language']|default:'en'}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+	<script type="text/javascript" src="../jquery/addons/jqGrid/jquery.jqGrid.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
 
     <!--External Includes-->
-	<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
-	<script type="text/javascript" src="../ckeditor/adapters/jquery.js"></script>
+	<script type="text/javascript" src="../ckeditor/ckeditor.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+	<script type="text/javascript" src="../ckeditor/adapters/jquery.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     
     <!-- External Includes Validate-->
-    <script type="text/javascript" src="../jquery/addons/validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../jquery/addons/validate/jquery.validate.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     {if $smarty.cookies['gxtend_login_language'] && $smarty.cookies['gxtend_login_language']!="en"}
-	<script type="text/javascript" src="../jquery/addons/validate/localization/messages_{$smarty.cookies['gxtend_login_language']}.js"></script>
+	<script type="text/javascript" src="../jquery/addons/validate/localization/messages_{$smarty.cookies['gxtend_login_language']}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     {/if}
 
     <!-- External Includes Pnotify -->
-    <script type="text/javascript" src="../jquery/addons/pnotify/jquery.pnotify.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../jquery/addons/pnotify/jquery.pnotify.default.css">
+    <script type="text/javascript" src="../jquery/addons/pnotify/jquery.pnotify.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <link rel="stylesheet" type="text/css" href="../jquery/addons/pnotify/jquery.pnotify.default.css?v={$smarty.const.__BUILD_VERSION__}">
 
 	<!--Jquery Layout -->
-	<script type="text/javascript" src="../jquery/addons/singlef/jquery.layout.js"></script>
+	<script type="text/javascript" src="../jquery/addons/singlef/jquery.layout.js?v={$smarty.const.__BUILD_VERSION__}"></script>
 
  	<!--Jquery ClueTip -->
-	<script type="text/javascript" src="../jquery/addons/cluetip/jquery.cluetip.js"></script>
-    <link rel="stylesheet" type="text/css" href="../jquery/addons/cluetip/jquery.cluetip.css">
+	<script type="text/javascript" src="../jquery/addons/cluetip/jquery.cluetip.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <link rel="stylesheet" type="text/css" href="../jquery/addons/cluetip/jquery.cluetip.css?v={$smarty.const.__BUILD_VERSION__}">
 
-    <script type="text/javascript" src="../jquery/addons/singlef/jquery.form.js"></script>
-    <script type="text/javascript" src="../jquery/addons/singlef/jquery.blockUI.js"></script>
-    <script type="text/javascript" src="../jquery/addons/singlef/jquery.jstree.js"></script>
-    <script type="text/javascript" src="../jquery/addons/singlef/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../jquery/addons/singlef/jquery.form.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="../jquery/addons/singlef/jquery.blockUI.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="../jquery/addons/singlef/jquery.jstree.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="../jquery/addons/singlef/jquery.cookie.js?v={$smarty.const.__BUILD_VERSION__}"></script>
 
     <!--Own .js & .css -->
     <script type="text/javascript" src="../js/gxtend.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-    <script type="text/javascript" src="../js/libs/sha1.js"></script>
-    <script type="text/javascript" src="../js/libs/utf8_decode.js"></script>
-    <script type="text/javascript" src="../js/libs/base64_decode.js"></script>
+    <script type="text/javascript" src="../js/libs/sha1.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="../js/libs/utf8_decode.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="../js/libs/base64_decode.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     <link rel="stylesheet" type="text/css" href="../css/theme/{$smarty.const.__LAYER_ROLE__}/jquery-ui-1.8.21.custom.css">
-    <link rel="stylesheet" type="text/css" href="../css/gxtend-{$smarty.const.__LAYER_ROLE__}.css">
+    <link rel="stylesheet" type="text/css" href="../css/gxtend-{$smarty.const.__LAYER_ROLE__}.css?v={$smarty.const.__BUILD_VERSION__}">
     
 </head>
 <body class="{$class}">

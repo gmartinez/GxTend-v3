@@ -2,5 +2,6 @@
 
 $lL["__parameters_user_can_customize__"] = "Parâmetros usuário pode personalizar";
 $lL["__click_to_add_parameter_to_your_customized_list__"] = "Clique para adicionar o parâmetro para a sua lista personalizada";
+$lL["__there_is_no_parameter_available_for_users_to_customize__"] = "Não há nenhum parâmetro disponível para os usuários personalizarem";
 
 ?>
