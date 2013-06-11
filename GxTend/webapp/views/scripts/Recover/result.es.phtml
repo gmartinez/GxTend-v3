@@ -1,0 +1,15 @@
+{if $result.sts && $result.msg=="registered"}
+    <p>Le hemos enviado un email con las instrucciones para restablecer tu contraseña.</p>
+    <p>Si nuestro correo electrónico no llega a usted, por favor póngase en contacto con nosotros en <a href='mailto:support@in-prove.com'>support@in-prove.com</a>.</p>
+    <p>
+    ---<br>Saludos Cordiales<br>El Equipo de GxTend
+    </p>
+{elseif $result.sts && $result.msg=="verified"}
+    <p>Su nueva contraseña ha sido creado con éxito.</p>
+    <p>
+    ---<br>Saludos Cordiales<br>El Equipo de GxTend
+    </p>
+{elseif !$result.sts}
+    <p><strong>Lo sentimos pero parece que ha habido un error al procesar su solicitud.</strong></p>
+    <p>Por favor, póngase en contacto con nosotros directamente en <a href='mailto:support@in-prove.com'>support@in-prove.com</a>.</p>
+{/if}

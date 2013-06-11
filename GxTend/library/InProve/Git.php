@@ -170,7 +170,7 @@ class InProve_Git {
     }
      
      /*
-     * Git repository related operations to set the repository in a specific status from the remote client point of view
+     * Git repository related operations to GET the repository specific status from the remote client point of view
      * 1. git specific parameter http.receivepack (boolean) controls wheter anonymous push is allowed by the git-http-backend
      * 2. magic file named 'git-daemon-export-ok' controls wheter the repository will be exported by the git-http-backend
       */
@@ -195,7 +195,9 @@ class InProve_Git {
     }
 
     /*
-     * 
+     * Git repository related operations to SET the repository in a specific status from the remote client point of view
+     * 1. git specific parameter http.receivepack (boolean) controls wheter anonymous push is allowed by the git-http-backend
+     * 2. magic file named 'git-daemon-export-ok' controls wheter the repository will be exported by the git-http-backend
      */
     public function setRepoStatus($repopath, $sts) {
         
@@ -213,7 +215,25 @@ class InProve_Git {
         }
 
     }
-    
+
+    /*
+     * Issue set of git commands to reset working copy files (.xml) in line with the remote main branch...
+     */
+    public function resetWorkCopy($worktree) {
+        
+        # Position my working copy to 'detached HEAD' of gxtend codeline...
+        $git_commands[] = "checkout -f remotes/origin/gxtend";
+        # Reset index and working tree to match HEAD (in case a non completed commit is in the middle)...
+        $git_commands[] = "reset --hard";
+        # Clean working tree to delete non stagged information (in case a non completed commit is in the middle)...
+        $git_commands[] = "clean --force";
+        foreach ($git_commands as $step => $git_cmd) {
+            $git_output[$step] = InProve_Git::issuecommand($git_cmd, $worktree."/.git", $worktree);
+        }
+
+    return $git_output;
+    }
+
 }
 
 ?>

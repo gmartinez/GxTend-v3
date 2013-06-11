@@ -1,0 +1,20 @@
+<?php
+
+$lL["__forgot_your_password__"] = "Forgot your Password ?";
+$lL["__recover_description__"] = "Please provide your username or email and we will send you an email with instructions to set a new password";
+$lL["__enter_your_email_or_username__"] = "Enter your email or username";
+$lL["__notification__"] = "Notification";
+
+$lL["__no_record_of_user__"] = "Sorry we have no record of such email or username.";
+$lL["__send_email_error__"] = "Sorry we have not been able to sent your account recovery email at this moment, please try again or contact us at support@in-prove.com";
+
+$lL["__receipt_subject__"] = "[GxTend] Password recovery";
+$lL["__receipt_body__"] = "Dear __FULLNAME__,
+                        <p>&nbsp;Looks like you submitted a request to recover the credentials to login into GxTend's website.</p>
+                        <p>&nbsp;We do not store your password directly so we can not provide your current one, though, by <a href='__GXTEND_SITE_URL__/Recover/?userguid=__USERGUID__' style='font-weight:bold;text-decoration:underline;'>clicking here</a> you will be able to set a new password for your account.</p>
+                        <p>&nbsp;If you did not perform such request and this message is an error please disregard this email.</p>
+                        <p>
+                        ---<br>Best Regards<br>The GxTend Team
+                        </p>";
+
+?>

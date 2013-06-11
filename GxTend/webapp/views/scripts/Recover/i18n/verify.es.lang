@@ -1,0 +1,14 @@
+<?php
+
+$lL["__notification__"] = "Notificación";
+$lL["__set_new_password__"] = "Set New Password";
+$lL["__welcome_back__"] = "Bienvenido nuevamente";
+$lL["__it_looks_like__"] = "parece que usted necesita restablecer su contraseña";
+$lL["__confirm_new_password__"] = "Confirmar Nueva Contraseña";
+
+$lL["__not_valid_account__"] = "Looks like this account is not valid or has already been deactivated.";
+$lL["__password_do_not_match__"] = "Your password do not match the value provided for confirmation purposes.";
+$lL["__password_wrong_length__"] = "Your password must be at least 5 characters long.";
+$lL["__error_saving_data__"] = "It looks like there has been an error saving your data, please try later or contact us at support@in-prove.com";
+
+?>

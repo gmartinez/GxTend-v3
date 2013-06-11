@@ -1,0 +1,25 @@
+<?php
+
+$lL["__sign_up__"] = "Registrarse";
+$lL["__register_description__"] = "Usted sólo tiene que llenar el siguiente formulario. A continuación le enviaremos un recibo por correo electrónico para que usted pueda activar su cuenta y... eso es todo";
+$lL["__full_name__"] = "Nombre Completo";
+$lL["__your_email__"] = "Email";
+$lL["__create_password__"] = "Crear Contraseña";
+$lL["__confirm_password__"] = "Confirmar Contraseña";
+
+$lL["__already_existing_account__"] = "Parece que este correo electrónico pertenece a una cuenta ya existente.";
+$lL["__password_do_not_match__"] = "Su contraseña no coincide con el valor provisto a los efectos de su confirmación.";
+$lL["__password_wrong_length__"] = "Su contraseña debe tener al menos 5 caracteres.";
+$lL["__error_saving_data__"] = "Parece que ha habido un error al guardar los datos, por favor inténtelo más tarde o póngase en contacto con nosotros via support@in-prove.com";
+
+$lL["__receipt_subject__"] = "[GxTend] Confirmación de registro de usuario";
+$lL["__receipt_body__"] = "<p>Estimado __FULLNAME__,</p>
+                        <p>&nbsp;Gracias por registrarse en el sitio web de GxTend.</p>
+                        <p>&nbsp;Con el fin de completar su inscripción y activar su cuenta, <a href='__GXTEND_SITE_URL__/Register/?userguid=__USERGUID__' style='font-weight:bold;text-decoration:underline;'>haga clic aquí</a>.</p>
+                        <p>&nbsp;Si no te has registrado y es este mensaje es un error por favor ignore este mensaje.</p>
+                        <p>&nbsp;Después de que su cuenta haya sido activada con éxito usted podrá generar su licencia GxTend utilizando sus credenciales.</p>
+                        <p>
+                        ---<br>Saludos Cordiales<br>El Equipo de GxTend
+                        </p>";
+
+?>

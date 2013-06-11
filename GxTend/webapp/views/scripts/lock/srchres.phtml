@@ -57,6 +57,7 @@ function filter_by_objsts() {
 
 function update_object(b64,src_path,objupdts,atlkbupdts) {
 
+    $(document).trigger("hideCluetip");
     $("#"+hex_sha1(b64)).html("<span class='msg_wait small'></span>");
 
     $.getJSON(
@@ -66,7 +67,7 @@ function update_object(b64,src_path,objupdts,atlkbupdts) {
                 if (r.sts == "ok") {
                     $("#"+hex_sha1(b64)).html("<input class='objlst' type='checkbox' name='checked_objs[]' value='"+b64+"' onclick='setsubmitsts(\"#form_lock .objlst\", \"#form_lock button\");'>&nbsp;");
                 } else {
-                    $("#"+hex_sha1(b64)).html("{$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.audguid+"','img|../img/icons/16/error.png','{$lL.__log_entry_details__}','800x600','')}");
+                    $("#"+hex_sha1(b64)).html("{$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.audguid+"','img|../img/icons/16/error.png',{$lL.__log_entry_details__},'800x600','')}");
                 }
             }
     );
@@ -132,9 +133,9 @@ function update_object(b64,src_path,objupdts,atlkbupdts) {
                     <span id="{$rec.b64|sha1}">
                         {if $rec.COMP=="NEWER"}
                         <input class="objlst" type="checkbox" name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_lock .objlst", "#form_lock button");'>&nbsp;
-                        <img alt="neweratkb" src="../img/icons/16/development.png" title="{$lL.__your_version_is_newer__} ({$InProve_Smarty->ts2str($rec.atmykb.objupdts)}).">
+                        <img class="tip" alt="neweratkb" src="../img/icons/16/development.png" title="{$lL.__object_s_local_copy_status__}|{$lL.__your_version_is_newer__} ({$InProve_Smarty->ts2str($rec.atmykb.objupdts)}).">
                         {elseif $rec.COMP=="OLDER"}
-                        <img alt="{$smarty.const._LBL_CATCHUP_}" src="{$smarty.const._IMG_CATCHUP_SM_}" title="{$lL.__your_version_is_outdated__}({$InProve_Smarty->ts2str($rec.atmykb.objupdts)}). [ {$lL.__click_to_update__} ]" class="file" onclick="update_object('{$rec.b64}','{$rec.src_path}','{$rec.objupdts}','{$rec.atmykb.objupdts}');">
+                        <img class="tip file" alt="{$smarty.const._LBL_CATCHUP_}" src="{$smarty.const._IMG_CATCHUP_SM_}" title="{$lL.__object_s_local_copy_status__}|{$lL.__your_version_is_outdated__} ({$InProve_Smarty->ts2str($rec.atmykb.objupdts)}). [ {$lL.__click_to_update__} ]" onclick="update_object('{$rec.b64}','{$rec.src_path}','{$rec.objupdts}','{$rec.atmykb.objupdts}');">
                         {else}
                         <input class="objlst" type="checkbox" name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_lock .objlst", "#form_lock button");'>&nbsp;
                         {/if}
