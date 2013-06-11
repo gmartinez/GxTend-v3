@@ -1,0 +1,21 @@
+<?php
+
+$lL["__notification__"] = "Notificação";
+$lL["__sign_up_verification__"] = "Verificação de Registro";
+$lL["__welcome_back__"] = "Bem-vindo de volta";
+$lL["__we_are_almost_done__"] = "estamos quase pronto";
+$lL["__know_more_of_you__"] = "Nenhum dos campos abaixo são obrigatórios, embora seria ótimo saber mais de você";
+$lL["__once_you_are_done__"] = "Assim que estiver pronto, envie o formulário abaixo para ativar sua conta";
+$lL["__title__"] = "Título";
+$lL["__office__"] = "Escritório #";
+$lL["__ext__"] = "extensão";
+$lL["__mobile__"] = "Móvel #";
+$lL["__im_name__"] = "Nome do IM";
+$lL["__on__"] = "em";
+$lL["__website__"] = "Site";
+$lL["__comments__"] = "Comentários";
+
+$lL["__not_valid_account__"] = "Looks like this account is not valid or has already been activated.";
+$lL["__error_saving_data__"] = "It looks like there has been an error saving your data, please try later or contact us at support@in-prove.com";
+
+?>

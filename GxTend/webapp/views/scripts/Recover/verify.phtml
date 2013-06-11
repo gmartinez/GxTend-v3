@@ -1,0 +1,57 @@
+{include file="../Wsite/header.phtml"}
+<script>
+$(function() {
+
+	$("#verify form").ajaxForm({
+		dataType: 'json',
+        async: true,
+		beforeSubmit: function() {
+            $('#verify .toValidate').validate({
+               ignore: ":hidden"
+            });
+            if ( $('#verify .toValidate').valid() ) {
+                 $("#verify button").prop("disabled", true).addClass("ui-state-disabled");
+                return true;
+            }
+            return false;
+		},
+		success: function (r) {
+            if (r.sts) {
+                $("#verify").html(r.msg);
+            } else {
+                notify("{$lL.__notification__}",r.msg,(r.sts ? "info":"error"),(r.sts ? 2500:5000));
+                $("#verify button").prop("disabled", false).removeClass("ui-state-disabled");
+            }
+		},
+		error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+		}
+	});
+
+});
+</script>
+<div id="content">
+    <div class="inner">
+        <div id="verify">
+            <h1>{$lL.__set_new_password__}</h1>
+            <p>{$lL.__welcome_back__} {$userdata.name}, {$lL.__it_looks_like__}.</p>
+            <hr />
+            <form action="/Recover/postv" method="post" class="toValidate">
+            <input type="hidden" name="userguid" value="{$smarty.request.userguid}">
+            <div class="row">
+                <label for="password">{$lL.__set_new_password__}</label>
+                <input  type="password"name="password" class="required">
+            </div>
+            <div class="row">
+                <label for="confirm-password">{$lL.__confirm_new_password__}</label>
+                <input type="password" name="confirm-password" class="required">
+            </div>
+            <div class="row">
+                {$smarty.const._FORM_BTN_SUBMIT_}
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{include file="../Wsite/footer.phtml"}

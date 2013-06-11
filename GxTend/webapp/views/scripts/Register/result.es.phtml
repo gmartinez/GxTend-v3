@@ -1,0 +1,19 @@
+{if $result.sts && $result.msg=="registered"}
+    <p>Estimado {$smarty.request.fullname},</p>
+    <p>Gracias por su interes en GxTend.</p>
+    <p>Hemos enviado un correo electrónico a la dirección que especificada con el fin de completar su inscripción y activar su cuenta, por favor revise su bandeja de entrada y siga las instrucciones.</p>
+    <p>Si nuestro correo electrónico no le llega en algunos minutos (recuerde revisar su bandeja de spam  también), no dude en contactarse con nosotros en <a href='mailto:support@in-prove.com'>support@in-prove.com</a>.</p>
+    <p>Después de que su cuenta haya sido activada, usted podrá acceder a más información sobre el producto y obtener todo lo necesary para probarlo ud. mismo.</p>
+    <p>
+    ---<br>Saludos Cordiales<br>El Equipo de GxTend
+    </p>
+{elseif $result.sts && $result.msg=="verified"}
+    <p><strong>Su cuenta ha sido activada.</strong></p>
+    <p>Ud. podra entrar en nuestro sitio y no solamente checkear por mas informacion del producto, sino también obtener una copia totalmente funcional para que pueda probarlo en su propia infraestructura y con sus propios datos.</p>
+    <p>
+    ---<br>Saludos Cordiales<br>El Equipo de GxTend
+    </p>
+{elseif !$result.sts}
+    <p><strong>Lo sentimos pero parece que ha habido un error al procesar su solicitud.</strong></p>
+    <p>Por favor, póngase en contacto con nosotros directamente en <a href='mailto:support@in-prove.com'>support@in-prove.com</a>.</p>
+{/if}

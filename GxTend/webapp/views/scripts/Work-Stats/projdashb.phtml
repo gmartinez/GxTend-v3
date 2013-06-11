@@ -50,7 +50,7 @@ $(document).ready(function(){
 <table width="100%">
 <tr>
 <td align="left" valign="top">
-    <p style="font-weight:bold;font-size:1.5em;">{$lL.__last_team_actions__}</p>
+    <p style="font-weight:bold;font-size:1.5em;">{$lL.__team_last_actions__}</p>
     {foreach $commits_list as $commitId => $commiterTs name=foo}
     <div id="{$commitId}" class="{if $smarty.foreach.foo.iteration>3}older_commits{/if}" style="padding:10px 0; border-bottom:1px solid #DDDDDD; {if $smarty.foreach.foo.iteration>3}display:none;{/if}">
         <img style="float:left; margin:0 0 5px;" width="48" height="48" src="/Ajax/getimg?userguid={$commits_info.$commitId.userguid}&v={$smarty.now}" alt="{$lL.__user_image__}">

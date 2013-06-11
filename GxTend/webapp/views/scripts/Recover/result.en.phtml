@@ -1,0 +1,16 @@
+{if $result.sts && $result.msg=="registered"}
+    <p>We have sent you an email with the instructions to reset your password.</p>
+    <p>If our email does not reach you, please contact us at <a href='mailto:support@in-prove.com'>support@in-prove.com</a>.</p>
+    <p>Best Regards,<br />The GxTend Team</p>
+    <p>
+    ---<br>Best Regards<br>The GxTend Team
+    </p>
+{elseif $result.sts && $result.msg=="verified"}
+    <p>Your new password has been successfully set.</p>
+    <p>
+    ---<br>Best Regards<br>The GxTend Team
+    </p>
+{elseif !$result.sts}
+    <p><strong>We are sorry but it looks like there has been an error while processing your request.</strong></p>
+    <p>Please contact us directly at <a href='mailto:support@in-prove.com'>support@in-prove.com</a>.</p>
+{/if}

@@ -1,19 +1,23 @@
 <?php
 
-$lL["__read_email__"] = "Read Email";
-$lL["__id___type__"] = "Id / Type";
-$lL["__outbound__"] = "Outbound";
-$lL["__inbound__"] = "Inbound";
-$lL["__reply__"] = "Reply";
-$lL["__forward__"] = "Forward";
-$lL["__date___status__"] = "Date / Status";
-$lL["__date__"] = "Date";
-$lL["__from__"] = "From";
-$lL["__body__"] = "Body";
-$lL["__attachments__"] = "Attachments";
-$lL["__headers__"] = "Headers";
+$lL["__read_email__"] = "Ler Email";
+$lL["__id___type__"] = "Id / Tipo";
+$lL["__outbound__"] = "De Saída";
+$lL["__inbound__"] = "De Entrada";
+$lL["__reply__"] = "Responder";
+$lL["__forward__"] = "Fazer Seguir";
+$lL["__date___status__"] = "Data / Estado";
+$lL["__date__"] = "Data";
+$lL["__from__"] = "De";
+$lL["__body__"] = "Corpo";
+$lL["__attachments__"] = "Anexos";
+$lL["__headers__"] = "Cabeçalhos";
 $lL["__log__"] = "Log";
-$lL["__enable_preview__"] = "Enable Preview";
-$lL["__disable_preview__"] = "Disable Preview";
+$lL["__enable_preview__"] = "Ativar Pré-visualização";
+$lL["__disable_preview__"] = "Desativar Pré-visualização";
+$lL["__subject__"] = "Assunto";
+$lL["__to__"] = "Para";
+$lL["__cc__"] = "Cc";
+$lL["__bcc__"] = "Bcc";
 
 ?>

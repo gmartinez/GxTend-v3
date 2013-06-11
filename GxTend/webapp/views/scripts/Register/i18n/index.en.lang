@@ -1,0 +1,25 @@
+<?php
+
+$lL["__sign_up__"] = "Sign Up";
+$lL["__register_description__"] = "You just need to fill in the form below. Then we will send you an email receipt so you can activate your account and... that's it";
+$lL["__full_name__"] = "Full Name";
+$lL["__your_email__"] = "Your Email";
+$lL["__create_password__"] = "Create Password";
+$lL["__confirm_password__"] = "Confirm Password";
+
+$lL["__already_existing_account__"] = "Looks like this email belongs to an already existing account.";
+$lL["__password_do_not_match__"] = "Your password do not match the value provided for confirmation purposes.";
+$lL["__password_wrong_length__"] = "Your password must be at least 5 characters long.";
+$lL["__error_saving_data__"] = "It looks like there has been an error saving your data, please try later or contact us at support@in-prove.com";
+
+$lL["__receipt_subject__"] = "[GxTend] User registration confirmation";
+$lL["__receipt_body__"] = "<p>Dear __FULLNAME__,</p>
+                        <p>Thank you for register at GxTend's website.</p>
+                        <p>In order to complete your registration and activate your account, <a href='__GXTEND_SITE_URL__/Register/?userguid=__USERGUID__' style='font-weight:bold;text-decoration:underline;'>click here</a>.</p>
+                        <p>If you did not register and this message is an error please disregard this email.</p>
+                        <p>After your account has been successfully activated you will be able to generate your GxTend license using your credentials.</p>
+                        <p>
+                        ---<br>Best Regards<br>The GxTend Team
+                        </p>";
+
+?>

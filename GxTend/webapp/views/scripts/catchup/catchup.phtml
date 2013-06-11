@@ -35,11 +35,11 @@ $(document).ready(function(){
                 }
             } else {
                 if (r.overall.okis > 0 && r.overall.wrns == 0 && r.overall.errs == 0) {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__all_objects_were_successfully_imported__}. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'{$lL.__log_entry_details__}','800x600','{$lL.__click_to_view_log__}')} ]");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__all_objects_were_successfully_imported__}. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,{$lL.__log_entry_details__},'800x600',{$lL.__click_to_view_log__})} ]");
                 } else if (r.overall.wrns > 0 && r.overall.errs == 0) {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='wrn'> {$lL.__warnings_in_objects_import__}. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'{$lL.__log_entry_details__}','800x600','{$lL.__click_to_view_log__}')} ]");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='wrn'> {$lL.__warnings_in_objects_import__}. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,{$lL.__log_entry_details__},'800x600',{$lL.__click_to_view_log__})} ]");
                 } else if (r.overall.wrns > 0 || r.overall.errs > 0) {
-                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__errors_warnings_in_objects_import__}. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,'{$lL.__log_entry_details__}','800x600','{$lL.__click_to_view_log__}')} ]");
+                    $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__errors_warnings_in_objects_import__}. [ {$InProve_Smarty->get_popup_link('auditlog','/audit-Info/render?audguid="+r.overall.audguid+"',null,{$lL.__log_entry_details__},'800x600',{$lL.__click_to_view_log__})} ]");
                 } else if (r.overall.okis == 0 && r.overall.wrns == 0 && r.overall.errs == 0) {
                     $("#div_catchup #bottom_left").html("<img src='../img/icons/32/error.png' alt='err' title='err'> {$lL.__could_not_obtain_lock_on_kb__}.");
                 }

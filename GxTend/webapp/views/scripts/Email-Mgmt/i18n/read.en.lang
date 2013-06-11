@@ -15,5 +15,9 @@ $lL["__headers__"] = "Headers";
 $lL["__log__"] = "Log";
 $lL["__enable_preview__"] = "Enable Preview";
 $lL["__disable_preview__"] = "Disable Preview";
+$lL["__subject__"] = "Subject";
+$lL["__to__"] = "To";
+$lL["__cc__"] = "Cc";
+$lL["__bcc__"] = "Bcc";
 
 ?>

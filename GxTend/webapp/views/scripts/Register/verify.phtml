@@ -1,0 +1,76 @@
+{include file='../Wsite/header.phtml'}
+<script>
+$(function() {
+
+	$("#verify form").ajaxForm({
+		dataType: 'json',
+        async: true,
+		beforeSubmit: function() {
+            $('#verify .toValidate').validate({
+               ignore: ":hidden"
+            });
+            if ( $('#verify .toValidate').valid() ) {
+                 $("#verify button").prop("disabled", true).addClass("ui-state-disabled");
+                return true;
+            }
+            return false;
+		},
+		success: function (r) {
+            if (r.sts) {
+                $("#verify").html(r.msg);
+            } else {
+                notify("{$lL.__notification__}",r.msg,(r.sts ? "info":"error"),(r.sts ? 2500:5000));
+                $("#verify button").prop("disabled", false).removeClass("ui-state-disabled");
+            }
+		},
+		error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+		}
+	});
+
+});
+</script>
+
+<div id="content">
+    <div class="inner">
+        <div id="verify">
+            <h1>{$lL.__sign_up_verification__}</h1>
+            <h6>{$lL.__welcome_back__} {$userdata.name}, {$lL.__we_are_almost_done__}.</h6>
+            <p>{$lL.__know_more_of_you__}.</p>
+            <p>{$lL.__once_you_are_done__}.</p>
+            <hr />
+            <form action="/Register/postv" method="post" class="toValidate">
+                <input type="hidden" name="userguid" value="{$smarty.request.userguid}">
+                <div class="row">
+                    <label for="userprof|title">{$lL.__title__}</label>
+                    <input type="text" id="userproftitle" name="userprof|title" />
+                </div>
+                <div class="row">
+                    <label for="userprof|office">{$lL.__office__}</label>
+                    <input type="text" id="userprofoffice" name="userprof|office" /> {$lL.__ext__} <input type="text" style="width: 50px;" name="userprof|offext" />
+                </div>
+                <div class="row">
+                    <label for="userprof|mobile">{$lL.__mobile__}</label>
+                    <input type="text" id="userprofmobile" name="userprof|mobile" />
+                </div>
+                <div class="row">
+                    <label for="userprof|imname">{$lL.__im_name__}</label>
+                    <input type="text" id="userprofimname" name="userprof|imname" /> {$lL.__on__} {$imtype}
+                </div>
+                <div class="row">
+                    <label for="userprof|website">{$lL.__website__}</label>
+                    <input type="text" id="userprofwebsite" name="userprof|website" />
+                </div>
+                <div class="row">
+                    <label for="userprof|comments">{$lL.__comments__}</label>
+                    <textarea name="userprof|comments"></textarea>
+                </div>
+                <div class="row">
+                    {$smarty.const._FORM_BTN_SUBMIT_}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{include file="../Wsite/footer.phtml"}
