@@ -1,0 +1,16 @@
+{if $result.sts && $result.msg=="registered"}
+    <p>Enviamos um e-mail com as instruções para redefinir sua senha.</p>
+    <p>Se nosso email não chegar até você, entre em contato conosco no <a href='mailto:support@in-prove.com'>support@in-prove.com</a>.</p>
+    <p>Best Regards,<br />The GxTend Team</p>
+    <p>
+    ---<br>Cumprimentos<br>A Equipe do GxTend
+    </p>
+{elseif $result.sts && $result.msg=="verified"}
+    <p>Sua nova senha foi instalado com sucesso.</p>
+    <p>
+    ---<br>Cumprimentos<br>A Equipe do GxTend
+    </p>
+{elseif !$result.sts}
+    <p><strong>Lamentamos, mas parece que houve um erro ao processar seu pedido.</strong></p>
+    <p>Entre em contato conosco diretamente no <a href='mailto:support@in-prove.com'>support@in-prove.com</a>.</p>
+{/if}

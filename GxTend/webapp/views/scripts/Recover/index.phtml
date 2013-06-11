@@ -1,0 +1,53 @@
+{include file="../Wsite/header.phtml"}
+<script>
+    $(function() {
+        $("#recover form").ajaxForm({
+		dataType: 'json',
+        async: true,
+		beforeSubmit: function() {
+            $('#recover .toValidate').validate({
+               ignore: ":hidden"
+            });
+            if ( $('#recover .toValidate').valid() ) {
+                 $("#recover button").prop("disabled", true).addClass("ui-state-disabled");
+                return true;
+            }
+            return false;
+		},
+		success: function (r) {
+            if (r.sts) {
+                $("#recover").html(r.msg);
+            } else {
+                notify("{$lL.__notification__}",r.msg,(r.sts ? "info":"error"),(r.sts ? 2500:5000));
+                $("#recover button").prop("disabled", false).removeClass("ui-state-disabled");
+            }
+		},
+		error: function (jqXHR) {
+            handleXHRerror(jqXHR);
+		}
+	});
+    
+    $("#recover input:visible:first").focus();
+});
+</script>
+
+<div id="content">
+    <div class="inner">
+        <div id="recover">
+            <h3>{$lL.__forgot_your_password__}</h3>
+            <p>{$lL.__recover_description__}.</p>
+            <hr>
+            <form action="/Recover/postr" method="post" class="toValidate">
+                <div class="row">
+                    <label for="email">{$lL.__enter_your_email_or_username__}</label>
+                    <input type="text" name="email" class="required email" />
+                </div>
+                <div class="row">
+                    {$smarty.const._FORM_BTN_SUBMIT_}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{include file="../Wsite/footer.phtml"}

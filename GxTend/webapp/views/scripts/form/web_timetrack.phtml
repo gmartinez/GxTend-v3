@@ -1,0 +1,104 @@
+{include file='form.ready.js.inc'}
+
+{if $form_mode == $smarty.const._LBL_ADD_}
+    <br>
+    <form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+    <input type="hidden" name="parms" value="{$smarty.get.parms}">
+        <table align="center" width="100%">
+            <tr>
+                <th>DoM | Date</th>
+                <th>Topic</th>
+                <th>Client</th>
+                <th>Project</th>
+                <th>Hours</th>
+                <th>Person</th>
+                <th>Type of Work</th>
+                <th>Comment</th>
+                <th>URL</th>
+            </tr>
+            <tr>
+                <td><textarea name="Date" style="width:65px; height:400px;"></textarea></td>
+                <td><textarea name="Topic" style="width:150px; height:400px;"></textarea></td>
+                <td><textarea name="Client" style="width:100px; height:400px;"></textarea></td>
+                <td><textarea name="Project" style="width:150px; height:400px;"></textarea></td>
+                <td><textarea name="Hours" style="width:50px; height:400px;"></textarea></td>
+                <td><textarea name="Person" style="width:65px; height:400px;"></textarea></td>
+                <td><textarea name="ToW" style="width:150px; height:400px;"></textarea></td>
+                <td><textarea name="Comment" style="width:150px; height:400px;"></textarea></td>
+                <td><textarea name="URL" style="width:150px; height:400px;"></textarea></td>
+            </tr>
+        </table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+            <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
+            <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
+        </div>
+        <br clear="all">
+    </form>
+{else}
+    <br>
+    <form id="form_{$form_ctrlid}" action="form/post" method="POST" enctype="multipart/form-data" class="toValidate">
+    <input type="hidden" name="parms" value="{$smarty.get.parms}">
+        <table align="center" width="100%">
+        <tr><td align="left">
+            <b>Date</b>
+            </td>
+            <td align="left">
+			<input type="text" size="8" name="f|date" value="{$date}" class="string required">
+            </td>
+        </tr>
+        <tr><td align="left">
+            <b>Topic</b>
+            </td>
+            <td align="left">
+			<input type="text" size="80" name="f|topic" value="{$topic}" class="string required">
+            </td>
+        </tr>
+        <tr><td align="left">
+            <b>Client / Project</b>
+            </td>
+            <td align="left">
+                {$client} &nbsp;/&nbsp; <input type="text" size="40" name="f|project" value="{$project}" class="string">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><div class="myhr"></div></td>                
+        </tr>
+        <tr>
+            <td colspan="2">
+			Hours <input type="text" size="4" name="f|hours" value="{$hours}" class="number required">&nbsp;
+            Person {$person}&nbsp;
+            Type of Work{$typeofwork}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><div class="myhr"></div></td>                
+        </tr>
+        <tr><td align="left">
+            <b>Comment</b>
+            </td>
+            <td align="left">
+			<textarea cols="80" rows="5" name="f|comment">{$comment}</textarea>
+            </td>
+        </tr>
+        <tr><td align="left">
+            <b>URL</b>
+            </td>
+            <td align="left">
+			<input type="text" size="80" name="f|url" value="{$url}" class="string">
+            </td>
+        </tr>
+        </table>
+        <div class="myhr"></div>
+        <div class="buttons right">
+        {if $form_mode != $smarty.const._LBL_ADD_}
+            <button class="button-update" type="submit" name="submit_btn" value="{$smarty.const._LBL_UPDATE_}" title="{$smarty.const._TITLE_UPDATE_}">{$smarty.const._LBL_UPDATE_}</button>
+            <button class="button-delete" type="submit" name="submit_btn" value="{$smarty.const._LBL_DELETE_}" title="{$smarty.const._TITLE_DELETE_}" onclick="return(confirm('{$smarty.const._TITLE_DELETE_} ?'));">{$smarty.const._LBL_DELETE_}</button>
+        {else}
+            <button class="button-add" type="submit" name="submit_btn" value="{$smarty.const._LBL_INSERT_}" title="{$smarty.const._TITLE_INSERT_}">{$smarty.const._LBL_INSERT_}</button>
+        {/if}
+        <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
+        </div>
+        <br clear="all">
+    </form>
+{/if}

@@ -1,7 +1,7 @@
 <?php
 
-$lL["__outbound_messages__"] = "OutBound Messages";
-$lL["__inbound_messages__"] = "InBound Messages";
-$lL["__write_new_message__"] = "Write new Message";
+$lL["__outbound_messages__"] = "Mensajes Salientes";
+$lL["__inbound_messages__"] = "Mensajes Entrantes";
+$lL["__write_new_message__"] = "Escribir nuevo mensaje";
 
 ?>

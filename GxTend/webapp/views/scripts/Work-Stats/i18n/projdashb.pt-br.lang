@@ -1,6 +1,6 @@
 <?php
 
-$lL["__last_team_actions__"] = "Ultima Ações da equipe";
+$lL["__team_last_actions__"] = "Ultima Ações da equipe";
 $lL["__user_image__"] = "Id Visual do Usuário";
 $lL["__click_to_see_commit_s_content__"] = "Clique para ver o conteúdo do commit";
 $lL["__commit_data___promotion_status__"] = "Dados do Commit e de Status de Promoção";
