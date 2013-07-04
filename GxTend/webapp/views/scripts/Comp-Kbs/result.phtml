@@ -39,9 +39,8 @@ $(document).ready(function(){
     $("#ttstxt").ckeditorGet().setReadOnly();
     
     $("#form_promote input[name=promotetype]").change(function () {
-        if ($(this).val()=="getxpz") {
-            $("#addcomm, #exec-opts").hide("slow");
-            
+        if ($(this).val()=="getxpz" || $(this).val()=="getgxl") {
+            $("#addcomm, #exec-opts").hide("slow");            
         } else {
             $("#addcomm, #exec-opts").show("slow");
         }
@@ -90,10 +89,10 @@ function loadTickets() {
         {$InProve_Smarty->msg("ui-icon-alert", $local_changes)}
     {else}
         <form id="form_promote" action="/Comp-Kbs/promote" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="left_projguid" value="{$left_projguid}">
+        <input type="hidden" name="left_projguid" value="{$left_kbdata.projguid}">
         <input type="hidden" name="left_kbguid" value="{$smarty.request.left_kbguid}">
         <input type="hidden" name="left_mdlid" value="{$smarty.request.left_mdlid|default:1}">
-        <input type="hidden" name="right_projguid" value="{$right_projguid}">
+        <input type="hidden" name="right_projguid" value="{$right_kbdata.projguid}">
         <input type="hidden" name="right_kbguid" value="{$smarty.request.right_kbguid}">
         <input type="hidden" name="right_mdlid" value="{$smarty.request.right_mdlid|default:1}">
             <table width="100%" align="center" class="list">
@@ -158,13 +157,16 @@ function loadTickets() {
             </p>
             <p id="promo-opts">
             <strong>{$lL.__promotion_options__}</strong><br>
-            &nbsp;&nbsp;<input type="radio" name="promotetype" value="import" checked>&nbsp;<img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="{$smarty.const._LBL_PROMOTE_}"> {$lL.__export_from_source___import_in_target__}
-            &nbsp;&nbsp;<input type="radio" name="promotetype" value="getxpz">&nbsp;<img src="{$smarty.const._IMG_PACKAGE_SM_}" alt="{$smarty.const._LBL_PACKAGE_}"> {$lL.__export_from_source___download_for_manual_import__}
+            &nbsp;&nbsp;<input type="radio" name="promotetype" value="import" checked>&nbsp;<img src="{$smarty.const._IMG_PROMOTE_SM_}" alt="{$smarty.const._LBL_PROMOTE_}"> {$lL.__export_from_source___import_in_target__}<br>
+            &nbsp;&nbsp;<input type="radio" name="promotetype" value="getxpz">&nbsp;<img src="{$smarty.const._IMG_PACKAGE_SM_}" alt="{$smarty.const._LBL_PACKAGE_}"> {$lL.__export_from_source___download_for_manual_import__}<br>
+            &nbsp;&nbsp;<input type="radio" name="promotetype" value="getgxl">&nbsp;<img src="{$smarty.const._IMG_OBJLIST_SM_}" alt="{$smarty.const._LBL_OBJLIST_}"> {$lL.__generate__gxl_from_source___download_for_manual_export___import__}
             </p>
+            {if $left_kbdata.kbclass>=10000}
             <p id="export-opts">
             <strong>{$lL.__export_options__}</strong><br>
             &nbsp;&nbsp;&nbsp;{$lL.__set__dependency_type__to__} {$dependency_type} {$lL.__and__references_type__to__} {$references_type}
             </p>
+            {/if}
             <p id="exec-opts">
             <strong>{$lL.__execution_options__}</strong><br>
             &nbsp;&nbsp;<img alt="queue" src="{$smarty.const._IMG_CLOCK_SM_}" title="{$lL.__queue_for_asynchronous_execution__}"> {$lL.__queue_for_asynchronous_execution__} <input type="checkbox" id="queue4exec" name="queue4exec" value="1" {$InProve_Smarty->get_prm("promote_async_status")}>

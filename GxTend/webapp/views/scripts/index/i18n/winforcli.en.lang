@@ -1,0 +1,5 @@
+<?php
+
+$lL["__sesion_not_logged_in__"] = "Session not logged in";
+
+?>

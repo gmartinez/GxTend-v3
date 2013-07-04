@@ -11,6 +11,7 @@ function filter_by_objsts() {
 
     $("#log_integrate > table > tbody > tr").show();
     if (!$("#log_integrate #okists").prop("checked")) { $("#log_integrate > table > tbody > tr.impok").hide(); }
+    if (!$("#log_integrate #wrnsts").prop("checked")) { $("#log_integrate > table > tbody > tr.impwrn").hide(); }
     if (!$("#log_integrate #errsts").prop("checked")) { $("#log_integrate > table > tbody > tr.imperr").hide(); }
 
     var $visibleRows = $('#log_integrate > table > tbody > tr:visible').length;
@@ -37,6 +38,7 @@ function filter_by_objsts() {
         {$lL.__objects_are_listed_in_the_order_they_were_processed__}.
         &nbsp;|&nbsp;
         <input type="checkbox" id="okists" name="okists" onchange="filter_by_objsts();" checked> <img class="tip" alt="ok" src="../img/icons/16/tick.png" title="{$lL.__import_status_objects_tagged_with_this_icon_were_successfully_imported_into_target_kb__}.">&nbsp;
+        <input type="checkbox" id="wrnsts" name="wrnsts" onchange="filter_by_objsts();" checked> <img class="tip" alt="ok" src="../img/icons/16/warning.png" title="{$lL.__import_status_objects_tagged_with_this_icon_reported_warnings_when_imported_into_target_kb__}.">&nbsp;
         <input type="checkbox" id="errsts" name="errsts" onchange="filter_by_objsts();" checked> <img class="tip" alt="err" src="../img/icons/16/error.png" title="{$lL.__import_status_objects_tagged_with_this_icon_reported_errors_when_imported_into_target_kb__}.">&nbsp;
     </div>
     <div class="column right">
@@ -83,6 +85,8 @@ function filter_by_objsts() {
         <td align="center">            
             {if $rec.sts=="ok"}
             {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/tick.png' alt='{$rec.sts}' title='{$rec.sts}'>")}
+            {elseif $rec.sts=="wrn"}
+            {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/warning.png' alt='{$rec.sts}' title='{$rec.sts}'>")}
             {else}
             {$InProve_Smarty->get_popup_link("view_source","/View-Source/?filename={base64_encode($rec.gxout)}&send_as={basename($rec.gxout)}",null,null,"800x600","<img src='../img/icons/16/error.png' alt='{$rec.sts}' title='{$rec.sts}'>")}
             {/if}
