@@ -1,0 +1,6 @@
+<?php
+
+$lL["__record_s__retrieved_in__"] = "record(s) retrieved in";
+$lL["__seg_s___"] = "seg(s)";
+
+?>

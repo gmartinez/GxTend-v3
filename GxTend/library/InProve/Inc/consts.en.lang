@@ -88,6 +88,8 @@ define("_IMG_FOLDER_SM_", "../img/icons/16/folder.png");
 define("_IMG_FOLDER_OPEN_SM_", "../img/icons/16/folder-open.png");
 define("_IMG_PACKAGE_SM_", "../img/icons/16/compress.png");
 define("_LBL_PACKAGE_", "Build Zip Package");
+define("_IMG_OBJLIST_SM_", "../img/icons/16/xmldoc.png");
+define("_LBL_OBJLIST_", "Build List Package");
 define("_IMG_RESET_SM_", "../img/icons/16/reset.png");
 define("_LBL_RESET_", "Reset");
 define("_IMG_CATCHUP_SM_", "../img/icons/16/catchup.png");

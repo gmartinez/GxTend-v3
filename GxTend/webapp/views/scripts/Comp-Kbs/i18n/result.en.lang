@@ -26,6 +26,7 @@ $lL["__promotion_flow__"] = "Promotion Flow";
 $lL["__promotion_options__"] = "Promotion Options";
 $lL["__export_from_source___import_in_target__"] = "Export from Source + Import in Target";
 $lL["__export_from_source___download_for_manual_import__"] = "Export from Source + Download for Manual Import";
+$lL["__generate__gxl_from_source___download_for_manual_export___import__"] = "Generate .gxl from Source + Download for Manual Export & Import";
 $lL["__export_options__"] = "Export Options";
 $lL["__set__dependency_type__to__"] = "Set \"Dependency Type\" to";
 $lL["__and__references_type__to__"] = "and \"References Type\" to";
@@ -34,5 +35,8 @@ $lL["__queue_for_asynchronous_execution__"] = "Queue for asynchronous execution"
 $lL["__my_image__"] = "My Image";
 $lL["__you_may_want_to_add_a_blog_entry_to_the_selected_tickets__"] = "You may want to add a blog entry to the selected tickets";
 $lL["__tickets_you_can_associate_this_promotion_to__"] = "Tickets you can associate this promotion to";
+$lL["__ttp__"] = "TTP";
+$lL["__second__"] = "second";
+$lL["__top__"] = "Top";
 
 ?>
