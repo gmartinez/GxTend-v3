@@ -1,0 +1,8 @@
+<?php
+
+$lL["__genexus_kb__"] = "GeneXus KB";
+$lL["__gxkb_query__"] = "GxKb Query";
+$lL["__sql_query__"] = "SQL Query";
+$lL["__query_metadata__"] = "Query Metadata";
+
+?>

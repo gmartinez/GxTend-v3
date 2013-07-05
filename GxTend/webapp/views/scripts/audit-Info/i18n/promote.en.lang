@@ -6,6 +6,7 @@ $lL["__ttp__"] = "TTP";
 $lL["__average__"] = "Average";
 $lL["__objects_are_listed_in_the_order_they_were_processed__"] = "Objects are listed in the order they were processed";
 $lL["__import_status_objects_tagged_with_this_icon_were_successfully_imported_into_target_kb__"] = "Import Status|Objects tagged with this icon were successfully imported into target KB";
+$lL["__import_status_objects_tagged_with_this_icon_reported_warnings_when_imported_into_target_kb__"] = "Import Status|Objects tagged with this icon reported warnings when imported into target KB";
 $lL["__import_status_objects_tagged_with_this_icon_reported_errors_when_imported_into_target_kb__"] = "Import Status|Objects tagged with this icon reported errors when imported into target KB";
 $lL["__row_s___"] = "row(s)";
 $lL["__object__"] = "Object";
