@@ -20,5 +20,7 @@ $lL["__server_status_is__"] = "El Estado del Servidor es";
 $lL["__available__"] = "Disponible";
 $lL["__unavailable__"] = "No Disponible";
 $lL["__undetermined__"] = "Indeterminado";
+$lL["__unexpected_http_response__"] = "Respuesta http inesperado";
+$lL["__unable_to_retrieve_http_response__"] = "No se puedo recuperar la respuesta http";
 
 ?>

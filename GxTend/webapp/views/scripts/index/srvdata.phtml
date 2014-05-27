@@ -8,49 +8,62 @@
 </div>
 
 {if $InProve_Smarty->getSessVar("LoginStatus.server.data")}
-<div style="margin:5px;">
-<strong>{$lL.__license_status__} : </strong>
-    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.license_status") != "__VALID_KEY__"}
-        &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.license_status")} - {constant($InProve_Smarty->getSessVar("LoginStatus.server.data.license_status"))}</span>
-    {else}
-        &nbsp;<span class="green">{$lL.__valid_license_installed__no_issues_detected__}.</span>
-    {/if}
-</div>
+	<div style="margin:5px;">
+	<strong>{$lL.__license_status__} : </strong>
+	    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.license_status") != "__VALID_KEY__"}
+	        &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.license_status")} - {constant($InProve_Smarty->getSessVar("LoginStatus.server.data.license_status"))}</span>
+	    {else}
+	        &nbsp;<span class="green">{$lL.__valid_license_installed__no_issues_detected__}.</span>
+	    {/if}
+	</div>
 
-<div style="margin:5px;">
-<strong>{$lL.__gxtend_status__} : </strong>
-    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}
-        &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}</span>
-    {else}
-        &nbsp;<span class="green">Online</span>
-    {/if}
-</div>
+	<div style="margin:5px;">
+	<strong>{$lL.__gxtend_status__} : </strong>
+	    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}
+	        &nbsp;<span class="red">{$InProve_Smarty->getSessVar("LoginStatus.server.data.server_status")}</span>
+	    {else}
+	        &nbsp;<span class="green">Online</span>
+	    {/if}
+	</div>
 
-{if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
-<div style="margin:5px;">
-<strong>{$lL.__auth_token_status__} : </strong>
-    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.token.status") != "ok"}
-        &nbsp;<span class="red">{$lL.__no_match__}</span>
-    {else}
-        &nbsp;<span class="green">{$lL.__match__}</span>
-    {/if}
-</div>
-{/if}
+	{if $InProve_Smarty->getSessVar("LoginStatus.islogged")}
+	<div style="margin:5px;">
+	<strong>{$lL.__auth_token_status__} : </strong>
+	    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.token.status") != "ok"}
+	        &nbsp;<span class="red">{$lL.__no_match__}</span>
+	    {else}
+	        &nbsp;<span class="green">{$lL.__match__}</span>
+	    {/if}
+	</div>
+	{/if}
 
-<div style="margin:5px;">
-<strong>{$lL.__gxtend_version__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.build_version")}
-{if $allowupdate}
-&nbsp;<span class="ui-icon ui-icon-wrench pointer" style="display:inline-block;" title="{$lL.__click_to_launch_gxtend_update_process__}" onclick="$('#GenericDialog').dialog('close');mDialog('/Update/', 'Update Dialog', 600, 900);"></span>
-{/if}
-</div>
+	<div style="margin:5px;">
+	<strong>{$lL.__gxtend_version__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.build_version")}
+	{if $allowupdate}
+	&nbsp;<span class="ui-icon ui-icon-wrench pointer" style="display:inline-block;" title="{$lL.__click_to_launch_gxtend_update_process__}" onclick="$('#GenericDialog').dialog('close');mDialog('/Update/', 'Update Dialog', 600, 900);"></span>
+	{/if}
+	</div>
 
-<div style="margin:5px;">
-<strong>{$lL.__datetime__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.datetime")} ({$lL.__on_data_retrieval__})
-</div>
+	<div style="margin:5px;">
+	<strong>{$lL.__datetime__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.datetime")} ({$lL.__on_data_retrieval__})
+	</div>
 
-<div style="margin:5px;">
-<strong>{$lL.__timezone__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.tzname")} ({$lL.__gmt_offset_for_this_timezone_is__} {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
-</div>
+	<div style="margin:5px;">
+	<strong>{$lL.__timezone__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.tzname")} ({$lL.__gmt_offset_for_this_timezone_is__} {$InProve_Smarty->sec2str($InProve_Smarty->getSessVar("LoginStatus.server.data.gmtoffset"))})
+	</div>
+{else}
+	<div style="margin:5px;">
+	<strong>{$lL.__gxtend_status__} : </strong>
+		&nbsp;<span class="red">
+	    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.retrerr")==1}
+	        {$lL.__error_parsing_http_response__} [ $InProve_Smarty->getSessVar("LoginStatus.server.data.retrmsg") ]
+	    {elseif $InProve_Smarty->getSessVar("LoginStatus.server.data.retrerr")==2}
+	        {$lL.__error_retrieving_http_response__}
+	    {else}
+	        {$lL.__undetermined__}
+	    {/if}
+	    </span>
+	</div>
 {/if}
 
 <div class="myhr"></div>
