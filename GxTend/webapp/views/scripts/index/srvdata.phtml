@@ -4,10 +4,10 @@
 </div>
 
 <div style="margin:5px;">
-<strong>{$lL.__reachable__} : </strong> {if $InProve_Smarty->getSessVar("LoginStatus.server.data")} <span class="green">{$lL.__yes__}</span> {else} <span class="red">{$lL.__no__}</span>{/if}
+<strong>{$lL.__reachable__} : </strong> {if !$InProve_Smarty->getSessVar("LoginStatus.server.data.retrerr")} <span class="green">{$lL.__yes__}</span> {else} <span class="red">{$lL.__no__}</span>{/if}
 </div>
 
-{if $InProve_Smarty->getSessVar("LoginStatus.server.data")}
+{if !$InProve_Smarty->getSessVar("LoginStatus.server.data.retrerr")}
 	<div style="margin:5px;">
 	<strong>{$lL.__license_status__} : </strong>
 	    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.license_status") != "__VALID_KEY__"}
@@ -53,12 +53,11 @@
 	</div>
 {else}
 	<div style="margin:5px;">
-	<strong>{$lL.__gxtend_status__} : </strong>
 		&nbsp;<span class="red">
 	    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.retrerr")==1}
-	        {$lL.__error_parsing_http_response__} [ $InProve_Smarty->getSessVar("LoginStatus.server.data.retrmsg") ]
+	        {$lL.__unexpected_http_response__} [ {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrurl")} ] [ {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrmsg")} ]
 	    {elseif $InProve_Smarty->getSessVar("LoginStatus.server.data.retrerr")==2}
-	        {$lL.__error_retrieving_http_response__}
+	        {$lL.__unable_to_retrieve_http_response__} [ {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrurl")} ] [ {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrmsg")} ]
 	    {else}
 	        {$lL.__undetermined__}
 	    {/if}
