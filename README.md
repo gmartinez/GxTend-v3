@@ -1,7 +1,7 @@
 GxTend-v3.0
 ===========
 
-SCM tool that specifically target GeneXus projects (v3.0)
+SCM tool for GeneXus projects (v3.0)
 
 __Version Hightlights__
 
