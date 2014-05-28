@@ -1,7 +1,7 @@
 <?php
 
 $lL["__user_image__"] = "User Visual Id";
-$lL["__commits_data___promotion_status__"] = "Commit's Data & Promotion Status";
+$lL["__commits_data___promotion_status__"] = "Commit\'s Data & Promotion Status";
 $lL["__report__"] = "Report";
 $lL["__promote_execution_report__"] = "Promote Execution Report";
 $lL["__my_image__"] = "My Visual Id";
