@@ -21,6 +21,9 @@ $lL["__server_status_is__"] = "Server Status is";
 $lL["__available__"] = "Available";
 $lL["__unavailable__"] = "Unavailable";
 $lL["__undetermined__"] = "Undetermined";
+$lL["__error__"] = "Error";
+$lL["__request__"] = "Request";
+$lL["__response__"] = "Response";
 $lL["__unexpected_http_response__"] = "Unexpected http response";
 $lL["__unable_to_retrieve_http_response__"] = "Unable to retrieve http response";
 

@@ -53,15 +53,24 @@
 	</div>
 {else}
 	<div style="margin:5px;">
-		&nbsp;<span class="red">
+		<strong>{$lL.__error__} : </strong>
+		<span class="red">
 	    {if $InProve_Smarty->getSessVar("LoginStatus.server.data.retrerr")==1}
-	        {$lL.__unexpected_http_response__} [ {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrurl")} ] [ {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrmsg")} ]
+	        {$lL.__unexpected_http_response__}<br>
 	    {elseif $InProve_Smarty->getSessVar("LoginStatus.server.data.retrerr")==2}
-	        {$lL.__unable_to_retrieve_http_response__} [ {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrurl")} ] [ {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrmsg")} ]
+	        {$lL.__unable_to_retrieve_http_response__}
 	    {else}
 	        {$lL.__undetermined__}
 	    {/if}
-	    </span>
+		</span>
+	</div>
+
+	<div style="margin:5px;">
+		<strong>{$lL.__request__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrurl")}
+	</div>
+
+	<div style="margin:5px;">
+		<strong>{$lL.__response__} : </strong> {$InProve_Smarty->getSessVar("LoginStatus.server.data.retrmsg")}
 	</div>
 {/if}
 
