@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
     {if $data.form_mode == $smarty.const._LBL_ADD_}
-        initRichTextEditor("ttstxt","MyBasicOptions");
+        initRichTextEditor("ttstxt","basic_config.js");
     {else}
         $("#read_todoguid").text($("#todoguid option:selected").text());
         $("#read_ttspri").text($("#ttspri option:selected").text());
@@ -17,7 +17,7 @@ $(document).ready(function(){
             load: function(event, ui) {
                 initializeButtons();                
                 if (ui.index==0) {
-                    initRichTextEditor("itmtxt","MyBasicOptions");
+                    initRichTextEditor("itmtxt","basic_config.js");
                     $("#ticket #subsnfo").load("/Ticket-Mgmt/sidebar?ttsguid={$smarty.request.ttsguid}&sbid=blog");
                 }
                 if (ui.index==1) {
