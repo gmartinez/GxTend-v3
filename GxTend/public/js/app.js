@@ -203,6 +203,27 @@ function rsetRichTextEditor(instName,customConfig) {
 }
 
 /**
+ * Get tab position within grid tabber control...
+ */
+function urltabpos(gid, urlhash) {
+
+    var pos;
+    if (urlhash) {
+        jQuery.each($('#tabber_'+gid+' li'), function(i, val) {
+            var str = $(this).data("urlhash");
+			if (str) {
+				var iof = str.indexOf(urlhash);
+				if (iof>=0) { pos = i; }
+			}
+        });
+    } else {
+        pos = $('#tabber_'+gid).tabs('option', 'active') - 1;
+    }
+
+return pos;
+}
+
+/**
  * Add tab into grid tabber control...
  */
 function grid_addtab(gid, url, label) {
@@ -212,10 +233,10 @@ function grid_addtab(gid, url, label) {
         var urlhash = hex_sha1(url);
         var i = urltabpos(gid, urlhash);
         if (i >= 0) {
-            $("#tabber_"+gid).tabs("select", i+1);
+			$("#tabber_"+gid).tabs("option", "active", i+1);
         } else {
-            label = "<span class='opentab' urlhash='"+urlhash+"'>"+label+"</span>&nbsp;&nbsp;";
-            $("#tabber_"+gid).tabs("add", url, label);
+			$("#tabber_"+gid+" > ul").append("<li data-urlhash='"+urlhash+"'><a href='"+url+"'>"+label+"</a></li>");
+			$("#tabber_"+gid).append("<div data-urlhash='"+urlhash+"'></div>").tabs("refresh").tabs("option", "active", -1);
         }
     } else if (!gid) {
         alert(labels["_ERROR_ADDING_TAB_TARGET_"]);
@@ -228,40 +249,16 @@ function grid_addtab(gid, url, label) {
 }
 
 /**
- * Get tab position within grid tabber control...
- */
-function urltabpos(gid, urlhash) {
-
-    var pos;
-
-    if (urlhash) {
-        jQuery.each($(".opentab"), function(i, val) {
-            var str = $(this).attr("urlhash");
-            var iof = str.indexOf(urlhash);
-            if (iof>=0) {
-               pos = i;
-            }
-        });
-    } else {
-        var $tabs = $('#tabber_'+gid).tabs();
-        pos = $tabs.tabs('option', 'selected') - 1;
-
-    }
-
-return pos;
-}
-
-/**
  * Remove tab from grid tabber control...
  */
 function grid_remtab(gid, urlhash) {
 
-    var i = urltabpos(gid, urlhash);
-    if (i >= 0) {
-        $("#tabber_"+gid).tabs("remove", i+1);
-    }
-
-    $("#grid_"+gid).trigger("reloadGrid");
+	if (!urlhash) {
+	urlhash = $("#tabber_"+gid+" li[tabindex=0]").data("urlhash");
+	}
+	$("#tabber_"+gid+" li[data-urlhash="+urlhash+"]").remove();
+	$("#tabber_"+gid+" div[data-urlhash="+urlhash+"]").remove();
+	$("#tabber_"+gid).tabs("refresh");
 
 }
 
