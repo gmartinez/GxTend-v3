@@ -30,5 +30,4 @@ jQuery(function($){
 		timezoneText: 'Zona Horaria'
 	};
 	$.datepicker.setDefaults($.datepicker.regional['es']);
-	$.timepicker.setDefaults($.datepicker.regional['es']);
 });

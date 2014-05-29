@@ -30,5 +30,4 @@ jQuery(function($){
 		timezoneText: 'Fuso Horário'
 	};
 	$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
-	$.timepicker.setDefaults($.datepicker.regional['pt-BR']);
 });
