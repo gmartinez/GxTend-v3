@@ -140,7 +140,7 @@ function loadTickets() {
                             {if $rec.gxinfo.chkin}
                             <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="{$lL.__pending__}" title="{$lL.__consolidation_pending__}">
                             {else}
-                            <input class="objlst" type=checkbox name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_promote .objlst", "#form_promote button");'>
+                            <input class="objlst" type="checkbox" name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_promote .objlst", "#form_promote button");'>
                             {/if}
                         </span>
                         {/if}

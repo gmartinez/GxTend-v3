@@ -288,17 +288,11 @@ function setsubmitsts(boxes, button) {
 
     if ($(boxes+":checked").size() > 0) {
         $(button).each(function (index,Element) {
-            if ($(this).is("button")) {
-            $(button).button( "option", "disabled", false );
-            }
-            $(button).removeAttr("disabled");
+            $(button).prop("disabled",false);
         });
     } else {
         $(button).each(function (index,Element) {
-            if ($(this).is("button")) {
-            $(button).button( "option", "disabled", true );
-            }
-            $(button).attr("disabled", "disabled");
+            $(button).prop("disabled",true);
         });
     }
 

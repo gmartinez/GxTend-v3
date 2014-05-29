@@ -149,7 +149,7 @@ function filter_by_objsts() {
                     {else}
                         {if $rec.b64}
                         <span id="{$rec.b64|sha1}">
-                            <input class="objlst" type=checkbox name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_catchup .objlst", "#form_catchup button");'>
+                            <input class="objlst" type="checkbox" name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_catchup .objlst", "#form_catchup button");'>
                         </span>
                         {/if}
                     {/if}

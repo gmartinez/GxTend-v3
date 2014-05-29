@@ -48,7 +48,7 @@ $(document).ready(function(){
                 &nbsp;{$rec.groupabv}
             </td>
             <td>&nbsp;{$access2desc[$rec.access]}</td>
-            <td align="center"><input class="objlst" type=checkbox name='checked_perms[]' value='{$rec.type},{$rec.guid},{$rec.groupguid},{$rec.access}' onclick='setsubmitsts("#unsetperms .objlst", "#unsetperms button");'></td>
+            <td align="center"><input class="objlst" type="checkbox" name='checked_perms[]' value='{$rec.type},{$rec.guid},{$rec.groupguid},{$rec.access}' onclick='setsubmitsts("#unsetperms .objlst", "#unsetperms button");'></td>
             <tr>
         {/foreach}
     </tbody>
