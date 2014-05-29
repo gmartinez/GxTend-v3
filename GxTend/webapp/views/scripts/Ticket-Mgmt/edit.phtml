@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
     {if $data.form_mode == $smarty.const._LBL_ADD_}
-        initRichTextEditor("ttstxt","MyBasicOptions");
+        initRichTextEditor("ttstxt","basic_config.js");
     {else}
         $("#read_todoguid").text($("#todoguid option:selected").text());
         $("#read_ttspri").text($("#ttspri option:selected").text());
@@ -17,7 +17,7 @@ $(document).ready(function(){
             load: function(event, ui) {
                 initializeButtons();                
                 if (ui.index==0) {
-                    initRichTextEditor("itmtxt","MyBasicOptions");
+                    initRichTextEditor("itmtxt","basic_config.js");
                     $("#ticket #subsnfo").load("/Ticket-Mgmt/sidebar?ttsguid={$smarty.request.ttsguid}&sbid=blog");
                 }
                 if (ui.index==1) {
@@ -184,9 +184,9 @@ $(document).ready(function(){
         </tr>
         {if $data.form_mode == $smarty.const._LBL_ADD_}
 		<tr>
-            <td style="text-align:left;vertical-align:top;width:60%;">
+            <td style="text-align:left;vertical-align:top;width:50%;">
                 <b>{$lL.__detailed_description__}</b><br>
-                <textarea rows="8" cols="80" id="ttstxt" name="ttstxt">{$data.ttstxt}</textarea>
+                <textarea rows="8" cols="100" id="ttstxt" name="ttstxt">{$data.ttstxt}</textarea>
 			</td>
             <td style="text-align:left;vertical-align:top;">
                 <br>

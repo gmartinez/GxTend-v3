@@ -266,7 +266,7 @@ function go_for_lock(type) {
                                 {if $rec.gxinfo.chkin}
                                 <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="{$lL.__pending__}" title="{$lL.__consolidation_pending__}">
                                 {else}
-                                <input class="objlst" type=checkbox name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>
+                                <input class="objlst" type='checkbox' name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>
                                 {/if}
                             {/if}
                         </span>

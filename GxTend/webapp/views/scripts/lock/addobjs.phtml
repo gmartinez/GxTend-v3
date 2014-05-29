@@ -34,7 +34,7 @@
     $("#addrow").click(function() {
         var nxtr = $("#form_newobjs > table > tbody > tr:visible").length;
         var nxtr_guid = hex_sha1(nxtr.toString());
-        $("#form_newobjs > table > tbody").append("<tr><td>&nbsp;{$new_objcls}</td><td>&nbsp;<input type='text' name='new_objnam["+nxtr+"]' size=40></td><td>&nbsp;<input type='text' name='new_objdsc["+nxtr+"]' size=60 disabled='disabled'></td><td align='center'><span id='"+nxtr_guid+"'><input class='objlst' type=checkbox name='checked_objs["+nxtr+"]' value='new' onclick='setsubmitsts(\"#form_newobjs .objlst\", \"#form_newobjs button\");'></span></td></tr>");
+        $("#form_newobjs > table > tbody").append("<tr><td>&nbsp;{$new_objcls}</td><td>&nbsp;<input type='text' name='new_objnam["+nxtr+"]' size=40></td><td>&nbsp;<input type='text' name='new_objdsc["+nxtr+"]' size=60 disabled='disabled'></td><td align='center'><span id='"+nxtr_guid+"'><input class='objlst' type='checkbox' name='checked_objs["+nxtr+"]' value='new' onclick='setsubmitsts(\"#form_newobjs .objlst\", \"#form_newobjs button\");'></span></td></tr>");
     });
 
     setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");
@@ -68,7 +68,7 @@
                 <td>&nbsp;<input type="text" name="new_objdsc[{$k}]" value="{$row_objdsc.$k}" size=60 disabled="disabled"></td>
                 <td align="center">
                     <span id="{$k|sha1}">
-                    <input class="objlst" type=checkbox name='checked_objs[{$k}]' value='new' onclick='setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");'>
+                    <input class="objlst" type="checkbox" name='checked_objs[{$k}]' value='new' onclick='setsubmitsts("#form_newobjs .objlst", "#form_newobjs button");'>
                     </span>
                 </td>
                 </tr>

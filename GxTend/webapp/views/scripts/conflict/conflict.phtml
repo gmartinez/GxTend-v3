@@ -49,7 +49,7 @@ $(document).ready(function(){
             <input type="hidden" name="repo" value="{$smarty.request.repo}">
             <input type="hidden" name="rkbguid" value="{$smarty.request.rkbguid}">
             <input type="hidden" name="rmdlid" value="{$smarty.request.rmdlid}">
-            <input type=checkbox name='checked_objs[]' value='{$smarty.get.MDLID},{$smarty.get.OBJCLS},{$smarty.get.OBJNAM}' onclick='setsubmitsts("#form_catchup > :checkbox:checked", "#submit_catchup");'>
+            <input type="checkbox" name='checked_objs[]' value='{$smarty.get.MDLID},{$smarty.get.OBJCLS},{$smarty.get.OBJNAM}' onclick='setsubmitsts("#form_catchup > :checkbox:checked", "#submit_catchup");'>
             __LNG__Discard my changes, update my working copy with server's version.__LNG__
             <input type=submit id="submit_catchup" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">&nbsp;
             </form>
@@ -94,13 +94,13 @@ $(document).ready(function(){
             <input type="hidden" name="rkbguid" value="{$smarty.request.rkbguid}">
             <input type="hidden" name="rmdlid" value="{$smarty.request.rmdlid}">
             {if $commit_status.sts}
-                <input type=checkbox name='checked_objs[]' value='{$smarty.get.MDLID},{$smarty.get.OBJCLS},{$smarty.get.OBJNAM}' onclick='setsubmitsts("#form_checkin > :checkbox:checked", "#submit_chkin");'>
+                <input type="checkbox" name='checked_objs[]' value='{$smarty.get.MDLID},{$smarty.get.OBJCLS},{$smarty.get.OBJNAM}' onclick='setsubmitsts("#form_checkin > :checkbox:checked", "#submit_chkin");'>
                 __LNG__Use my current working copy to update server's version__LNG__
                 <input type=submit id="submit_chkin" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">&nbsp;
                 <br>
                 <div style="font-size:.8em">
                 <!-- Release Lock-->
-                &nbsp;[__LNG__Release lock on successful commit__LNG__ <input type=checkbox name='relcommlcks' value='1' checked>]&nbsp;
+                &nbsp;[__LNG__Release lock on successful commit__LNG__ <input type="checkbox" name='relcommlcks' value='1' checked>]&nbsp;
                 <!-- Add Comment-->
                 &nbsp;<a href="#" id="show_hide_lnk">[__LNG__Add Comment__LNG__ <img id="show_hide_img" src="{$smarty.const._IMG_SHOW_SM_}" title="{$smarty.const._TITLE_SHOW_}">]</a>
                 <div style="display:none;text-align:center;" id="show_hide_div">

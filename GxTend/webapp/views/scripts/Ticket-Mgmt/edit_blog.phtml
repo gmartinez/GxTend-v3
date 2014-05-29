@@ -1,6 +1,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
+	initRichTextEditor('itmtxt','basic_config.js');
+
     $("#form_itm_comm").ajaxForm({
         dataType: 'json',
         async: true,
@@ -74,8 +76,8 @@ $(document).ready(function(){
             <textarea rows="10" cols="100" id="itmtxt" name="itmtxt"></textarea>
             </p>
             <div>
-            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','MyFullOptions');$('.toggleToolbar').toggle();" style="display:inline;font-size:0.8em;float:right;cursor:pointer;">{$lL.__toggle_to_full_toolbar__}</span>
-            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','MyBasicOptions');$('.toggleToolbar').toggle();" style="display:none;font-size:0.8em;float:right;cursor:pointer;">{$lL.__toggle_to_basic_toolbar__}</span>
+            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','config.js');$('.toggleToolbar').toggle();" style="display:inline;font-size:0.8em;float:right;cursor:pointer;">{$lL.__toggle_to_full_toolbar__}</span>
+            <span class="toggleToolbar" onclick="rsetRichTextEditor('itmtxt','basic_config.js');$('.toggleToolbar').toggle();" style="display:none;font-size:0.8em;float:right;cursor:pointer;">{$lL.__toggle_to_basic_toolbar__}</span>
             </div>
             <p style="text-align:left;">
                 {include file='../Upload/widget.phtml' dlgTitle={$lL.__file_upload_dialog__} btnLabel={$lL.__attach_file_s___}}

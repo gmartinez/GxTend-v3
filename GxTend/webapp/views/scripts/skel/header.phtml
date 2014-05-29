@@ -1,58 +1,58 @@
 <!DOCTYPE html>
-<html lang="{$smarty.cookies['gxtend_login_language']|default:'en'}">
+<html lang="{$InProve_Smarty->getCurrLang()}">
 <head>
-    <title>GxTend - The Missing Gear</title>
+	<title>{$smarty.const.__APP_MOTTO__}</title>
 
     <!--GxTend Includes-->
 	<link rel="shortcut icon" href="../img/gear_{$smarty.const.__LAYER_ROLE__}.ico" type="image/x-icon">
 
 	<!--External Includes-->
-	<script type="text/javascript" src="../jquery/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="../jquery/jquery-ui-1.8.24.custom.min.js"></script>
-    {if $smarty.cookies['gxtend_login_language'] && $smarty.cookies['gxtend_login_language']!="en"}
-	<script type="text/javascript" src="../jquery/i18n/jquery.ui.datepicker-{$smarty.cookies['gxtend_login_language']}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+	<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.min.js"></script>
+    {if $InProve_Smarty->getCurrLang() && $InProve_Smarty->getCurrLang()!="en"}
+	<script type="text/javascript" src="/js/i18n/jquery.ui.datepicker-{$InProve_Smarty->getCurrLang()}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     {/if}
 
     <!--External Includes-->
-    <script type="text/javascript" src="../jquery/addons/charts/highcharts.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="/js/addons/charts/highcharts.js?v={$smarty.const.__BUILD_VERSION__}"></script>
 
     <!--External Includes-->
-	<link rel="stylesheet" type="text/css" href="../jquery/addons/jqGrid/css/ui.jqgrid.css?v={$smarty.const.__BUILD_VERSION__}">
-	<script type="text/javascript" src="../jquery/addons/jqGrid/i18n/grid.locale-{$smarty.cookies['gxtend_login_language']|default:'en'}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-	<script type="text/javascript" src="../jquery/addons/jqGrid/jquery.jqGrid.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+	<link rel="stylesheet" type="text/css" href="/js/addons/jqGrid/css/ui.jqgrid.css?v={$smarty.const.__BUILD_VERSION__}">
+	<script type="text/javascript" src="/js/addons/jqGrid/i18n/grid.locale-{$InProve_Smarty->getCurrLang()}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+	<script type="text/javascript" src="/js/addons/jqGrid/jquery.jqGrid.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
 
     <!--External Includes-->
-	<script type="text/javascript" src="../ckeditor/ckeditor.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-	<script type="text/javascript" src="../ckeditor/adapters/jquery.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+	<script type="text/javascript" src="/js/addons/ckeditor/ckeditor.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+	<script type="text/javascript" src="/js/addons/ckeditor/adapters/jquery.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     
     <!-- External Includes Validate-->
-    <script type="text/javascript" src="../jquery/addons/validate/jquery.validate.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-    {if $smarty.cookies['gxtend_login_language'] && $smarty.cookies['gxtend_login_language']!="en"}
-	<script type="text/javascript" src="../jquery/addons/validate/localization/messages_{$smarty.cookies['gxtend_login_language']}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="/js/addons/validate/jquery.validate.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    {if $InProve_Smarty->getCurrLang() && $InProve_Smarty->getCurrLang()!="en"}
+	<script type="text/javascript" src="/js/addons/validate/localization/messages_{$InProve_Smarty->getCurrLang()}.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     {/if}
 
     <!-- External Includes Pnotify -->
-    <script type="text/javascript" src="../jquery/addons/pnotify/jquery.pnotify.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-    <link rel="stylesheet" type="text/css" href="../jquery/addons/pnotify/jquery.pnotify.default.css?v={$smarty.const.__BUILD_VERSION__}">
+    <script type="text/javascript" src="/js/addons/pnotify/jquery.pnotify.min.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <link rel="stylesheet" type="text/css" href="/js/addons/pnotify/jquery.pnotify.default.css?v={$smarty.const.__BUILD_VERSION__}">
 
 	<!--Jquery Layout -->
-	<script type="text/javascript" src="../jquery/addons/singlef/jquery.layout.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+	<script type="text/javascript" src="/js/addons/singlef/jquery.layout.js?v={$smarty.const.__BUILD_VERSION__}"></script>
 
  	<!--Jquery ClueTip -->
-	<script type="text/javascript" src="../jquery/addons/cluetip/jquery.cluetip.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-    <link rel="stylesheet" type="text/css" href="../jquery/addons/cluetip/jquery.cluetip.css?v={$smarty.const.__BUILD_VERSION__}">
+	<script type="text/javascript" src="/js/addons/cluetip/jquery.cluetip.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <link rel="stylesheet" type="text/css" href="/js/addons/cluetip/jquery.cluetip.css?v={$smarty.const.__BUILD_VERSION__}">
 
-    <script type="text/javascript" src="../jquery/addons/singlef/jquery.form.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-    <script type="text/javascript" src="../jquery/addons/singlef/jquery.blockUI.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-    <script type="text/javascript" src="../jquery/addons/singlef/jquery.jstree.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-    <script type="text/javascript" src="../jquery/addons/singlef/jquery.cookie.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="/js/addons/singlef/jquery.form.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="/js/addons/singlef/jquery.blockUI.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="/js/addons/singlef/jquery.jstree.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="/js/addons/singlef/jquery.cookie.js?v={$smarty.const.__BUILD_VERSION__}"></script>
 
     <!--Own .js & .css -->
-    <script type="text/javascript" src="../js/gxtend.js?v={$smarty.const.__BUILD_VERSION__}"></script>
+    <script type="text/javascript" src="../js/app.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     <script type="text/javascript" src="../js/libs/sha1.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     <script type="text/javascript" src="../js/libs/utf8_decode.js?v={$smarty.const.__BUILD_VERSION__}"></script>
     <script type="text/javascript" src="../js/libs/base64_decode.js?v={$smarty.const.__BUILD_VERSION__}"></script>
-    <link rel="stylesheet" type="text/css" href="../css/theme/{$smarty.const.__LAYER_ROLE__}/jquery-ui-1.8.21.custom.css">
+    <link rel="stylesheet" type="text/css" href="../css/theme/{$smarty.const.__LAYER_ROLE__}/jquery-ui-1.10.4.custom.min.css">
     <link rel="stylesheet" type="text/css" href="../css/gxtend-{$smarty.const.__LAYER_ROLE__}.css?v={$smarty.const.__BUILD_VERSION__}">
     
 </head>
