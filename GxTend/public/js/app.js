@@ -233,7 +233,7 @@ function grid_addtab(gid, url, label) {
         var urlhash = hex_sha1(url);
         var i = urltabpos(gid, urlhash);
         if (i >= 0) {
-			$("#tabber_"+gid).tabs("option", "active", i+1);
+			$("#tabber_"+gid).tabs("option", "active", i);
         } else {
 			$("#tabber_"+gid+" > ul").append("<li data-urlhash='"+urlhash+"'><a href='"+url+"'>"+label+"</a></li>");
 			$("#tabber_"+gid).append("<div data-urlhash='"+urlhash+"'></div>").tabs("refresh").tabs("option", "active", -1);
@@ -259,6 +259,8 @@ function grid_remtab(gid, urlhash) {
 	$("#tabber_"+gid+" li[data-urlhash="+urlhash+"]").remove();
 	$("#tabber_"+gid+" div[data-urlhash="+urlhash+"]").remove();
 	$("#tabber_"+gid).tabs("refresh");
+	
+	$("#grid_"+gid).trigger("reloadGrid");
 
 }
 
@@ -281,15 +283,15 @@ function grid_updtab(urlhash, newurl) {
 /**
  * Set submit button status accorting to checkbox list...
  */
-function setsubmitsts(boxes, button) {
+function setsubmitsts(boxes, buttons) {
 
     if ($(boxes+":checked").size() > 0) {
-        $(button).each(function (index,Element) {
-            $(button).prop("disabled",false);
+        $(buttons).each(function (index,Element) {
+            $(Element).prop("disabled", false).removeClass("ui-state-disabled");
         });
     } else {
-        $(button).each(function (index,Element) {
-            $(button).prop("disabled",true);
+        $(buttons).each(function (index,Element) {
+            $(Element).prop("disabled", true).addClass("ui-state-disabled");
         });
     }
 

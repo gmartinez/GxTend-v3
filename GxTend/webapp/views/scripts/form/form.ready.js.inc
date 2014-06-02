@@ -9,7 +9,7 @@ $(document).ready(function(){
                ignore: ":hidden"
             });
             if ( $('.toValidate').valid() ) {
-                 $("#form_{$form_ctrlid} button").attr("disabled", "disabled").addClass("ui-state-disabled");
+                 $("#form_{$form_ctrlid} button").prop("disabled", true).addClass("ui-state-disabled");
                 return true;
             }
             return false;
@@ -19,7 +19,7 @@ $(document).ready(function(){
             if (r.sts) {
                 $("#form_{$form_ctrlid} .button-closethick").click();
             } else {
-                $("#form_{$form_ctrlid} button").removeAttr("disabled").removeClass("ui-state-disabled");
+                $("#form_{$form_ctrlid} button").prop("disabled", false).removeClass("ui-state-disabled");
             }
 
             if (r.reloadTab) {
