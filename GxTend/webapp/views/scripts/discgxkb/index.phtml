@@ -10,7 +10,7 @@ $(document).ready(function(){
                ignore: ":hidden"
             });
             if ( $('.toValidate').valid() ) {
-                 $("#form_discover button").attr("disabled", "disabled").addClass("ui-state-disabled");
+                 $("#form_discover button").prop("disabled", true).addClass("ui-state-disabled");
                 return true;
             }
             return false;
@@ -20,7 +20,7 @@ $(document).ready(function(){
             if (r.sts) {
                 setTimeout('grid_remtab("{$smarty.get.grid_ctrlid}");', 1000);
             } else {
-                $("#tabber_{$smarty.get.grid_ctrlid} #form_discover button").removeAttr("disabled");
+                $("#form_discover button").prop("disabled", false).removeClass("ui-state-disabled");
             }
         },
         error: function (jqXHR) {
@@ -29,7 +29,7 @@ $(document).ready(function(){
 	});
 
     if (!$("#projguid")[0].length) {
-        $("#form_discover button").attr("disabled", "disabled");
+    	$("#form_discover button").prop("disabled", true).addClass("ui-state-disabled");
     }
 
 });
@@ -51,6 +51,7 @@ $(document).ready(function(){
         <div class="myhr"></div>
         <div class="buttons right">
             {$smarty.const._FORM_BTN_SUBMIT_}
+	        <button type="button" class="button-closethick" onclick="grid_remtab('{$smarty.get.grid_ctrlid}');" value="{$smarty.const._LBL_CANCEL_}" title="{$smarty.const._TITLE_CANCEL_}">{$smarty.const._LBL_CANCEL_}</button>
         </div>
         <br clear="all">
 	</form>

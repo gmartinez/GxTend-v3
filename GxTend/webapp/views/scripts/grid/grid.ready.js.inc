@@ -2,32 +2,12 @@
 
     $(document).ready(function(){        
         var $tabs = $("#tabber_{$grid_ctrlid}").tabs({
-            add: function(event, ui) {
-                // append close thingy
-                $(ui.tab).parents('li:first')
-                    .append('<span class="ui-tabs-close ui-icon ui-icon-close" title="{$lL.__close_tab__}"></span>')
-                    .find('span.ui-tabs-close')
-                    .click(function() {
-                        $tabs.tabs('remove', $('li', $tabs).index($(this).parents('li:first')[0]));
-                        resizeGrid();
-                    });
-                // select just added tab
-                $tabs.tabs('select', '#' + ui.panel.id);
+            beforeLoad: function(event, ui) {
+				ui.panel.html('{$smarty.const._MSG_WAIT_SM_}');
             },
             load: function(event, ui) {               
                 initializeButtons();
                 //tooltip();
-            },
-            select: function(event, ui) {
-                //alert(ui.index);
-            },
-            spinner: '<em>{$smarty.const._MSG_WAIT_SM_}&nbsp;&nbsp;&nbsp;</em>',
-            cache: false,
-            ajaxOptions: { 
-                cache: false,
-                error: function(xhr, status, index, anchor) {
-                    $(anchor.hash).html("{$lL.__error_loading_tab_content__}");
-                }
             }
         });
 

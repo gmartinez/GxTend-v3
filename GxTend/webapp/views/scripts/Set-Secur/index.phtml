@@ -1,36 +1,31 @@
 <script type="text/javascript">
-
 $(document).ready(function(){
 
 	$("#unsetperms, #setperms").ajaxForm({
 		dataType:  'json',
         async: true,
 		beforeSubmit: function() {
-            $("#tabber_{$smarty.get.grid_ctrlid}").block({ message: '{$smarty.const._BAR_WAIT_}' });
+			$("#setperms button, #unsetperms button").prop("disabled", true).addClass("ui-state-disabled");
 		},
 		success: function (j) {
-            $("#setPermissions").html('{$smarty.const._MSG_WAIT_SM_}');
-            var $tabs = $("#tabber_{$smarty.get.grid_ctrlid}").tabs();
-            var $currindex = $tabs.tabs("option", "selected");
-            var $urlparms = $.param({ grid_ctrlid:"{$smarty.get.grid_ctrlid}", kbguid:"{$smarty.get.kbguid}", projguid:"{$smarty.get.projguid}", groupguid:$("#groupguid").val(), access:$("#access").val() });
-            $tabs.tabs("url",$currindex,"/Set-Secur/?"+$urlparms);
-            $("#tabber_{$smarty.get.grid_ctrlid}").tabs("load",$currindex);
-            $("#tabber_{$smarty.get.grid_ctrlid}").unblock();
+			$("#setPermissions").html('{$smarty.const._MSG_WAIT_SM_}');
+			var $currindex = $("#tabber_{$smarty.get.grid_ctrlid}").tabs("option", "active");
+			$("#tabber_{$smarty.get.grid_ctrlid}").tabs("load", $currindex);
         },
         error: function (jqXHR) {
             handleXHRerror(jqXHR);
         }
 	});
 
+	initializeButtons();
     setsubmitsts("#unsetperms .objlst", "#unsetperms button");
 
 });
-
 </script>
 
 <strong>{$lL.__current_grants_on__} : </strong> {$visualId}
 
-<form id="unsetperms" action="Set-Secur/unset" method="POST" enctype="multipart/form-data">
+<form id="unsetperms" action="/Set-Secur/unset" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="guid" value="{$guid}">
     <table width="100%" align="center" class="list">
     <thead>
@@ -63,7 +58,7 @@ $(document).ready(function(){
 
 <br clear="all">
 
-<form id="setperms" action="Set-Secur/set" method="POST" enctype="multipart/form-data">
+<form id="setperms" action="/Set-Secur/set" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="guid" value="{$guid}">
     <fieldset><legend>{$lL.__define_user_s_group_grants_on__}...</legend>
     <br clear="all">
