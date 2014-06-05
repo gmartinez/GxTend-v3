@@ -188,7 +188,6 @@ function go_for_lock(type) {
             </span>
 		    {if $kbdata.kbclass>=7500}            
 		    <span id="click2lck" class="file" style="display:none;" onclick='go_for_lock("lst2lck");'>&nbsp;|&nbsp;<img alt="info" src="../img/icons/16/info.png" title="{$lL.__search___lock__}"> {$lL.__click_to_search___lock_all_modified_objects__}</span>
-		    <br>
 		    <span id="click2add" class="file" style="display:none;" onclick='go_for_lock("lst2add");'>&nbsp;|&nbsp;<img alt="new" src="../img/icons/16/new.png" title="{$lL.__search___lock__}"> {$lL.__click_to_add___lock_all_new_objects__}</span>
 		    {/if}
         </div>
@@ -254,7 +253,7 @@ function go_for_lock(type) {
                                     <span class="lst2add" style="display:none;">{str_ireplace($smarty.request.kbguid|cat:'/','',$gx_objcls[$rec.gxinfo.objcls].small|cat:':'|cat:$rec.gxinfo.objnam)}</span>
                                     {/if}
                                 {else}
-                                    <img alt="info" src="../img/icons/16/info.png" title="{$lL.__no_active_lock_on_this_object__}.\r\n{$lL.__modified___server__} : {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
+                                    <img alt="info" src="../img/icons/16/info.png" title="{$lL.__no_active_lock_on_this_object__} ({$lL.__modified___server__} : {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}).">
                                     {if $rec.gxinfo.objcls!=111}
                                     <span class="lst2lck" style="display:none;">{$gx_objcls[$rec.gxinfo.objcls].small}:{$rec.gxinfo.objnam}</span>
                                     {else}
