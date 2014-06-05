@@ -34,7 +34,7 @@
 
         $("#startupopts").html('{$smarty.const._MSG_WAIT_SM_}');
         $("#submitopts").html('{$smarty.const._MSG_WAIT_SM_}');
-        $("#repository").attr("disabled", "disabled");
+        $("#repository").prop("disabled", true).addClass("ui-state-disabled");
 
         jQuery.getJSON(
                 "/index/passopts",
@@ -42,7 +42,7 @@
                 function (data, textStatus) {
                     $("#startupopts").html(data.startupopts);
                     $("#submitopts").html(data.submitopts);
-                    $("#repository").removeAttr("disabled");
+                    $("#repository").prop("disabled", false).removeClass("ui-state-disabled");
                     initializeButtons();
                     if (data.showconflnk) {
                         $("#configGear").show("slow");

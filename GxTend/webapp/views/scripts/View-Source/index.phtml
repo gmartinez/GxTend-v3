@@ -1,21 +1,21 @@
 {include file="../skel/header.phtml"}
 <!--External Includes-->
-<script type="text/javascript" src="../jquery/addons/syntax/shCore.js"></script>
-<script type="text/javascript" src="../jquery/addons/syntax/shAutoloader.js"></script>
-<link href="../jquery/addons/syntax/css/shCore.css" rel="stylesheet" type="text/css" />
-<link href="../jquery/addons/syntax/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/addons/syntax/shCore.js"></script>
+<script type="text/javascript" src="../js/addons/syntax/shAutoloader.js"></script>
+<link href="../js/addons/syntax/css/shCore.css" rel="stylesheet" type="text/css" />
+<link href="../js/addons/syntax/css/shThemeDefault.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 $(document).ready(function(){
     SyntaxHighlighter.autoloader(
-        'sql  ../jquery/addons/syntax/shBrushSql.js',
-        'php  ../jquery/addons/syntax/shBrushPhp.js',
-        'xml  ../jquery/addons/syntax/shBrushXml.js',
-        'css  ../jquery/addons/syntax/shBrushCss.js',
-        'js   ../jquery/addons/syntax/shBrushJScript.js',
-        'java ../jquery/addons/syntax/shBrushJava.js',
-        'css  ../jquery/addons/syntax/shBrushCss.js',
-        'rb   ../jquery/addons/syntax/shBrushRuby.js'
+        'sql  ../js/addons/syntax/shBrushSql.js',
+        'php  ../js/addons/syntax/shBrushPhp.js',
+        'xml  ../js/addons/syntax/shBrushXml.js',
+        'css  ../js/addons/syntax/shBrushCss.js',
+        'js   ../js/addons/syntax/shBrushJScript.js',
+        'java ../js/addons/syntax/shBrushJava.js',
+        'css  ../js/addons/syntax/shBrushCss.js',
+        'rb   ../js/addons/syntax/shBrushRuby.js'
     );
     SyntaxHighlighter.all();
 });
@@ -52,6 +52,12 @@ $(document).ready(function(){
 		</td>
 	</tr>
     </table>
-    <pre type="syntaxhighlighter" class="brush: {$brush}">{$content}</pre>
+    <pre type="syntaxhighlighter" class="brush: {$brush}">
+    	{if unserialize($content)!==false}
+    	{print_r(unserialize($content))}
+    	{else}
+    	{$content}
+    	{/if}
+	</pre>
 
 {include file="../skel/footer.phtml"}

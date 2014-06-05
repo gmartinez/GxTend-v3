@@ -4,14 +4,14 @@ $(document).ready(function(){
         dataType: 'json',
         async: false,
         beforeSubmit: function() {
-            $("#form_{$smarty.get.kbguid} button").attr("disabled", "disabled");
+            $("#form_{$smarty.get.kbguid} button").prop("disabled", true);
         },
         success: function (r) {
-            $("#form_{$smarty.get.kbguid} button").removeAttr("disabled");
+            $("#form_{$smarty.get.kbguid} button").prop("disabled", false);
             if (r.sts) {
                 $("#GenericDialog").dialog('close');
                 $("#east_panel #proj_tabber #tabber #kbnfo_{$smarty.get.kbguid}").html('{$smarty.const._MSG_WAIT_SM_}');
-                $("#east_panel #proj_tabber #tabber").tabs("load",$("#east_panel #proj_tabber #tabber").tabs("option", "selected"));
+                $("#east_panel #proj_tabber #tabber").tabs("load",$("#east_panel #proj_tabber #tabber").tabs("option", "active"));
             } else {
                 alert(r.msg);
             }

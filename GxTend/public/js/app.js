@@ -235,7 +235,7 @@ function grid_addtab(gid, url, label) {
         if (i >= 0) {
 			$("#tabber_"+gid).tabs("option", "active", i);
         } else {
-			$("#tabber_"+gid+" > ul").append("<li data-urlhash='"+urlhash+"'><a href='"+url+"'>"+label+"</a></li>");
+			$("#tabber_"+gid+" > ul").append("<li data-urlhash='"+urlhash+"'><a href='"+url+"'>"+label+"</a>&nbsp;&nbsp;<span class='ui-tabs-close ui-icon ui-icon-close' onclick='grid_remtab(\""+gid+"\",\""+urlhash+"\");'></span></li>");
 			$("#tabber_"+gid).append("<div data-urlhash='"+urlhash+"'></div>").tabs("refresh").tabs("option", "active", -1);
         }
     } else if (!gid) {

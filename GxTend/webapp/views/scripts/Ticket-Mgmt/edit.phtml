@@ -70,7 +70,7 @@ $(document).ready(function(){
     });
 
     {if !$data.grants.rw || $data.source != "gxtend"}
-        $("#ticket #form_tts .right button").attr("disabled", "disabled");
+        $("#ticket #form_tts .right button").prop("disabled", true).addClass("ui-state-disabled");
     {/if}
 
     var sliderObj = $("#ttspercent_slider").slider({

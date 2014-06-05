@@ -28,6 +28,7 @@ $lL["__target_modified_on__"] = "Target modified on";
 $lL["__automatically_generated__"] = "Automatically generated";
 $lL["__automatically_generated_but_modified__"] = "Automatically generated BUT modified";
 $lL["__object_s_lock_status_you_have_an_active_lock_on_this_object_since__"] = "Object's Lock Status|You have an active lock on this object since";
+$lL["__modified___local__"] = "Modificado @ Local";
 $lL["__ttp__"] = "TTP";
 $lL["__second__"] = "second";
 $lL["__top__"] = "Top";

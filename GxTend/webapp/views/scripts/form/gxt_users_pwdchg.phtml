@@ -6,14 +6,14 @@ $(document).ready(function(){
 		dataType: 'json',
         async: true,
 		beforeSubmit: function() {
-            $("#password_change_form button").attr("disabled", "disabled").addClass("ui-state-disabled");
+            $("#password_change_form button").prop("disabled", true).addClass("ui-state-disabled");
 		},
 		success: function (r) {
             notify("Notification",r.msg,(r.sts ? "info":"error"),2500);
             if (r.sts) {
                 $("#GenericDialog").dialog("close");
             } else {
-                $("#password_change_form button").removeAttr("disabled").removeClass("ui-state-disabled");
+                $("#password_change_form button").prop("disabled", false).removeClass("ui-state-disabled");
             }
         },
         error: function (jqXHR) {
