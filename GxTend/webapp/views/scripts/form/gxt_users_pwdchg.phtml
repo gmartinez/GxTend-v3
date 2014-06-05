@@ -13,7 +13,7 @@ $(document).ready(function(){
             if (r.sts) {
                 $("#GenericDialog").dialog("close");
             } else {
-                $("#password_change_form button").removeAttr("disabled").removeClass("ui-state-disabled");
+                $("#password_change_form button").prop("disabled", false).removeClass("ui-state-disabled");
             }
         },
         error: function (jqXHR) {

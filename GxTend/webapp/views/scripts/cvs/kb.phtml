@@ -24,9 +24,9 @@
         {if $projdata.repo_stats.ava == "!exist"}
         &nbsp;{$InProve_Smarty->msg("ui-icon-alert","Local Repository Not Found")}
         {else}
-        &nbsp;<span id="checkinlnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$projdata.projguid}", "{$kbdata.kbguid}", 0, "programs"));' class='pointer'><img src='{$smarty.const._IMG_COMMIT_SM_}' alt='{$smarty.const._LBL_COMMIT_}' title='{$lL.__click_to_see_commit_kb_changes_into__local_history_repo___}'></span>
+        &nbsp;<span id="checkinlnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$projdata.projguid}", "{$kbdata.kbguid}", {if $have_locks}"locked"{else}""{/if}));' class='pointer'><img src='{$smarty.const._IMG_COMMIT_SM_}' alt='{$smarty.const._LBL_COMMIT_}' title='{$lL.__click_to_see_commit_kb_changes_into__local_history_repo___}'></span>
         {if $kbdata.kbclass>=7500}
-        &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$projdata.projguid}", "{$kbdata.kbguid}", 0, "programs"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='{$lL.__click_to_see_import_other_people_changes_into_my_kb__}'></span>
+        &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$projdata.projguid}", "{$kbdata.kbguid}", "programs"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='{$lL.__click_to_see_import_other_people_changes_into_my_kb__}'></span>
         {else}
         &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("merge", "{$projdata.projguid}", "{$kbdata.kbguid}"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='{$lL.__click_to_see_import_other_people_changes_into_my_kb__}'></span>
         {/if}

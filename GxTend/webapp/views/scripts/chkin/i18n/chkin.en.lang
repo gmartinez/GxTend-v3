@@ -42,6 +42,7 @@ $lL["__has_an_active_lock_on_this_object_since__"] = "has an active lock on this
 $lL["__no_active_lock_on_this_object__"] = "No active lock on this object";
 $lL["__pending__"] = "Pending";
 $lL["__consolidation_pending__"] = "Consolidation Pending";
+$lL["__modified___server__"] = "Modified @ Server";
 $lL["__my_image__"] = "My Visual Id";
 $lL["__commenting_on_your_commits_is_usually_a_good_idea__"] = "Commenting on your commits is usually a good idea";
 $lL["__tickets_you_can_associate_this_commit_to__"] = "Tickets you can associate this commit to";

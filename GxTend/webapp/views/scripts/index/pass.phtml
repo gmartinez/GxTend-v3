@@ -42,7 +42,7 @@
                 function (data, textStatus) {
                     $("#startupopts").html(data.startupopts);
                     $("#submitopts").html(data.submitopts);
-                    $("#repository").removeAttr("disabled");
+                    $("#repository").prop("disabled", false).removeClass("ui-state-disabled");
                     initializeButtons();
                     if (data.showconflnk) {
                         $("#configGear").show("slow");

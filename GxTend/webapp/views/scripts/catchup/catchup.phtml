@@ -96,8 +96,8 @@ function filter_by_objsts() {
         <div class="left">
             <img src="{$smarty.const._IMG_CATCHUP_SM_}" alt="{$smarty.const._LBL_CATCHUP_}" title="{$smarty.const._LBL_CATCHUP_}"> {$lL.__catchup_changes_from__local_history_repo___}
             &nbsp;|&nbsp;
-            			<select onchange='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 0, $("#what2comp").val()));' name="what2comp" id="what2comp">
-            				<option value="">All Object Types</option>
+            			<select onchange='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", $("#what2comp").val()));' name="what2comp" id="what2comp">
+            				<option value="">All Objects</option>
             				<option value="programs" {if $smarty.request.what2comp=="programs"}selected{/if}>All but Database Related</option>
             				<option value="database" {if $smarty.request.what2comp=="database"}selected{/if}>Only Database Related</option>
         				</select>			            
@@ -162,7 +162,7 @@ function filter_by_objsts() {
                     {else}
                         {if $rec.b64}
                         <span id="{$rec.b64|sha1}">
-                            <input class="objlst" type="checkbox" name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_catchup .objlst", "#form_catchup button");'>
+                            <input class="objlst" type="checkbox" name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_catchup .objlst", "#form_catchup button");' {if in_array($rec.gxinfo.COMP, array("OLDER","NEWER"))}title="{$lL.__modified___local__} : {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}"{/if}>
                         </span>
                         {/if}
                     {/if}
@@ -180,7 +180,7 @@ function filter_by_objsts() {
             <input type="radio" name='catchuptype' value='getxpz'>&nbsp;<img src='{$smarty.const._IMG_PACKAGE_SM_}'> {$smarty.const._LBL_PACKAGE_}&nbsp;&nbsp;
             <p>
             <div style="float:right;">
-                <button class="button-circle" type="submit" name="submit_btn" value="{$smarty.const._LBL_SUBMIT_}" title="{$smarty.const._TITLE_SUBMIT_}">{$smarty.const._LBL_SUBMIT_}</button>
+                {$smarty.const._FORM_BTN_CATCHUP_}
             </div>
         </div>
         </form>

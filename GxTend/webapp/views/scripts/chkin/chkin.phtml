@@ -159,26 +159,6 @@ function go_for_lock(type) {
     </div>
     {/if}
 
-    <div class="myhr"></div>
-    <div class="column left" style="width:50%;">
-        {if $have_locks && !$smarty.request.forcecompare}
-        {$lL.__list_below_is__strong_restricted__strong__to_your_current_locked_set__}, <a href="javascript:;" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 1));'>{$lL.__click_here__}</a> {$lL.__for_full_list_of_differences__}.&nbsp;
-        {elseif $have_locks && $smarty.request.forcecompare}
-        {$lL.__list_below_contains__strong_full_set__strong__of_differences__}, <a href="javascript:;" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 0));'>{$lL.__click_here__}</a> {$lL.__to_restrict_it_to_your_current_locked_set__}.&nbsp;
-        {else}
-        {$lL.__list_below_contains__} <strong>{$lL.__full_set__}</strong> {$lL.__of_differences__you_have_no_active_locks__}.&nbsp;
-        {/if}
-    </div>
-    <div class="column right">
-        {if $kbdata.kbclass>=7500}
-        <span id="click2lck" class="file" style="display:none;" onclick='go_for_lock("lst2lck");'><img alt="info" src="../img/icons/16/info.png" title="{$lL.__search___lock__}"> {$lL.__click_to_search___lock_all_modified_objects__}</span>
-        <br>
-        <span id="click2add" class="file" style="display:none;" onclick='go_for_lock("lst2add");'><img alt="new" src="../img/icons/16/new.png" title="{$lL.__search___lock__}"> {$lL.__click_to_add___lock_all_new_objects__}</span>
-        {/if}
-    </div>
-    <br clear="all">
-    <div class="myhr"></div>
-
     {if !is_array($local_changes)}
         <div class="left">
             {include file='../skel/ttp.phtml' ttpLabel={$lL.__ttp__} secLabel={$lL.__second__} bck2top='no'}
@@ -191,10 +171,11 @@ function go_for_lock(type) {
         <div class="column left">
             <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="{$smarty.const._LBL_COMMIT_}" title="{$smarty.const._LBL_COMMIT_}"> {$lL.__commit_changes_into__local_history_repo___}
             &nbsp;|&nbsp;
-            			<select onchange='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 0, $("#what2comp").val()));' name="what2comp" id="what2comp">
-            				<option value="">All Object Types</option>
-            				<option value="programs" {if $smarty.request.what2comp=="programs"}selected{/if}>All but Database Related</option>
-            				<option value="database" {if $smarty.request.what2comp=="database"}selected{/if}>Only Database Related</option>
+            			<select onchange='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", $("#what2comp").val()));' name="what2comp" id="what2comp">
+            				<option value="">All Objects</option>
+            				<option value="locked" {if $smarty.request.what2comp=="locked"}selected{/if}>Locked Objects</option>
+            				<!-- <option value="programs" {if $smarty.request.what2comp=="programs"}selected{/if}>All but Database Related</option>
+            				<option value="database" {if $smarty.request.what2comp=="database"}selected{/if}>Only Database Related</option> -->
         				</select>			            
             <!--&nbsp;|&nbsp;
             			{$periods_filter}-->
@@ -204,6 +185,11 @@ function go_for_lock(type) {
             <input type="checkbox" id="gen2chk" name="gen2chk" onchange="filter_by_objsts();" checked> <img class="tip" alt="gen2" src="../img/icons/16/lightning_red.png" title="{$lL.__visual_tag_information_objects_tagged_with_this_icon_were_detected_as_being_automatically_generated_by_some_genexus_process__eg__from_a_pattern_instance__but_some_of_it_has_been_modified_by_a_user__}.">&nbsp;
             <input type="checkbox" id="olderchk" name="olderchk" onchange="filter_by_objsts();"> <img class="tip" alt="older" src="../img/icons/16/warning.png" title="{$lL.__visual_tag_information_objects_tagged_with_this_icon_were_detected_as_being_older_than_its_target__}.">
             </span>
+		    {if $kbdata.kbclass>=7500}            
+		    <span id="click2lck" class="file" style="display:none;" onclick='go_for_lock("lst2lck");'>&nbsp;|&nbsp;<img alt="info" src="../img/icons/16/info.png" title="{$lL.__search___lock__}"> {$lL.__click_to_search___lock_all_modified_objects__}</span>
+		    <br>
+		    <span id="click2add" class="file" style="display:none;" onclick='go_for_lock("lst2add");'>&nbsp;|&nbsp;<img alt="new" src="../img/icons/16/new.png" title="{$lL.__search___lock__}"> {$lL.__click_to_add___lock_all_new_objects__}</span>
+		    {/if}
         </div>
         <div class="column right">
             <span id="resultrows"></span> row(s)
@@ -267,7 +253,7 @@ function go_for_lock(type) {
                                     <span class="lst2add" style="display:none;">{str_ireplace($smarty.request.kbguid|cat:'/','',$gx_objcls[$rec.gxinfo.objcls].small|cat:':'|cat:$rec.gxinfo.objnam)}</span>
                                     {/if}
                                 {else}
-                                    <img alt="info" src="../img/icons/16/info.png" title="{$lL.__no_active_lock_on_this_object__}.">
+                                    <img alt="info" src="../img/icons/16/info.png" title="{$lL.__no_active_lock_on_this_object__}.\r\n{$lL.__modified___server__} : {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}">
                                     {if $rec.gxinfo.objcls!=111}
                                     <span class="lst2lck" style="display:none;">{$gx_objcls[$rec.gxinfo.objcls].small}:{$rec.gxinfo.objnam}</span>
                                     {else}
@@ -278,7 +264,7 @@ function go_for_lock(type) {
                                 {if $rec.gxinfo.chkin}
                                 <img src="{$smarty.const._IMG_CLOCK_SM_}" alt="{$lL.__pending__}" title="{$lL.__consolidation_pending__}">
                                 {else}
-                                <input class="objlst" type='checkbox' name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_checkin .objlst", "#form_checkin button");'>
+                                <input class="objlst" type='checkbox' name='checked_objs[]' value='{$rec.b64}' onclick='setsubmitsts("#form_checkin .objlst", "#form_checkin button");' {if in_array($rec.gxinfo.COMP, array("OLDER","NEWER"))}title="{$lL.__modified___server__} : {$InProve_Smarty->ts2str($rec.gxinfo.COMPREF)}"{/if}>
                                 {/if}
                             {/if}
                         </span>

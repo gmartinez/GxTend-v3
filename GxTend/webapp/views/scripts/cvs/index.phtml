@@ -18,14 +18,14 @@ function show_synch(type, projguid) {
 
 }
 
-function show_diffs(type, projguid, kbguid, forcecompare, what2comp) {
+function show_diffs(type, projguid, kbguid, what2comp) {
 
     var codeline = $("#codeline").val();
 
     $("#diffs").html('{$smarty.const._MSG_WAIT_SM_}');
 
     if (type=="checkin") {
-        $("#diffs").load("/Chkin/index",{ projguid:projguid,kbguid:kbguid,mdlid:1,mergebefore:0,forcecompare:forcecompare,what2comp:what2comp });
+        $("#diffs").load("/Chkin/index",{ projguid:projguid,kbguid:kbguid,mdlid:1,mergebefore:0,what2comp:what2comp });
     } else if (type=="catchup") {
         $("#diffs").load("/Catchup/index",{ projguid:projguid,kbguid:kbguid,mdlid:1,mergebefore:0,what2comp:what2comp });
     } else if (type=="merge") {
