@@ -54,7 +54,7 @@
             }
         }).navGrid("#pager_{$grid_ctrlid}",{ edit:false,add:false,del:false,search:false });
 
-        $("#qinput_{$grid_ctrlid}").keypress(function (e) {
+        $("#qinput_{$grid_ctrlid}").keyup(function (e) {
           if (e.which == 13) {
             $("#grid_{$grid_ctrlid}").trigger("reloadGrid");
           }

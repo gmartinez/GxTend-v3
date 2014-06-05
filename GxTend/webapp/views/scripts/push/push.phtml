@@ -18,7 +18,7 @@ $(document).ready(function(){
 
             if (r.sts == "ok") {
                 $("#div_push #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__successful_push__} "+r.msg);
-                $("#form_push button").attr("disabled", "disabled");
+                $("#form_push button").prop("disabled", true).addClass("ui-state-disabled");
                 $("#synch").unblock();
             } else if (r.sts == "wrn") {
                 $("#div_push #bottom_left").html("<img src='../img/icons/32/warning.png' alt='wrn' title='err'> {$lL.__pushing_data_warning__} "+r.msg);

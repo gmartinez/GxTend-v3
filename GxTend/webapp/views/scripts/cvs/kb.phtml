@@ -24,9 +24,9 @@
         {if $projdata.repo_stats.ava == "!exist"}
         &nbsp;{$InProve_Smarty->msg("ui-icon-alert","Local Repository Not Found")}
         {else}
-        &nbsp;<span id="checkinlnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$projdata.projguid}", "{$kbdata.kbguid}", 0));' class='pointer'><img src='{$smarty.const._IMG_COMMIT_SM_}' alt='{$smarty.const._LBL_COMMIT_}' title='{$lL.__click_to_see_commit_kb_changes_into__local_history_repo___}'></span>
+        &nbsp;<span id="checkinlnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("checkin", "{$projdata.projguid}", "{$kbdata.kbguid}", 0, "programs"));' class='pointer'><img src='{$smarty.const._IMG_COMMIT_SM_}' alt='{$smarty.const._LBL_COMMIT_}' title='{$lL.__click_to_see_commit_kb_changes_into__local_history_repo___}'></span>
         {if $kbdata.kbclass>=7500}
-        &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$projdata.projguid}", "{$kbdata.kbguid}"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='{$lL.__click_to_see_import_other_people_changes_into_my_kb__}'></span>
+        &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$projdata.projguid}", "{$kbdata.kbguid}", 0, "programs"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='{$lL.__click_to_see_import_other_people_changes_into_my_kb__}'></span>
         {else}
         &nbsp;<span id="catchuplnk" onclick='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("merge", "{$projdata.projguid}", "{$kbdata.kbguid}"));' class='pointer'><img src='{$smarty.const._IMG_CATCHUP_SM_}' alt='{$smarty.const._LBL_CATCHUP_}' title='{$lL.__click_to_see_import_other_people_changes_into_my_kb__}'></span>
         {/if}
@@ -45,9 +45,9 @@
         {$InProve_Smarty->msg("HandT","Search_and_Lock.phtml")}
         &nbsp;
         <div style="font-size:0.85em;">
-        [{$lL.__list__} <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[My_Locks]");$("#gobtn").click();'>{$lL.__my__}</span> / <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[All_Locks]");$("#gobtn").click();'>{$lL.__all__}</span> {$lL.__active_locks__}]&nbsp;
-        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Add_New]");$("#gobtn").click();'>{$lL.__add_new_object_s___}</span>]&nbsp;
-        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").attr("value", "[Ignore_List]");$("#gobtn").click();'>{$lL.__ignore_list__}</span>]&nbsp;
+        [{$lL.__list__} <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").val("[My_Locks]");$("#gobtn").click();'>{$lL.__my__}</span> / <span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").val("[All_Locks]");$("#gobtn").click();'>{$lL.__all__}</span> {$lL.__active_locks__}]&nbsp;
+        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").val("[Add_New]");$("#gobtn").click();'>{$lL.__add_new_object_s___}</span>]&nbsp;
+        [<span class="file blck" style="text-decoration:underline;" onclick='$("#qrystr").val("[Ignore_List]");$("#gobtn").click();'>{$lL.__ignore_list__}</span>]&nbsp;
         </div>
         {/if}
     </div>

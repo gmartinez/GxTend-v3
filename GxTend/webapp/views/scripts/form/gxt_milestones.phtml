@@ -7,7 +7,7 @@
         $('#mistduets').datepicker({ minDate: '-0' });
 
         if (!$("#fprojguid")[0].length) {
-            $("#form_{$form_ctrlid} button").attr("disabled", "disabled");
+            $("#form_{$form_ctrlid} button").prop("disabled", true).addClass("ui-state-disabled");
         }
 
     });

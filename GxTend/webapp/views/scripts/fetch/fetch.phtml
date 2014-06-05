@@ -18,7 +18,7 @@ $(document).ready(function(){
 
             if (r.sts == "ok") {
                 $("#div_fetch #bottom_left").html("<img src='../img/icons/32/tick.png' alt='ok' title='ok'> {$lL.__successful_fetch__} "+r.msg);
-                $("#form_fetch button").attr("disabled", "disabled");
+                $("#form_fetch button").prop("disabled", true).addClass("ui-state-disabled");
                 if ($("#mergeAfetch:checked").val()) {
                     mergeAfetch()
                 } else {

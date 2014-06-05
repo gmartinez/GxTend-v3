@@ -34,7 +34,7 @@
 
         $("#startupopts").html('{$smarty.const._MSG_WAIT_SM_}');
         $("#submitopts").html('{$smarty.const._MSG_WAIT_SM_}');
-        $("#repository").attr("disabled", "disabled");
+        $("#repository").prop("disabled", true).addClass("ui-state-disabled");
 
         jQuery.getJSON(
                 "/index/passopts",

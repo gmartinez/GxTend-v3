@@ -180,12 +180,24 @@ function go_for_lock(type) {
     <div class="myhr"></div>
 
     {if !is_array($local_changes)}
-        {$InProve_Smarty->msg("ui-icon-alert", $local_changes)}
+        <div class="left">
+            {include file='../skel/ttp.phtml' ttpLabel={$lL.__ttp__} secLabel={$lL.__second__} bck2top='no'}
+        </div>
+        <div  class="right">
+			{$InProve_Smarty->msg("ui-icon-alert", $local_changes)}
+        </div>
+        <br clear="all">
     {else}
-
         <div class="column left">
             <img src="{$smarty.const._IMG_COMMIT_SM_}" alt="{$smarty.const._LBL_COMMIT_}" title="{$smarty.const._LBL_COMMIT_}"> {$lL.__commit_changes_into__local_history_repo___}
-            &nbsp;|&nbsp;{$periods_filter}
+            &nbsp;|&nbsp;
+            			<select onchange='$("#qrystr").val("");$("#diffs").show("slow", show_diffs("catchup", "{$smarty.request.projguid}", "{$smarty.request.kbguid}", 0, $("#what2comp").val()));' name="what2comp" id="what2comp">
+            				<option value="">All Object Types</option>
+            				<option value="programs" {if $smarty.request.what2comp=="programs"}selected{/if}>All but Database Related</option>
+            				<option value="database" {if $smarty.request.what2comp=="database"}selected{/if}>Only Database Related</option>
+        				</select>			            
+            <!--&nbsp;|&nbsp;
+            			{$periods_filter}-->
             <span id="filterctrls" style="display:none;">
             &nbsp;|&nbsp;
             <input type="checkbox" id="gen1chk" name="gen1chk" onchange="filter_by_objsts();"> <img class="tip" alt="gen1" src="../img/icons/16/lightning_green.png" title="{$lL.__visual_tag_information_objects_tagged_with_this_icon_were_detected_as_being_automatically_generated_by_some_genexus_process__eg__from_a_pattern_instance___}.">&nbsp;
