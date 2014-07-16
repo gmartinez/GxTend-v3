@@ -110,7 +110,7 @@ function chgConnType() {
 
                 <div class="myhr">{$lL.__versioning_properties__}</div>
                 <table width="100%">
-                    <tr style="display:none;" class="options kbver_1111 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200">
+                    <tr style="display:none;" class="options kbver_1111 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200 kbver_10300">
                         <td style="font-weight:bold;width:30%;">{$lL.__monitoring_status__}</td>
                         <td>{$kbmirror}&nbsp;&nbsp;{$qevent}</td>
                     </tr>
@@ -126,12 +126,12 @@ function chgConnType() {
                         <td style="font-weight:bold;">{$lL.__model_s__to_version__}</td>
                         <td><input type="text" size="20" name="mdls2vers" id="mdls2vers" value="{$options.mdls2vers}">&nbsp;<span style="font-size:.8em;">({$lL.__comma_separated_values__})</span></td>
                     </tr>
-                    <tr style="display:none;" class="options kbver_10000 kbver_10100 kbver_10200">
+                    <tr style="display:none;" class="options kbver_10000 kbver_10100 kbver_10200 kbver_10300">
                         <td style="font-weight:bold;">{$lL.__env_s__to_version__}</td>
                         <td><input type="text" size="20" name="mdls2vers" id="mdls2vers" value="{$options.mdls2vers}">&nbsp;<span style="font-size:.8em;">({$lL.__comma_separated_values__})</span></td>
                     </tr>
                     {if $form_mode != $smarty.const._LBL_ADD_}
-                    <tr style="display:none;" class="options kbver_1111 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200">
+                    <tr style="display:none;" class="options kbver_1111 kbver_7500 kbver_8000 kbver_9000 kbver_10000 kbver_10100 kbver_10200 kbver_10300">
                         <td style="font-weight:bold;width:30%;">{$lL.__current_progress___state__}</td>
                         {if $versyncsts.status == "connection_failed"}
                             <td class="red"><img src="{$smarty.const._IMG_ERR_SM_}" alt="error">&nbsp;&nbsp;Error connecting to KB [ {$InProve_Smarty->getSessVar("GxKbCnx.ecod")} : {$InProve_Smarty->getSessVar("GxKbCnx.emsg")} ]
@@ -149,8 +149,8 @@ function chgConnType() {
                     {/if}
                 </table>
 
-                <div class="myhr options kbver_10000 kbver_10100 kbver_10200" style="display:none;">{$lL.__genexus_connection_properties__}</div>
-                <table width="100%" class="options kbver_10000 kbver_10100 kbver_10200" style="display:none;">
+                <div class="myhr options kbver_10000 kbver_10100 kbver_10200 kbver_10300" style="display:none;">{$lL.__genexus_connection_properties__}</div>
+                <table width="100%" class="options kbver_10000 kbver_10100 kbver_10200 kbver_10300" style="display:none;">
                     <tr>
                         <td style="font-weight:bold;width:30%;">{$lL.__genexus_base_directory__}</td>
                         <td>
@@ -161,6 +161,7 @@ function chgConnType() {
                             <span id="gx_basedir_10000" style="display:none;">{$gx_basedir_10000}</span>
                             <span id="gx_basedir_10100" style="display:none;">{$gx_basedir_10100}</span>
                             <span id="gx_basedir_10200" style="display:none;">{$gx_basedir_10200}</span>
+                            <span id="gx_basedir_10300" style="display:none;">{$gx_basedir_10300} (Trial)</span>
                         </td>
                     </tr>
                     <tr style="display:none;">
